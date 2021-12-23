@@ -15,4 +15,5 @@ export default App;
 
 const Test = styled.div`
   font-size: 20px;
+  font-weight: bold;
 `;
