@@ -18,6 +18,7 @@ const Input = (props) => {
   const labelStyle = { display, color };
   const styles = { boxSizing, border, display, margin, width };
 
+
   return (
     <ElLabel {...labelStyle}>
       {text}
@@ -46,7 +47,6 @@ Input.defaultProps = {
 const ElLabel = styled.label`
   font-size: 18px;
   font-weight: normal;
-
   ${(props) => (props.color ? `color: ${props.color};` : "")}
 `;
 
@@ -59,7 +59,6 @@ const ElInput = styled.input`
   padding-left: 21px;
   background-color: #f4f4f4;
   outline: none;
-
   ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")}
   ${(props) => (props.border ? `border: ${props.border};` : "")}
   ${(props) => (props.display ? `display: ${props.display};` : "")}
