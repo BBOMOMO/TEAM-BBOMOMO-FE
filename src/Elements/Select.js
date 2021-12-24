@@ -1,14 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = (props) => {
+const Select = (props) => {
   const { text, children, boxSizing, border, display, color, margin } = props;
   const labelStyle = { display, color };
   const styles = { boxSizing, border, display, margin };
   return (
     <ElLabel {...labelStyle}>
       {text}
-      <ElInput {...styles} />
+      <select>
+        <option key="middle1" value="middle1">
+          중1
+        </option>
+        <option key="middle2" value="middle2">
+          중2
+        </option>
+        <option key="middle3" value="middle3">
+          중3
+        </option>
+        <option key="high1" value="high1">
+          고1
+        </option>
+        <option key="high2" value="high2">
+          고2
+        </option>
+        <option key="high3" value="high3">
+          고3
+        </option>
+        <option key="univ" value="univ">
+          대학생
+        </option>
+      </select>
     </ElLabel>
   );
 };
@@ -19,7 +41,7 @@ const ElLabel = styled.label`
   ${(props) => (props.color ? `color: ${props.color};` : "")}
 `;
 
-const ElInput = styled.input`
+const ElSelect = styled.select`
   width: 498px;
   height: 62px;
   border-radius: 11px;
@@ -32,4 +54,4 @@ const ElInput = styled.input`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 
-export default Input;
+export default Select;
