@@ -13,9 +13,11 @@ const Input = (props) => {
     display,
     color,
     margin,
+    width,
   } = props;
-  const labelStyle = {display, color};
-  const styles = {boxSizing, border, display, margin};
+  const labelStyle = { display, color };
+  const styles = { boxSizing, border, display, margin, width };
+
 
   return (
     <ElLabel {...labelStyle}>
@@ -33,12 +35,13 @@ const Input = (props) => {
 
 Input.defaultProps = {
   label: "",
-  placeholder: "placeholder",
+  placeholder: "",
   type: "text",
   value: "",
   padding: "10px",
   boxSizing: "border-box",
   _onChange: () => {},
+  width: "100%",
 };
 
 const ElLabel = styled.label`
@@ -48,7 +51,7 @@ const ElLabel = styled.label`
 `;
 
 const ElInput = styled.input`
-  width: 100%;
+  ${(props) => (props.width ? `width: ${props.width};` : "")}
   height: 62px;
   border-radius: 11px;
   font-size: 18px;

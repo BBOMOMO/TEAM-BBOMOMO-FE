@@ -1,0 +1,28 @@
+.signup {
+  display: flex;
+}
+
+.signup_img_area {
+  width: 650px;
+  height: 100vh;
+}
+
+.signup_container {
+  width: 1270px;
+  padding-top: 163px;
+}
+.signup_title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 38px;
+  margin-bottom: 99px;
+}
+.singup_content {
+  width: 1110px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.singup_content label + label + label {
+  margin-top: 28px;
+}
