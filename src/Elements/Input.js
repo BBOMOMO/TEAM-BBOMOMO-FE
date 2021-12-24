@@ -2,10 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = (props) => {
-  const { text,placeholder,type ,_onChange,value} = props;
-  const styles = {};
+
+  const { text,placeholder,type ,_onChange,value, boxSizing, border, display, color, margin } = props;
+  const labelStyle = { display, color };
+  const styles = { boxSizing, border, display, margin };
+
   return (
-    <ElLabel>
+    <ElLabel {...labelStyle}>
       {text}
       <ElInput type={type} placeholder={placeholder} onChange={_onChange} value={value} {...styles}/>
     </ElLabel>
@@ -25,7 +28,9 @@ Input.defaultProps = {
 const ElLabel = styled.label`
   font-size: 18px;
   font-weight: normal;
-  
+
+  ${(props) => (props.color ? `color: ${props.color};` : "")}
+
 `;
 
 const ElInput = styled.input`
@@ -37,9 +42,12 @@ const ElInput = styled.input`
   padding-left: 21px;
   background-color: #f4f4f4;
   outline: none;
-  border:none;
-  margin-top:10px;
-  box-sizing: border-box;
+
+  ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : "")}
+  ${(props) => (props.display ? `display: ${props.display};` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+
 `;
 
 export default Input;
