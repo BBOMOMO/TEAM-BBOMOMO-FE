@@ -1,21 +1,19 @@
 import React from "react";
 import GlobalStyles from "./components/GlobalStyles";
-import styled from "styled-components";
-import "./styles/css/signup.css";
-import { Route } from "react-router-dom";
-import { ConnectedRouter } from "connected-react-router";
-import { history } from "./redux/configureStore";
 
+import { Route } from "react-router-dom";
+
+import "./styles/css/signup.css";
+import GroupList from "./pages/GroupList";
 import Signup from "./page/Singup";
 
 function App() {
   return (
-    <React.Fragment>
-      <GlobalStyles />
-      <ConnectedRouter history={history}>
+    <>
+      <GlobalStyles /> 
+        <Route path="/list" exact component={GroupList}/> 
         <Route path="/" exact component={Signup} />
-      </ConnectedRouter>
-    </React.Fragment>
+    </>
   );
 }
 
