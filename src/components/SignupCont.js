@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Input from "../Elements/Input";
-import Button from "../Elements/Button";
-import Select from "../Elements/Select";
+import Input from "../elements/Input";
+import Button from "../elements/Button";
+import Select from "../elements/Select";
 
 const SingupCont = (props) => {
   return (
@@ -21,6 +21,7 @@ const SingupCont = (props) => {
             display="block"
             color="#7A7D81"
             margin="18px 0 0 0"
+            width="498px"
           ></Input>
           <Input
             text="닉네임"
@@ -29,6 +30,7 @@ const SingupCont = (props) => {
             display="block"
             color="#7A7D81"
             margin="18px 0 0 0"
+            width="498px"
           ></Input>
           <Input
             text="비밀번호"
@@ -37,15 +39,17 @@ const SingupCont = (props) => {
             display="block"
             color="#7A7D81"
             margin="18px 0 0 0"
+            width="498px"
           ></Input>
-          <Input
+          <Select
             text="구분"
             boxSizing
             border="none"
             display="block"
             color="#7A7D81"
             margin="18px 0 0 0"
-          ></Input>
+            width="498px"
+          ></Select>
           <Input
             text="비밀번호확인"
             boxSizing
@@ -53,6 +57,7 @@ const SingupCont = (props) => {
             display="block"
             color="#7A7D81"
             margin="18px 0 0 0"
+            width="498px"
           ></Input>
           <Button
             border="none"
