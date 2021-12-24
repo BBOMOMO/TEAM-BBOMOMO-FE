@@ -1,0 +1,125 @@
+.login_container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+.login_left_bx {
+  width: 52%;
+  background: #bef5a4;
+}
+.login_rigth_bx {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+}
+.login_inner_bx {
+  width: 498px;
+}
+
+.login_h2 {
+  margin-bottom: 104px;
+  color: #000;
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 38px;
+}
+
+.login_input_id {
+  position: relative;
+}
+.login_input_id img {
+  position: absolute;
+  top: 52px;
+  left: 20px;
+  width: 24px;
+  height: 24px;
+  opacity: 0.5;
+}
+.login_input_pw {
+  position: relative;
+}
+.login_input_pw img {
+  position: absolute;
+  top: 52px;
+  left: 20px;
+  width: 24px;
+  height: 24px;
+  opacity: 0.5;
+}
+
+.login_guideline::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 80px;
+  width: 140px;
+  height: 1px;
+  background: #e6e9ec;
+}
+.login_guideline::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  width: 140px;
+  height: 1px;
+  background: #e6e9ec;
+}
+.login_guideline {
+  position: relative;
+  color: #c2c6cb;
+  font-size: 13px;
+  text-align: center;
+  line-height: 21px;
+}
+
+.login_btn_bx {
+  display: flex;
+  justify-content: space-between;
+}
+.login_btn {
+  margin: 33px 0 76px 0;
+  width: 245px;
+  height: 70px;
+  border-radius: 11px;
+  background: #fff;
+  font-size: 18px;
+}
+.login_google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b5b5b5;
+}
+.login_google img {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+.login_kakao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffb423;
+}
+.login_kakao img {
+  width: 58px;
+  height: 38px;
+}
+
+.login_goto_signup_bx {
+  color: #a3a6aa;
+  font-size: 15px;
+  text-align: center;
+}
+.login_goto_signup {
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid #a3a6aa;
+  background: transparent;
+  color: #a3a6aa;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
