@@ -12,14 +12,13 @@ import PostChat from "./components/PostChat";
 
 
 function App() {
-  const socket = io.connect("http://13.209.4.79:3000/");
-  console.log(socket);
+
   return (
     <>
       <GlobalStyles />
+      <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
       <Route path="/list" exact component={GroupList} />
-      <Route path="/" exact component={Signup} />
       <Route path="/chat" exact component={PostChat} />
 
     </>
