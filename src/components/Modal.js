@@ -1,7 +1,9 @@
 import React from "react";
 import '../styles/css/Group.css';
 import styled from "styled-components";
+
 import { Button, Input, Select } from "../elements/index";
+
 
 function Modal() {
 
