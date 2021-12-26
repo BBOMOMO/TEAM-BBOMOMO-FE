@@ -1,0 +1,41 @@
+.group_left_h2 {
+  margin-bottom: 12px;
+  color: #242424;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.group_left_h2 span {
+  margin-right: 8px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.ww {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.state_name_bx {
+  display: inline-block;
+  padding: 4px 8px 4px 6px;
+  border: 0.37px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  color: #282828;
+  font-size: 10px;
+  line-height: 12px;
+}
+.state_name_circle {
+  display: inline-block;
+  margin-right: 4px;
+  width: 13.32px;
+  height: 13.32px;
+  border-radius: 13.32px;
+  background: #797979;
+  text-indent: -9999px;
+}
+.state_name_bx + .state_name_bx {
+  margin-top: 4px;
+}

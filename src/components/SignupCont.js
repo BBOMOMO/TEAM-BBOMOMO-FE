@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Input from "../elements/Input";
-import Button from "../elements/Button";
-import Select from "../elements/Select";
+import { Button, Input, Select } from "../Elements";
 
 const SingupCont = (props) => {
   return (

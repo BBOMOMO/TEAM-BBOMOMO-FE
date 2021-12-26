@@ -14,10 +14,11 @@ const Input = (props) => {
     color,
     margin,
     width,
+    padding,
   } = props;
-  const labelStyle = { display, color };
-  const styles = { boxSizing, border, display, margin, width };
 
+  const labelStyle = { display, color };
+  const styles = { boxSizing, border, display, margin, width, padding };
 
   return (
     <ElLabel {...labelStyle}>
@@ -56,13 +57,13 @@ const ElInput = styled.input`
   border-radius: 11px;
   font-size: 18px;
   color: #c6c6c6;
-  padding-left: 21px;
   background-color: #f4f4f4;
   outline: none;
   ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")}
   ${(props) => (props.border ? `border: ${props.border};` : "")}
   ${(props) => (props.display ? `display: ${props.display};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
 `;
 
 export default Input;

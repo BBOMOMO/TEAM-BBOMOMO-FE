@@ -4,14 +4,17 @@
   height: 100vh;
 }
 .login_left_bx {
-  width: 52%;
-  background: #bef5a4;
+  width: 50%;
+  background: #486bff;
+  background-image: url("../../Images/loginbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .login_rigth_bx {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48%;
+  width: 50%;
 }
 .login_inner_bx {
   width: 498px;
