@@ -1,7 +1,6 @@
 import React from "react";
 import GlobalStyles from "./components/GlobalStyles";
 
-
 import "./styles/css/login.css";
 import Login from "./page/Login";
 import { Route } from "react-router-dom";
@@ -10,10 +9,7 @@ import GroupList from "./page/GroupList";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
 
-
 function App() {
-  const socket = io.connect("http://13.209.4.79:3000/");
-  console.log(socket);
   return (
     <>
       <GlobalStyles />
@@ -21,7 +17,6 @@ function App() {
       <Route path="/list" exact component={GroupList} />
       <Route path="/" exact component={Signup} />
       <Route path="/chat" exact component={PostChat} />
-
     </>
   );
 }
