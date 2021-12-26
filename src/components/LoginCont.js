@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Input} from "../Elements";
+import {Button, Input} from "../elements";
 
 const LoginCont = () => {
   const [id, setId] = useState("");
