@@ -1,19 +1,16 @@
-import React, {useState} from "react";
-import {Button, Input} from "../elements";
 
-const LoginCont = () => {
+import React, { useState } from "react";
+import { Button, Input } from "../elements";
+
+
+
+const LoginCont = (props) => {
   const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+
   return (
     <div className="login_container">
-      <div className="login_left_bx">
-        <img
-          style={{
-            width: "100%",
-          }}
-          src={require("../Images/loginbg.png").default}
-          alt=""
-        />
-      </div>
+      <div className="login_left_bx"></div>
 
       <div className="login_rigth_bx">
         <div className="login_inner_bx">
@@ -36,9 +33,8 @@ const LoginCont = () => {
               color="#7A7D81"
               margin="16px 0 0 0"
               padding="0 0 0 60px"
-              _onchange={(e) => {
+              _onChange={(e) => {
                 setId(e.target.value);
-                console.log(123);
               }}
             ></Input>
           </div>
@@ -49,13 +45,17 @@ const LoginCont = () => {
               alt="사람 아이콘"
             />
             <Input
+              value={pw}
               text="비밀번호"
               boxSizing
               border="none"
               display="block"
               color="#7A7D81"
               margin="16px 0 0 0"
-              placeholder=""
+              padding="0 0 0 60px"
+              _onChange={(e) => {
+                setPw(e.target.value);
+              }}
             ></Input>
           </div>
 
