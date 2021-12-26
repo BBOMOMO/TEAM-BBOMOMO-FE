@@ -13,12 +13,13 @@ import PostChat from "./components/PostChat";
 import GroupBx from "./components/GroupBx";
 
 function App() {
+
   return (
     <>
       <GlobalStyles />
+      <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
       <Route path="/list" exact component={GroupList} />
-      <Route path="/" exact component={Signup} />
       <Route path="/chat" exact component={PostChat} />
       <Route path="/glist" exact component={GroupBx} />
     </>

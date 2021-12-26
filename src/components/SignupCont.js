@@ -59,6 +59,7 @@ const SingupCont = (props) => {
           ></Input>
           <Button
             border="none"
+            width="100%"
             height="70px"
             radius="11px"
             margin="148px 0 0 0"
