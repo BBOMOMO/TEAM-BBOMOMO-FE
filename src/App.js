@@ -13,7 +13,6 @@ import PostChat from "./components/PostChat";
 import GroupBx from "./components/GroupBx";
 
 function App() {
-
   return (
     <>
       <GlobalStyles />

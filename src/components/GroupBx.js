@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import lock from "../Images/ic-lock-alt.png";
+import camera from "../Images/ic-camera-movie.png";
+import person from "../Images/ic-people.png";
 
 const GroupBx = () => {
   return (
@@ -7,10 +10,10 @@ const GroupBx = () => {
       <div className="group_left_bx">
         <div>
           <h2 className="group_left_h2">
-            <span>수능</span>안녕
+            <span>수능공부</span>안녕
           </h2>
         </div>
-
+        {/* <div style={{ width: "100px" }}>sdad{qwe}</div> */}
         <div className="state_name_bx">
           <p className="state_name_txt">
             <span className="state_name_circle">동그라미</span>
@@ -36,16 +39,12 @@ const GroupBx = () => {
 
       <div className="group_right_bx">
         <div className="ic_top_bx">
-          {/* <img
-            src={require("../Images/ic-people.png").default}
-            alt="사람 아이콘"
-          /> */}
-          {/* <img src="../Images/ic-camera off.png" alt="dfg" /> */}
-          {/* <img src={require("../Images/ic-people.png").default} alt="" /> */}
+          <img src={camera} alt="" />
+          <img src={lock} alt="" />
         </div>
         <div className="ic_bottom_bx">
-          {/* <img src={require("../Images/ic-people.png").default} alt="" /> */}
-          <p>sdf</p>
+          <img src={person} alt="" />
+          <p>2 / 6</p>
         </div>
       </div>
     </GroupCont>
