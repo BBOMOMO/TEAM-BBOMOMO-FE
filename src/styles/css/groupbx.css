@@ -1,9 +1,20 @@
+/* .group_right_bx {
+  width: 50%;
+} */
+
+/* .group_left_bx {
+  width: 50%;
+} */
 .group_left_h2 {
+  width: 100px;
   margin-bottom: 12px;
   color: #242424;
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .group_left_h2 span {
@@ -13,19 +24,22 @@
   border-radius: 10px;
   font-size: 12px;
 }
-.ww {
+.state_name_bx {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.state_name_bx {
-  display: inline-block;
+.state_name_txt {
   padding: 4px 8px 4px 6px;
   border: 0.37px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   color: #282828;
   font-size: 10px;
   line-height: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 130px;
+  text-overflow: ellipsis;
 }
 .state_name_circle {
   display: inline-block;
@@ -36,6 +50,6 @@
   background: #797979;
   text-indent: -9999px;
 }
-.state_name_bx + .state_name_bx {
+.state_name_txt + .state_name_txt {
   margin-top: 4px;
 }

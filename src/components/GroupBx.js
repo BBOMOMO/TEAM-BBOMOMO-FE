@@ -7,34 +7,45 @@ const GroupBx = () => {
       <div className="group_left_bx">
         <div>
           <h2 className="group_left_h2">
-            <span>수능</span>안녕하세요
+            <span>수능</span>안녕
           </h2>
         </div>
 
-        <div className="ww">
-          <p className="state_name_bx">
-            <span className="state_name_circle">동그라미</span>나는 이서현
+        <div className="state_name_bx">
+          <p className="state_name_txt">
+            <span className="state_name_circle">동그라미</span>
+            나는이서현나는이서현나는이서현나는이서현나는이서현나는이서현
           </p>
-          <p className="state_name_bx">
-            <span className="state_name_circle">동그라미</span>나는 서민지
+
+          <p className="state_name_txt">
+            <span className="state_name_circle">동그라미</span>
+            나는이서현나는이서현
           </p>
-          <p className="state_name_bx">
-            <span className="state_name_circle">동그라미</span>나는 정종찬
+
+          <p className="state_name_txt">
+            <span className="state_name_circle">동그라미</span>
+            나는이서현나는이서현나는이서현
           </p>
-          <p className="state_name_bx">
-            <span className="state_name_circle">동그라미</span>나는 이서현
+
+          <p className="state_name_txt">
+            <span className="state_name_circle">동그라미</span>
+            나는이서현나는
           </p>
         </div>
       </div>
 
       <div className="group_right_bx">
         <div className="ic_top_bx">
-          {/* <img src="" alt="" /> */}
-          {/* <img src="" alt="" /> */}
+          {/* <img
+            src={require("../Images/ic-people.png").default}
+            alt="사람 아이콘"
+          /> */}
+          {/* <img src="../Images/ic-camera off.png" alt="dfg" /> */}
+          {/* <img src={require("../Images/ic-people.png").default} alt="" /> */}
         </div>
         <div className="ic_bottom_bx">
-          {/* <img src="" alt="" /> */}
-          <p></p>
+          {/* <img src={require("../Images/ic-people.png").default} alt="" /> */}
+          <p>sdf</p>
         </div>
       </div>
     </GroupCont>

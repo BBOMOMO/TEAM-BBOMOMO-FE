@@ -14,8 +14,9 @@ const Button = (props) => {
     radius,
     margin,
     weight,
-    groupButton
+    groupButton,
   } = props;
+
   const styles = {
     width,
     color,
@@ -26,40 +27,35 @@ const Button = (props) => {
     radius,
     margin,
     weight,
-    
   };
 
-
-  if(groupButton){
+  if (groupButton) {
     // 그룹방만들기 모달창
-    return(
+    return (
       <>
-        <GroupButton {...styles}>
-          {children}
-        </GroupButton>
+        <GroupButton {...styles}>{children}</GroupButton>
       </>
-    )
+    );
   }
 
   return <ElButton {...styles}>{children}</ElButton>;
 };
 
 Button.defaultProps = {
-  width:false,
+  width: false,
   color: "#fff",
   background: "#272727",
   fontSize: "24px",
 };
 
-
 const GroupButton = styled.div`
-  font-size:16px;
-  background:#f4f4f4;
-  display:inline-block;
-  padding:15px 20px;
-  border-radius:11px;
-  color:#cdcdcd;
-  font-weight:normal;
+  font-size: 16px;
+  background: #f4f4f4;
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 11px;
+  color: #cdcdcd;
+  font-weight: normal;
   margin: 0 15px 16px 0;
 `;
 
