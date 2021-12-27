@@ -11,12 +11,14 @@ import GroupList from "./page/GroupList";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
 import GroupBx from "./components/GroupBx";
+import Header from "./components/Header";
 
 function App() {
 
   return (
     <>
       <GlobalStyles />
+      <Header/>
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
       <Route path="/list" exact component={GroupList} />
