@@ -130,7 +130,7 @@
   line-height: 60px;
   margin: 20px auto 0 auto;
 }
-.myinfo_make_group p {
+.myinfo_make_group > p {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
