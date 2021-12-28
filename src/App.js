@@ -12,7 +12,7 @@ import "./styles/css/userview.css";
 import Login from "./page/Login";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
-import GroupRoomTimer from "./components/GroupRoomTimer";
+import Group from "./page/Group";
 import Header from "./components/Header";
 import UserView from "./components/UserView";
 import Main from "./page/Main";
@@ -25,7 +25,7 @@ function App() {
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
       <Route path="/chat" exact component={PostChat} />
-      <Route path="/timer" exact component={GroupRoomTimer} />
+      <Route path="/group" exact component={Group} />
       <Route path="/userview" exact component={UserView} />
       <Route path="/main" exact component={Main} />
     </>
