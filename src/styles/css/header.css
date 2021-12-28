@@ -3,9 +3,9 @@
 .header_modal_container{position: absolute; width:451px; min-height:300px; background: #FFFFFF;
   box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);  border-radius: 16px;padding:25px 20px; box-sizing: border-box;}
 
-.alarm_modal {top:110px;right:315px;}
-.chat_modal {top:110px;right:205px;}
-.info_modal {top:110px;right:100px;}
+.alarm_modal {top:110px;right:315px;z-index:999;}
+.chat_modal {top:110px;right:205px;z-index:999;}
+.info_modal {top:110px;right:100px;z-index:999;}
 
 .header_modal_title {color:#242424;font-size:18px; font-weight:bold;margin-left:10px;}
 .header_modal_hr {background:#E7E7E7;width:100%; height:1px;margin:20px 0 0 0;}
