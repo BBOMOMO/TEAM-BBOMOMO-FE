@@ -3,7 +3,21 @@ import styled from "styled-components";
 import roundCircle from "../Images/Group3366.png";
 import user from "../Images/user.png";
 import pencil from "../Images/pencil.png";
+
+import CreateGroup from "../components/CreateGroup";
+
 const MyInfo = (props) => {
+  
+  const [showModalCG, setShowModalCG] = React.useState(false);
+
+  //클릭 시 모달창 열기
+  const openModal = () => {
+    setShowModalCG(true);
+  };
+  const closeModal = () => {
+    setShowModalCG(false);
+  };
+
   return (
     <>
       <div className="myinfo_container">
@@ -41,7 +55,8 @@ const MyInfo = (props) => {
           </div>
         </div>
         <div className="myinfo_make_group">
-          <p>+ 그룹 만들기</p>
+          <p onClick={openModal}>+ 그룹 만들기</p>
+          <CreateGroup showModal={showModalCG} closeModal={closeModal} />
         </div>
       </div>
     </>

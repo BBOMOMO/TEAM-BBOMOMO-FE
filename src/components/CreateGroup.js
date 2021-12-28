@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/css/Group.css";
+import "../styles/css/group.css";
 import styled from "styled-components";
 import { Button, Input, Select } from "../elements/index";
 import lock from "../Images/ic-lock-alt.png";
@@ -228,6 +228,7 @@ const ModalBG = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
+  left:0;
   background-color: #000;
   opacity: 0.54;
 `;
