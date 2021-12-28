@@ -90,6 +90,20 @@ const GlobalStyles = createGlobalStyle`
 
     /* font_color */
     .black {color: #000;}
+
+    /* underline */
+    .underline {border-bottom: 3px solid #889CF2; box-sizing: border-box; padding-bottom:8px; margin-bottom: -11px;}
+
+    /* float */
+    .fl {float:left;}
+    .fr {float:right;}
+
+    /* clearfix */
+    .clearfix:after {
+      display:block;
+      content: '';
+      clear:both;
+    }
 `;
 
 export default GlobalStyles;

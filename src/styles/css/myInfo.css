@@ -1,0 +1,137 @@
+.myinfo_container {
+  width: 660px;
+  text-align: center;
+}
+.myinfo_profile_area {
+  margin-top: 152px;
+  position: relative;
+}
+.myinfo_user_img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.myinfo_user_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 124px;
+  margin: 26px auto 12px auto;
+}
+
+.myinfo_txt_area {
+}
+.myinfo_user_name {
+  font-size: 24px;
+  font-weight: bold;
+}
+.myinfo_user_division {
+  font-size: 18px;
+  font-weight: 400;
+  width: 45px;
+  height: 26px;
+  line-height: 30px;
+  border-radius: 30px;
+  border: 0.38px solid #959595;
+}
+.myinfo_user_state {
+  width: 193px;
+  height: 36px;
+  font-size: 13px;
+  line-height: 36px;
+  background-color: #f6f8f9;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+.myinfo_user_state_area {
+  display: inline-block;
+  position: relative;
+}
+.myinfo_user_state_pencil {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+}
+.myinfo_studytime {
+  border-radius: 25px;
+  background-color: #eff6f8;
+  width: 429px;
+  margin: 45px auto 0 auto;
+}
+.myinfo_studytime_top {
+  padding: 0 32px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.myinfo_studytime_mid {
+  width: 429px;
+  height: 112px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 42px;
+  box-sizing: border-box;
+  position: relative;
+}
+.myinfo_studytime_mid::after {
+  display: inline-block;
+  content: "";
+  width: 377px;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e7e7e7;
+}
+.myinfo_studytime_today {
+  font-size: 16px;
+  color: #959595;
+}
+.myinfo_studytime_today_time {
+  font-size: 28px;
+  font-weight: bold;
+  color: #242424;
+  opacity: 0.2;
+}
+.myinfo_studytime_bot {
+  width: 429px;
+  height: 112px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 42px;
+  box-sizing: border-box;
+}
+.myinfo_studytime_total {
+  font-size: 16px;
+  color: #959595;
+}
+.myinfo_studytime_total_time {
+  font-size: 28px;
+  font-weight: bold;
+  color: #242424;
+}
+.myinfo_make_group {
+  width: 429px;
+  height: 60px;
+  background-color: #889cf2;
+  border-radius: 11px;
+  line-height: 60px;
+  margin: 20px auto 0 auto;
+}
+.myinfo_make_group p {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
