@@ -231,6 +231,7 @@ const ModalBG = styled.div`
   left:0;
   background-color: #000;
   opacity: 0.54;
+  z-index:999;
 `;
 const ModalBox = styled.div`
   position: fixed;
@@ -242,6 +243,7 @@ const ModalBox = styled.div`
   left: 50%;
   margin-top: -356px;
   margin-left: -274px;
+  z-index:1000;
 `;
 
 const ModalInnerContainer = styled.div`
@@ -249,6 +251,7 @@ const ModalInnerContainer = styled.div`
   height: auto;
   margin: 0 auto;
   margin-top: 37px;
+  text-align:left;
 `;
 
 export default CreateGroup;
