@@ -10,4 +10,4 @@ const Group = () => {
   );
 };
 
-export default UserView;
+export default Group;
