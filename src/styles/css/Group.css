@@ -10,7 +10,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.group_left_h2 span {
+.group_left_h2>span {
   margin-right: 8px;
   padding: 5px 10px;
   background-color: #fff;
@@ -57,7 +57,7 @@
   display: flex;
   justify-content: flex-end;
 }
-.ic_top_bx img {
+.ic_top_bx>img {
   width: 20px;
   height: 20px;
   mix-blend-mode: difference;
@@ -67,13 +67,13 @@
   align-items: flex-end;
   justify-content: space-between;
 }
-.ic_bottom_bx img {
+.ic_bottom_bx>img {
   margin-right: 6px;
   width: 10px;
   height: 10px;
   mix-blend-mode: difference;
 }
-.ic_bottom_bx p {
+.ic_bottom_bx>p {
   color: #282828;
   font-size: 14px;
   font-weight: 600;
@@ -108,7 +108,7 @@
   width: 24px;
   cursor: pointer;
 }
-.group_modal_roomStatus img {
+.group_modal_roomStatus>img {
   width: 100%;
 }
 
@@ -119,6 +119,6 @@
   width: 24px;
   cursor: pointer;
 }
-.group_modal_close img {
+.group_modal_close>img {
   width: 100%;
 }
