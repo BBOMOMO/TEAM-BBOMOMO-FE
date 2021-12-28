@@ -38,7 +38,7 @@ const LoginCont = (props) => {
 
           <div className="login_input_pw">
             <img
-              src={require("../Images/ic-lock-alt (1).png").default}
+              src={require("../Images/ic-lock-alt.png").default}
               alt="사람 아이콘"
             />
             <Input

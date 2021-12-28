@@ -14,7 +14,8 @@ const Button = (props) => {
     radius,
     margin,
     weight,
-    groupButton
+    groupButton,
+    _onClick
   } = props;
   const styles = {
     width,
@@ -34,14 +35,14 @@ const Button = (props) => {
     // 그룹방만들기 모달창
     return(
       <>
-        <GroupButton {...styles}>
+        <GroupButton {...styles} onClick={_onClick}>
           {children}
         </GroupButton>
       </>
     )
   }
 
-  return <ElButton {...styles}>{children}</ElButton>;
+  return <ElButton {...styles} onClick={_onClick} >{children}</ElButton>;
 };
 
 Button.defaultProps = {
@@ -49,6 +50,7 @@ Button.defaultProps = {
   color: "#fff",
   background: "#272727",
   fontSize: "24px",
+  _onClick:()=>{},
 };
 
 
