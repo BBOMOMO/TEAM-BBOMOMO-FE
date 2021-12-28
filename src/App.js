@@ -13,7 +13,6 @@ import Login from "./page/Login";
 import GroupList from "./page/GroupList";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
-import GroupRecommend from "./components/GroupRecommend";
 import GroupRoomTimer from "./components/GroupRoomTimer";
 import Header from "./components/Header";
 import MyInfo from "./components/MyInfo";
@@ -29,7 +28,6 @@ function App() {
       <Route path="/login" exact component={Login} />
       <Route path="/list" exact component={GroupList} />
       <Route path="/chat" exact component={PostChat} />
-      <Route path="/groupreco" exact component={GroupRecommend} />
       <Route path="/timer" exact component={GroupRoomTimer} />
       <Route path="/myinfo" exact component={MyInfo} />
       <Route path="/userview" exact component={UserView} />
