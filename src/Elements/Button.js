@@ -16,6 +16,7 @@ const Button = (props) => {
     weight,
     groupButton,
     padding,
+    _onClick
   } = props;
 
   const styles = {
@@ -35,12 +36,14 @@ const Button = (props) => {
     // 그룹방만들기 모달창
     return (
       <>
-        <GroupButton {...styles}>{children}</GroupButton>
+        <GroupButton {...styles} onClick={_onClick}>
+          {children}
+        </GroupButton>
       </>
     );
   }
 
-  return <ElButton {...styles}>{children}</ElButton>;
+  return <ElButton {...styles} onClick={_onClick} >{children}</ElButton>;
 };
 
 Button.defaultProps = {
@@ -48,6 +51,7 @@ Button.defaultProps = {
   color: "#fff",
   background: "#272727",
   fontSize: "24px",
+  _onClick:()=>{},
 };
 
 const GroupButton = styled.div`

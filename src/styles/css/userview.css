@@ -1,0 +1,66 @@
+.userview_container {
+  width: 1197px;
+  height: 613px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.userview_container > div + div + div + div {
+  margin-top: 25px;
+}
+.userview_imgbox {
+  position: relative;
+}
+.userview_imgtext {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  color: #fff;
+  left: 0;
+  bottom: 16px;
+  width: 387px;
+}
+.userview_total {
+  font-size: 13px;
+}
+.userview_total_time {
+  font-size: 20px;
+  font-weight: bold;
+}
+.userview_txtbox {
+  padding-top: 19px;
+  width: 387px;
+}
+.userview_name {
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0 0 16px;
+}
+.userview_name p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.userview_name p + p {
+  font-size: 14px;
+  margin-top: 6px;
+  color: #515151;
+}
+.userview_friend {
+  background: #889cf2;
+  border-radius: 21px;
+  color: #fff;
+  width: 75px;
+  height: 27px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 27px;
+}
+.userview_friend.white {
+  background-color: #fff;
+  color: #000;
+  border: 0.38px solid #959595;
+}
