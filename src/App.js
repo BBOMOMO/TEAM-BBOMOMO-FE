@@ -18,6 +18,7 @@ import GroupRoomTimer from "./components/GroupRoomTimer";
 import Header from "./components/Header";
 import MyInfo from "./components/MyInfo";
 import UserView from "./components/UserView";
+import Main from "./page/Main";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
       <Route path="/timer" exact component={GroupRoomTimer} />
       <Route path="/myinfo" exact component={MyInfo} />
       <Route path="/userview" exact component={UserView} />
+      <Route path="/main" exact component={Main} />
     </>
   );
 }

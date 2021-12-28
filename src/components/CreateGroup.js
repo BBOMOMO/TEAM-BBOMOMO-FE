@@ -1,7 +1,6 @@
 import React from "react";
-import "../styles/css/group.css";
+import "../styles/css/Group.css";
 import styled from "styled-components";
-
 import { Button, Input, Select } from "../elements/index";
 import lock from "../Images/ic-lock-alt.png";
 import unlock from "../Images/ic-lock-open-alt.png";
