@@ -19,12 +19,13 @@ import GroupBx from "./components/GroupBx";
 import Header from "./components/Header";
 import MyInfo from "./components/MyInfo";
 import UserView from "./components/UserView";
+import Main from "./page/Main";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Header/>
+      <Header />
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
       <Route path="/list" exact component={GroupList} />
@@ -34,6 +35,7 @@ function App() {
       <Route path="/glist" exact component={GroupBx} />
       <Route path="/myinfo" exact component={MyInfo} />
       <Route path="/userview" exact component={UserView} />
+      <Route path="/main" exact component={Main} />
     </>
   );
 }
