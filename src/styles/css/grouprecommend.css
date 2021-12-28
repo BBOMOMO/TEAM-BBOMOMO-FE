@@ -1,0 +1,105 @@
+.groupreco_bx {
+  max-width: 1018px;
+}
+.groupreco_top {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 14px;
+}
+.groupreco_top h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 37px;
+}
+.groupreco_search {
+  display: flex;
+}
+.hashtag_list_bx {
+  display: flex;
+}
+.hashtag_list_bx li {
+  margin-right: 10px;
+}
+.hashtag_list_bx li:last-child {
+  margin-right: 32px;
+}
+.search_bx {
+  position: relative;
+}
+.search_bx img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* 그룹 목록 카드 */
+.groupreco_bottom {
+  display: flex;
+  flex-wrap: wrap;
+}
+.groupbx_card {
+  margin: 0 0 14px 14px;
+}
+.groupbx_card:nth-child(3n + 1) {
+  margin: 0 0 14px 0;
+}
+.search_bx {
+  position: relative;
+  width: 41px;
+}
+.search_bx_input {
+  width: 100%;
+  border: none;
+  border-radius: 18px;
+  background: #eee;
+}
+.search_bx img {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 23px;
+  height: 23px;
+}
+
+/* 더보기 버튼*/
+.groupreco_more_btn {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.groupreco_more_btn::before {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 428px;
+  height: 1px;
+  background: #e7e7e7;
+  content: "";
+}
+.groupreco_more_btn::after {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 428px;
+  height: 1px;
+  background: #e7e7e7;
+  content: "";
+}
+.groupreco_more_btn button {
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  width: 180px;
+  height: 42px;
+  background: #fefefc;
+  border: 1px solid #e6e6e6;
+  border-radius: 53px;
+  color: #959595;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  z-index: 9999;
+}

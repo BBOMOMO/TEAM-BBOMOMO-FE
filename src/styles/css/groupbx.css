@@ -54,14 +54,12 @@
 
 .ic_top_bx {
   display: flex;
+  justify-content: flex-end;
 }
 .ic_top_bx img {
   width: 20px;
   height: 20px;
   mix-blend-mode: difference;
-}
-.ic_top_bx img:last-child {
-  margin-left: 12px;
 }
 .ic_bottom_bx {
   display: flex;

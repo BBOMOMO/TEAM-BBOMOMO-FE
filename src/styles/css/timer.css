@@ -1,0 +1,66 @@
+.timer_bx {
+  width: 1080px;
+  color: #282828;
+  text-align: center;
+}
+.timer_bx h2 {
+  font-size: 18px;
+  line-height: 22px;
+}
+.timer_time_bx {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 36px;
+}
+.timer_time {
+  display: flex;
+  width: 42%;
+  font-weight: 300;
+  font-size: 68px;
+  line-height: 41px;
+  letter-spacing: 0.0037em;
+}
+.timer-time_round {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 20%;
+}
+.timer-time_round p {
+  padding: 7px 12px;
+  border-radius: 38.5px;
+  background: #e7e7e7;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.0008em;
+}
+.timer_bar_bx {
+  margin-top: 26px;
+  width: 100%;
+  height: 10px;
+  background: #eaeaea;
+  border-radius: 25px;
+}
+.timer_inner_bar {
+  position: relative;
+  width: 80%;
+  height: 10px;
+  background: linear-gradient(
+    90deg,
+    #eaf692 4.65%,
+    #fcdf29 21.59%,
+    #ffd678 39.49%,
+    #fe9c77 58.32%,
+    #c4c5fb 77.56%,
+    #889cf2 97.59%
+  );
+  border-radius: 25px;
+}
+.timer_inner_bar img {
+  position: absolute;
+  top: -35px;
+  right: -20px;
+  width: 55px;
+  height: 46px;
+}

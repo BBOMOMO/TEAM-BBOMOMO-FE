@@ -17,6 +17,8 @@ const Input = (props) => {
     padding,
     className,
     createGroup,
+    radius,
+    height,
   } = props;
 
   const labelStyle = { display, color };
@@ -26,8 +28,10 @@ const Input = (props) => {
     display,
     margin,
     width,
+    height,
     padding,
     className,
+    radius,
   };
 
   if (createGroup) {
@@ -96,8 +100,9 @@ const ElLabel = styled.label`
 
 const ElInput = styled.input`
   ${(props) => (props.width ? `width: ${props.width};` : "")}
-  height: 62px;
-  border-radius: 11px;
+  ${(props) => (props.height ? `height: ${props.height};` : "")}
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
+  ${(props) => (props.height ? `height: ${props.height};` : "")}
   font-size: 18px;
   color: #c6c6c6;
   background-color: #f4f4f4;

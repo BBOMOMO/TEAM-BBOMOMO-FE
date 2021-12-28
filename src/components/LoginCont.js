@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Button, Input } from "../elements";
+import person from "../Images/ic-people.png";
+import lock from "../Images/ic-lock-alt.png";
+import googlelogo from "../Images/googlelogo.png";
+import kakaologo from "../Images/kakaologo.png";
 
 const LoginCont = (props) => {
   const [id, setId] = useState("");
@@ -18,14 +22,13 @@ const LoginCont = (props) => {
           </h2>
 
           <div className="mb20 login_input_id">
-            <img
-              src={require("../Images/ic-people.png").default}
-              alt="사람 아이콘"
-            />
+            <img src={person} alt="사람 아이콘" />
             <Input
               value={id}
               text="아이디"
               boxSizing
+              height="62px"
+              radius="11px"
               border="none"
               color="#7A7D81"
               margin="16px 0 0 0"
@@ -37,14 +40,13 @@ const LoginCont = (props) => {
           </div>
 
           <div className="login_input_pw">
-            <img
-              src={require("../Images/ic-lock-alt (1).png").default}
-              alt="사람 아이콘"
-            />
+            <img src={lock} alt="자물쇠 아이콘" />
             <Input
               value={pw}
               text="비밀번호"
               boxSizing
+              height="62px"
+              radius="11px"
               border="none"
               display="block"
               color="#7A7D81"
@@ -70,18 +72,12 @@ const LoginCont = (props) => {
 
           <div className="login_btn_bx">
             <button className="login_btn login_google">
-              <img
-                src={require("../Images/googlelogo.png").default}
-                alt="구글 로고"
-              />
+              <img src={googlelogo} alt="구글 로고" />
               <span className="ml20">구글 로그인</span>
             </button>
 
             <button className="login_btn login_kakao">
-              <img
-                src={require("../Images/kakaologo.png").default}
-                alt="카카오 로고"
-              />
+              <img src={kakaologo} alt="카카오 로고" />
               <span className="ml20">카카오 로그인</span>
             </button>
           </div>

@@ -6,7 +6,7 @@
 .login_left_bx {
   width: 50%;
   background: #486bff;
-  background-image: url("../../Images/loginbg.png");
+  /* background-image: url("../../Images/loginbg.png"); */
   background-repeat: no-repeat;
   background-size: cover;
 }

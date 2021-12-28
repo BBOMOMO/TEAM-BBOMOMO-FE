@@ -15,6 +15,7 @@ const Button = (props) => {
     margin,
     weight,
     groupButton,
+    padding,
   } = props;
 
   const styles = {
@@ -27,6 +28,7 @@ const Button = (props) => {
     radius,
     margin,
     weight,
+    padding,
   };
 
   if (groupButton) {
@@ -69,6 +71,7 @@ const ElButton = styled.button`
   ${(props) => (props.height ? `height: ${props.height};` : "")}
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.weight ? `font-weight: ${props.weight};` : "")}
 `;
 
