@@ -5,16 +5,15 @@ import Modal from "../components/Modal";
 import GroupBx from "../components/GroupBx";
 
 function GroupList() {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModalCG, setShowModalCG] = React.useState(false);
 
   //클릭 시 모달창 열기
   const openModal = () => {
     setShowModalCG(true);
-  }
+  };
   const closeModal = () => {
     setShowModalCG(false);
-  }
-
+  };
 
   return (
     <>
