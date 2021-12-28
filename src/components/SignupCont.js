@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Input, Select } from "../Elements";
+import { Button, Input, Select } from "../elements";
 
 const SingupCont = (props) => {
   return (
