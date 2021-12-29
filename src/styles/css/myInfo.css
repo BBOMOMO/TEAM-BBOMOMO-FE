@@ -1,5 +1,6 @@
 .myinfo_container {
-  width: 660px;
+  *width: 660px;
+  width: 731px;
   text-align: center;
 }
 .myinfo_profile_area {

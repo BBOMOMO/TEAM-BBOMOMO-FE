@@ -56,6 +56,10 @@ border:1px solid #bbb;
 height:80px;
 padding:0 100px;
 box-sizing: border-box;
+position:fixed;
+width:100%;
+background: #fff;
+z-index:998;
 `;
 
 const HeaderIcon = styled.div`

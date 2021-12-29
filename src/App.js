@@ -17,17 +17,22 @@ import Header from "./components/Header";
 import UserView from "./components/UserView";
 import Main from "./page/Main";
 
+
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
+     
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
+      <Header/>
       <Route path="/chat" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
       <Route path="/userview" exact component={UserView} />
       <Route path="/main" exact component={Main} />
+      
+
+      
     </>
   );
 }
