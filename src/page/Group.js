@@ -3,13 +3,16 @@ import styled from "styled-components";
 
 import UserView from "../components/UserView";
 import GroupRoomTimer from "../components/GroupRoomTimer";
+import GroupChat from "../components/GroupChat";
+
+import "../styles/css/chat.css";
 
 const Group = () => {
   return (
     <>
       <GroupContainer>
-        <GroupChat></GroupChat>
-        <div>
+        <GroupChat/>
+        <div className="group_conttainer">
           <GroupRoomTimer />
           <UserView />
         </div>
@@ -25,9 +28,3 @@ const GroupContainer = styled.div`
   display: flex;
 `;
 
-const GroupChat = styled.div`
-width:400px; 
-height:500px;
-background: #bbb;;
-
-`;

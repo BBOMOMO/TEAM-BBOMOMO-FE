@@ -1,10 +1,14 @@
 .myinfo_container {
-  *width: 660px;
-  width: 731px;
+  width: 660px;
   text-align: center;
+  background: #F8FDFD;
+  margin-right:80px; 
+  border-radius:60px;
+  padding:80px;
+  box-sizing: border-box;
 }
 .myinfo_profile_area {
-  margin-top: 152px;
+  margin-top: 50px;
   position: relative;
 }
 .myinfo_user_img {
