@@ -5,6 +5,7 @@ import { Button, Input, Select } from "../elements/index";
 import lock from "../Images/ic-lock-alt.png";
 import unlock from "../Images/ic-lock-open-alt.png";
 import close from "../Images/ic_header_close.png";
+import {history} from "../redux/configureStore";
 
 function CreateGroup({ showModal, closeModal }) {
   const [roomTitle, setRoomTitle] = React.useState("");
@@ -87,7 +88,7 @@ function CreateGroup({ showModal, closeModal }) {
             <ModalInnerContainer>
               <div className="group_modal_relative">
                 <h2 className="group_modal_title">그룹 방 만들기</h2>
-                <span className="group_modal_close" onClick={closeModal}>
+                <span className="group_modal_close" style={{top:"0"}} onClick={closeModal}>
                   <img src={close} alt="" />
                 </span>
               </div>
@@ -201,7 +202,9 @@ function CreateGroup({ showModal, closeModal }) {
               />
 
               <Button
-                _onClick={createRoom}
+                // _onClick={createRoom}
+                //임시로 group 페이지로 이동하기
+                _onClick={()=>{history.push('/group');}}
                 border="none"
                 height="54px"
                 radius="11px"
@@ -244,6 +247,7 @@ const ModalBox = styled.div`
   margin-top: -356px;
   margin-left: -274px;
   z-index:1000;
+  line-height:1.2;
 `;
 
 const ModalInnerContainer = styled.div`
