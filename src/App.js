@@ -16,16 +16,21 @@ import Group from "./page/Group";
 import Header from "./components/Header";
 import Main from "./page/Main";
 
+
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
+     
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
+      <Header/>
       <Route path="/chat" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
       <Route path="/main" exact component={Main} />
+      
+
+      
     </>
   );
 }
