@@ -9,7 +9,7 @@ import "../styles/css/chat.css";
 
 
 
-function Chatting() {
+function GroupChat() {
   const [chatMessage, setChatMessage] = React.useState('');
 
   const sendMessage = (e) => {
@@ -19,13 +19,10 @@ function Chatting() {
   return (
     <>
       <ChatContainer>
-        <OneChatList>
-          <div className="header_friend_joinGroup">
-            참여
-          </div>
-        </OneChatList>
-        <div className="header_modal_hr2"></div>
+        <p className="header_modal_title">그룹채팅</p>
+        <div className="header_modal_hr"></div>
 
+        <div className="group_chat_container">
         <div className="chat_render_oneChat">
          <div className="chat_from_friend">
            <p className="chat_message">지금 뭐 공부하고있어?</p>
@@ -46,21 +43,27 @@ function Chatting() {
            <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
            <span className="chat_message_time">10:34</span>
          </div>
-
          <div className="chat_from_me">     
            <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
            <span className="chat_message_time">10:34</span>
          </div>
-
          <div className="chat_from_me">     
            <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
            <span className="chat_message_time">10:34</span>
          </div>
-
-         <div className="chat_from_me">     
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+         <div className="chat_from_friend">
+           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
            <span className="chat_message_time">10:34</span>
          </div>
+         <div className="chat_from_friend">
+           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+           <span className="chat_message_time">10:34</span>
+         </div>
+         <div className="chat_from_friend">
+           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+           <span className="chat_message_time">10:34</span>
+         </div>
+
 
 
         </div>
@@ -72,18 +75,26 @@ function Chatting() {
           <input type="text" className="chat_textfield" placeholder='메시지를 작성해주세요.' name="oneChat" value={chatMessage} onChange={sendMessage}/>
           <span className="chat_send_btn"><img src={send} alt="" /></span>
         </div>
+
+        </div>
       </ChatContainer>
     </>
   )
 }
 
-export default Chatting;
+export default GroupChat;
 
 const ChatContainer = styled.div`
+  position: relative;
+  height:85vh;
+  margin:0 80px; 
+  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);
+  border-radius: 16px;
+  box-sizing: border-box;
 
-  .header_modal_hr2 {background:#E7E7E7;width:100%; height:1px;margin-bottom:20px;}
-  .header_friend_container{margin-top:0}
-  .header_friend_container .header_friend_joinGroup {position:absolute;right:0;border:1px solid #959595; color:#282828; font-size:10px;padding:6px 20px 5px 20px;font-weight:bold; border-radius:20px;margin-right:8px;  cursor:pointer;}
-  .header_friend_container .header_friend_joinGroup:hover {background-color:#889CF2; color:#fff; }
+  .group_chat_container{padding:18px;  }
+  .chat_render_oneChat {min-height:auto; height:600px; overflow:auto;}
+  .chat_textfield_container {position:fixed; bottom:50px; width:380px; }
+  .header_modal_title {margin:30px 18px 25px;;}
 
 `;
