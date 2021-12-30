@@ -1,5 +1,6 @@
 .myinfo_container {
   width: 660px;
+  height:100vh;
   text-align: center;
   background: #F8FDFD;
   margin-right:80px; 
@@ -66,7 +67,7 @@
   border-radius: 25px;
   background-color: #eff6f8;
   width: 429px;
-  margin: 45px auto 0 auto;
+  margin: 25px auto 0 auto;
 }
 .myinfo_studytime_top {
   padding: 0 32px;
