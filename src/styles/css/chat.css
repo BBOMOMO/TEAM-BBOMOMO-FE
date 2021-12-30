@@ -5,7 +5,7 @@
 .chat_textfield_container .chat_send_btn>img{width:100%;}
 
 
-.chat_render_oneChat {width:100%; min-height:300px; margin-bottom:80px; *background-color: #ffd0d0;}
+.chat_render_oneChat {width:100%; height:500px; margin-bottom:80px; overflow: auto; *background-color: #ffd0d0;}
 
 .chat_message {max-width:330px;font-size:16px; color:#070707;padding:15px; box-sizing: border-box;line-height:1.2; word-break: keep-all;}
 .chat_message_time {font-size:12px; color:#a3a3a3; margin: 10px;}

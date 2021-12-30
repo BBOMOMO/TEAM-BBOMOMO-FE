@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import bell from '../Images/ic-bell.png';
 import chat from '../Images/ic-chat.png';
 import people from '../Images/ic-people.png';
+import logo from '../Images/bbomomologo.png';
 import '../styles/css/header.css';
 
 import AlarmModal from './AlarmModal';
@@ -31,9 +32,12 @@ function Header() {
   return (
     <div>
       <HeaderContainer>
+        <img src={logo} alt="" />
+        <div className="header_menu_container">
         <HeaderIcon className="header_alarm" onClick={openAlarm} />
         <HeaderIcon className="header_msg" onClick={openChat} />
         <HeaderIcon className="header_friend"onClick={openInfo} />
+        </div>
       </HeaderContainer>
 
       <AlarmModal showModal={showAlarmModal} closeModal={closeAlarm}/>
@@ -51,8 +55,8 @@ const HeaderContainer = styled.div`
 flex:1;
 display: flex;
 align-items: center;
-justify-content: flex-end;
-border:1px solid #bbb;
+justify-content: space-between;
+box-shadow: 0px 4px 10px rgba(238, 238, 238, 0.25);
 height:80px;
 padding:0 100px;
 box-sizing: border-box;
@@ -60,6 +64,11 @@ position:fixed;
 width:100%;
 background: #fff;
 z-index:998;
+>img {height:40px; }
+
+.header_menu_container {
+  display: flex;
+}
 `;
 
 const HeaderIcon = styled.div`

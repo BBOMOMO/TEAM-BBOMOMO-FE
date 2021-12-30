@@ -16,7 +16,7 @@ const Button = (props) => {
     weight,
     groupButton,
     padding,
-    _onClick
+    _onClick,
   } = props;
 
   const styles = {
@@ -43,7 +43,11 @@ const Button = (props) => {
     );
   }
 
-  return <ElButton {...styles} onClick={_onClick} >{children}</ElButton>;
+  return (
+    <ElButton {...styles} onClick={_onClick}>
+      {children}
+    </ElButton>
+  );
 };
 
 Button.defaultProps = {
@@ -51,7 +55,7 @@ Button.defaultProps = {
   color: "#fff",
   background: "#272727",
   fontSize: "24px",
-  _onClick:()=>{},
+  _onClick: () => {},
 };
 
 const GroupButton = styled.div`

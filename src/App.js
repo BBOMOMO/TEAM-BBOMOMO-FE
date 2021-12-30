@@ -22,6 +22,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
+
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login} />
       <Header />
