@@ -23,59 +23,51 @@ function GroupChat() {
         <div className="header_modal_hr"></div>
 
         <div className="group_chat_container">
-        <div className="chat_render_oneChat">
-         <div className="chat_from_friend">
-           <p className="chat_message">지금 뭐 공부하고있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
+          <div className="chat_render_oneChat">
+            <div className="chat_from_friend">
+              <p className="chat_message">지금 뭐 공부하고있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
 
-         <div className="chat_from_me">     
-           <p className="chat_message">호에에에에호에에에엥</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
+            <div className="chat_from_me">     
+              <p className="chat_message">호에에에에호에에에엥</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
 
-         <div className="chat_from_friend">
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
+            <div className="chat_from_friend">
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
 
-         <div className="chat_from_me">     
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
-         <div className="chat_from_me">     
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
-         <div className="chat_from_me">     
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
-         <div className="chat_from_friend">
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
-         <div className="chat_from_friend">
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
-         <div className="chat_from_friend">
-           <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
-           <span className="chat_message_time">10:34</span>
-         </div>
-
-
-
-        </div>
-
-       
-
-
-        <div className="chat_textfield_container">
-          <input type="text" className="chat_textfield" placeholder='메시지를 작성해주세요.' name="oneChat" value={chatMessage} onChange={sendMessage}/>
-          <span className="chat_send_btn"><img src={send} alt="" /></span>
-        </div>
-
+            <div className="chat_from_me">     
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
+            <div className="chat_from_me">     
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
+            <div className="chat_from_me">     
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
+            <div className="chat_from_friend">
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
+            <div className="chat_from_friend">
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
+            <div className="chat_from_friend">
+              <p className="chat_message">지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?</p>
+              <span className="chat_message_time">10:34</span>
+            </div>
+          </div>
+          <div className="chat_textfield_container">
+            <input type="text" className="chat_textfield" placeholder='메시지를 작성해주세요.' name="oneChat" value={chatMessage} onChange={sendMessage}/>
+            <span className="chat_send_btn"><img src={send} alt="" /></span>
+          </div>
         </div>
       </ChatContainer>
     </>
@@ -93,7 +85,7 @@ const ChatContainer = styled.div`
   box-sizing: border-box;
 
   .group_chat_container{padding:18px;  }
-  .chat_render_oneChat {min-height:auto; height:600px; overflow:auto;}
+  .chat_render_oneChat {min-height:auto;height:600px;overflow:auto; }
   .chat_textfield_container {position:fixed; bottom:50px; width:380px; }
   .header_modal_title {margin:30px 18px 25px;;}
 

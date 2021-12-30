@@ -3,13 +3,23 @@
 }
 
 .signup_img_area {
-  width: 650px;
+  width:580px;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:url('/src/Images/registerBG.png') no-repeat;
+  background-size:cover; 
+}
+.signup_img_area_logo {
+  width:260px;
 }
 
-.signup_container {
-  width: 1270px;
-  padding-top: 163px;
+.signup_container_wrap{
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .signup_title {
   font-size: 32px;

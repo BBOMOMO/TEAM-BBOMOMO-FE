@@ -13,5 +13,5 @@
 .chat_from_friend {text-align:left;display: flex; align-items: flex-end; margin:20px 0; }
 .chat_from_friend .chat_message {background-color: #f4f4f4; border-radius: 11px; }
 
-.chat_from_me {text-align:right;display: flex; flex-direction: row-reverse;align-items: flex-end;  margin:20px 0; }
+.chat_from_me {text-align:right;display: flex; flex-direction: row-reverse;align-items: flex-end;  margin:20px 5px 0; }
 .chat_from_me .chat_message {background-color: #889cf2; color:#fff; border-radius: 11px;}

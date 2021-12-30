@@ -1,21 +1,26 @@
-import {createStore, combineReducers, applyMiddleware, compose} from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import {createBrowserHistory} from "history";
-import {connectRouter} from "connected-react-router";
+import { createBrowserHistory } from "history";
+import { connectRouter } from "connected-react-router";
+
+import User from './modules/user';
+
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  //user: User,
   router: connectRouter(history),
-});
+})
 
 const middlewares = [thunk.withExtraArgument({history: history})];
 
 const env = process.env.NODE_ENV;
 
 if (env === "development") {
-  const {logger} = require("redux-logger");
-  middlewares.push(logger);
+    const { logger } = require("redux-logger");
+    middlewares.push(logger);
+
 }
 
 const composeEnhancers =
