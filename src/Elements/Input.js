@@ -21,7 +21,7 @@ const Input = (props) => {
     height,
     checkbox,
     _name,
-    _checked
+    _checked,
   } = props;
 
   const labelStyle = { display, color };
@@ -52,10 +52,17 @@ const Input = (props) => {
     );
   }
 
-  if(checkbox){
+  if (checkbox) {
     return (
-      <CheckboxLabel {...labelStyle} >
-        <CheckInput  type="radio"  name={_name} placeholder={placeholder} onChange={_onChange} value={value} {...styles}  />
+      <CheckboxLabel {...labelStyle}>
+        <CheckInput
+          type="radio"
+          name={_name}
+          placeholder={placeholder}
+          onChange={_onChange}
+          value={value}
+          {...styles}
+        />
         <span>{text}</span>
       </CheckboxLabel>
     );
@@ -84,24 +91,26 @@ Input.defaultProps = {
   boxSizing: "border-box",
   _onChange: () => {},
   width: "100%",
+  height: "62px",
+  radius: "11px",
 };
 
 const CheckboxLabel = styled.label`
-   > span {
-    display:inline-block;
-    padding:15px 20px;
+  > span {
+    display: inline-block;
+    padding: 15px 20px;
     background-color: #f4f4f4;
-    border-radius:11px;
-    margin:0 15px 16px 0;
+    border-radius: 11px;
+    margin: 0 15px 16px 0;
     cursor: pointer;
   }
 `;
 
 const CheckInput = styled.input`
-  display:none;
-  :checked + span{
-    background-color: #D8D8D8;
-    font-weight:bold;
+  display: none;
+  :checked + span {
+    background-color: #d8d8d8;
+    font-weight: bold;
   }
 `;
 
