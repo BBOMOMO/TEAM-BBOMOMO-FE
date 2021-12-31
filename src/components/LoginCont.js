@@ -4,8 +4,12 @@ import person from "../Images/ic-people.png";
 import lock from "../Images/ic-lock-alt.png";
 import googlelogo from "../Images/googlelogo.png";
 import kakaologo from "../Images/kakaologo.png";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginCont = (props) => {
+  const dispatch = useDispatch();
+
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
@@ -35,6 +39,7 @@ const LoginCont = (props) => {
               padding="0 0 0 60px"
               _onChange={(e) => {
                 setId(e.target.value);
+                console.log(id);
               }}
             ></Input>
           </div>
@@ -54,6 +59,7 @@ const LoginCont = (props) => {
               padding="0 0 0 60px"
               _onChange={(e) => {
                 setPw(e.target.value);
+                console.log(pw);
               }}
             ></Input>
           </div>
@@ -64,6 +70,9 @@ const LoginCont = (props) => {
             radius="11px"
             margin="40px 0 40px 0"
             weight="600"
+            _onClick={() => {
+              dispatch(userActions.loginDB(id, pw));
+            }}
           >
             로그인
           </Button>

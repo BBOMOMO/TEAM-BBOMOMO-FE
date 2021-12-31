@@ -18,21 +18,19 @@ import Group from "./page/Group";
 import Header from "./components/Header";
 import Main from "./page/Main";
 import StudyCertificationModal from "./components/StudyCertificationModal";
-import VideoChat from "./components/VideoChat";
 
 function App() {
   return (
     <>
       <GlobalStyles />
 
-      <Route path="/" exact component={Signup} />
-      <Route path="/login" exact component={Login} />
+      <Route path="/signup" exact component={Signup} />
+      <Route path="/" exact component={Login} />
       <Header />
       <Route path="/chat" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
       <Route path="/main" exact component={Main} />
       <Route path="/studymodal" exact component={StudyCertificationModal} />
-      <Route path="/video" exact component={VideoChat} />
     </>
   );
 }
