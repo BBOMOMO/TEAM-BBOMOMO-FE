@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+# VideoChat
+/src/component/VideoChat.js
 # testing
 /coverage
 
