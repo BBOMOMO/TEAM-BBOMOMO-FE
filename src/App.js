@@ -10,6 +10,7 @@ import "./styles/css/timer.css";
 import "./styles/css/myInfo.css";
 import "./styles/css/userview.css";
 import "./styles/css/certificationModal.css";
+import "./styles/css/video.css";
 import Login from "./page/Login";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
@@ -17,6 +18,7 @@ import Group from "./page/Group";
 import Header from "./components/Header";
 import Main from "./page/Main";
 import StudyCertificationModal from "./components/StudyCertificationModal";
+import VideoChat from "./components/VideoChat";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
       <Route path="/group" exact component={Group} />
       <Route path="/main" exact component={Main} />
       <Route path="/qq" exact component={StudyCertificationModal} />
+      <Route path="/video" exact component={VideoChat} />
     </>
   );
 }

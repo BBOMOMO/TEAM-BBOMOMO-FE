@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Button, Input, Select } from "../elements";
 
 const SingupCont = (props) => {
+  const InputRef = React.useRef();
+  const InputValue = InputRef.current.value;
   return (
     <div>
       <div className="signup_container">
@@ -20,6 +22,7 @@ const SingupCont = (props) => {
             color="#7A7D81"
             margin="18px 0 0 0"
             width="498px"
+            ref={InputRef}
           ></Input>
           <Input
             text="닉네임"
