@@ -23,28 +23,8 @@ const Select = (props) => {
     <ElLabel {...labelStyle}>
       {text}
       <ElImg src={arrow} />
-      <ElSelect {...styles}>
-        <option key="middle1" value="middle1">
-          중1
-        </option>
-        <option key="middle2" value="middle2">
-          중2
-        </option>
-        <option key="middle3" value="middle3">
-          중3
-        </option>
-        <option key="high1" value="high1">
-          고1
-        </option>
-        <option key="high2" value="high2">
-          고2
-        </option>
-        <option key="high3" value="high3">
-          고3
-        </option>
-        <option key="univ" value="univ">
-          대학생
-        </option>
+      <ElSelect {...styles} onChange={_onChange}>
+        {children}
       </ElSelect>
     </ElLabel>
   );

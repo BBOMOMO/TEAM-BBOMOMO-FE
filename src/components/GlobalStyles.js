@@ -107,10 +107,10 @@ const GlobalStyles = createGlobalStyle`
 
     /* 스크롤 바 커스텀 */
 
-    *::-webkit-scrollbar { width: 10px; }
-    *::-webkit-scrollbar-track { background-color: #eee; border-radius: 100px; } 
-    *::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 100px; } 
-    * { scrollbar-color: #D4AA70 #e4e4e4; } 
+    *::-webkit-scrollbar { width:5px; }
+    *::-webkit-scrollbar-track { background-color: #fff; border-radius: 100px; } 
+    *::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 100px;  } 
+    
     *::-webkit-scrollbar-thumb {  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
 
 

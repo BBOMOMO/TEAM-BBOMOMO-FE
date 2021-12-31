@@ -10,8 +10,8 @@ import {history} from "../redux/configureStore";
 function CreateGroup({ showModal, closeModal }) {
   const [roomTitle, setRoomTitle] = React.useState("");
   const [roomPassword, setRoomPassword] = React.useState("");
-  const [roomPurpose, setRoomPurpose] = React.useState("");
-  const [round, setRound] = React.useState("");
+  const [roomPurpose, setRoomPurpose] = React.useState("0");
+  const [round, setRound] = React.useState("1");
   const [studyTime, setStudyTime] = React.useState("");
   const [recessTime, setRecessTime] = React.useState("");
   const [openedAt, setOpenedAt] = React.useState("");
@@ -137,11 +137,12 @@ function CreateGroup({ showModal, closeModal }) {
                   setRoomPurpose(selectedPurpose);
                 }}
               >
-                <option value="01">수능1</option>
-                <option value="02">수능2</option>
-                <option value="03">수능3</option>
-                <option value="04">수능4</option>
-                <option value="05">수능5</option>
+                <option value="0">자율할습</option>
+                <option value="1">시험공부</option>
+                <option value="2">수능공부</option>
+                <option value="3">자격증 준비</option>
+                <option value="4">공시</option>
+                <option value="5">독서</option>
               </Select>
 
               <Select
@@ -155,11 +156,11 @@ function CreateGroup({ showModal, closeModal }) {
                   setRound(selectedRound);
                 }}
               >
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">3</option>
-                <option value="04">4</option>
-                <option value="05">5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
               </Select>
 
               <p className="group_modal_subtitle">공부시간/쉬는시간</p>
@@ -202,9 +203,9 @@ function CreateGroup({ showModal, closeModal }) {
               />
 
               <Button
-                // _onClick={createRoom}
+                 _onClick={createRoom}
                 //임시로 group 페이지로 이동하기
-                _onClick={()=>{history.push('/group');}}
+                //_onClick={()=>{history.push('/group');}}
                 border="none"
                 height="54px"
                 radius="11px"

@@ -22,6 +22,8 @@ const Input = (props) => {
     checkbox,
     _name,
     _checked,
+
+
   } = props;
 
   const labelStyle = { display, color };
@@ -35,6 +37,8 @@ const Input = (props) => {
     padding,
     className,
     radius,
+
+  
   };
 
   if (createGroup) {
@@ -93,6 +97,7 @@ Input.defaultProps = {
   width: "100%",
   height: "62px",
   radius: "11px",
+  border:"none"
 };
 
 const CheckboxLabel = styled.label`
@@ -130,6 +135,7 @@ const GroupInput = styled.input`
   padding-left: 21px;
   box-sizing: border-box;
   font-size: 16px;
+  outline:none;
 `;
 
 const ElLabel = styled.label`
@@ -139,21 +145,21 @@ const ElLabel = styled.label`
 `;
 
 const ElInput = styled.input`
-  ${(props) => (props.width ? `width: ${props.width};` : "")}
-  ${(props) => (props.height ? `height: ${props.height};` : "")}
-  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
-  ${(props) => (props.height ? `height: ${props.height};` : "")}
+  ${(props) => (props.width ? `width: ${props.width};` : "")};
+  ${(props) => (props.height ? `height: ${props.height};` : "")};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.height ? `height: ${props.height};` : "")};
   font-size: 18px;
   color: #c6c6c6;
   background-color: #f4f4f4;
-  outline: none;
-  border: none;
-  margin: 16px 0 0 0;
-  ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")}
-  ${(props) => (props.border ? `border: ${props.border};` : "")}
-  ${(props) => (props.display ? `display: ${props.display};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
+ 
+  outline:none;
+  ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")};
+  ${(props) => (props.border ? `border: ${props.border};` : "")};
+  ${(props) => (props.display ? `display: ${props.display};` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+
 `;
 
 export default Input;
