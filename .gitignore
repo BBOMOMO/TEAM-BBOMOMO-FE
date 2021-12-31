@@ -4,8 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-.VideoChat.js
 
+# VideoChat
+/src/component/VideoChat.js
 # testing
 /coverage
 
