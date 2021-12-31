@@ -31,7 +31,7 @@ function App() {
       <Route path="/chat" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
       <Route path="/main" exact component={Main} />
-      <Route path="/qq" exact component={StudyCertificationModal} />
+      <Route path="/studymodal" exact component={StudyCertificationModal} />
       <Route path="/video" exact component={VideoChat} />
     </>
   );
