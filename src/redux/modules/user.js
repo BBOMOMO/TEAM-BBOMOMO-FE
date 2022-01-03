@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setToken } from "../../shared/token";
-import api from "../../api/api";
 import apis from "../../shared/apis";
 
 // actions
@@ -26,10 +25,10 @@ const registerSQL = (name, pwd, pwdck, nickname, category) => {
       category: category,
     };
 
-    await api
-      .post("/api/v1/auth/signup", userInfo)
+    await apis
+      .register(userInfo)
       .then(function (response) {
-        history.push("/");
+        history.push("/login");
       })
       .catch((err) => {
         const message = err.response.data.msg;

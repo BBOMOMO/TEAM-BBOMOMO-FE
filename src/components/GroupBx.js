@@ -7,6 +7,10 @@ import timer from "../Images/ic-timer.png";
 const GroupBx = (props) => {
   const { roomLock } = props;
 
+  const userlist = props.peopleInRoom;
+
+
+
   if (roomLock) {
     return (
       <GroupContBx>
@@ -14,7 +18,7 @@ const GroupBx = (props) => {
           <div className="group_left_bx">
             <div>
               <h2 className="group_left_h2">
-                <span>수능공부</span>안녕
+                <span>수능공부</span>{props.roomTittle}
               </h2>
             </div>
             <div className="state_name_bx">
@@ -62,29 +66,23 @@ const GroupBx = (props) => {
       <div className="group_left_bx">
         <div>
           <h2 className="group_left_h2">
-            <span>수능공부</span>안녕
+            <span>수능공부</span>{props.roomTittle}
           </h2>
         </div>
         <div className="state_name_bx">
-          <p className="state_name_txt">
-            <span className="state_name_circle">동그라미</span>
-            나는이서현나는이서현나는이서현나는이서현나는이서현나는이서현
-          </p>
+          {userlist && userlist.map((p,idx) => {
+            return(
+              <p className="state_name_txt" key={p.idx}>
+                <span className="state_name_circle">동그라미</span>
+                  {/* 이 부분 닉네임으로 넘겨주기로 했음 */}
+                  {p.userId}
+              </p>
 
-          <p className="state_name_txt">
-            <span className="state_name_circle">동그라미</span>
-            나는이서현나는이서현
-          </p>
+            );
+          })}
+          
 
-          <p className="state_name_txt">
-            <span className="state_name_circle">동그라미</span>
-            나는이서현나는이서현나는이서현
-          </p>
-
-          <p className="state_name_txt">
-            <span className="state_name_circle">동그라미</span>
-            나는이서현나는
-          </p>
+          
         </div>
       </div>
 
@@ -94,7 +92,7 @@ const GroupBx = (props) => {
         </div>
         <div className="ic_bottom_bx">
           <img src={person} alt="사람 아이콘" />
-          <p>2 / 6</p>
+          <p>{userlist.length} / 6</p>
         </div>
       </div>
     </GroupCont>
