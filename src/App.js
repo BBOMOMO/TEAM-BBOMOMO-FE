@@ -9,15 +9,17 @@ import "./styles/css/grouprecommend.css";
 import "./styles/css/timer.css";
 import "./styles/css/myInfo.css";
 import "./styles/css/userview.css";
-import "./styles/css/certificationModal.css";
 import "./styles/css/video.css";
+import "./styles/css/certification.css";
 import Login from "./page/Login";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
 import Group from "./page/Group";
 import Header from "./components/Header";
 import Main from "./page/Main";
-import StudyCertificationModal from "./components/StudyCertificationModal";
+import CertificationWrite from "./components/CertificationWrite";
+import CertificationComment from "./components/CertificationComment";
+import Certification from "./components/Certification";
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
       <Route path="/chat" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
       <Route path="/main" exact component={Main} />
-      <Route path="/studymodal" exact component={StudyCertificationModal} />
+      <Route path="/writemodal" exact component={CertificationWrite} />
+      <Route path="/commentmodal" exact component={CertificationComment} />
+      <Route path="/certifi" exact component={Certification} />
     </>
   );
 }
