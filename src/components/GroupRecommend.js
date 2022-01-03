@@ -4,8 +4,25 @@ import { Button, Input } from "../elements";
 import search from "../Images/ic_header_search.png";
 
 import GroupBx from "./GroupBx";
+import {actionCreators as roomActions} from "../redux/modules/group";
+import { useDispatch, useSelector} from "react-redux";
 
 const GroupRecommend = (props) => {
+
+
+  const dispatch = useDispatch();
+  const _roomlist = useSelector((state) => state.group.roomList);
+  const roomlist = _roomlist.list;
+
+  console.log(roomlist);
+
+
+  React.useEffect(()=>{
+
+    dispatch(roomActions.getRooms());
+  },[]);
+  
+  
   return (
     <div className="groupreco_bx">
       <div className="groupreco_top">
@@ -99,7 +116,7 @@ const GroupRecommend = (props) => {
           </div>
         </div>
       </div>
-      <div className="groupreco_bottom">
+      {/* <div className="groupreco_bottom">
         <div className="groupbx_card">
           <GroupBx roomLock></GroupBx>
         </div>
@@ -118,7 +135,26 @@ const GroupRecommend = (props) => {
         <div className="groupbx_card">
           <GroupBx></GroupBx>
         </div>
+      </div> */}
+      
+      <div className="groupreco_bottom">
+        {
+          roomlist && roomlist.map((p) => {
+            
+            return (
+              <>
+              <div className="groupbx_card">
+                <GroupBx key={p.roomId} {...p}  ></GroupBx>
+              </div>
+              
+              </>
+            );
+
+          })
+        }
+        
       </div>
+
       <div className="groupreco_more_btn">
         <button>더보기</button>
       </div>

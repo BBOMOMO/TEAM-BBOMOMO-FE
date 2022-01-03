@@ -3,8 +3,17 @@ import styled from "styled-components";
 import close from "../Images/ic_header_close.png";
 import Input from "../elements/Input";
 import Select from "../elements/Select";
+import { delToken } from "../shared/token";
+import {history } from "../redux/configureStore";
+
+import { useDispatch } from "react-redux";
 
 function InfoModal({ showModal, closeModal }) {
+
+  const logout = () => {
+    delToken("login");
+    window.location.reload("/");
+  }
   return (
     <>
       {showModal ? (
@@ -78,7 +87,7 @@ function InfoModal({ showModal, closeModal }) {
               <p className="userservice_btn">문의 하기</p>
             </div>
             <div className="logout clearfix">
-              <p className="logout_btn fr">로그아웃</p>
+              <p className="logout_btn fr" onClick={logout}>로그아웃</p>
             </div>
           </div>
         </div>

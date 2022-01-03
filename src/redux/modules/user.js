@@ -1,8 +1,20 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setToken } from "../../shared/token";
-import api from "../../api/api";
 import apis from "../../shared/apis";
+
+// actions
+const SET_USER = "SET_USER";
+
+
+// action creators
+const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
+
+// initialState
+const initialState = {
+  userInfo: null,
+};
+
 const registerSQL = (name, pwd, pwdck, nickname, category) => {
   return async function (dispatch, getState, { history }) {
     const userInfo = {
@@ -13,10 +25,10 @@ const registerSQL = (name, pwd, pwdck, nickname, category) => {
       category: category,
     };
 
-    await api
-      .post("/api/v1/auth/signup", userInfo)
+    await apis
+      .register(userInfo)
       .then(function (response) {
-        history.push("/");
+        history.push("/login");
       })
       .catch((err) => {
         const message = err.response.data.msg;
@@ -35,11 +47,11 @@ const loginDB = (username, password) => {
     await apis
       .login(userInfo)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         const token = response.data.token;
         setToken("login", token);
         window.alert("로그인 성공 🔥");
-        history.push(`/main/${username}`);
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -48,12 +60,13 @@ const loginDB = (username, password) => {
   };
 };
 
-const checkUserDB = (userId) => {
+const checkUserDB = () => {
   return async function (dispatch, getState, { history }) {
     await apis
-      .checkUser(userId)
+      .checkUser()
       .then((response) => {
-        console.log(response);
+        const userInfo = response.data;
+        dispatch(setUser(userInfo));
       })
       .catch((err) => {
         console.log(err);
@@ -61,8 +74,23 @@ const checkUserDB = (userId) => {
   };
 };
 
+
+//---- reducer ----
+export default handleActions(
+  {
+    [SET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.userInfo = action.payload.userInfo;
+      }),
+
+  },
+  initialState
+);
+
 export const actionCreators = {
   registerSQL,
   loginDB,
   checkUserDB,
+
+
 };
