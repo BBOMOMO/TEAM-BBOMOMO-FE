@@ -7,6 +7,7 @@ import apis from "../../shared/apis";
 // actions
 const SET_USER = "SET_USER";
 
+
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
 
@@ -47,11 +48,11 @@ const loginDB = (username, password) => {
     await apis
       .login(userInfo)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         const token = response.data.token;
         setToken("login", token);
         window.alert("로그인 성공 🔥");
-        history.push(`/main/${username}`);
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -74,6 +75,7 @@ const checkUserDB = () => {
   };
 };
 
+
 //---- reducer ----
 export default handleActions(
   {
@@ -81,6 +83,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.userInfo = action.payload.userInfo;
       }),
+
   },
   initialState
 );
@@ -89,4 +92,6 @@ export const actionCreators = {
   registerSQL,
   loginDB,
   checkUserDB,
+
+
 };
