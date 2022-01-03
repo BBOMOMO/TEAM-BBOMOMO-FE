@@ -20,6 +20,7 @@ import Main from "./page/Main";
 import CertificationWrite from "./components/CertificationWrite";
 import CertificationComment from "./components/CertificationComment";
 import Certification from "./components/Certification";
+import VideoChatRoom from "./components/VideoChatRoom";
 
 function App() {
   return (
@@ -29,13 +30,13 @@ function App() {
       <Route path="/signup" exact component={Signup} />
       <Route path="/" exact component={Login} />
       <Header />
-      <Route path="/chat" exact component={PostChat} />
+      <Route path="/chat/:roomNum" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
       <Route path="/main/:userId" exact component={Main} />
       <Route path="/writemodal" exact component={CertificationWrite} />
       <Route path="/commentmodal" exact component={CertificationComment} />
       <Route path="/certifi" exact component={Certification} />
-
+      <Route path="/video" exact component={VideoChatRoom} />
     </>
   );
 }

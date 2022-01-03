@@ -9,12 +9,12 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Main = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
-  const userId = params.userId;
+  const userId = params;
+
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
   }, []);
   const user = useSelector((state) => state.user.userInfo);
-  console.log(user);
 
   return (
     <>
