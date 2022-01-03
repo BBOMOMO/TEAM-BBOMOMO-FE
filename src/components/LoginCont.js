@@ -74,6 +74,7 @@ const LoginCont = (props) => {
             weight="600"
             _onClick={() => {
               dispatch(userActions.loginDB(id, pw));
+              dispatch(userActions.checkUserDB());
             }}
           >
             로그인

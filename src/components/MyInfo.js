@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import roundCircle from "../Images/Group3366.png";
-import user from "../Images/user.png";
-import pencil from "../Images/pencil.png";
+import { useSelector, useDispatch } from "react-redux";
 
+import roundCircle from "../Images/Group3366.png";
+import userImg from "../Images/user.png";
+import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
 
 const MyInfo = (props) => {
-  
   const [showModalCG, setShowModalCG] = React.useState(false);
 
   //클릭 시 모달창 열기
@@ -17,18 +17,20 @@ const MyInfo = (props) => {
   const closeModal = () => {
     setShowModalCG(false);
   };
+  const user = useSelector((state) => state.user.userInfo);
+  // const nickname = user.user[0].nick;
 
   return (
     <>
       <div className="myinfo_container">
         <div className="myinfo_profile_area">
           <img src={roundCircle} />
-          <img src={user} className="myinfo_user_img" />
+          <img src={userImg} className="myinfo_user_img" />
         </div>
         <div className="myinfo_txt_area">
           <div className="myinfo_user_info">
             <span className="myinfo_user_division">고3</span>
-            <h3 className="myinfo_user_name">뽀모모</h3>
+            <h3 className="myinfo_user_name"></h3>
           </div>
           <div className="myinfo_user_state_area">
             <p className="myinfo_user_state">2020수능 가자!</p>

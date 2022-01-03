@@ -1,8 +1,12 @@
 import TextField from "@material-ui/core/TextField";
 import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 
 function PostChat() {
+  const params = useParams();
+  const roomId = params.roomNum;
+  // console.log(roomNum);
   const [state, setState] = useState({ message: "", name: "" });
   const [chat, setChat] = useState([]);
 
@@ -12,12 +16,19 @@ function PostChat() {
 
   useEffect(() => {
     socketRef.current = io.connect("http://13.209.3.61");
+    socketRef.current.emit("join_room", roomId);
+
     socketRef.current.on("message", ({ name, message }) => {
       setChat([...chat, { name, message }]);
+    });
+    socketRef.current.on("welcome", (roomId) => {
+      console.log("안녕하세요");
+      console.log(roomId);
     });
     socketRef.current.on("hi", (msg) => {
       console.log(msg);
     });
+
     // 쉬는 시간 종료(중간에 들어온 사람도 같은 시간 동기화 가능), 공부시간 종료 타이머,
     let gapTimeFloor;
     socketRef.current.on("time", (time) => {
@@ -35,10 +46,10 @@ function PostChat() {
         let sec = gapTimeFloor % 60;
         console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`);
         if (min === 0 && sec === 0) {
-          window.alert("공부해! 새끼들아!");
+          window.alert("공부할 시간");
         }
       };
-      setInterval(timer, 1000);
+      // setInterval(timer, 1000);
     });
     return () => socketRef.current.disconnect();
   }, [chat]);
@@ -49,7 +60,7 @@ function PostChat() {
 
   const onMessageSubmit = (e) => {
     const { name, message } = state;
-    socketRef.current.emit("message", { name, message });
+    socketRef.current.emit("message", { name, message, roomId });
     e.preventDefault();
     setState({ message: "", name });
   };
