@@ -49,6 +49,7 @@ const LoginCont = (props) => {
             <img src={lock} alt="자물쇠 아이콘" />
             <Input
               value={pw}
+              type="password"
               text="비밀번호"
               boxSizing
               height="62px"
