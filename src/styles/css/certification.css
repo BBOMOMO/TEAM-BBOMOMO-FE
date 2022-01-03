@@ -1,0 +1,406 @@
+/*----------공부인증 박스----------*/
+.certifi_bx {
+  width: 1018px;
+  /* 임시 */
+  position: absolute;
+  top: 100px;
+  z-index: 20000;
+}
+.certifi_title {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0 35px 14px;
+}
+.certifi_title > h2 {
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+  letter-spacing: 0.0038em;
+}
+.certifi_title > button {
+  padding: 3px 20px;
+  background: #889cf2;
+  border: none;
+  border-radius: 21px;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.0008em;
+}
+.certifi_card_bx {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  overflow: scroll;
+  height: 857px;
+}
+/* 더보기 버튼 */
+.certifi_more_btn {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.certifi_more_btn::before {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 428px;
+  height: 1px;
+  background: #e7e7e7;
+  content: "";
+}
+.certifi_more_btn::after {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 428px;
+  height: 1px;
+  background: #e7e7e7;
+  content: "";
+}
+.certifi_more_btn > button {
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  width: 180px;
+  height: 42px;
+  background: #fefefc;
+  border: 1px solid #e6e6e6;
+  border-radius: 53px;
+  color: #959595;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+  z-index: 99;
+}
+/*----------공부인증 카드----------*/
+.certifi_card_top > h2 {
+  margin-bottom: 30px;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 41px;
+  letter-spacing: 0.0037em;
+}
+.certifi_card_top > p {
+  max-width: 200px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.0041em;
+}
+.certifi_card_bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.certifi_card_bottom > p {
+  padding: 4px 8px 4px 6px;
+  border: 0.37px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  color: #282828;
+  font-size: 10px;
+  line-height: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 130px;
+  text-overflow: ellipsis;
+}
+.certifi_card_bottom > p > span {
+  display: inline-block;
+  margin-right: 4px;
+  width: 13.32px;
+  height: 13.32px;
+  border-radius: 13.32px;
+  background: #797979;
+  text-indent: -9999px;
+}
+
+.certifi_card_bottom_comment {
+  display: flex;
+}
+.certifi_card_bottom_comment > img {
+  margin-right: 7px;
+  width: 24px;
+  height: 24px;
+}
+.certifi_card_bottom_comment > p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.0041em;
+}
+
+/*----------공부인증 작성----------*/
+.certifi_write_title_bx {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #e7e7e7;
+}
+.certifi_write_title_bx > h2 {
+  color: #242424;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: -0.0024em;
+}
+.certifi_write_title_bx > img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.certifi_write_post_bx {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.certifi_write_post_top > h3 {
+  margin-bottom: 18px;
+  color: #242424;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 41px;
+  letter-spacing: 0.0037em;
+}
+.certifi_write_post_top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 396px;
+}
+.certifi_write_post_top > textarea {
+  padding: 24px;
+  width: 100%;
+  height: 122px;
+  border: none;
+  border-radius: 11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #7a7d81;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.0041em;
+  outline: none;
+  resize: none;
+}
+.certifi_write_post_bx .bg_btn_bx {
+  display: flex;
+}
+.certifi_write_post_bx .bg_btn {
+  margin-left: 20px;
+}
+.certifi_write_post_bx .bg_btn:first-child {
+  margin-left: 0;
+}
+.certifi_write_post_bx .bg_btn1 {
+  background: url("../../Images/study-certification-btn-1.png");
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-size: cover;
+}
+.certifi_write_post_bx .bg_btn2 {
+  background: url("../../Images/study-certification-btn-2.png");
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-size: cover;
+}
+.certifi_write_post_bx .bg_btn3 {
+  background: url("../../Images/study-certification-btn-3.png");
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-size: cover;
+}
+.certifi_write_post_bx .bg_btn4 {
+  background: url("../../Images/study-certification-btn-4.png");
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-size: cover;
+}
+.certifi_write_post_bx .bg_btn5 {
+  background: url("../../Images/study-certification-btn-5.png");
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-size: cover;
+}
+.certifi_write_post_bx .bg_btn_input {
+  display: none;
+}
+
+/*----------공부인증 댓글----------*/
+.certifi_comment_title_bx {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #e7e7e7;
+}
+.certifi_comment_title_bx > h2 {
+  color: #242424;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: -0.0024em;
+}
+.certifi_comment_title_bx > img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.certifi_comment_cont_bx {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 26px;
+}
+.certifi_comment_bg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 396px;
+}
+.certifi_comment_bg > h3 {
+  margin-bottom: 18px;
+  color: #242424;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 41px;
+  letter-spacing: 0.0037em;
+}
+.certifi_comment_bg > p {
+  padding: 24px 0;
+  width: 100%;
+  color: #282828;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.0041em;
+}
+.comment_my_profile_bx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.my_profile_left {
+  display: flex;
+  align-items: center;
+}
+.my_profile_left > h4 {
+  color: #242424;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.0008em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+.my_profile_right {
+  display: flex;
+}
+.my_profile_right > img {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+.my_profile_right > p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.0041em;
+}
+.my_profile_img_bx {
+  margin-right: 22px;
+  width: 36px;
+  height: 36px;
+  border-radius: 36px;
+}
+.my_profile_img_bx > img {
+  width: 100%;
+}
+
+/* .comment_cont_right {
+} */
+.certifi_conmment_list_bx {
+  margin-bottom: 40px;
+  width: 477px;
+  height: 564px;
+  overflow: scroll;
+}
+.certifi_conmment_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.certifi_conmment_list + .certifi_conmment_list {
+  margin-top: 22px;
+}
+.certifi_conmment_list .list_profile_bx {
+  display: flex;
+  align-items: center;
+}
+.certifi_conmment_list .list_img_bx {
+  margin-right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 36px;
+}
+.certifi_conmment_list .list_img_bx > img {
+  width: 100%;
+}
+.certifi_conmment_list .list_profile_bx > h4 {
+  margin-right: 16px;
+  color: #242424;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.0008em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+.certifi_conmment_list .list_profile_bx > p {
+  color: #242424;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.0008em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.certifi_conmment_list > span {
+  color: #a3a6aa;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.0008em;
+}
+.certifi_conmment_input_bx {
+  position: relative;
+}
+.certifi_conmment_input_bx > img {
+  position: absolute;
+  top: 16px;
+  right: 26px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
