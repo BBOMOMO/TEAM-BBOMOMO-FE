@@ -35,7 +35,6 @@ function App() {
       <Route path="/writemodal" exact component={CertificationWrite} />
       <Route path="/commentmodal" exact component={CertificationComment} />
       <Route path="/certifi" exact component={Certification} />
-
     </>
   );
 }
