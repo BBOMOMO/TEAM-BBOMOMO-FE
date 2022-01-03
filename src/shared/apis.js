@@ -20,8 +20,7 @@ instance.interceptors.request.use((config) => {
 export const apis = {
   //---- 유저  ----
   login: (userInfo) => instance.post("/api/v1/auth/login", userInfo), //로그인
-  checkUser: (userId) =>
-    instance.get(`/api/v1/users/${userId}/mypage`, { userId: userId }), //유저확인
+  checkUser: () => instance.get(`/api/v1/users/mypage`), //유저확인
 };
 
 export default apis;
