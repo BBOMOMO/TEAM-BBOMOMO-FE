@@ -39,7 +39,7 @@ const loginDB = (username, password) => {
         const token = response.data.token;
         setToken("login", token);
         window.alert("로그인 성공 🔥");
-        history.push("/main");
+        history.push(`/main/${username}`);
       })
       .catch((err) => {
         console.log(err);
@@ -48,9 +48,21 @@ const loginDB = (username, password) => {
   };
 };
 
-const actionCreators = {
-  registerSQL,
-  loginDB,
+const checkUserDB = (userId) => {
+  return async function (dispatch, getState, { history }) {
+    await apis
+      .checkUser(userId)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
 
-export { actionCreators };
+export const actionCreators = {
+  registerSQL,
+  loginDB,
+  checkUserDB,
+};

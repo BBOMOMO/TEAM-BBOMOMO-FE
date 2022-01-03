@@ -8,6 +8,8 @@ function PostChat() {
 
   const socketRef = useRef();
 
+  function getTime() {}
+
   useEffect(() => {
     socketRef.current = io.connect("http://13.209.3.61");
     socketRef.current.on("message", ({ name, message }) => {
@@ -15,6 +17,28 @@ function PostChat() {
     });
     socketRef.current.on("hi", (msg) => {
       console.log(msg);
+    });
+    // 쉬는 시간 종료(중간에 들어온 사람도 같은 시간 동기화 가능), 공부시간 종료 타이머,
+    let gapTimeFloor;
+    socketRef.current.on("time", (time) => {
+      const endTime = time;
+      const nowTime = new Date().getTime();
+      const gapTime = endTime - nowTime;
+      gapTimeFloor = Math.floor(gapTime / 1000);
+      let MinTime = Math.floor(gapTime / (1000 * 60));
+      let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+      // console.log(MinTime, secTime, gapTimeFloor);
+      let timer = () => {
+        gapTimeFloor = gapTimeFloor - 1;
+        console.log(gapTimeFloor);
+        let min = Math.floor(gapTimeFloor / 60);
+        let sec = gapTimeFloor % 60;
+        console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`);
+        if (min === 0 && sec === 0) {
+          window.alert("공부해! 새끼들아!");
+        }
+      };
+      setInterval(timer, 1000);
     });
     return () => socketRef.current.disconnect();
   }, [chat]);

@@ -1,34 +1,185 @@
 /************************** header modal css **************************/
 
-.header_modal_container{position: absolute; width:451px; min-height:300px; background: #FFFFFF;
-  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);  border-radius: 16px;padding:25px 20px; box-sizing: border-box;}
+.header_modal_container {
+  position: absolute;
+  width: 451px;
+  min-height: 300px;
+  background: #ffffff;
+  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-sizing: border-box;
+}
 
-.alarm_modal {top:110px;right:315px;z-index:999;}
-.chat_modal {top:110px;right:205px;z-index:999;}
-.info_modal {top:110px;right:100px;z-index:999;}
+.alarm_modal {
+  top: 110px;
+  right: 315px;
+  z-index: 999;
+}
+.chat_modal {
+  top: 110px;
+  right: 205px;
+  z-index: 999;
+}
+.info_modal {
+  top: 110px;
+  right: 100px;
+  z-index: 999;
+}
 
-.header_modal_title {color:#242424;font-size:18px; font-weight:bold;margin-left:10px;}
-.header_modal_hr {background:#E7E7E7;width:100%; height:1px;margin:20px 0 0 0;}
-.group_modal_close {position:absolute;top:22px; right:18px;width:24px;cursor: pointer;}
-.group_modal_goback {position:absolute;top:22px; left:18px;width:24px;cursor: pointer;}
-.group_modal_close>img, .group_modal_goback>img {  width:100%; }
-
+.header_modal_title {
+  color: #242424;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.header_modal_hr {
+  background: #e7e7e7;
+  width: 100%;
+  height: 1px;
+  margin: 20px 0 0 0;
+}
+.group_modal_close {
+  position: absolute;
+  top: 22px;
+  right: 18px;
+  width: 24px;
+  cursor: pointer;
+}
+.group_modal_goback {
+  position: absolute;
+  top: 22px;
+  left: 18px;
+  width: 24px;
+  cursor: pointer;
+}
+.group_modal_close > img,
+.group_modal_goback > img {
+  width: 100%;
+}
 
 /************************** 1:1 채팅 모달창 header modal OneChatModal **************************/
-.header_friend_container {position:relative; width:100%; height:85px; margin-top:10px; border-radius: 11px;display: flex; align-items: center;padding:18px; box-sizing: border-box;}
-.header_friend_container:hover {background-color:#F6F8F9;}
-.header_friend_container .header_friend_thumb {width:48px; height:48px; border-radius: 50%; background-color: #c4c4c4;margin-right:18px;}
-.header_friend_container .header_friend_active {position:absolute; left:55px; top:55px; width:10px; height:10px; background-color:#2fff37;border-radius:50%;}
-.header_friend_container .header_friend_content {position:relative;width:307px; }
-.header_friend_container .header_friend_content .header_friend_name {font-size:16px; font-weight:600; letter-spacing:-0.5px; color:#282828;margin-bottom:12px;}
-.header_friend_container .header_friend_content .header_friend_message {width:307px;height:14px;overflow: hidden; font-size:14px; color:#a3a3a3; font-weight:normal;letter-spacing:-0.5px;}
-
-
-
+.header_friend_container {
+  position: relative;
+  width: 100%;
+  height: 85px;
+  margin-top: 10px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  box-sizing: border-box;
+}
+.header_friend_container:hover {
+  background-color: #f6f8f9;
+}
+.header_friend_container .header_friend_thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #c4c4c4;
+  margin-right: 18px;
+}
+.header_friend_container .header_friend_active {
+  position: absolute;
+  left: 55px;
+  top: 55px;
+  width: 10px;
+  height: 10px;
+  background-color: #2fff37;
+  border-radius: 50%;
+}
+.header_friend_container .header_friend_content {
+  position: relative;
+  width: 307px;
+}
+.header_friend_container .header_friend_content .header_friend_name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #282828;
+  margin-bottom: 12px;
+}
+.header_friend_container .header_friend_content .header_friend_message {
+  width: 307px;
+  height: 14px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #a3a3a3;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+}
 
 /************************** 알람 모달창 header modal AlarmModal **************************/
-.header_friend_container .header_friend_content .header_friend_alarmmessage {width:307px;height:14px;overflow: hidden; font-size:14px; color:#282828; font-weight:normal;letter-spacing:-0.5px;}
-.header_friend_container .header_friend_content .header_friend_alartime {position:absolute;right:0; font-size:12px; color:#959595; }
-.header_friend_container .header_friend_content .header_friend_allowBtnWrap {display: flex;margin-top:12px;}
-.header_friend_container .header_friend_content .header_friend_allowBtnWrap .btn:hover {background-color:#889CF2; color:#fff; }
-.header_friend_container .header_friend_content .header_friend_allowBtnWrap .btn {border:1px solid #959595; color:#282828; font-size:10px;padding:6px 20px 5px 20px;font-weight:bold; border-radius:20px;margin-right:8px;  cursor:pointer;}
+.header_friend_container .header_friend_content .header_friend_alarmmessage {
+  width: 307px;
+  height: 14px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #282828;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+}
+.header_friend_container .header_friend_content .header_friend_alartime {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  color: #959595;
+}
+.header_friend_container .header_friend_content .header_friend_allowBtnWrap {
+  display: flex;
+  margin-top: 12px;
+}
+.header_friend_container
+  .header_friend_content
+  .header_friend_allowBtnWrap
+  .btn:hover {
+  background-color: #889cf2;
+  color: #fff;
+}
+.header_friend_container
+  .header_friend_content
+  .header_friend_allowBtnWrap
+  .btn {
+  border: 1px solid #959595;
+  color: #282828;
+  font-size: 10px;
+  padding: 6px 20px 5px 20px;
+  font-weight: bold;
+  border-radius: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* 개인정보수정 */
+.personal_info_edit {
+  padding: 45px 0 35px 0;
+}
+.division_edit {
+  margin-top: 20px;
+}
+.userservice {
+  padding-top: 26px;
+  box-sizing: border-box;
+  height: 316px;
+}
+.userservice_btn {
+  padding-left: 34px;
+  font-size: 16px;
+  height: 62px;
+  line-height: 65px;
+  border: 1px solid #e7e7e7;
+  box-sizing: border-box;
+  border-radius: 11px;
+}
+.userservice_btn + .userservice_btn {
+  margin-top: 20px;
+}
+.logout_btn {
+  border: 1px solid #e7e7e7;
+  border-radius: 11px;
+  line-height: 48px;
+  width: 93px;
+  height: 48px;
+  text-align: center;
+}

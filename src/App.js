@@ -31,10 +31,11 @@ function App() {
       <Header />
       <Route path="/chat" exact component={PostChat} />
       <Route path="/group" exact component={Group} />
-      <Route path="/main" exact component={Main} />
+      <Route path="/main/:userId" exact component={Main} />
       <Route path="/writemodal" exact component={CertificationWrite} />
       <Route path="/commentmodal" exact component={CertificationComment} />
       <Route path="/certifi" exact component={Certification} />
+
     </>
   );
 }

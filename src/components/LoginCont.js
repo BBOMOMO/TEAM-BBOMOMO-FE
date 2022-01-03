@@ -6,6 +6,7 @@ import googlelogo from "../Images/googlelogo.png";
 import kakaologo from "../Images/kakaologo.png";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 
 const LoginCont = (props) => {
   const dispatch = useDispatch();
@@ -94,7 +95,14 @@ const LoginCont = (props) => {
           <div className="login_goto_signup_bx">
             <p>
               아직 회원이 아니신가요?
-              <button className="ml20 pb5 login_goto_signup">회원가입</button>
+              <button
+                className="ml20 pb5 login_goto_signup"
+                onClick={() => {
+                  history.push("/signup");
+                }}
+              >
+                회원가입
+              </button>
             </p>
           </div>
         </div>
