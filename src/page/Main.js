@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MyInfo from "../components/MyInfo";
+import NoInfo from "../components/NoInfo"
 import GroupRecommend from "../components/GroupRecommend";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,7 +20,8 @@ const Main = (props) => {
   return (
     <>
       <MainContainer>
-        <MyInfo />
+        {user ? 
+        ( <MyInfo />):( <NoInfo />)}
         <GroupRecommend />
       </MainContainer>
     </>

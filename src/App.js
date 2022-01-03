@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "./components/GlobalStyles";
 
-import { Route } from "react-router-dom";
+import {  Switch, Route } from "react-router-dom";
 import "./styles/css/login.css";
 import "./styles/css/signup.css";
 import "./styles/css/group.css";
@@ -17,25 +17,28 @@ import PostChat from "./components/PostChat";
 import Group from "./page/Group";
 import Header from "./components/Header";
 import Main from "./page/Main";
+import NotFound from "./page/NotFound";
 import CertificationWrite from "./components/CertificationWrite";
 import CertificationComment from "./components/CertificationComment";
 import Certification from "./components/Certification";
 
 function App() {
   return (
-    <>
-      <GlobalStyles />
+   <>
+    <GlobalStyles />
+    <Route path="/signup" component={Signup} exact/>
+    <Route path="/login" component={Login} exact />    
+    <Header />
+    <Switch>
+      <Route path="/" component={Main} exact/>
+      <Route path="/chat" component={PostChat} exact/>
+      <Route path="/group" component={Group} exact/>
 
-      <Route path="/signup" exact component={Signup} />
-      <Route path="/" exact component={Login} />
-      <Header />
-      <Route path="/chat" exact component={PostChat} />
-      <Route path="/group" exact component={Group} />
-      <Route path="/main/:userId" exact component={Main} />
-      <Route path="/writemodal" exact component={CertificationWrite} />
-      <Route path="/commentmodal" exact component={CertificationComment} />
-      <Route path="/certifi" exact component={Certification} />
-
+      <Route path="/writemodal" component={CertificationWrite} exact/>
+      <Route path="/commentmodal" component={CertificationComment} exact/>
+      <Route path="/certifi" component={Certification} exact/>
+      <Route path={"*"} component={NotFound}/>
+    </Switch>
     </>
   );
 }

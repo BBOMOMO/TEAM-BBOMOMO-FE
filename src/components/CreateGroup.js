@@ -6,16 +6,28 @@ import lock from "../Images/ic-lock-alt.png";
 import unlock from "../Images/ic-lock-open-alt.png";
 import close from "../Images/ic_header_close.png";
 import {history} from "../redux/configureStore";
+import {actionCreators as roomActions} from "../redux/modules/group";
+
+
+import { useDispatch, useSelector} from "react-redux";
+
 
 function CreateGroup({ showModal, closeModal }) {
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userInfo);
+  const userId = user.user[0].userId
+  //console.log("userId",userId)
+
+
   const [roomTitle, setRoomTitle] = React.useState("");
-  const [roomPassword, setRoomPassword] = React.useState("");
+  const [roomPassword, setRoomPassword] = React.useState(null);
   const [roomPurpose, setRoomPurpose] = React.useState("0");
   const [round, setRound] = React.useState("1");
   const [studyTime, setStudyTime] = React.useState("");
   const [recessTime, setRecessTime] = React.useState("");
   const [openedAt, setOpenedAt] = React.useState("");
-  const [roomStatus, setRoomStatus] = React.useState(true);
+  const [roomStatus, setRoomStatus] = React.useState('0');
 
   const [count, setCount] = React.useState(0);
 
@@ -29,7 +41,15 @@ function CreateGroup({ showModal, closeModal }) {
   const is_study = (e) => {
     if (e) {
       setStudyTime(e.target.value);
+      let currentData = e.target.value;
+      if(currentData=='25'){
+        setRecessTime('5')
+      }else if (currentData=='50'){
+        setRecessTime('10')
+      }
     }
+   
+    
   };
   const is_start = (e) => {
     if (e) {
@@ -41,10 +61,13 @@ function CreateGroup({ showModal, closeModal }) {
     console.log(count);
 
     if (count % 2 === 0) {
-      setRoomStatus(false);
+     
+      setRoomStatus('1');
       console.log("비밀방");
     } else {
-      setRoomStatus(true);
+      
+      setRoomStatus('0');
+      setRoomPassword(null);
       console.log("공개방");
     }
   };
@@ -63,20 +86,10 @@ function CreateGroup({ showModal, closeModal }) {
     } else if (roomStatus == false && roomPassword == "") {
       window.alert("방 비밀번호를 입력해주세요");
     }
+   
 
-    if (roomStatus) {
-      console.log("방정보", roomTitle, roomPurpose, round, studyTime, openedAt);
-    } else {
-      console.log(
-        "방정보",
-        roomTitle,
-        roomPassword,
-        roomPurpose,
-        round,
-        studyTime,
-        openedAt
-      );
-    }
+   // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
+    dispatch(roomActions.addRoom( userId, roomTitle,roomStatus, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt));
   };
 
   return (
@@ -105,13 +118,13 @@ function CreateGroup({ showModal, closeModal }) {
                   margin="16px 0 0 0"
                 />
                 <div className="group_modal_roomStatus" onClick={is_status}>
-                  {roomStatus ? (
+                  {roomStatus=='0' ? (
                     <img src={unlock} alt="공개방" />
                   ) : (
                     <img src={lock} alt="비공개방" />
                   )}
                 </div>
-                {roomStatus ? null : (
+                {roomStatus == '0' ? null : (
                   <Input
                     createGroup
                     value={roomPassword}
