@@ -10,10 +10,12 @@ const Main = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
   const userId = params.userId;
-
   React.useEffect(() => {
-    // dispatch(userActions.checkUserDB(userId));
+    dispatch(userActions.checkUserDB());
   }, []);
+  const user = useSelector((state) => state.user.userInfo);
+  console.log(user);
+
   return (
     <>
       <MainContainer>
