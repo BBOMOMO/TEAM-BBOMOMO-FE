@@ -11,8 +11,8 @@ const Group = () => {
   return (
     <>
       <GroupContainer>
-        <GroupChat/>
-        <div className="group_conttainer">
+        <GroupChat />
+        <div>
           <GroupRoomTimer />
           <UserView />
         </div>
@@ -24,7 +24,6 @@ const Group = () => {
 export default Group;
 
 const GroupContainer = styled.div`
-  padding-top:110px;
+  padding-top: 110px;
   display: flex;
 `;
-
