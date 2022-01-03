@@ -22,11 +22,10 @@ const Input = (props) => {
     checkbox,
     _name,
     _checked,
-
-
+    size,
   } = props;
 
-  const labelStyle = { display, color };
+  const labelStyle = { display, color, size };
   const styles = {
     boxSizing,
     border,
@@ -37,8 +36,6 @@ const Input = (props) => {
     padding,
     className,
     radius,
-
-  
   };
 
   if (createGroup) {
@@ -97,7 +94,8 @@ Input.defaultProps = {
   width: "100%",
   height: "62px",
   radius: "11px",
-  border:"none"
+  border: "none",
+  size: "18px",
 };
 
 const CheckboxLabel = styled.label`
@@ -135,13 +133,13 @@ const GroupInput = styled.input`
   padding-left: 21px;
   box-sizing: border-box;
   font-size: 16px;
-  outline:none;
+  outline: none;
 `;
 
 const ElLabel = styled.label`
-  font-size: 18px;
   font-weight: normal;
   ${(props) => (props.color ? `color: ${props.color};` : "")}
+  ${(props) => (props.size ? `font-size: ${props.size};` : "")}
 `;
 
 const ElInput = styled.input`
@@ -152,14 +150,13 @@ const ElInput = styled.input`
   font-size: 18px;
   color: #c6c6c6;
   background-color: #f4f4f4;
- 
-  outline:none;
+
+  outline: none;
   ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")};
   ${(props) => (props.border ? `border: ${props.border};` : "")};
   ${(props) => (props.display ? `display: ${props.display};` : "")};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
-
 `;
 
 export default Input;
