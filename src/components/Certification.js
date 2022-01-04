@@ -2,6 +2,9 @@ import React from "react";
 import CertificationCard from "./CertificationCard";
 
 const Certification = () => {
+
+  //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
+  //GroupRecommend 참고
   return (
     <div className="certifi_bx">
       <div className="certifi_title">

@@ -9,22 +9,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 const GroupRecommend = (props) => {
   const dispatch = useDispatch();
-  const _roomlist = useSelector((state) => state.group.roomSmall);
-  const roomlist = _roomlist;
+  const _roomlist = useSelector((state) => state.group.roomList);
+  const roomlist = _roomlist.list;
 
-  //console.log(_roomlist);
+  const [roomcount,setRoomcount] = React.useState(6);
 
 
-
-  //console.log(roomlist.slice(0,3));
-
-  // const slice = roomlist.slice(0,noOfElement);
-  // console.log(slice);
-  //console.log(roomlist.length)
+  const roomSlice = () => {
+    if(roomlist){
+      const _roomSlice = roomlist.slice(0, roomcount);
+      return _roomSlice;
+    }
+  }
 
   const seeMore = () => {
-    
+    setRoomcount(roomcount+roomcount);
   }
+
+  
 
   React.useEffect(()=>{
 
@@ -147,8 +149,8 @@ const GroupRecommend = (props) => {
       </div> */}
 
       <div className="groupreco_bottom">
-        {roomlist &&
-          roomlist.map((p) => {
+        {roomSlice() &&
+          roomSlice().map((p) => {
             return (
               <>
                 <div className="groupbx_card">
@@ -159,7 +161,7 @@ const GroupRecommend = (props) => {
           })}
       </div>
 
-      <div className="groupreco_more_btn" onClick="seeMore">
+      <div className="groupreco_more_btn" onClick={seeMore}>
         <button>더보기</button>
       </div>
     </div>
