@@ -39,7 +39,7 @@ function App() {
         <Route path="/writemodal" component={CertificationWrite} exact />
         <Route path="/commentmodal" component={CertificationComment} exact />
         <Route path="/certifi" component={Certification} exact />
-        <Route path="/video" exact component={VideoComponent} />
+        <Route path="/video/:roomId" exact component={VideoChatRoom} />
         <Route path={"*"} component={NotFound} />
       </Switch>
     </>
