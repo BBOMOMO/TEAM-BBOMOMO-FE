@@ -2,7 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setToken } from "../../shared/token";
 import apis from "../../shared/apis";
-import configureStore from "../configureStore";
 
 // actions
 const SET_USER = "SET_USER";
@@ -66,7 +65,9 @@ const checkUserDB = () => {
     await apis
       .checkUser()
       .then((response) => {
+        console.log(response);
         const userInfo = response.data;
+        console.log(userInfo);
         dispatch(setUser(userInfo));
       })
       .catch((err) => {
