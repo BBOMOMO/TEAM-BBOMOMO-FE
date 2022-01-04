@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "./components/GlobalStyles";
 
-import {  Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./styles/css/login.css";
 import "./styles/css/signup.css";
 import "./styles/css/group.css";
@@ -21,26 +21,27 @@ import NotFound from "./page/NotFound";
 import CertificationWrite from "./components/CertificationWrite";
 import CertificationComment from "./components/CertificationComment";
 import Certification from "./components/Certification";
+import VideoComponent from "./components/VideoComponent";
 import VideoChatRoom from "./components/VideoChatRoom";
-
+import Video from "./components/Video";
 function App() {
   return (
-   <>
-    <GlobalStyles />
-    <Route path="/signup" component={Signup} exact/>
-    <Route path="/login" component={Login} exact />    
-    <Header />
-    <Switch>
-      <Route path="/" component={Main} exact/>
-      <Route path="/chat" component={PostChat} exact/>
-      <Route path="/group" component={Group} exact/>
+    <>
+      <GlobalStyles />
+      <Route path="/signup" component={Signup} exact />
+      <Route path="/login" component={Login} exact />
+      {/* <Header /> */}
+      <Switch>
+        <Route path="/" component={Main} exact />
+        <Route path="/chat" component={PostChat} exact />
+        <Route path="/group" component={Group} exact />
 
-      <Route path="/writemodal" component={CertificationWrite} exact/>
-      <Route path="/commentmodal" component={CertificationComment} exact/>
-      <Route path="/certifi" component={Certification} exact/>
-      <Route path="/video" exact component={VideoChatRoom} />
-      <Route path={"*"} component={NotFound}/>
-    </Switch>
+        <Route path="/writemodal" component={CertificationWrite} exact />
+        <Route path="/commentmodal" component={CertificationComment} exact />
+        <Route path="/certifi" component={Certification} exact />
+        <Route path="/video" exact component={VideoComponent} />
+        <Route path={"*"} component={NotFound} />
+      </Switch>
     </>
   );
 }

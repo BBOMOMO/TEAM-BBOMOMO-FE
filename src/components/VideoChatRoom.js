@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 import Peer from "peerjs";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import ChatRoomNav from "./ChatRoomNav";
 
 const ChatRoom = styled.div`
   width: 100vw;
@@ -62,9 +63,8 @@ const ChatRoom = styled.div`
 
 export default function VideoChatRoom() {
   // Global
-  const state = useSelector((state) => state.logInStatusReducer);
   const dispatch = useDispatch();
-  const { user, participants } = useState("정"); //roomId(str), participants(array)
+  const { user, participants } = useState("jj"); //roomId(str), participants(array)
 
   // Local
   const [cameraOn, setCameraOn] = useState(true);
@@ -103,7 +103,7 @@ export default function VideoChatRoom() {
   };
 
   useEffect(() => {
-    const socket = io("http://13.209.3.61");
+    const socket = io(process.env.REACT_APP_IO);
     const peer = new Peer();
 
     // 클라의 영상 스트림 비디오에 넣기
@@ -182,6 +182,11 @@ export default function VideoChatRoom() {
 
   return (
     <>
+      <ChatRoomNav
+        cameraOn={cameraOn}
+        handleCamera={handleCamera}
+        toggleTodo={toggleTodo}
+      />
       <ChatRoom numberOfUsers={users}>
         {isLoading && <span>Loading...</span>}
         <div ref={videoGrid} id="video-grid">
