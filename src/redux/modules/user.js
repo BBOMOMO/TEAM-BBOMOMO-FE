@@ -2,10 +2,10 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setToken } from "../../shared/token";
 import apis from "../../shared/apis";
+import configureStore from "../configureStore";
 
 // actions
 const SET_USER = "SET_USER";
-
 
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
@@ -31,7 +31,8 @@ const registerSQL = (name, pwd, pwdck, nickname, category) => {
         history.push("/login");
       })
       .catch((err) => {
-        const message = err.response.data.msg;
+        const message = err;
+        console.log(message);
         window.alert(message);
       });
   };
@@ -74,7 +75,6 @@ const checkUserDB = () => {
   };
 };
 
-
 //---- reducer ----
 export default handleActions(
   {
@@ -82,7 +82,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.userInfo = action.payload.userInfo;
       }),
-
   },
   initialState
 );
@@ -91,6 +90,4 @@ export const actionCreators = {
   registerSQL,
   loginDB,
   checkUserDB,
-
-
 };

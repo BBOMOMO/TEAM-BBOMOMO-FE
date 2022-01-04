@@ -21,15 +21,16 @@ import NotFound from "./page/NotFound";
 import CertificationWrite from "./components/CertificationWrite";
 import CertificationComment from "./components/CertificationComment";
 import Certification from "./components/Certification";
+import VideoComponent from "./components/VideoComponent";
 import VideoChatRoom from "./components/VideoChatRoom";
-
+import Video from "./components/Video";
 function App() {
   return (
     <>
       <GlobalStyles />
       <Route path="/signup" component={Signup} exact />
       <Route path="/login" component={Login} exact />
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/chat" component={PostChat} exact />
@@ -38,7 +39,7 @@ function App() {
         <Route path="/writemodal" component={CertificationWrite} exact />
         <Route path="/commentmodal" component={CertificationComment} exact />
         <Route path="/certifi" component={Certification} exact />
-        <Route path="/video" exact component={VideoChatRoom} />
+        <Route path="/video" exact component={VideoComponent} />
         <Route path={"*"} component={NotFound} />
       </Switch>
     </>
