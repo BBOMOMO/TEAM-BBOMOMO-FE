@@ -17,8 +17,8 @@ const MyInfo = (props) => {
   const closeModal = () => {
     setShowModalCG(false);
   };
-  const user = useSelector((state) => state);
-  // const nickname = user.user[0].nick;
+  const user = useSelector((state) => state.user.userInfo);
+  const nickname = user.user[0].nick;
 
   return (
     <>
@@ -30,7 +30,7 @@ const MyInfo = (props) => {
         <div className="myinfo_txt_area">
           <div className="myinfo_user_info">
             <span className="myinfo_user_division">고3</span>
-            <h3 className="myinfo_user_name"></h3>
+            <h3 className="myinfo_user_name">{nickname}</h3>
           </div>
           <div className="myinfo_user_state_area">
             <p className="myinfo_user_state">2020수능 가자!</p>
