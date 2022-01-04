@@ -5,20 +5,17 @@ import { Button, Input, Select } from "../elements/index";
 import lock from "../Images/ic-lock-alt.png";
 import unlock from "../Images/ic-lock-open-alt.png";
 import close from "../Images/ic_header_close.png";
-import {history} from "../redux/configureStore";
-import {actionCreators as roomActions} from "../redux/modules/group";
+import { history } from "../redux/configureStore";
+import { actionCreators as roomActions } from "../redux/modules/group";
 
-
-import { useDispatch, useSelector} from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 function CreateGroup({ showModal, closeModal }) {
-
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.userInfo);
-  const userId = user.user[0].userId
+  const user = useSelector((state) => state);
+  const userId = user;
+  // const userId = user.user[0].userId;
   //console.log("userId",userId)
-
 
   const [roomTitle, setRoomTitle] = React.useState("");
   const [roomPassword, setRoomPassword] = React.useState(null);
@@ -27,7 +24,7 @@ function CreateGroup({ showModal, closeModal }) {
   const [studyTime, setStudyTime] = React.useState("");
   const [recessTime, setRecessTime] = React.useState("");
   const [openedAt, setOpenedAt] = React.useState("");
-  const [roomStatus, setRoomStatus] = React.useState('0');
+  const [roomStatus, setRoomStatus] = React.useState("0");
 
   const [count, setCount] = React.useState(0);
 
@@ -42,14 +39,12 @@ function CreateGroup({ showModal, closeModal }) {
     if (e) {
       setStudyTime(e.target.value);
       let currentData = e.target.value;
-      if(currentData=='25'){
-        setRecessTime('5')
-      }else if (currentData=='50'){
-        setRecessTime('10')
+      if (currentData == "25") {
+        setRecessTime("5");
+      } else if (currentData == "50") {
+        setRecessTime("10");
       }
     }
-   
-    
   };
   const is_start = (e) => {
     if (e) {
@@ -61,12 +56,10 @@ function CreateGroup({ showModal, closeModal }) {
     console.log(count);
 
     if (count % 2 === 0) {
-     
-      setRoomStatus('1');
+      setRoomStatus("1");
       console.log("비밀방");
     } else {
-      
-      setRoomStatus('0');
+      setRoomStatus("0");
       setRoomPassword(null);
       console.log("공개방");
     }
@@ -86,10 +79,21 @@ function CreateGroup({ showModal, closeModal }) {
     } else if (roomStatus == false && roomPassword == "") {
       window.alert("방 비밀번호를 입력해주세요");
     }
-   
 
-   // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
-    dispatch(roomActions.addRoom( userId, roomTitle,roomStatus, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt));
+    // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
+    dispatch(
+      roomActions.addRoom(
+        userId,
+        roomTitle,
+        roomStatus,
+        roomPassword,
+        roomPurpose,
+        round,
+        studyTime,
+        recessTime,
+        openedAt
+      )
+    );
   };
 
   return (
@@ -101,7 +105,11 @@ function CreateGroup({ showModal, closeModal }) {
             <ModalInnerContainer>
               <div className="group_modal_relative">
                 <h2 className="group_modal_title">그룹 방 만들기</h2>
-                <span className="group_modal_close" style={{top:"0"}} onClick={closeModal}>
+                <span
+                  className="group_modal_close"
+                  style={{ top: "0" }}
+                  onClick={closeModal}
+                >
                   <img src={close} alt="" />
                 </span>
               </div>
@@ -118,13 +126,13 @@ function CreateGroup({ showModal, closeModal }) {
                   margin="16px 0 0 0"
                 />
                 <div className="group_modal_roomStatus" onClick={is_status}>
-                  {roomStatus=='0' ? (
+                  {roomStatus == "0" ? (
                     <img src={unlock} alt="공개방" />
                   ) : (
                     <img src={lock} alt="비공개방" />
                   )}
                 </div>
-                {roomStatus == '0' ? null : (
+                {roomStatus == "0" ? null : (
                   <Input
                     createGroup
                     value={roomPassword}
@@ -216,7 +224,7 @@ function CreateGroup({ showModal, closeModal }) {
               />
 
               <Button
-                 _onClick={createRoom}
+                _onClick={createRoom}
                 //임시로 group 페이지로 이동하기
                 //_onClick={()=>{history.push('/group');}}
                 border="none"
@@ -245,10 +253,10 @@ const ModalBG = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
-  left:0;
+  left: 0;
   background-color: #000;
   opacity: 0.54;
-  z-index:999;
+  z-index: 999;
 `;
 const ModalBox = styled.div`
   position: fixed;
@@ -260,8 +268,8 @@ const ModalBox = styled.div`
   left: 50%;
   margin-top: -20%;
   margin-left: -274px;
-  z-index:1000;
-  line-height:1.2;
+  z-index: 1000;
+  line-height: 1.2;
 `;
 
 const ModalInnerContainer = styled.div`
@@ -269,7 +277,7 @@ const ModalInnerContainer = styled.div`
   height: auto;
   margin: 0 auto;
   margin-top: 37px;
-  text-align:left;
+  text-align: left;
 `;
 
 export default CreateGroup;

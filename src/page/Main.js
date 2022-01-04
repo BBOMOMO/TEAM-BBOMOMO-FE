@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MyInfo from "../components/MyInfo";
-import NoInfo from "../components/NoInfo"
+import NoInfo from "../components/NoInfo";
 import GroupRecommend from "../components/GroupRecommend";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,15 +13,15 @@ const Main = (props) => {
   const userId = params;
 
   React.useEffect(() => {
-    dispatch(userActions.checkUserDB());
+    // dispatch(userActions.checkUserDB());
   }, []);
-  const user = useSelector((state) => state.user.userInfo);
+  const user = useSelector((state) => state);
+  console.log(user);
 
   return (
     <>
       <MainContainer>
-        {user ? 
-        ( <MyInfo />):( <NoInfo />)}
+        {user ? <MyInfo /> : <NoInfo />}
         <GroupRecommend />
       </MainContainer>
     </>

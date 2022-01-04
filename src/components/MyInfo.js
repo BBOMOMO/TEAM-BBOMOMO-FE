@@ -17,7 +17,7 @@ const MyInfo = (props) => {
   const closeModal = () => {
     setShowModalCG(false);
   };
-  const user = useSelector((state) => state.user.userInfo);
+  const user = useSelector((state) => state);
   // const nickname = user.user[0].nick;
 
   return (
