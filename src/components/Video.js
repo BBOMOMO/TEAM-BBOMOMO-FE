@@ -4,21 +4,22 @@ import io from "socket.io-client";
 const Video = (props) => {
   const socket = io();
   const myFaceRef = useRef();
-  const myFace = myFaceRef.current;
+  console.log(myFaceRef);
+  // const myFace = myFaceRef.current;
   const muteBtnRef = useRef();
-  const muteBtn = muteBtnRef.current;
+  // const muteBtn = muteBtnRef.current;
   const muteIconRef = useRef();
-  const muteIcon = muteIconRef.current;
+  // const muteIcon = muteIconRef.current;
   const unMuteIconRef = useRef();
-  const unMuteIcon = unMuteIconRef.current;
+  // const unMuteIcon = unMuteIconRef.current;
   const cameraBtnRef = useRef();
-  const cameraBtn = cameraBtnRef.current;
+  // const cameraBtn = cameraBtnRef.current;
   const cameraIconRef = useRef();
-  const cameraIcon = cameraIconRef.current;
+  // const cameraIcon = cameraIconRef.current;
   const unCameraIconRef = useRef();
-  const unCameraIcon = unCameraIconRef.current;
+  // const unCameraIcon = unCameraIconRef.current;
   const camerasSelectRef = useRef();
-  const camerasSelect = camerasSelectRef.current;
+  // const camerasSelect = camerasSelectRef.current;
 
   const call = document.querySelector("#call");
   const welcome = document.querySelector("#welcome");
@@ -27,9 +28,10 @@ const Video = (props) => {
 
   let myStream;
   let muted = true;
-  unMuteIcon.classList.add(HIDDEN_CN);
+  console.log(unMuteIconRef);
+  unMuteIconRef.current.classList.add(HIDDEN_CN);
   let cameraOff = false;
-  unCameraIcon.classList.add(HIDDEN_CN);
+  unCameraIconRef.current.classList.add(HIDDEN_CN);
   let roomName = "";
   let nickname = "";
   let peopleInRoom = 1;
@@ -54,7 +56,7 @@ const Video = (props) => {
           option.selected = true;
         }
 
-        camerasSelect.appendChild(option);
+        camerasSelectRef.current.appendChild(option);
       });
     } catch (error) {
       console.log(error);
@@ -77,8 +79,8 @@ const Video = (props) => {
       );
 
       // stream을 mute하는 것이 아니라 HTML video element를 mute한다.
-      myFace.srcObject = myStream;
-      myFace.muted = true;
+      myFaceRef.current.srcObject = myStream;
+      myFaceRef.current.muted = true;
 
       if (!deviceId) {
         // mute default
@@ -98,12 +100,12 @@ const Video = (props) => {
       .getAudioTracks()
       .forEach((track) => (track.enabled = !track.enabled));
     if (muted) {
-      unMuteIcon.classList.remove(HIDDEN_CN);
-      muteIcon.classList.add(HIDDEN_CN);
+      unMuteIconRef.current.classList.remove(HIDDEN_CN);
+      muteIconRef.current.classList.add(HIDDEN_CN);
       muted = false;
     } else {
-      muteIcon.classList.remove(HIDDEN_CN);
-      unMuteIcon.classList.add(HIDDEN_CN);
+      muteIconRef.current.classList.remove(HIDDEN_CN);
+      unMuteIconRef.current.classList.add(HIDDEN_CN);
       muted = true;
     }
   }
@@ -113,19 +115,19 @@ const Video = (props) => {
       .getVideoTracks()
       .forEach((track) => (track.enabled = !track.enabled));
     if (cameraOff) {
-      cameraIcon.classList.remove(HIDDEN_CN);
-      unCameraIcon.classList.add(HIDDEN_CN);
+      cameraIconRef.current.classList.remove(HIDDEN_CN);
+      unCameraIconRef.current.classList.add(HIDDEN_CN);
       cameraOff = false;
     } else {
-      unCameraIcon.classList.remove(HIDDEN_CN);
-      cameraIcon.classList.add(HIDDEN_CN);
+      unCameraIconRef.current.classList.remove(HIDDEN_CN);
+      cameraIconRef.current.classList.add(HIDDEN_CN);
       cameraOff = true;
     }
   }
 
   async function handleCameraChange() {
     try {
-      await getMedia(camerasSelect.value);
+      await getMedia(camerasSelectRef.current.value);
       if (peerConnectionObjArr.length > 0) {
         const newVideoTrack = myStream.getVideoTracks()[0];
         peerConnectionObjArr.forEach((peerConnectionObj) => {
@@ -141,9 +143,9 @@ const Video = (props) => {
     }
   }
 
-  muteBtn.addEventListener("click", handleMuteClick);
-  cameraBtn.addEventListener("click", handleCameraClick);
-  camerasSelect.addEventListener("input", handleCameraChange);
+  muteBtnRef.current.addEventListener("click", handleMuteClick);
+  cameraBtnRef.current.addEventListener("click", handleCameraClick);
+  camerasSelectRef.current.addEventListener("input", handleCameraChange);
 
   /////////////////////////////////// prototype
   // Screen Sharing
@@ -243,7 +245,7 @@ const Video = (props) => {
     const nicknameContainer = document.querySelector("#userNickname");
     nicknameContainer.innerText = "";
 
-    myFace.srcObject = null;
+    myFaceRef.current.srcObject = null;
     clearAllVideos();
     clearAllChat();
   }
