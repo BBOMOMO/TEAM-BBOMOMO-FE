@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MyInfo from "../components/MyInfo";
 import NoInfo from "../components/NoInfo";
 import GroupRecommend from "../components/GroupRecommend";
+import Certification from "../components/Certification";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -14,6 +15,9 @@ const Main = (props) => {
   const user = useSelector((state) => state.user.userInfo);
   console.log(user);
 
+  const user = useSelector((state) => state.user.userInfo);
+  //console.log(user);
+
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
   }, []);
@@ -22,7 +26,17 @@ const Main = (props) => {
     <>
       <MainContainer>
         {user ? <MyInfo /> : <NoInfo />}
-        <GroupRecommend />
+
+      <div>
+        <MainSections>
+          <GroupRecommend />
+        </MainSections>
+        <MainSections>
+          <Certification />
+        </MainSections>
+      </div>
+       
+        
       </MainContainer>
     </>
   );
@@ -34,4 +48,16 @@ const MainContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+`;
+
+const MainSections = styled.div`
+position:relative;
+margin-top:80px;
+width:100%;
+height:65vh;
+border:1px solid #eee;
+overflow: scroll;
+:nth-child(2){
+  margin-top:0;
+}
 `;
