@@ -56,12 +56,18 @@ const Main = (props) => {
 export default Main;
 
 const MainContainer = styled.div`
+//디자인 고도화 때 윈도우사이즈별 사이즈 잡기
   width: 100%;
   height: auto;
   display: flex;
 
+  .main_wrap{
+    width:100%; 
+  }
   .main_contentArea {
-    margin-left:80px; 
+    *margin-left:80px; 
+    width:1018px;
+    margin:0 auto; 
   }
 `;
 

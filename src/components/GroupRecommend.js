@@ -12,6 +12,8 @@ const GroupRecommend = (props) => {
   const _roomlist = useSelector((state) => state.group.roomList);
   const roomlist = _roomlist.list;
 
+  //console.log(roomlist)
+
   const [roomcount,setRoomcount] = React.useState(6);
 
 
@@ -122,6 +124,7 @@ const GroupRecommend = (props) => {
               margin="0"
               padding="8px 34px 8px 10px"
               radius="18px"
+              height="auto"
             />
             <img src={search} alt="돋보기 아이콘" />
           </div>
@@ -150,11 +153,35 @@ const GroupRecommend = (props) => {
 
       <div className="groupreco_bottom">
         {roomSlice() &&
-          roomSlice().map((p) => {
+          roomSlice().map((p,idx) => {
+            //console.log(idx);
+            let bgcolor = "";
+            if(idx % 6 === 0){
+              bgcolor="bg01";
+             
+            }else if(idx % 6 === 1) {
+              bgcolor="bg02";
+              
+            }else if(idx % 6 ===2){
+              bgcolor="bg03";
+              
+            }
+            else if(idx % 6 ===3){
+              bgcolor="bg04";
+              
+            }
+            else if(idx % 6 ===4){
+              bgcolor="bg05";
+              
+            }
+            else if(idx % 6 ===5){
+              bgcolor="bg06";
+              
+            }
             return (
               <>
                 <div className="groupbx_card">
-                  <GroupBx key={p.roomId} {...p}></GroupBx>
+                  <GroupBx key={p.idx} {...p} bgcolor={bgcolor} ></GroupBx>
                 </div>
               </>
             );
