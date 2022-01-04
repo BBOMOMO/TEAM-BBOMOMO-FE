@@ -9,16 +9,15 @@ const GroupBx = (props) => {
 
   const userlist = props.peopleInRoom;
 
-
-
   if (roomLock) {
     return (
       <GroupContBx>
-        <GroupCont>
+        <GroupCont onClick={props._onClick}>
           <div className="group_left_bx">
             <div>
               <h2 className="group_left_h2">
-                <span>수능공부</span>{props.roomTittle}
+                <span>수능공부</span>
+                {props.roomTittle}
               </h2>
             </div>
             <div className="state_name_bx">
@@ -66,23 +65,21 @@ const GroupBx = (props) => {
       <div className="group_left_bx">
         <div>
           <h2 className="group_left_h2">
-            <span>수능공부</span>{props.roomTittle}
+            <span>수능공부</span>
+            {props.roomTittle}
           </h2>
         </div>
         <div className="state_name_bx">
-          {userlist && userlist.map((p,idx) => {
-            return(
-              <p className="state_name_txt" key={p.idx}>
-                <span className="state_name_circle">동그라미</span>
+          {userlist &&
+            userlist.map((p, idx) => {
+              return (
+                <p className="state_name_txt" key={p.idx}>
+                  <span className="state_name_circle">동그라미</span>
                   {/* 이 부분 닉네임으로 넘겨주기로 했음 */}
                   {p.userId}
-              </p>
-
-            );
-          })}
-          
-
-          
+                </p>
+              );
+            })}
         </div>
       </div>
 
@@ -98,6 +95,11 @@ const GroupBx = (props) => {
     </GroupCont>
   );
 };
+
+GroupBx.defaultProps = {
+  _onClick: () => {},
+};
+
 const GroupContBx = styled.div`
   position: relative;
 `;

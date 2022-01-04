@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import Peer from "peerjs";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ChatRoomNav from "./ChatRoomNav";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const ChatRoom = styled.div`
   width: 100vw;
@@ -63,15 +65,22 @@ const ChatRoom = styled.div`
 
 export default function VideoChatRoom() {
   // Global
+  const userInfo = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
-  const { user, participants } = useState("jj"); //roomId(str), participants(array)
+  let user = userInfo?.user[0]?.nick;
+  let peopleInRoom = [];
+  const params = useParams();
+  const RoomId = params.roomId;
+  useEffect(() => {
+    dispatch(userActions.checkUserDB());
+  }, []);
 
   // Local
   const [cameraOn, setCameraOn] = useState(true);
   const [roomClosed, setRoomClosed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState(1);
-  const roomId = window.location.pathname.slice(6); //chatroom.roomId
+  const roomId = RoomId; //chatroom.roomId // 일시적으로 room 1
   const username = user
     ? user.username
     : `GUEST${Math.round(Math.random() * 100000)}`;
@@ -85,7 +94,7 @@ export default function VideoChatRoom() {
   const myVideo = useRef();
 
   // TODO
-  const [todoOpen, setTodoOpen] = useState(false);
+  // const [todoOpen, setTodoOpen] = useState(false);
 
   const handleCamera = () => {
     setCameraOn((prev) => !prev);
@@ -98,64 +107,67 @@ export default function VideoChatRoom() {
     }
   };
 
-  const toggleTodo = () => {
-    setTodoOpen(!todoOpen);
-  };
+  // const toggleTodo = () => {
+  //   setTodoOpen(!todoOpen);
+  // };
 
   useEffect(() => {
-    const socket = io(process.env.REACT_APP_IO);
+    const socket = io("http://13.209.3.61");
     const peer = new Peer();
 
     // 클라의 영상 스트림 비디오에 넣기
-    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      let streamId = stream.id;
-      myStream = stream;
-      addVideoStream(myVideo.current, stream);
-      videoGrid.current.append(myVideo.current);
-      setIsLoading(false);
-      allStream.current = stream;
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        let streamId = stream.id;
+        myStream = stream;
+        addVideoStream(myVideo.current, stream);
+        videoGrid.current.append(myVideo.current);
+        setIsLoading(false);
+        allStream.current = stream;
 
-      // 피어 생성하기
+        // 피어 생성하기
 
-      peer.on("open", (peerId) => {
-        //소켓을 통해 서버로 방ID, 유저ID 보내주기
-        myPeerId = peerId;
-        socket.emit("join-room", roomId, peerId, userId, username, streamId);
+        peer.on("open", (peerId) => {
+          //소켓을 통해 서버로 방ID, 유저ID 보내주기
+          myPeerId = peerId;
+          socket.emit("join-room", roomId, peerId, userId, username, streamId);
 
-        //전역변수 chatroom.participants에 본인 더하기
-      });
-
-      // 새로운 피어가 연결을 원할 때
-      peer.on("call", (mediaConnection) => {
-        //answer()를 해야 mediaConnection이 활성화됨
-        mediaConnection.answer(stream);
-        const newVideo = document.createElement("video");
-        newVideo.setAttribute("autoplay", "playsinline");
-
-        mediaConnection.on("stream", (newStream) => {
-          addVideoStream(newVideo, newStream);
-          videoGrid.current.append(newVideo);
-          setUsers(videoGrid.current.childElementCount);
+          //전역변수 chatroom.participants에 본인 더하기
         });
 
-        mediaConnection.on("close", () => {
-          socket.emit("camera-off", myPeerId, username);
+        // 새로운 피어가 연결을 원할 때
+        peer.on("call", (mediaConnection) => {
+          //answer()를 해야 mediaConnection이 활성화됨
+          mediaConnection.answer(stream);
+          const newVideo = document.createElement("video");
+          newVideo.setAttribute("autoplay", "playsinline");
+
+          mediaConnection.on("stream", (newStream) => {
+            addVideoStream(newVideo, newStream);
+            videoGrid.current.append(newVideo);
+            setUsers(videoGrid.current.childElementCount);
+          });
+
+          mediaConnection.on("close", () => {
+            socket.emit("camera-off", myPeerId, username);
+          });
+        });
+
+        socket.on("user-connected", (peerId, username, streamId) => {
+          console.log(peerId, username, streamId);
+          setUsers((prev) => prev + 1);
+          const mediaConnection = peer.call(peerId, stream);
+          const newVideo = document.createElement("video");
+          // newVideo.setAttribute("id", `${peerId}`);
+
+          mediaConnection.on("stream", (newStream) => {
+            addVideoStream(newVideo, newStream);
+            videoGrid.current.append(newVideo);
+            setUsers(videoGrid.current.childElementCount);
+          });
         });
       });
-
-      socket.on("user-connected", (peerId, username, streamId) => {
-        setUsers((prev) => prev + 1);
-        const mediaConnection = peer.call(peerId, stream);
-        const newVideo = document.createElement("video");
-        // newVideo.setAttribute("id", `${peerId}`);
-
-        mediaConnection.on("stream", (newStream) => {
-          addVideoStream(newVideo, newStream);
-          videoGrid.current.append(newVideo);
-          setUsers(videoGrid.current.childElementCount);
-        });
-      });
-    });
 
     socket.on("user-disconnected", (peerId, username, streamId) => {
       setUsers((prev) => prev - 1);
@@ -179,13 +191,15 @@ export default function VideoChatRoom() {
       peer.destroy();
     };
   }, []);
-
+  // if (userInfo == null) {
+  //   return <></>;
+  // }
   return (
     <>
       <ChatRoomNav
         cameraOn={cameraOn}
         handleCamera={handleCamera}
-        toggleTodo={toggleTodo}
+        // toggleTodo={toggleTodo}
       />
       <ChatRoom numberOfUsers={users}>
         {isLoading && <span>Loading...</span>}

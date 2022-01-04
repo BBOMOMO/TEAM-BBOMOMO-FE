@@ -12,6 +12,8 @@ const Main = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
   const userId = params;
+  const user = useSelector((state) => state.user.userInfo);
+  console.log(user);
 
   const user = useSelector((state) => state.user.userInfo);
   //console.log(user);
@@ -19,7 +21,6 @@ const Main = (props) => {
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
   }, []);
-
 
   return (
     <>

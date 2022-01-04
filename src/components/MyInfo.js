@@ -6,6 +6,7 @@ import roundCircle from "../Images/Group3366.png";
 import userImg from "../Images/user.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
+import { history } from "../redux/configureStore";
 
 const MyInfo = (props) => {
   const [showModalCG, setShowModalCG] = React.useState(false);

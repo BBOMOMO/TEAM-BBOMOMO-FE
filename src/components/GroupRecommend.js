@@ -4,17 +4,16 @@ import { Button, Input } from "../elements";
 import search from "../Images/ic_header_search.png";
 
 import GroupBx from "./GroupBx";
-import {actionCreators as roomActions} from "../redux/modules/group";
-import { useDispatch, useSelector} from "react-redux";
-
+import { actionCreators as roomActions } from "../redux/modules/group";
+import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 const GroupRecommend = (props) => {
-
-
   const dispatch = useDispatch();
   const _roomlist = useSelector((state) => state.group.roomSmall);
   const roomlist = _roomlist;
 
   //console.log(_roomlist);
+
 
 
   //console.log(roomlist.slice(0,3));
@@ -29,10 +28,10 @@ const GroupRecommend = (props) => {
 
   React.useEffect(()=>{
 
+
     dispatch(roomActions.getRooms());
-  },[]);
-  
-  
+  }, []);
+
   return (
     <div className="groupreco_bx">
       <div className="groupreco_top">
@@ -146,23 +145,18 @@ const GroupRecommend = (props) => {
           <GroupBx></GroupBx>
         </div>
       </div> */}
-      
+
       <div className="groupreco_bottom">
-        {
-          roomlist && roomlist.map((p) => {
-            
+        {roomlist &&
+          roomlist.map((p) => {
             return (
               <>
-              <div className="groupbx_card">
-                <GroupBx key={p.roomId} {...p}  ></GroupBx>
-              </div>
-              
+                <div className="groupbx_card">
+                  <GroupBx key={p.roomId} {...p}></GroupBx>
+                </div>
               </>
             );
-
-          })
-        }
-        
+          })}
       </div>
 
       <div className="groupreco_more_btn" onClick="seeMore">
