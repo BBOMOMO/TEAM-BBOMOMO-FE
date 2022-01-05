@@ -1,7 +1,7 @@
 .groupreco_bx {
   max-width: 1018px;
   /* 헤더만큼 margin */
-  margin-top:80px;
+  *margin-top:80px;
 }
 .groupreco_top {
   display: flex;

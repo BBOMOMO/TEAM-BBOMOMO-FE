@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
 import io from "socket.io-client";
 
 const VideoComponent = (props) => {

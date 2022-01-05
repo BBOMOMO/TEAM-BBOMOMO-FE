@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-
+import Input from "../elements/Input";
 import roundCircle from "../Images/Group3366.png";
 import userImg from "../Images/user.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
+import { history } from "../redux/configureStore";
 
 const MyInfo = (props) => {
   const [showModalCG, setShowModalCG] = React.useState(false);
@@ -17,8 +18,13 @@ const MyInfo = (props) => {
   const closeModal = () => {
     setShowModalCG(false);
   };
-  const user = useSelector((state) => state);
-  // const nickname = user.user[0].nick;
+  const user = useSelector((state) => state.user.userInfo);
+  const nickname = user.user[0].nick;
+  // const statusMsg = "2022년 수능 화이팅!";
+  const statusMsg = user.user[0].statusMsg;
+  const today = user.todayRecord[0].today;
+  const total = user.totalRecord[0].total;
+  const [valueName, setValue] = React.useState(statusMsg);
 
   return (
     <>
@@ -30,10 +36,16 @@ const MyInfo = (props) => {
         <div className="myinfo_txt_area">
           <div className="myinfo_user_info">
             <span className="myinfo_user_division">고3</span>
-            <h3 className="myinfo_user_name"></h3>
+            <h3 className="myinfo_user_name">{nickname}</h3>
           </div>
           <div className="myinfo_user_state_area">
-            <p className="myinfo_user_state">2020수능 가자!</p>
+            <Input
+              value={valueName}
+              _onChange={(e) => setValue(e.target.value)}
+              height="36px"
+              color="#282828"
+              size="13px"
+            />
             <img
               src={pencil}
               alt="pencil"
@@ -49,11 +61,11 @@ const MyInfo = (props) => {
           </div>
           <div className="myinfo_studytime_mid">
             <p className="myinfo_studytime_today">Today</p>
-            <p className="myinfo_studytime_today_time">01:23:34</p>
+            <p className="myinfo_studytime_today_time">{today}</p>
           </div>
           <div className="myinfo_studytime_bot">
             <p className="myinfo_studytime_total">Total</p>
-            <p className="myinfo_studytime_total_time">1233:03:34</p>
+            <p className="myinfo_studytime_total_time">{total}</p>
           </div>
         </div>
         <div className="myinfo_make_group">

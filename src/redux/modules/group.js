@@ -23,6 +23,7 @@ const getRooms = () => {
     await apis.getRoom().then(function (response) {
       //console.log("getroom",response.data);
       dispatch(loadRooms(response));
+      
     });
   };
 };
@@ -67,6 +68,8 @@ export default handleActions(
     [LOAD_ROOMS]: (state, action) =>
       produce(state, (draft) => {
         draft.roomList = action.payload.room_list.data;
+        draft.roomSmall =  draft.roomList.list.slice(0,6);
+        console.log("호잉", draft.roomList.list.slice(0,6))
       }),
     [ADD_ROOMS]: (state, action) => produce(state, (draft) => {}),
   },
