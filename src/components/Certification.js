@@ -1,7 +1,21 @@
 import React from "react";
 import CertificationCard from "./CertificationCard";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+import { useDispatch, useSelector } from "react-redux";
+
+// import apis from "../shared/apis";
+
 const Certification = () => {
+  const dispatch = useDispatch();
+  const _roomlist = useSelector((state) => state.post.postList.board);
+  // const roomlist = _roomlist.list;
+  console.log(_roomlist);
+
+  React.useEffect(() => {
+    dispatch(postActions.getPosts());
+  }, []);
+
   return (
     <div className="certifi_bx">
       <div className="certifi_title">
