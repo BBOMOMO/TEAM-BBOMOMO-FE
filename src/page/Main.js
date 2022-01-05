@@ -13,10 +13,8 @@ const Main = (props) => {
   const params = useParams();
   const userId = params;
   const user = useSelector((state) => state.user.userInfo);
-  console.log(user);
 
-  const user = useSelector((state) => state.user.userInfo);
-  //console.log(user);
+  console.log(user);
 
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
@@ -27,16 +25,14 @@ const Main = (props) => {
       <MainContainer>
         {user ? <MyInfo /> : <NoInfo />}
 
-      <div>
-        <MainSections>
-          <GroupRecommend />
-        </MainSections>
-        <MainSections>
-          <Certification />
-        </MainSections>
-      </div>
-       
-        
+        <div>
+          <MainSections>
+            <GroupRecommend />
+          </MainSections>
+          <MainSections>
+            <Certification />
+          </MainSections>
+        </div>
       </MainContainer>
     </>
   );
@@ -51,13 +47,13 @@ const MainContainer = styled.div`
 `;
 
 const MainSections = styled.div`
-position:relative;
-margin-top:80px;
-width:100%;
-height:65vh;
-border:1px solid #eee;
-overflow: scroll;
-:nth-child(2){
-  margin-top:0;
-}
+  position: relative;
+  margin-top: 80px;
+  width: 100%;
+  height: 65vh;
+  border: 1px solid #eee;
+  overflow: scroll;
+  :nth-child(2) {
+    margin-top: 0;
+  }
 `;
