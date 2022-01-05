@@ -7,6 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 // import apis from "../shared/apis";
 
 const Certification = () => {
+
+
+  //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
+  //GroupRecommend 참고
+
   const dispatch = useDispatch();
   const _roomlist = useSelector((state) => state.post.postList.board);
   // const roomlist = _roomlist.list;
@@ -15,6 +20,7 @@ const Certification = () => {
   React.useEffect(() => {
     dispatch(postActions.getPosts());
   }, []);
+
 
   return (
     <div className="certifi_bx">

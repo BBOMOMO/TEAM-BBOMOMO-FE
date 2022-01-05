@@ -2,9 +2,9 @@
 .certifi_bx {
   width: 1018px;
   /* 임시 */
-  position: absolute;
+  *position: absolute;
   *top: 100px;
-  z-index: 20000;
+  *z-index: 20000;
 }
 .certifi_title {
   display: flex;
