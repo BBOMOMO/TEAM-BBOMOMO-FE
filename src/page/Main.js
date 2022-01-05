@@ -11,12 +11,11 @@ const Main = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
   const userId = params;
-
-  React.useEffect(() => {
-    // dispatch(userActions.checkUserDB());
-  }, []);
-  const user = useSelector((state) => state);
+  const user = useSelector((state) => state.user.userInfo);
   console.log(user);
+  React.useEffect(() => {
+    dispatch(userActions.checkUserDB());
+  }, []);
 
   return (
     <>

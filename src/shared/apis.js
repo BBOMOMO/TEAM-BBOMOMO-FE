@@ -24,7 +24,6 @@ instance.interceptors.request.use((config) => {
 
 export const apis = {
   //---- 유저  ----//
-
   register: (userInfo) => instance.post("/api/v1/auth/signup", userInfo), //회원가입
   login: (userInfo) => instance.post("/api/v1/auth/login", userInfo), //로그인
   checkUser: () => instance.get("/api/v1/users/mypage"), //유저확인
@@ -33,6 +32,11 @@ export const apis = {
   postRoom: (userId, roomInfo) =>
     instance.post(`/api/v1/studyRoom/${userId}/hostRoom`, roomInfo), //그룹추가하기
   getRoom: () => instance.get("/api/v1/studyRoom/list/all"), //그룹 리스트 불러오기
+
+  //---- 공부인증  ----//
+  getStudyTime: () => instance.get("/api/v1/posts/time"),
+  postWrite: (formData) => instance.post("/api/v1/posts", formData),
+  getPost: () => instance.get("/api/v1/posts"),
 };
 
 export default apis;

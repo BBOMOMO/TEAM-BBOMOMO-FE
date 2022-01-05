@@ -198,43 +198,48 @@
 }
 .certifi_write_post_bx .bg_btn {
   margin-left: 20px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-size: cover;
 }
 .certifi_write_post_bx .bg_btn:first-child {
   margin-left: 0;
 }
+.certifi_write_post_bx .black_btn1 {
+  background: url("../../Images//certifi_active_btn1.png");
+  background-size: cover;
+}
+.certifi_write_post_bx .black_btn2 {
+  background: url("../../Images//certifi_active_btn2.png");
+  background-size: cover;
+}
+.certifi_write_post_bx .black_btn3 {
+  background: url("../../Images//certifi_active_btn3.png");
+  background-size: cover;
+}
+.certifi_write_post_bx .black_btn4 {
+  background: url("../../Images//certifi_active_btn4.png");
+  background-size: cover;
+}
 .certifi_write_post_bx .bg_btn1 {
   background: url("../../Images/study-certification-btn-1.png");
-  width: 60px;
-  height: 60px;
-  border: none;
   background-size: cover;
 }
 .certifi_write_post_bx .bg_btn2 {
   background: url("../../Images/study-certification-btn-2.png");
-  width: 60px;
-  height: 60px;
-  border: none;
   background-size: cover;
 }
 .certifi_write_post_bx .bg_btn3 {
   background: url("../../Images/study-certification-btn-3.png");
-  width: 60px;
-  height: 60px;
-  border: none;
   background-size: cover;
 }
 .certifi_write_post_bx .bg_btn4 {
   background: url("../../Images/study-certification-btn-4.png");
-  width: 60px;
-  height: 60px;
-  border: none;
   background-size: cover;
 }
 .certifi_write_post_bx .bg_btn5 {
   background: url("../../Images/study-certification-btn-5.png");
-  width: 60px;
-  height: 60px;
-  border: none;
   background-size: cover;
 }
 .certifi_write_post_bx .bg_btn_input {
