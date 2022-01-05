@@ -16,7 +16,6 @@ const Main = (props) => {
   const userId = params;
   const user = useSelector((state) => state.user.userInfo);
 
-  //console.log(user);
 
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
@@ -26,7 +25,6 @@ const Main = (props) => {
     <>
       <MainContainer>
         {user ? <MyInfo /> : <NoInfo />}
-
       <div className="main_wrap">
         <div className="main_contentArea">
           {/* TODO: AdSection Onclick 이벤트페이지로 이동. 있으면 ㅎ */}
@@ -46,8 +44,6 @@ const Main = (props) => {
 
       </div>
 
-       
-        
       </MainContainer>
     </>
   );
@@ -101,3 +97,4 @@ const CertifiSection = styled.div`
   padding-bottom:80px; 
 
 `;
+
