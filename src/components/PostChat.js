@@ -1,12 +1,13 @@
 import TextField from "@material-ui/core/TextField";
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { history } from "../redux/configureStore";
 import Peer from "peerjs";
-
+import { actionCreators as groupAction } from "../redux/modules/group";
 function PostChat() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userInfo);
   console.log(user);
   const params = useParams();
@@ -23,6 +24,11 @@ function PostChat() {
   let userId = localStorage.getItem("id");
   // let userId = 1;
   let userNick = localStorage.getItem("nick");
+
+  useEffect(() => {
+    dispatch(groupAction.enterRoom(roomId));
+  }, []);
+
   useEffect(() => {
     socketRef.current = io.connect("http://13.209.3.61");
     socketRef.current.emit("join-room", roomId, userId, userNick);

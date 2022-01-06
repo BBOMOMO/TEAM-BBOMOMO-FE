@@ -57,23 +57,26 @@ const addRoom = (
         console.log(response);
         console.log("방 생성 완료");
         const newRoomId = response.data.newRoomId;
-        await apis
-          .enterRoom(newRoomId, roomPassword)
-          .then((response) => {
-            console.log(response);
-            console.log("enterRoom 성공");
-            history.push(`/chat/${newRoomId}`);
-          })
-          .catch((err) => {
-            console.log(err.response.data.msg);
-          });
+        history.push(`/chat/${newRoomId}`);
       })
       .catch((err) => {
         console.log(err.response.data.msg);
       });
   };
 };
-
+const enterRoom = (newRoomId, roomPassword = null) => {
+  return async function (dispatch, useState, { history }) {
+    await apis
+      .enterRoom(newRoomId, roomPassword)
+      .then((response) => {
+        console.log(response);
+        console.log("enterRoom 성공");
+      })
+      .catch((err) => {
+        console.log(err.response.data.msg);
+      });
+  };
+};
 // reducer
 export default handleActions(
   {
@@ -92,4 +95,5 @@ export const actionCreators = {
   getRooms,
   loadRooms,
   addRoom,
+  enterRoom,
 };
