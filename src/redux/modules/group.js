@@ -23,7 +23,6 @@ const getRooms = () => {
     await apis.getRoom().then(function (response) {
       //console.log("getroom",response.data);
       dispatch(loadRooms(response));
-      
     });
   };
 };

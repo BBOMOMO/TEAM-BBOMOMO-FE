@@ -13,7 +13,7 @@ import BG2 from "../Images/study-certification-bg-2.png";
 import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
-const CertificationWrite = () => {
+const CertificationWrite = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
   // 배경화면 지정
   const [background, setBackground] = useState(BG1);
@@ -54,144 +54,155 @@ const CertificationWrite = () => {
       postActions.addPost("walwalzz", postContent, studyTime, file, bgtype)
     );
   };
+
   return (
     <>
-      <ModalContainer>
-        <ModalBG />
-        <ModalBox>
-          <ModalInnerContainer>
-            <div className="certifi_write_title_bx">
-              <h2>공부인증</h2>
-              <img src={close} alt="닫기 아이콘" />
-            </div>
-
-            <ModalInnerBg style={css}>
-              <div className="certifi_write_post_bx">
-                <div className="certifi_write_post_top">
-                  <h3>{time}</h3>
-                  <textarea
-                    placeholder="오늘 하루도 고생한 나에게 치얼스"
-                    onChange={(e) => {
-                      setPostContent(e.target.value);
-                    }}
-                  ></textarea>
-                </div>
-
-                <div className="bg_btn_bx">
-                  <button
-                    className={
-                      isActive1 ? "bg_btn black_btn1" : "bg_btn bg_btn1"
-                    }
-                    data-bgtype="/static/media/study-certification-bg-1.ae6a94aa.png"
-                    onClick={(e) => {
-                      setActive1((isActive1) => {
-                        if (isActive1 === false) {
-                          // isActive1 = true;
-                          setActive1(true);
-                          setActive2(false);
-                          setActive3(false);
-                          setActive4(false);
-                        } else {
-                          setActive1(false);
-                        }
-                      });
-                      setBgType(e.target.dataset.bgtype);
-                      setBackground(BG1);
-                    }}
-                  ></button>
-                  <button
-                    className={
-                      isActive2 ? "bg_btn black_btn2" : "bg_btn bg_btn2"
-                    }
-                    data-bgtype="/static/media/study-certification-bg-2.80d12dee.png"
-                    onClick={(e) => {
-                      setActive2((isActive2) => {
-                        if (isActive2 === false) {
-                          setActive2(true);
-                          setActive1(false);
-                          setActive3(false);
-                          setActive4(false);
-                        } else {
-                          setActive2(false);
-                        }
-                      });
-                      setBgType(e.target.dataset.bgtype);
-                      setBackground(BG2);
-                    }}
-                  ></button>
-                  <button
-                    className={
-                      isActive3 ? "bg_btn black_btn3" : "bg_btn bg_btn3"
-                    }
-                    data-bgtype="/static/media/study-certification-bg-3.61f1bcea.png"
-                    onClick={(e) => {
-                      setActive3((isActive3) => {
-                        if (isActive3 === false) {
-                          setActive3(true);
-                          setActive1(false);
-                          setActive2(false);
-                          setActive4(false);
-                        } else {
-                          setActive3(false);
-                        }
-                      });
-                      setBgType(e.target.dataset.bgtype);
-                      setBackground(BG3);
-                    }}
-                  ></button>
-                  <button
-                    className={
-                      isActive4 ? "bg_btn black_btn4" : "bg_btn bg_btn4"
-                    }
-                    data-bgtype="/static/media/study-certification-bg-4.770b8b22.png"
-                    onClick={(e) => {
-                      setActive4((isActive4) => {
-                        if (isActive4 === false) {
-                          setActive4(true);
-                          setActive1(false);
-                          setActive2(false);
-                          setActive3(false);
-                        } else {
-                          setActive4(false);
-                        }
-                      });
-                      setBgType(e.target.dataset.bgtype);
-                      setBackground(BG4);
-                    }}
-                  ></button>
-                  <input
-                    id="post_img_btn"
-                    className="bg_btn_input"
-                    type="file"
-                    data-bgtype="userImg"
-                    onChange={(e) => {
-                      setBgType(e.target.dataset.bgtype);
-                      setFile(e.target.files[0]);
-                      const objectURL = URL.createObjectURL(e.target.files[0]);
-                      setBackground(objectURL);
-                    }}
-                  />
-                  <label for="post_img_btn" className="bg_btn bg_btn5"></label>
-                </div>
+      {showModal ? (
+        <ModalContainer>
+          <ModalBG />
+          <ModalBox>
+            <ModalInnerContainer>
+              <div className="certifi_write_title_bx">
+                <h2>공부인증</h2>
+                <img src={close} alt="닫기 아이콘" onClick={closeModal} />
               </div>
-            </ModalInnerBg>
 
-            <div className="certifi_write_btn_bx">
-              <Button
-                padding="14px 0"
-                border="none"
-                radius="11px"
-                background="#889CF2"
-                fontSize="18px"
-                weight="600"
-                _onClick={sendPost}
-              >
-                작성하기
-              </Button>
-            </div>
-          </ModalInnerContainer>
-        </ModalBox>
-      </ModalContainer>
+              <ModalInnerBg style={css}>
+                <div className="certifi_write_post_bx">
+                  <div className="certifi_write_post_top">
+                    <h3>{time}</h3>
+                    <textarea
+                      placeholder="오늘 하루도 고생한 나에게 치얼스"
+                      onChange={(e) => {
+                        setPostContent(e.target.value);
+                      }}
+                    ></textarea>
+                  </div>
+
+                  <div className="bg_btn_bx">
+                    <button
+                      className={
+                        isActive1 ? "bg_btn black_btn1" : "bg_btn bg_btn1"
+                      }
+                      data-bgtype="/static/media/study-certification-bg-1.ae6a94aa.png"
+                      onClick={(e) => {
+                        setActive1((isActive1) => {
+                          if (isActive1 === false) {
+                            // isActive1 = true;
+                            setActive1(true);
+                            setActive2(false);
+                            setActive3(false);
+                            setActive4(false);
+                          } else {
+                            setActive1(false);
+                          }
+                        });
+                        setBgType(e.target.dataset.bgtype);
+                        setBackground(BG1);
+                      }}
+                    ></button>
+                    <button
+                      className={
+                        isActive2 ? "bg_btn black_btn2" : "bg_btn bg_btn2"
+                      }
+                      data-bgtype="/static/media/study-certification-bg-2.80d12dee.png"
+                      onClick={(e) => {
+                        setActive2((isActive2) => {
+                          if (isActive2 === false) {
+                            setActive2(true);
+                            setActive1(false);
+                            setActive3(false);
+                            setActive4(false);
+                          } else {
+                            setActive2(false);
+                          }
+                        });
+                        setBgType(e.target.dataset.bgtype);
+                        setBackground(BG2);
+                      }}
+                    ></button>
+                    <button
+                      className={
+                        isActive3 ? "bg_btn black_btn3" : "bg_btn bg_btn3"
+                      }
+                      data-bgtype="/static/media/study-certification-bg-3.61f1bcea.png"
+                      onClick={(e) => {
+                        setActive3((isActive3) => {
+                          if (isActive3 === false) {
+                            setActive3(true);
+                            setActive1(false);
+                            setActive2(false);
+                            setActive4(false);
+                          } else {
+                            setActive3(false);
+                          }
+                        });
+                        setBgType(e.target.dataset.bgtype);
+                        setBackground(BG3);
+                      }}
+                    ></button>
+                    <button
+                      className={
+                        isActive4 ? "bg_btn black_btn4" : "bg_btn bg_btn4"
+                      }
+                      data-bgtype="/static/media/study-certification-bg-4.770b8b22.png"
+                      onClick={(e) => {
+                        setActive4((isActive4) => {
+                          if (isActive4 === false) {
+                            setActive4(true);
+                            setActive1(false);
+                            setActive2(false);
+                            setActive3(false);
+                          } else {
+                            setActive4(false);
+                          }
+                        });
+                        setBgType(e.target.dataset.bgtype);
+                        setBackground(BG4);
+                      }}
+                    ></button>
+                    <input
+                      id="post_img_btn"
+                      className="bg_btn_input"
+                      type="file"
+                      data-bgtype="userImg"
+                      onChange={(e) => {
+                        setBgType(e.target.dataset.bgtype);
+                        setFile(e.target.files[0]);
+                        const objectURL = URL.createObjectURL(
+                          e.target.files[0]
+                        );
+                        setBackground(objectURL);
+                      }}
+                    />
+                    <label
+                      for="post_img_btn"
+                      className="bg_btn bg_btn5"
+                    ></label>
+                  </div>
+                </div>
+              </ModalInnerBg>
+
+              <div className="certifi_write_btn_bx">
+                <Button
+                  padding="14px 0"
+                  border="none"
+                  radius="11px"
+                  background="#889CF2"
+                  fontSize="18px"
+                  weight="600"
+                  _onClick={() => {
+                    sendPost();
+                    closeModal();
+                  }}
+                >
+                  작성하기
+                </Button>
+              </div>
+            </ModalInnerContainer>
+          </ModalBox>
+        </ModalContainer>
+      ) : null}
     </>
   );
 };
