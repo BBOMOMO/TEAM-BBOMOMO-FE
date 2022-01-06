@@ -25,16 +25,18 @@ import CertificationCard from "./components/CertificationCard";
 import VideoComponent from "./components/VideoComponent";
 import VideoChatRoom from "./components/VideoChatRoom";
 import Video from "./components/Video";
+import { useSelector, useDispatch } from "react-redux";
+
 function App() {
   return (
     <>
       <GlobalStyles />
       <Route path="/signup" component={Signup} exact />
       <Route path="/login" component={Login} exact />
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route path="/" component={Main} exact />
-        <Route path="/chat" component={PostChat} exact />
+        <Route path="/chat/:roomId" component={PostChat} exact />
         <Route path="/group" component={Group} exact />
 
         <Route path="/writemodal" component={CertificationWrite} exact />
@@ -43,7 +45,6 @@ function App() {
         <Route path="/q" component={CertificationCard} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
         <Route path={"*"} component={NotFound} />
-
       </Switch>
     </>
   );
