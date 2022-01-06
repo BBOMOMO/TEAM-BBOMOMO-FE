@@ -7,26 +7,46 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
 
 // import CertificationCard from "./CertificationCard";
-// import apis from "../shared/apis";
+import apis from "../shared/apis";
 
 const Certification = () => {
   const dispatch = useDispatch();
   const _roomlist = useSelector((state) => state.post.postList.board);
-  console.log(_roomlist);
+  // console.log(_roomlist.postId);
 
-  const [showWriteModal, setShoWritefoModal] = React.useState(false);
+  const [showWriteModal, setShowWritefoModal] = React.useState(false);
+  const [showCommentModal, setShowCommentfoModal] = React.useState(false);
 
-  const openWindow = () => {
-    setShoWritefoModal(true);
+  const openPostWrite = () => {
+    setShowWritefoModal(true);
   };
-  const closeWindow = () => {
-    setShoWritefoModal(false);
+  const closePostWrite = () => {
+    setShowWritefoModal(false);
+  };
+
+  const openPostComment = () => {
+    setShowCommentfoModal(true);
+  };
+  const closePostComment = () => {
+    setShowCommentfoModal(false);
   };
 
   // apis.checkUser().then(function (response) {
   //   console.log(response);
   //   // dispatch(loadPosts(response));
   // });
+
+  // apis.getPostdetail().then(function (response) {
+  //   console.log(response);
+  //   // dispatch(loadPosts(response));
+  // });
+
+  // const goDetail = () => {
+  //   apis.getPostdetail(_roomlist.postId).then(function (response) {
+  //     console.log(response);
+  //     // dispatch(loadPosts(response));
+  //   });
+  // };
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
@@ -40,29 +60,41 @@ const Certification = () => {
       <div className="certifi_bx">
         <CertificationWrite
           showModal={showWriteModal}
-          closeModal={closeWindow}
+          closeModal={closePostWrite}
         ></CertificationWrite>
         <CertificationComment
-          showModal={showWriteModal}
-          closeModal={closeWindow}
+          showModal={showCommentModal}
+          closeModal={closePostComment}
         ></CertificationComment>
         <div className="certifi_title">
           <h2>공부인증</h2>
-          <button onClick={openWindow}>게시글 작성</button>
+          <button onClick={openPostWrite}>게시글 작성</button>
         </div>
 
         <div className="certifi_card_bx">
           {_roomlist &&
             _roomlist.map((a, b) => {
-              let HH = Math.floor(a.studyTime / 60);
-              let MM = a.studyTime % 60;
-              let sTime = `${HH}: ${MM}`;
+              // let HH = Math.floor(a.studyTime / 60);
+              // let MM = a.studyTime % 60;
+              // let sTime = `${HH}: ${MM}`;
               return (
-                <CertificationCard
-                  {...a}
-                  key={b}
-                  sTime={sTime}
-                ></CertificationCard>
+                <div
+                  onClick={() => {
+                    let postId = a.postId;
+                    console.log(postId);
+                    openPostComment();
+                    apis.getPostdetail(postId).then(function (response) {
+                      // console.log(a.data);
+                      // dispatch(loadPosts(response));
+                    });
+                  }}
+                >
+                  <CertificationCard
+                    {...a}
+                    key={b}
+                    // sTime={sTime}
+                  ></CertificationCard>
+                </div>
               );
             })}
         </div>

@@ -42,19 +42,18 @@ const CertificationWrite = ({ showModal, closeModal }) => {
   // });
 
   // 공부시간 가져오기
-  apis.getStudyTime().then(function (response) {
-    const HH = Math.floor(response.data.studyTime.StudyTime / 60);
-    const MM = response.data.studyTime.StudyTime % 60;
-    setStudyTime(response.data.studyTime.StudyTime);
-    setTime(`${HH}:${MM}`);
-  });
+  // apis.getStudyTime().then(function (response) {
+  //   const HH = Math.floor(response.data.studyTime.StudyTime / 60);
+  //   const MM = response.data.studyTime.StudyTime % 60;
+  //   setStudyTime(response.data.studyTime.StudyTime);
+  //   setTime(`${HH}:${MM}`);
+  // });
 
   const sendPost = () => {
     dispatch(
       postActions.addPost("walwalzz", postContent, studyTime, file, bgtype)
     );
   };
-
   return (
     <>
       {showModal ? (
@@ -88,7 +87,6 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       onClick={(e) => {
                         setActive1((isActive1) => {
                           if (isActive1 === false) {
-                            // isActive1 = true;
                             setActive1(true);
                             setActive2(false);
                             setActive3(false);

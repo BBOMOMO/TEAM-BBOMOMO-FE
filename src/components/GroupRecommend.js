@@ -21,9 +21,8 @@ const GroupRecommend = (props) => {
       return _roomSlice;
     }
   };
-  // console.log("roomlist",roomlist)
+
   const seeMore = () => {
-    console.log("클릭");
     setRoomcount(roomcount + roomcount);
   };
 

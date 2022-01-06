@@ -21,7 +21,6 @@ import NotFound from "./page/NotFound";
 import CertificationWrite from "./components/CertificationWrite";
 import CertificationComment from "./components/CertificationComment";
 import Certification from "./components/Certification";
-import CertificationCard from "./components/CertificationCard";
 import VideoComponent from "./components/VideoComponent";
 import VideoChatRoom from "./components/VideoChatRoom";
 import Video from "./components/Video";
