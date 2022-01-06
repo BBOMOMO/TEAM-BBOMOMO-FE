@@ -68,9 +68,11 @@
 /* 더보기 버튼*/
 .groupreco_more_btn {
   margin-top: 26px;
+  height:80px;
   display: flex;
   justify-content: center;
   position: relative;
+  cursor: pointer;
 }
 .groupreco_more_btn::before {
   position: absolute;

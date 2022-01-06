@@ -2,38 +2,30 @@ import axios from "axios";
 import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
+
+  baseURL: "http://13.209.3.61/", // 재원님 서버주소
+  //baseURL: "http://54.180.120.210/", // 상협님서버주소
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
-  baseURL: "http://54.180.120.210/", // 상협님서버주소
+
 });
 
+
 instance.interceptors.request.use((config) => {
+  const TOKEN = document.cookie.split("=")[1];
+  if (TOKEN) {
+    config.headers["TOKEN"] = TOKEN;
+  }
+
   config.headers["Content-Type"] = "application/json; charset=utf-8";
   // 기본 content-type이 json이라 뒤에 따로 명시 안해도 되지만, 불안해서 명시함
   config.headers["X-Requested-With"] = "XMLHttpRequest";
-  config.headers["Authorization"] =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MTM5MTgxNn0.beoQmmtmi3yhwzVhcYQjDMd1LF7TVXtmymBgq1SHR_Y"
-      ? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MTM5MTgxNn0.beoQmmtmi3yhwzVhcYQjDMd1LF7TVXtmymBgq1SHR_Y"
-      : "";
+  config.headers["Authorization"] = getToken("login")
+    ? `${getToken("login")}`
+    : "";
   config.headers.Accept = "application/json";
   return config;
 });
 
-// instance.interceptors.request.use((config) => {
-//   const TOKEN = document.cookie.split("=")[1];
-//   if (TOKEN) {
-//     config.headers["TOKEN"] = TOKEN;
-//   }
-
-//   config.headers["Content-Type"] = "application/json; charset=utf-8";
-//   // 기본 content-type이 json이라 뒤에 따로 명시 안해도 되지만, 불안해서 명시함
-//   config.headers["X-Requested-With"] = "XMLHttpRequest";
-//   config.headers["Authorization"] = getToken("login")
-//     ? `${getToken("login")}`
-//     : "";
-//   config.headers.Accept = "application/json";
-//   return config;
-// });
-// 토큰을 헤더에 담아드릴지 자동으로 토큰으로 넘겨드릴지 백엔드분들에게 여쭤보기
 
 export const apis = {
   //---- 유저  ----//
@@ -49,8 +41,10 @@ export const apis = {
 
   //---- 그룹  ----//
   postRoom: (userId, roomInfo) =>
-    instance.post(`/api/v1/studyRoom/${userId}/hostRoom`, roomInfo), //그룹추가하기
+    instance.post(`api/v1/studyRoom/hostRoom`, roomInfo), //그룹추가하기
   getRoom: () => instance.get("/api/v1/studyRoom/list/all"), //그룹 리스트 불러오기
+  enterRoom: (roomId, roomPassword) =>
+    instance.post(`/api/v1/studyRoom/enterRoom/${roomId}`, roomPassword),
 
   //---- 공부인증  ----//
   getStudyTime: () => instance.get("/api/v1/posts/time"),

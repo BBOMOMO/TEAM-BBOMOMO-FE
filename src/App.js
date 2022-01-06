@@ -33,7 +33,7 @@ function App() {
       <GlobalStyles />
       <Route path="/signup" component={Signup} exact />
       <Route path="/login" component={Login} exact />
-      {/* <Header /> */}
+      <Header />
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/chat/:roomId" component={PostChat} exact />

@@ -3,6 +3,7 @@ import { produce } from "immer";
 import { setToken } from "../../shared/token";
 
 import apis from "../../shared/apis";
+import { getContrastRatio } from "@material-ui/core";
 
 // actions
 const LOAD_ROOMS = "LOAD_ROOMS";
@@ -52,15 +53,30 @@ const addRoom = (
 
     await apis
       .postRoom(userId, roomInfo)
-      .then(function (response) {
+      .then(async function (response) {
+        console.log(response);
         console.log("방 생성 완료");
+        const newRoomId = response.data.newRoomId;
+        history.push(`/chat/${newRoomId}`);
       })
       .catch((err) => {
         console.log(err.response.data.msg);
       });
   };
 };
-
+const enterRoom = (newRoomId, roomPassword = null) => {
+  return async function (dispatch, useState, { history }) {
+    await apis
+      .enterRoom(newRoomId, roomPassword)
+      .then((response) => {
+        console.log(response);
+        console.log("enterRoom 성공");
+      })
+      .catch((err) => {
+        console.log(err.response.data.msg);
+      });
+  };
+};
 // reducer
 export default handleActions(
   {
@@ -79,4 +95,5 @@ export const actionCreators = {
   getRooms,
   loadRooms,
   addRoom,
+  enterRoom,
 };
