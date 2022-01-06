@@ -147,3 +147,12 @@
 .bg06 {
   background-color: #fe9c77 !important;
 }
+
+.groupTimer_timer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 68px;
+  font-weight: 300;
+}

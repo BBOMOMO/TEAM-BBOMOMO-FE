@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import Peer from "peerjs";
 import { useParams } from "react-router-dom";
@@ -8,59 +8,45 @@ import ChatRoomNav from "./ChatRoomNav";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as groupAction } from "../redux/modules/group";
-
+import Timer from "./Timer";
+import GroupChat from "./GroupChat";
+import profile from "../Images/profile.png";
+//if (min === 0 && sec === 0)  -> if (gapTimeFloor <= 0)
+const GroupContainer = styled.div`
+  padding-top: 110px;
+  display: flex;
+`;
+const GroupCont = styled.div`
+  width: 1197px;
+`;
+const GroupTimer = styled.div`
+  height: 152px;
+  position: relative;
+`;
 const ChatRoom = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #262524;
+  display: flex;
   #video-grid {
     box-sizing: border-box;
-    width: 100%;
-    height: 100vh;
+    width: 1197px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    overflow: hidden;
-    video {
-      width: ${(props) => {
-        switch (props.numberOfUsers) {
-          case 1:
-            return `100vh`;
-          case 2:
-            return `46%`;
-          case 3:
-            return `30%`;
-          case 4:
-            return `46%`;
-          case 5:
-            return `30%`;
-          case 6:
-            return `30%`;
-          default:
-            return `100%`;
-        }
-      }};
-      height: ${(props) => {
-        switch (props.numberOfUsers) {
-          case 1:
-            return `auto`;
-          case 2:
-            return `45vh`;
-          case 3:
-            return `45vh`;
-          case 4:
-            return `45vh`;
-          case 5:
-            return `45vh`;
-          case 6:
-            return `45vh`;
-          default:
-            return `100%`;
-        }
-      }};
-      object-fit: cover;
+    .video_box {
+      height: 300px;
+      margin-left: 18px;
+      &:nth-child(3n + 1) {
+        margin-left: 0px;
+      }
+      &:nth-child(n + 4) {
+        margin-top: 25px;
+      }
+      video {
+        width: 387px;
+        height: 236px;
+        border-radius: 11px;
+        object-fit: cover;
+      }
     }
   }
 `;
@@ -82,6 +68,7 @@ export default function VideoChatRoom() {
   const [roomClosed, setRoomClosed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState(1);
+  const [state, setState] = useState("5 : 00");
   // const username = user
   //   ? user.username
   //   : `GUEST${Math.round(Math.random() * 100000)}`;
@@ -89,7 +76,7 @@ export default function VideoChatRoom() {
   let myStream = null;
   let myPeerId = "";
   let allStream = useRef();
-
+  let timerRef = useRef();
   const videoGrid = useRef();
   const myVideo = useRef();
 
@@ -122,7 +109,7 @@ export default function VideoChatRoom() {
         let streamId = stream.id;
         myStream = stream;
         addVideoStream(myVideo.current, stream);
-        videoGrid.current.append(myVideo.current);
+        videoGrid.current.prepend(myVideo.current);
         setIsLoading(false);
         allStream.current = stream;
         // 타이머 이벤트
@@ -143,8 +130,11 @@ export default function VideoChatRoom() {
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
-            console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "쉬는시간");
-            if (min === 0 && sec === 0) {
+            setState(`남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`);
+            // console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "쉬는시간");
+            // timerRef.current.innerText = `남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`;
+            // if (min === 0 && sec === 0)
+            if (gapTimeFloor <= 0) {
               console.log(currentRound, totalRound);
               console.log("쉬는시간 종료");
               currentRound = currentRound + 1;
@@ -170,8 +160,8 @@ export default function VideoChatRoom() {
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
-            console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "수업시간");
-            if (min === 0 && sec === 0) {
+            setState(`남은 시간은 ${min}분 ${sec}초 입니다. 수업시간`);
+            if (gapTimeFloor <= 0) {
               console.log(
                 currentRound,
                 totalRound,
@@ -204,11 +194,11 @@ export default function VideoChatRoom() {
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
-            console.log(
-              `남은 시간은 ${min}분 ${sec}초 입니다.`,
-              "수고하셨습니다."
+            setState(
+              `남은 시간은 ${min}분 ${sec}초 입니다.
+              수고하셨습니다.`
             );
-            if (min === 0 && sec === 0) {
+            if (gapTimeFloor <= 0) {
               clearInterval(goodByeinterval);
               // socketRef.current.emit("removeRoom", roomId);
               history.push("/");
@@ -236,7 +226,7 @@ export default function VideoChatRoom() {
 
           mediaConnection.on("stream", (newStream) => {
             addVideoStream(newVideo, newStream);
-            videoGrid.current.append(newVideo);
+            videoGrid.current.prepend(newVideo);
             setUsers(videoGrid.current.childElementCount);
           });
 
@@ -254,7 +244,7 @@ export default function VideoChatRoom() {
 
           mediaConnection.on("stream", (newStream) => {
             addVideoStream(newVideo, newStream);
-            videoGrid.current.append(newVideo);
+            videoGrid.current.prepend(newVideo);
             setUsers(videoGrid.current.childElementCount);
           });
         });
@@ -287,17 +277,41 @@ export default function VideoChatRoom() {
   // }
   return (
     <>
-      <ChatRoomNav
+      {/* <ChatRoomNav
         cameraOn={cameraOn}
         handleCamera={handleCamera}
         // toggleTodo={toggleTodo}
-      />
-      <ChatRoom numberOfUsers={users}>
-        {isLoading && <span>Loading...</span>}
-        <div ref={videoGrid} id="video-grid">
-          <video ref={myVideo} autoPlay playsInline></video>
-        </div>
-      </ChatRoom>
+      /> */}
+      <GroupContainer>
+        <ChatRoom numberOfUsers={users}>
+          {isLoading && <span>Loading...</span>}
+          <GroupChat />
+          <GroupCont>
+            <GroupTimer>
+              <p
+                ref={timerRef}
+                style={{ color: "#000" }}
+                className="groupTimer_timer"
+              >
+                {state}
+              </p>
+            </GroupTimer>
+            <div id="video-grid">
+              <div className="video_box" ref={videoGrid}>
+                <video ref={myVideo} autoPlay playsInline></video>
+                <div className="userview_txtbox clearfix">
+                  <img src={profile} alt="프로필" className="fl" />
+                  <div className="userview_name fl">
+                    <p>김철수</p>
+                    <p>수능 11111도전</p>
+                  </div>
+                  <div className="fr userview_friend">친구신청</div>
+                </div>
+              </div>
+            </div>
+          </GroupCont>
+        </ChatRoom>
+      </GroupContainer>
     </>
   );
 }
