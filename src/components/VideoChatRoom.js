@@ -100,7 +100,12 @@ export default function VideoChatRoom() {
 
   useEffect(() => {
     const socket = io("http://13.209.3.61");
-    const peer = new Peer();
+    const peer = new Peer({
+      config: {'iceServers': [
+        { url: 'stun:stun.l.google.com:19302' },
+       
+      ]}
+    });
 
     // 클라의 영상 스트림 비디오에 넣기
     navigator.mediaDevices

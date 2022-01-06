@@ -21,7 +21,7 @@ function InfoModal({ showModal, closeModal }) {
 
   const userId = useSelector((state) => state.user.userId);
   const userNick = useSelector((state) => state.user.userNick);
-  //selected 이거 우찌 고정시키노 ㅡㅡ
+  //selected 기존 값으로 seleced 로 고정
   const userCate = useSelector((state) => state.user.userCate);
 console.log(_nickCheck )
   React.useEffect(()=>{

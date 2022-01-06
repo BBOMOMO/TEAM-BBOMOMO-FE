@@ -134,6 +134,23 @@ const checkUserDB = () => {
   };
 };
 
+//상태명 수정하기
+const statMsgDB = (valueName) => {
+  return async function(dispatch, getState, {history}){
+
+    const userMsg ={
+      statusMsg: valueName
+    }
+    await apis
+      .changeMsg(userMsg)
+      .then((response)=> {
+        console.log(response);
+      }).catch((err)=> {
+        console.log(err.response.data.message)
+      })
+  }
+}
+
 //유저정보수정
 const changeInfo = (nickname,category ) => {
   return async function(dispatch, getState, { history }){
@@ -185,5 +202,6 @@ export const actionCreators = {
   checkUserDB,
   idCheckDB,
   nickCheckDB,
-  changeInfo
+  changeInfo,
+  statMsgDB
 };
