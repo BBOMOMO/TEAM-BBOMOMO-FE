@@ -256,7 +256,7 @@ const ModalBG = styled.div`
   left: 0;
   background-color: #000;
   opacity: 0.54;
-  z-index: 999;
+  z-index: 99998!important;
 `;
 const ModalBox = styled.div`
   position: fixed;
@@ -268,7 +268,7 @@ const ModalBox = styled.div`
   left: 50%;
   margin-top: -20%;
   margin-left: -274px;
-  z-index: 1000;
+  z-index: 99999!important;
   line-height: 1.2;
 `;
 

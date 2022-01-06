@@ -58,11 +58,12 @@ const Select = (props) => {
 
 Select.defaultProps = {
   _onChange: () => {},
-  size: "20px",
+  size: "18px",
   top: "69px",
   right: "21px",
   width: "498px",
   height: "62px",
+  
 };
 
 const GroupSelectLabel = styled.label`
@@ -96,6 +97,7 @@ const GroupSelect = styled.select`
 
   option {
     padding: 5px;
+
   }
 `;
 
@@ -120,6 +122,7 @@ const ElSelect = styled.select`
   font-size: 24px;
   padding: 0 27px;
   background-color: #f4f4f4;
+  font-size:18px; 
   color: #7a7d81;
   appearance: none;
   -webkit-appearance: none; /* for chrome */

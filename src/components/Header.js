@@ -10,11 +10,16 @@ import AlarmModal from './AlarmModal';
 import OneChatModal from './OneChatModal';
 import InfoModal from './InfoModal';
 
+import {useSelector} from "react-redux";
+import { history } from "../redux/configureStore";
+
 function Header() {
 
   const [showAlarmModal, setShowAlarmModal] = React.useState(false);
   const [showChatModal, setShowChatModal] = React.useState(false);
   const [showInfoModal, setShowInfoModal] = React.useState(false);
+
+  const user = useSelector((state) => state.user.userInfo);
 
 
   // 주의! 다른 헤더 버튼 누르면 열려져 있던 나머지 모달창은 닫혀야 함. 그래서 open 에 나머지 modal false 값 넣어줌.
@@ -27,22 +32,40 @@ function Header() {
   const openInfo = () => {  setShowInfoModal(true);setShowAlarmModal(false);setShowChatModal(false); }
   const closeInfo = () => { setShowInfoModal(false) }
 
+  const alertLogin = () => {
+    history.push("/login");
+  }
 
 
   return (
     <div>
-      <HeaderContainer>
-        <img src={logo} alt="" />
-        <div className="header_menu_container">
-        <HeaderIcon className="header_alarm" onClick={openAlarm} />
-        <HeaderIcon className="header_msg" onClick={openChat} />
-        <HeaderIcon className="header_friend"onClick={openInfo} />
-        </div>
-      </HeaderContainer>
+      {user ? 
+      <>
+        <HeaderContainer>
+          <img src={logo} alt="" />
+          <div className="header_menu_container">
+          <HeaderIcon className="header_alarm" onClick={openAlarm} />
+          <HeaderIcon className="header_msg" onClick={openChat} />
+          <HeaderIcon className="header_friend"onClick={openInfo} />
+          </div>
+        </HeaderContainer>
 
-      <AlarmModal showModal={showAlarmModal} closeModal={closeAlarm}/>
-      <OneChatModal showModal={showChatModal} closeModal={closeChat}/>
-      <InfoModal showModal={showInfoModal} closeModal={closeInfo}/>
+        <AlarmModal showModal={showAlarmModal} closeModal={closeAlarm}/>
+        <OneChatModal showModal={showChatModal} closeModal={closeChat}/>
+        <InfoModal showModal={showInfoModal} closeModal={closeInfo}/>
+        </> : 
+      <>
+        <HeaderContainer>
+          <img src={logo} alt="" />
+          <div className="header_menu_container">
+          <HeaderIcon className="header_alarm" onClick={alertLogin} />
+          <HeaderIcon className="header_msg" onClick={alertLogin} />
+          <HeaderIcon className="header_friend"onClick={alertLogin} />
+          </div>
+        </HeaderContainer>
+
+      </>}
+      
 
     </div>
   )

@@ -23,6 +23,7 @@ const Input = (props) => {
     _name,
     _checked,
     size,
+    maxlength
   } = props;
 
   const labelStyle = { display, color, size };
@@ -38,6 +39,7 @@ const Input = (props) => {
     radius,
     color,
     size,
+    maxlength
   };
 
   if (createGroup) {
@@ -79,6 +81,7 @@ const Input = (props) => {
         placeholder={placeholder}
         onChange={_onChange}
         value={value}
+        maxLength={maxlength}
         {...styles}
       />
     </ElLabel>
@@ -90,7 +93,7 @@ Input.defaultProps = {
   placeholder: "",
   type: "text",
   value: "",
-  padding: "10px",
+  padding: "10px 20px",
   boxSizing: "border-box",
   _onChange: () => {},
   width: "100%",
