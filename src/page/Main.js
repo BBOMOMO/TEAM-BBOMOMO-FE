@@ -23,7 +23,9 @@ const Main = (props) => {
   return (
     <>
       <MainContainer>
+       <div className="main_wrap_index">
         {user ? <MyInfo /> : <NoInfo />}
+       </div>
 
       <div className="main_wrap">
         <div className="main_contentArea">
@@ -41,7 +43,7 @@ const Main = (props) => {
          </div>
 
           <Footer />
-        </div>
+      </div>
       </MainContainer>
     </>
   );
@@ -55,8 +57,12 @@ const MainContainer = styled.div`
   height: auto;
   display: flex;
 
+  .main_wrap_index{
+    z-index:100;
+  }
   .main_wrap {
     width: 100%;
+    z-index:0;
   }
   .main_contentArea {
     *margin-left: 80px;
@@ -70,7 +76,7 @@ const AdSection = styled.div`
   position:relative;
   width:100%;
   height:150px;
-  z-index:-1;
+
   >img {width:100%;}
  
 `;
@@ -83,7 +89,7 @@ const RoomSection = styled.div`
   height:auto;
   
   padding-bottom:60px; 
-  z-index:-1;
+
 `;
 
 const CertifiSection = styled.div`
@@ -95,7 +101,7 @@ const CertifiSection = styled.div`
   *border:1px solid #bbb; 
   *overflow:scroll;
   padding-bottom:80px; 
-  z-index:-1;
+
 
 `;
 
