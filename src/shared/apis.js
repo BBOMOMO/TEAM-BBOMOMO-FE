@@ -2,8 +2,8 @@ import axios from "axios";
 import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  baseURL: "http://13.209.3.61/", // 재원님 서버주소
-  // baseURL: "http://54.180.120.210/", // 상협님서버주소
+  baseURL: "http://13.209.3.61/", // 재원님 서버주소 //나중에 https로 바꾸기
+  //baseURL: "http://54.180.120.210/", // 상협님서버주소
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
 });
 
