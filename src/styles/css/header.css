@@ -12,16 +12,19 @@
 }
 
 .alarm_modal {
+  position:fixed;
   top: 110px;
   right: 315px;
   z-index: 999;
 }
 .chat_modal {
+  position:fixed;
   top: 110px;
   right: 205px;
   z-index: 999;
 }
 .info_modal {
+  position:fixed;
   top: 110px;
   right: 100px;
   z-index: 999;

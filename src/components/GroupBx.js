@@ -5,12 +5,13 @@ import person from "../Images/ic-people.png";
 import timer from "../Images/ic-timer.png";
 
 const GroupBx = (props) => {
-  const { roomLock, bgcolor } = props;
+  const { roomLock, bgcolor, onClick} = props;
   const userlist = props.peopleInRoom;
+
 
   if (roomLock) {
     return (
-      <GroupContBx>
+      <GroupContBx onClick={onClick}>
         <GroupCont onClick={props._onClick}>
           <div className="group_left_bx">
             <div>
