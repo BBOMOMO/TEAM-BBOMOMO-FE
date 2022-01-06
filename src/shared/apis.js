@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  baseURL: "http://54.180.107.194/", // 원래 서버주소
+  baseURL: "http://13.209.3.61/", // 원래 서버주소
   //baseURL: "http://54.180.120.210/", // 상협님서버주소
 });
 instance.interceptors.request.use((config) => {
@@ -25,20 +25,21 @@ instance.interceptors.request.use((config) => {
 export const apis = {
   //---- 유저  ----//
   register: (userInfo) => instance.post("/api/v1/auth/signup", userInfo), //회원가입
-  registerID : (idInfo) => instance.post("/api/v1/auth/nameck", idInfo),//아이디 중복확인
-  registerNICK : (nickInfo) => instance.post("/api/v1/auth/nickck", nickInfo),//닉네임 중복확인
+  registerID: (idInfo) => instance.post("/api/v1/auth/nameck", idInfo), //아이디 중복확인
+  registerNICK: (nickInfo) => instance.post("/api/v1/auth/nickck", nickInfo), //닉네임 중복확인
   login: (userInfo) => instance.post("/api/v1/auth/login", userInfo), //로그인
   checkUser: () => instance.get("/api/v1/users/mypage"), //유저확인
   //---- 유저 : 회원정보수정 ----//
-  changeNick : (userInfo) => instance.put("/api/v1/users/info", userInfo),// 헤더 유저정보 수정
-  changeMsg : (userMsg) => instance.put("/api/v1/users/status", userMsg),//마이페이지 상태메시지 수정
-  changeImg : (userImg) => instance.put("/api/v1/users/profileImg",userImg),// 마이페이지 프로필이미지 수정
-
+  changeNick: (userInfo) => instance.put("/api/v1/users/info", userInfo), // 헤더 유저정보 수정
+  changeMsg: (userMsg) => instance.put("/api/v1/users/status", userMsg), //마이페이지 상태메시지 수정
+  changeImg: (userImg) => instance.put("/api/v1/users/profileImg", userImg), // 마이페이지 프로필이미지 수정
 
   //---- 그룹  ----//
   postRoom: (userId, roomInfo) =>
-    instance.post(`/api/v1/studyRoom/${userId}/hostRoom`, roomInfo), //그룹추가하기
+    instance.post(`api/v1/studyRoom/hostRoom`, roomInfo), //그룹추가하기
   getRoom: () => instance.get("/api/v1/studyRoom/list/all"), //그룹 리스트 불러오기
+  enterRoom: (roomId, roomPassword) =>
+    instance.post(`/api/v1/studyRoom/enterRoom/${roomId}`, roomPassword),
 
   //---- 공부인증  ----//
   getStudyTime: () => instance.get("/api/v1/posts/time"),
