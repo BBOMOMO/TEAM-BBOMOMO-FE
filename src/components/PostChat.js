@@ -26,7 +26,7 @@ function PostChat() {
   useEffect(() => {
     socketRef.current = io.connect("http://13.209.3.61");
     socketRef.current.emit("join-room", roomId, userId, userNick);
-    socketRef.current.on("message", ({ name, message }) => {
+    socketRef.current.on("message", ({ name, message, roomId }) => {
       setChat([...chat, { name, message }]);
     });
     socketRef.current.on("welcome", (roomId) => {

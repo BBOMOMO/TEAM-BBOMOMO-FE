@@ -246,6 +246,7 @@ function CreateGroup({ showModal, closeModal }) {
 
 const ModalContainer = styled.div`
   position: relative;
+  z-index:99999;
 `;
 
 const ModalBG = styled.div`
