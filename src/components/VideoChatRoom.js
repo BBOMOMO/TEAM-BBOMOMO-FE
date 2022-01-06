@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ChatRoomNav from "./ChatRoomNav";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as groupAction } from "../redux/modules/group";
 
 const ChatRoom = styled.div`
   width: 100vw;
@@ -65,14 +66,13 @@ const ChatRoom = styled.div`
 
 export default function VideoChatRoom() {
   // Global
-  const userInfo = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
-  let user = userInfo?.user[0]?.nick;
-  let peopleInRoom = [];
+  let userId = localStorage.getItem("id");
+  let userNick = localStorage.getItem("nick");
   const params = useParams();
   const RoomId = params.roomId;
   useEffect(() => {
-    dispatch(userActions.checkUserDB());
+    dispatch(groupAction.enterRoom(roomId));
   }, []);
 
   // Local
@@ -81,10 +81,9 @@ export default function VideoChatRoom() {
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState(1);
   const roomId = RoomId; //chatroom.roomId // 일시적으로 room 1
-  const username = user
-    ? user.username
-    : `GUEST${Math.round(Math.random() * 100000)}`;
-  const userId = user;
+  // const username = user
+  //   ? user.username
+  //   : `GUEST${Math.round(Math.random() * 100000)}`;
 
   let myStream = null;
   let myPeerId = "";
@@ -117,7 +116,7 @@ export default function VideoChatRoom() {
 
     // 클라의 영상 스트림 비디오에 넣기
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
+      .getUserMedia({ video: true, audio: false })
       .then((stream) => {
         let streamId = stream.id;
         myStream = stream;
@@ -131,7 +130,7 @@ export default function VideoChatRoom() {
         peer.on("open", (peerId) => {
           //소켓을 통해 서버로 방ID, 유저ID 보내주기
           myPeerId = peerId;
-          socket.emit("join-room", roomId, peerId, userId, username, streamId);
+          socket.emit("join-room", roomId, peerId, userId, userNick, streamId);
 
           //전역변수 chatroom.participants에 본인 더하기
         });
@@ -150,12 +149,12 @@ export default function VideoChatRoom() {
           });
 
           mediaConnection.on("close", () => {
-            socket.emit("camera-off", myPeerId, username);
+            socket.emit("camera-off", myPeerId, userNick);
           });
         });
 
-        socket.on("user-connected", (peerId, username, streamId) => {
-          console.log(peerId, username, streamId);
+        socket.on("user-connected", (peerId, userNick, streamId) => {
+          console.log(peerId, userNick, streamId);
           setUsers((prev) => prev + 1);
           const mediaConnection = peer.call(peerId, stream);
           const newVideo = document.createElement("video");
@@ -169,7 +168,7 @@ export default function VideoChatRoom() {
         });
       });
 
-    socket.on("user-disconnected", (peerId, username, streamId) => {
+    socket.on("user-disconnected", (peerId, userNick, streamId) => {
       setUsers((prev) => prev - 1);
       const video = document.querySelectorAll("video");
       let removeVideo;
