@@ -4,7 +4,6 @@ const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
   baseURL: "http://54.180.107.194/",
 });
-
 instance.interceptors.request.use((config) => {
   const TOKEN = document.cookie.split("=")[1];
   if (TOKEN) {

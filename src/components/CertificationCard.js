@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import comment from "../Images/ic-comment.png";
+import BG1 from "../Images/study-certification-bg-1.png";
+import BG2 from "../Images/study-certification-bg-2.png";
+import BG3 from "../Images/study-certification-bg-3.png";
+import BG4 from "../Images/study-certification-bg-4.png";
 
-const CertificationCard = () => {
+const CertificationCard = (props) => {
+  const { sTime } = props;
+  console.log(props.postImg);
   return (
-    <CertifiCont>
+    <CertifiCont style={{ backgroundImage: `url(${props.postImg})` }}>
       <div className="certifi_card_top">
-        <h2>10:12</h2>
-        <p>안녕하세요 오늘은 2022년 1월1일 입니다</p>
+        <h2>{sTime}</h2>
+        <p>{props.postContent}</p>
       </div>
       <div className="certifi_card_bottom">
         <p>
           <span className="">동그라미</span>
-          나는이서현
+          {props.nick}
         </p>
 
         <div className="certifi_card_bottom_comment">
@@ -34,7 +40,7 @@ const CertifiCont = styled.div`
   width: 330px;
   height: 408px;
   border-radius: 11px;
-  background-color: #bef5a4;
+  /* background-color: #bef5a4; */
   background-size: cover;
   box-sizing: border-box;
   color: #242424;
