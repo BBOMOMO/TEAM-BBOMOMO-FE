@@ -51,19 +51,20 @@ function CreateGroup({ showModal, closeModal }) {
       setOpenedAt(e.target.value);
     }
   };
-  const is_status = (e) => {
-    setCount((prevCount) => prevCount + 1);
-    console.log(count);
+  //비밀방,공개방 설정하기.
+  // const is_status = (e) => {
+  //   setCount((prevCount) => prevCount + 1);
+  //   console.log(count);
 
-    if (count % 2 === 0) {
-      setRoomStatus("1");
-      console.log("비밀방");
-    } else {
-      setRoomStatus("0");
-      setRoomPassword(null);
-      console.log("공개방");
-    }
-  };
+  //   if (count % 2 === 0) {
+  //     setRoomStatus("1");
+  //     console.log("비밀방");
+  //   } else {
+  //     setRoomStatus("0");
+  //     setRoomPassword(null);
+  //     console.log("공개방");
+  //   }
+  // };
 
   const createRoom = (e) => {
     if (roomTitle === "") {
