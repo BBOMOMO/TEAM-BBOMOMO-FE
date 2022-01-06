@@ -2,13 +2,10 @@ import axios from "axios";
 import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-
   baseURL: "http://13.209.3.61/", // 재원님 서버주소 //나중에 https로 바꾸기
   //baseURL: "http://54.180.120.210/", // 상협님서버주소
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
-
 });
-
 
 instance.interceptors.request.use((config) => {
   const TOKEN = document.cookie.split("=")[1];
@@ -25,7 +22,6 @@ instance.interceptors.request.use((config) => {
   config.headers.Accept = "application/json";
   return config;
 });
-
 
 export const apis = {
   //---- 유저  ----//
@@ -50,6 +46,8 @@ export const apis = {
   getStudyTime: () => instance.get("/api/v1/posts/time"),
   postWrite: (formData) => instance.post("/api/v1/posts", formData),
   getPost: () => instance.get("/api/v1/posts"),
+  getCommentNum: () => instance.get("/api/v1/posts/comments"),
+  getPostdetail: () => instance.get("/api/v1/posts/:postId"),
 };
 
 export default apis;

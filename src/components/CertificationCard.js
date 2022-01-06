@@ -3,7 +3,7 @@ import styled from "styled-components";
 import comment from "../Images/ic-comment.png";
 
 const CertificationCard = (props) => {
-  const { sTime } = props;
+  // const { sTime } = props;
 
   return (
     <CertifiCont
@@ -11,7 +11,8 @@ const CertificationCard = (props) => {
       style={{ backgroundImage: `url(${props.postImg})` }}
     >
       <div className="certifi_card_top">
-        <h2>{sTime}</h2>
+        {/* <h2>{sTime}</h2> */}
+        <h2>10:12</h2>
         <p>{props.postContent}</p>
       </div>
       <div className="certifi_card_bottom">

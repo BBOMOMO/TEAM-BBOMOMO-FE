@@ -54,7 +54,6 @@ const CertificationWrite = ({ showModal, closeModal }) => {
       postActions.addPost("walwalzz", postContent, studyTime, file, bgtype)
     );
   };
-
   return (
     <>
       {showModal ? (
@@ -88,7 +87,6 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       onClick={(e) => {
                         setActive1((isActive1) => {
                           if (isActive1 === false) {
-                            // isActive1 = true;
                             setActive1(true);
                             setActive2(false);
                             setActive3(false);
