@@ -79,8 +79,11 @@ function CreateGroup({ showModal, closeModal }) {
     } else if (roomStatus == false && roomPassword == "") {
       window.alert("방 비밀번호를 입력해주세요");
     }
+    
 
-    // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
+    if(roomTitle && roomPurpose && round && studyTime && openedAt && roomStatus){
+
+       // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
     dispatch(
       roomActions.addRoom(
         userId,
@@ -94,6 +97,9 @@ function CreateGroup({ showModal, closeModal }) {
         openedAt
       )
     );
+    }
+
+   
   };
 
   return (
@@ -205,7 +211,7 @@ function CreateGroup({ showModal, closeModal }) {
                 checkbox
                 _name="startTime"
                 _onChange={is_start}
-                value="0"
+                value="1"
                 text="바로 시작"
               />
               <Input

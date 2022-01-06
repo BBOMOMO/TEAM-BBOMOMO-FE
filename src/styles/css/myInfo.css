@@ -24,9 +24,8 @@
 
 .myinfo_user_info {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 124px;
+  justify-content: center;
+  align-items: center;
   margin: 26px auto 12px auto;
 }
 
@@ -40,13 +39,14 @@
 
 
 .myinfo_user_division {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
-  width: 45px;
-  height: 26px;
+  display:inline-block;
+  padding:0 10px;
   line-height: 30px;
   border-radius: 30px;
   border: 0.38px solid #959595;
+  margin-right:10px;
 }
 .myinfo_user_state {
   width: 193px;
