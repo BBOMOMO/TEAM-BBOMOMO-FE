@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import CertificationCard from "./CertificationCard";
+import CertificationWrite from "./CertificationWrite";
+import CertificationComment from "./CertificationComment";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
 
-import apis from "../shared/apis";
+// import CertificationCard from "./CertificationCard";
+// import apis from "../shared/apis";
 
 const Certification = () => {
   const dispatch = useDispatch();
   const _roomlist = useSelector((state) => state.post.postList.board);
   console.log(_roomlist);
+
+  const [showWriteModal, setShoWritefoModal] = React.useState(false);
+
+  const openWindow = () => {
+    setShoWritefoModal(true);
+  };
+  const closeWindow = () => {
+    setShoWritefoModal(false);
+  };
 
   // apis.checkUser().then(function (response) {
   //   console.log(response);
@@ -24,33 +36,42 @@ const Certification = () => {
   }, []);
 
   return (
-    <div className="certifi_bx">
-      <div className="certifi_title">
-        <h2>공부인증</h2>
-        <button>게시글 작성</button>
-      </div>
+    <>
+      <div className="certifi_bx">
+        <CertificationWrite
+          showModal={showWriteModal}
+          closeModal={closeWindow}
+        ></CertificationWrite>
+        <CertificationComment
+          showModal={showWriteModal}
+          closeModal={closeWindow}
+        ></CertificationComment>
+        <div className="certifi_title">
+          <h2>공부인증</h2>
+          <button onClick={openWindow}>게시글 작성</button>
+        </div>
 
-      <div className="certifi_card_bx">
-        {_roomlist &&
-          _roomlist.map((a, b) => {
-            console.log(a.postImg);
-            let HH = Math.floor(a.studyTime / 60);
-            let MM = a.studyTime % 60;
-            let sTime = `${HH}: ${MM}`;
-            return (
-              <CertificationCard
-                {...a}
-                key={b}
-                sTime={sTime}
-              ></CertificationCard>
-            );
-          })}
-      </div>
+        <div className="certifi_card_bx">
+          {_roomlist &&
+            _roomlist.map((a, b) => {
+              let HH = Math.floor(a.studyTime / 60);
+              let MM = a.studyTime % 60;
+              let sTime = `${HH}: ${MM}`;
+              return (
+                <CertificationCard
+                  {...a}
+                  key={b}
+                  sTime={sTime}
+                ></CertificationCard>
+              );
+            })}
+        </div>
 
-      <div className="certifi_more_btn">
-        <button>더보기</button>
+        <div className="certifi_more_btn">
+          <button>더보기</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Certification;

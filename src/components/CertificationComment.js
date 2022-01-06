@@ -14,7 +14,7 @@ import BG1 from "../Images/study-certification-bg-1.png";
 
 import CertificationCommentList from "./CertificationCommentList";
 
-const CertificationComment = () => {
+const CertificationComment = ({ showModal, closeModal }) => {
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
   const css = {
@@ -22,76 +22,78 @@ const CertificationComment = () => {
   };
   return (
     <>
-      <ModalContainer>
-        <ModalBG />
-        <ModalBox>
-          <ModalInnerContainer>
-            <div className="certifi_comment_title_bx">
-              <h2>공부인증</h2>
-              <img src={close} alt="닫기 아이콘" />
-            </div>
+      {showModal ? (
+        <ModalContainer>
+          <ModalBG />
+          <ModalBox>
+            <ModalInnerContainer>
+              <div className="certifi_comment_title_bx">
+                <h2>공부인증</h2>
+                <img src={close} alt="닫기 아이콘" onClick={closeModal} />
+              </div>
 
-            <div className="certifi_comment_cont_bx">
-              <div className="comment_cont_left">
-                <ModalInnerBg style={css}>
-                  <div className="certifi_comment_bg">
-                    <h3>10:12</h3>
-                    <p>오늘 하루도 고생한 나에게 치얼스</p>
-                  </div>
-                </ModalInnerBg>
-
-                <div className="comment_my_profile_bx">
-                  <div className="my_profile_left">
-                    <div className="my_profile_img_bx">
-                      <img src={profileimg} alt="프로필 이미지" />
+              <div className="certifi_comment_cont_bx">
+                <div className="comment_cont_left">
+                  <ModalInnerBg style={css}>
+                    <div className="certifi_comment_bg">
+                      <h3>10:12</h3>
+                      <p>오늘 하루도 고생한 나에게 치얼스</p>
                     </div>
-                    <h4>펭귄</h4>
+                  </ModalInnerBg>
+
+                  <div className="comment_my_profile_bx">
+                    <div className="my_profile_left">
+                      <div className="my_profile_img_bx">
+                        <img src={profileimg} alt="프로필 이미지" />
+                      </div>
+                      <h4>펭귄</h4>
+                    </div>
+                    <div className="my_profile_right">
+                      <img src={comment} alt="댓글 아이콘" />
+                      <p>7</p>
+                    </div>
                   </div>
-                  <div className="my_profile_right">
-                    <img src={comment} alt="댓글 아이콘" />
-                    <p>7</p>
+                </div>
+
+                <div className="comment_cont_right">
+                  <div className="certifi_conmment_list_bx">
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList>
+                  </div>
+
+                  <div className="certifi_conmment_input_bx">
+                    <img src={send} alt="자물쇠 아이콘" />
+                    <Input
+                      value={commentText}
+                      boxSizing
+                      height="54px"
+                      radius="11px"
+                      border="none"
+                      display="block"
+                      color="#7A7D81"
+                      padding="5px 55px 5px 18px"
+                      _onChange={(e) => {
+                        setCommentText(e.target.value);
+                      }}
+                    ></Input>
                   </div>
                 </div>
               </div>
-
-              <div className="comment_cont_right">
-                <div className="certifi_conmment_list_bx">
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                  <CertificationCommentList></CertificationCommentList>
-                </div>
-
-                <div className="certifi_conmment_input_bx">
-                  <img src={send} alt="자물쇠 아이콘" />
-                  <Input
-                    value={commentText}
-                    boxSizing
-                    height="54px"
-                    radius="11px"
-                    border="none"
-                    display="block"
-                    color="#7A7D81"
-                    padding="5px 55px 5px 18px"
-                    _onChange={(e) => {
-                      setCommentText(e.target.value);
-                    }}
-                  ></Input>
-                </div>
-              </div>
-            </div>
-          </ModalInnerContainer>
-        </ModalBox>
-      </ModalContainer>
+            </ModalInnerContainer>
+          </ModalBox>
+        </ModalContainer>
+      ) : null}
     </>
   );
 };

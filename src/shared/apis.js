@@ -2,9 +2,14 @@ import axios from "axios";
 import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  baseURL: "http://13.209.3.61/", // 원래 서버주소
+
+  baseURL: "http://13.209.3.61/", // 재원님 서버주소
   //baseURL: "http://54.180.120.210/", // 상협님서버주소
+  // baseURL: "http://54.180.107.194/", // 원래 서버주소
+
 });
+
+
 instance.interceptors.request.use((config) => {
   const TOKEN = document.cookie.split("=")[1];
   if (TOKEN) {
@@ -20,7 +25,7 @@ instance.interceptors.request.use((config) => {
   config.headers.Accept = "application/json";
   return config;
 });
-// 토큰을 헤더에 담아드릴지 자동으로 토큰으로 넘겨드릴지 백엔드분들에게 여쭤보기
+
 
 export const apis = {
   //---- 유저  ----//

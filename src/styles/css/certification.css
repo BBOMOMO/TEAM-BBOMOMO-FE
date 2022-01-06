@@ -32,7 +32,7 @@
 .certifi_card_bx {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: flex-start;
   overflow: scroll;
   height: 857px;
@@ -79,6 +79,9 @@
   z-index: 99;
 }
 /*----------공부인증 카드----------*/
+.certifi_card_list_bx:nth-child(3n + 1) {
+  margin: 0 0 12px 0;
+}
 .certifi_card_top > h2 {
   margin-bottom: 30px;
   font-size: 50px;
@@ -87,11 +90,12 @@
   letter-spacing: 0.0037em;
 }
 .certifi_card_top > p {
-  max-width: 200px;
+  max-width: 230px;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: -0.0041em;
+  word-wrap: break-word;
 }
 .certifi_card_bottom {
   display: flex;
