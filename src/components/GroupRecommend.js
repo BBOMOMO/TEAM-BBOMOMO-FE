@@ -15,20 +15,17 @@ const GroupRecommend = (props) => {
 
   const [roomcount, setRoomcount] = React.useState(6);
 
-
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);
       return _roomSlice;
     }
   };
- // console.log("roomlist",roomlist)
+  // console.log("roomlist",roomlist)
   const seeMore = () => {
-    console.log("클릭")
+    console.log("클릭");
     setRoomcount(roomcount + roomcount);
-    
   };
-
 
   React.useEffect(() => {
     dispatch(roomActions.getRooms());
@@ -166,10 +163,15 @@ const GroupRecommend = (props) => {
             } else if (idx % 6 === 5) {
               bgcolor = "bg06";
             }
-          
+
             return (
               <>
-                <div className="groupbx_card" onClick={()=>{history.push("/chat/"+ roomlist[idx].roomId)}}>
+                <div
+                  className="groupbx_card"
+                  onClick={() => {
+                    history.push("/video/" + roomlist[idx].roomId);
+                  }}
+                >
                   <GroupBx key={p.idx} {...p} bgcolor={bgcolor}></GroupBx>
                 </div>
               </>

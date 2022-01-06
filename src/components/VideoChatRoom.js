@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ChatRoomNav from "./ChatRoomNav";
+import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as groupAction } from "../redux/modules/group";
 
@@ -70,7 +71,8 @@ export default function VideoChatRoom() {
   let userId = localStorage.getItem("id");
   let userNick = localStorage.getItem("nick");
   const params = useParams();
-  const RoomId = params.roomId;
+  const roomId = params.roomId;
+
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
   }, []);
@@ -80,7 +82,6 @@ export default function VideoChatRoom() {
   const [roomClosed, setRoomClosed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState(1);
-  const roomId = RoomId; //chatroom.roomId // 일시적으로 room 1
   // const username = user
   //   ? user.username
   //   : `GUEST${Math.round(Math.random() * 100000)}`;
@@ -124,6 +125,97 @@ export default function VideoChatRoom() {
         videoGrid.current.append(myVideo.current);
         setIsLoading(false);
         allStream.current = stream;
+        // 타이머 이벤트
+        let gapTimeFloor;
+
+        socket.on("restTime", (currentRound, totalRound, time) => {
+          console.log(currentRound, totalRound, time);
+          const endTime = time;
+          const nowTime = new Date().getTime();
+          const gapTime = endTime - nowTime;
+          console.log(gapTime);
+          gapTimeFloor = Math.floor(gapTime / 1000);
+          let MinTime = Math.floor(gapTime / (1000 * 60));
+          let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+          // console.log(MinTime, secTime, gapTimeFloor);
+          let timer = () => {
+            gapTimeFloor = gapTimeFloor - 1;
+            console.log(gapTimeFloor);
+            let min = Math.floor(gapTimeFloor / 60);
+            let sec = gapTimeFloor % 60;
+            console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "쉬는시간");
+            if (min === 0 && sec === 0) {
+              console.log(currentRound, totalRound);
+              console.log("쉬는시간 종료");
+              currentRound = currentRound + 1;
+              console.log(currentRound, "현재 라운드");
+              socket.emit("endRest", roomId, currentRound);
+              clearInterval(restinterval);
+            }
+          };
+          const restinterval = setInterval(timer, 1000);
+        });
+
+        socket.on("studyTime", (currentRound, totalRound, time) => {
+          console.log(time);
+          const endTime = time;
+          const nowTime = new Date().getTime();
+          const gapTime = endTime - nowTime;
+          gapTimeFloor = Math.floor(gapTime / 1000);
+          let MinTime = Math.floor(gapTime / (1000 * 60));
+          let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+          // console.log(MinTime, secTime, gapTimeFloor);
+          let timer = () => {
+            gapTimeFloor = gapTimeFloor - 1;
+            console.log(gapTimeFloor);
+            let min = Math.floor(gapTimeFloor / 60);
+            let sec = gapTimeFloor % 60;
+            console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "수업시간");
+            if (min === 0 && sec === 0) {
+              console.log(
+                currentRound,
+                totalRound,
+                "현재 라운드와 토탈 라운드"
+              );
+              console.log("수업시간 종료");
+              if (currentRound !== totalRound) {
+                socket.emit("endStudy", roomId, userId, userNick);
+                console.log("endStudy 발생");
+              }
+              if (currentRound === totalRound) {
+                socket.emit("totalEnd", roomId, userId, userNick);
+              }
+              clearInterval(studyinterval);
+            }
+          };
+          const studyinterval = setInterval(timer, 1000);
+        });
+
+        socket.on("totalEnd", (time) => {
+          const endTime = time;
+          const nowTime = new Date().getTime();
+          const gapTime = endTime - nowTime;
+          gapTimeFloor = Math.floor(gapTime / 1000);
+          let MinTime = Math.floor(gapTime / (1000 * 60));
+          let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+          // console.log(MinTime, secTime, gapTimeFloor);
+          let timer = () => {
+            gapTimeFloor = gapTimeFloor - 1;
+            console.log(gapTimeFloor);
+            let min = Math.floor(gapTimeFloor / 60);
+            let sec = gapTimeFloor % 60;
+            console.log(
+              `남은 시간은 ${min}분 ${sec}초 입니다.`,
+              "수고하셨습니다."
+            );
+            if (min === 0 && sec === 0) {
+              clearInterval(goodByeinterval);
+              // socketRef.current.emit("removeRoom", roomId);
+              history.push("/");
+            }
+          };
+          const goodByeinterval = setInterval(timer, 1000);
+        });
 
         // 피어 생성하기
 

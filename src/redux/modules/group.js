@@ -57,7 +57,7 @@ const addRoom = (
         console.log(response);
         console.log("방 생성 완료");
         const newRoomId = response.data.newRoomId;
-        history.push(`/chat/${newRoomId}`);
+        history.push(`/video/${newRoomId}`);
       })
       .catch((err) => {
         console.log(err.response.data.msg);
