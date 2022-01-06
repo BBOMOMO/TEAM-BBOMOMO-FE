@@ -19,7 +19,7 @@ function Header() {
   const [showInfoModal, setShowInfoModal] = React.useState(false);
 
   const user = useSelector((state) => state.user.userInfo);
-
+  console.log(user);
 
   // 주의! 다른 헤더 버튼 누르면 열려져 있던 나머지 모달창은 닫혀야 함. 그래서 open 에 나머지 modal false 값 넣어줌.
   const openAlarm = () => {
@@ -58,7 +58,13 @@ function Header() {
       {user ? (
         <>
           <HeaderContainer>
-            <img src={logo} alt="" />
+            <img
+              src={logo}
+              alt=""
+              onClick={() => {
+                history.push("/");
+              }}
+            />
             <div className="header_menu_container">
               <HeaderIcon className="header_alarm" onClick={openAlarm} />
               <HeaderIcon className="header_msg" onClick={openChat} />
@@ -73,7 +79,13 @@ function Header() {
       ) : (
         <>
           <HeaderContainer>
-            <img src={logo} alt="" />
+            <img
+              src={logo}
+              alt=""
+              onClick={() => {
+                history.push("/");
+              }}
+            />
             <div className="header_menu_container">
               <HeaderIcon className="header_alarm" onClick={alertLogin} />
               <HeaderIcon className="header_msg" onClick={alertLogin} />
