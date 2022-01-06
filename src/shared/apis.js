@@ -5,7 +5,6 @@ const instance = axios.create({
   baseURL: "http://54.180.107.194/", // 원래 서버주소
   //baseURL: "http://54.180.120.210/", // 상협님서버주소
 });
-
 instance.interceptors.request.use((config) => {
   const TOKEN = document.cookie.split("=")[1];
   if (TOKEN) {

@@ -21,7 +21,6 @@ const initialState = {
 const getPosts = () => {
   return async function (dispatch, useState, { history }) {
     await apis.getPost().then(function (response) {
-      console.log("getroom", response.data);
       dispatch(loadPosts(response));
     });
   };
@@ -60,6 +59,8 @@ export default handleActions(
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.postList = action.payload.postList.data;
+        // console.log("액션", action.payload.postList.data);
+        // console.log("드래프트", draft.postList);
       }),
     [ADD_POST]: (state, action) => produce(state, (draft) => {}),
   },

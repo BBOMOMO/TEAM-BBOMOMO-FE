@@ -5,9 +5,7 @@ import person from "../Images/ic-people.png";
 import timer from "../Images/ic-timer.png";
 
 const GroupBx = (props) => {
-  const { roomLock,bgcolor } = props;
-
-
+  const { roomLock, bgcolor } = props;
   const userlist = props.peopleInRoom;
 
   if (roomLock) {
@@ -78,7 +76,6 @@ const GroupBx = (props) => {
                   <span className="state_name_circle">동그라미</span>
                   {/* 이 부분 닉네임으로 넘겨주기로 했음 */}
                   {p.nick}
-                  
                 </p>
               );
             })}
@@ -139,8 +136,6 @@ const GroupCont = styled.div`
   border-radius: 11px;
   background-color: #eee;
   box-sizing: border-box;
-
-  
 `;
 
 export default GroupBx;

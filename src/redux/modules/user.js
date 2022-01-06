@@ -118,7 +118,13 @@ const checkUserDB = () => {
       .then((response) => {
         //console.log(response);
         const userInfo = response.data;
-        //console.log(userInfo);
+
+        console.log(userInfo);
+        const userId = userInfo.user[0].userId;
+        const userNick = userInfo.user[0].nick;
+        localStorage.setItem("id", `${userId}`);
+        localStorage.setItem("nick", `${userNick}`);
+
         dispatch(setUser(userInfo));
         dispatch(nickCheck(response.data));
       })
