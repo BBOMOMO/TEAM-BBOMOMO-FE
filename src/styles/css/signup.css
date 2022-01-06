@@ -21,18 +21,33 @@
   justify-content: center;
   align-items: center;
 }
+.signup_inputWrap{
+  position:relative;
+}
+.signup_inputWrap >button {
+  position:absolute;
+  top:55px;
+  right:18px;
+  border:none;
+  background-color:#889cf2;
+  color:#fff;
+  font-size:12px;
+  padding:6px 20px;
+  border-radius:20px;
+  cursor:pointer;
+}
 .signup_title {
   font-size: 32px;
   font-weight: 600;
   line-height: 38px;
   margin-bottom: 99px;
 }
-.singup_content {
+.signup_content {
   width: 1110px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.singup_content label + label + label {
+.signup_content label + label + label {
   margin-top: 28px;
 }

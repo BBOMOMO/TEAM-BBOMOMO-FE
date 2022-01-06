@@ -5,7 +5,7 @@ import NoInfo from "../components/NoInfo";
 import GroupRecommend from "../components/GroupRecommend";
 import Certification from "../components/Certification";
 import Footer from "../components/Footer";
-
+import Banner from "../Images/banner.png";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -28,7 +28,9 @@ const Main = (props) => {
       <div className="main_wrap">
         <div className="main_contentArea">
           {/* TODO: AdSection Onclick 이벤트페이지로 이동. 있으면 ㅎ */}
-        <AdSection/>
+        <AdSection>
+          <img src={Banner} alt="" />
+        </AdSection>
          
          <RoomSection>
            <GroupRecommend />
@@ -72,18 +74,20 @@ const AdSection = styled.div`
   position:relative;
   width:100%;
   height:150px;
-  background:url('/static/media/banner.ea373fe2.png') no-repeat;
-  background-size:100%; 
+  z-index:-1;
+  >img {width:100%;}
+ 
 `;
 
 const RoomSection = styled.div`
   position:relative;
   margin-top:50px; 
   width:100%;
-  min-height:65vh;
+  min-height:35vh;
   height:auto;
-  *border:1px solid #bbb; 
+  
   padding-bottom:60px; 
+  z-index:-1;
 `;
 
 const CertifiSection = styled.div`
@@ -95,6 +99,7 @@ const CertifiSection = styled.div`
   *border:1px solid #bbb; 
   *overflow:scroll;
   padding-bottom:80px; 
+  z-index:-1;
 
 `;
 

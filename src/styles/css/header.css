@@ -153,10 +153,14 @@
 
 /* 개인정보수정 */
 .personal_info_edit {
-  padding: 45px 0 35px 0;
+  padding: 45px 0 25px 0;
 }
 .division_edit {
   margin-top: 20px;
+  position:relative;
+}
+.division_edit > label{
+  position:initial!important;
 }
 .userservice {
   padding-top: 26px;
