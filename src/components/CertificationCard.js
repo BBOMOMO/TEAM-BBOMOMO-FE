@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import comment from "../Images/ic-comment.png";
+import { useDispatch, useSelector } from "react-redux";
 
 const CertificationCard = (props) => {
   // const { sTime } = props;
-
+  const userInfo = useSelector((state) => state.user.userInfo);
+  if (userInfo == null) {
+    return <></>;
+  }
   return (
     <CertifiCont
       className="certifi_card_list_bx"
@@ -12,7 +16,7 @@ const CertificationCard = (props) => {
     >
       <div className="certifi_card_top">
         {/* <h2>{sTime}</h2> */}
-        <h2>10:12</h2>
+        <h2>{userInfo.totalRecord[0].total}</h2>
         <p>{props.postContent}</p>
       </div>
       <div className="certifi_card_bottom">

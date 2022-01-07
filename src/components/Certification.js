@@ -5,13 +5,23 @@ import CertificationComment from "./CertificationComment";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // import CertificationCard from "./CertificationCard";
 import apis from "../shared/apis";
 
 const Certification = () => {
   const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(userActions.checkUserDB());
+  }, []);
   const _roomlist = useSelector((state) => state.post.postList.board);
+  console.log(_roomlist, "roomlist");
+  const postTest = useSelector((state) => state.post);
+  console.log(postTest, "postTest");
+  const userInfo = useSelector((state) => state.user.userInfo);
+  console.log(userInfo);
+
   // console.log(_roomlist.postId);
 
   const [showWriteModal, setShowWritefoModal] = React.useState(false);
@@ -81,8 +91,10 @@ const Certification = () => {
                 <div
                   onClick={() => {
                     let postId = a.postId;
+                    let idx = b;
                     console.log(postId);
                     openPostComment();
+                    dispatch(postActions.detailPost(idx));
                     apis.getPostdetail(postId).then(function (response) {
                       // console.log(a.data);
                       // dispatch(loadPosts(response));
