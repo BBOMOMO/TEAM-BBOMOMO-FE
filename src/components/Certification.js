@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import CertificationCard from "./CertificationCard";
 import CertificationWrite from "./CertificationWrite";
 import CertificationComment from "./CertificationComment";
 
-import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
-
-// import CertificationCard from "./CertificationCard";
-import apis from "../shared/apis";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Certification = (props) => {
   const dispatch = useDispatch();
   const _postlist = useSelector((state) => state.post.postList.board);
-
-  const user = useSelector((state) => state.user.userInfo);
-  console.log(user);
 
   const [showWriteModal, setShowWritefoModal] = React.useState(false);
   const [showCommentModal, setShowCommentfoModal] = React.useState(false);
@@ -33,11 +26,6 @@ const Certification = (props) => {
   const closePostComment = () => {
     setShowCommentfoModal(false);
   };
-
-  // apis.checkUser().then(function (response) {
-  //   console.log(response);
-  //   // dispatch(loadPosts(response));
-  // });
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
@@ -65,28 +53,27 @@ const Certification = (props) => {
         <div className="certifi_card_bx">
           {_postlist &&
             _postlist.map((a, b) => {
-              // let HH = Math.floor(a.studyTime / 60);
-              // let MM = a.studyTime % 60;
-              // let sTime = `${HH}: ${MM}`;
+              let postBg = a.postImg;
+              let idx = b;
+              let sortBg = "";
+              if (postBg.includes("https")) {
+                sortBg = "certifi_card_list_bx black-bg";
+              } else {
+                sortBg = "certifi_card_list_bx nomal-bg";
+              }
               return (
                 <div
+                  className="CertificationCardBx"
                   onClick={() => {
-                    console.log(a, "65546");
-                    let postId = a.postId;
-                    let idx = b;
-                    console.log(postId);
                     openPostComment();
                     dispatch(postActions.detailPost(idx));
-                    apis.getPostdetail(postId).then(function (response) {
-                      console.log(response);
-                      // console.log(a.data);
-                      // dispatch(loadPosts(response));
-                    });
+                    dispatch(postActions.detailPostBg(postBg));
                   }}
                 >
                   <CertificationCard
                     {...a}
                     key={b}
+                    sortBg={sortBg}
                     // sTime={sTime}
                   ></CertificationCard>
                 </div>

@@ -187,6 +187,7 @@ export default handleActions(
         draft.userId = action.payload.userInfo.user[0].userId;
         draft.userNick = action.payload.userInfo.user[0].nick;
         draft.userCate = action.payload.userInfo.user[0].category;
+        draft.studyTime = action.payload.userInfo.todayRecord[0].today;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
   },
