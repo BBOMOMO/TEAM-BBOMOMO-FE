@@ -121,9 +121,10 @@ const checkUserDB = () => {
         console.log(userInfo);
         const userId = userInfo.user[0].userId;
         const userNick = userInfo.user[0].nick;
+        const statusMsg = userInfo.user[0].statusMsg;
         localStorage.setItem("id", `${userId}`);
         localStorage.setItem("nick", `${userNick}`);
-
+        localStorage.setItem("statusMsg", `${statusMsg}`);
         dispatch(setUser(userInfo));
         dispatch(nickCheck(response.data));
       })
