@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import roundCircle from "../Images/timestat/notimestat.png";
-import user from "../Images/nouser.png";
+import user from "../Images/nouser_2.png";
 import pencil from "../Images/pencil.png";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 

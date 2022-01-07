@@ -54,10 +54,16 @@ const addRoom = (
     await apis
       .postRoom(userId, roomInfo)
       .then(async function (response) {
-        console.log(response);
-        console.log("방 생성 완료");
-        const newRoomId = response.data.newRoomId;
+       // console.log(response);
+       // console.log("방 생성 완료");
+       const newRoomId = response.data.newRoomId;
+       apis.getRoom().then(function (response) {
+        dispatch(loadRooms(response));
+      }).then((response)=>{
+  
         history.push(`/video/${newRoomId}`);
+      });
+       
       })
       .catch((err) => {
         console.log(err.response.data.msg);

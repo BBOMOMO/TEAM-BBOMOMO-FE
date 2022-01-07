@@ -73,11 +73,13 @@ const GroupBx = (props) => {
           {userlist &&
             userlist.map((p, idx) => {
               return (
-                <p className="state_name_txt" key={p.idx}>
+                <div className="group_name_wrap">
+                  <p className="state_name_txt" key={p.idx}>
                   <span className="state_name_circle">동그라미</span>
                   {/* 이 부분 닉네임으로 넘겨주기로 했음 */}
                   {p.nick}
                 </p>
+                </div>
               );
             })}
         </div>
@@ -102,6 +104,7 @@ GroupBx.defaultProps = {
 
 const GroupContBx = styled.div`
   position: relative;
+ 
 `;
 const GroupContLock = styled.div`
   display: flex;
@@ -111,6 +114,7 @@ const GroupContLock = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  flex:1;
   width: 330px;
   height: 180px;
   border-radius: 11px;
@@ -137,6 +141,7 @@ const GroupCont = styled.div`
   border-radius: 11px;
   background-color: #eee;
   box-sizing: border-box;
+  overflow:hidden;
 `;
 
 export default GroupBx;

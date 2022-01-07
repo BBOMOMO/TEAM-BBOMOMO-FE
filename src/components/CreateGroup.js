@@ -55,6 +55,8 @@ function CreateGroup({ showModal, closeModal }) {
   const is_status = (e) => {
     // setCount((prevCount) => prevCount + 1);
     // console.log(count);
+
+
     // if (count % 2 === 0) {
     //   setRoomStatus("1");
     //   console.log("비밀방");

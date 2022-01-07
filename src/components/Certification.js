@@ -8,8 +8,26 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 const Certification = (props) => {
   const dispatch = useDispatch();
+
+ // const cardList = useSelector((state) => state.post.postList.board);
+ // console.log(_roomlist.postId);
+
   const _postlist = useSelector((state) => state.post.postList.board);
 
+
+
+  const [roomcount, setRoomcount] = React.useState(3);
+
+//   const cardSlice = () => {
+//     if (cardList) {
+//       const _cardSlice = cardList.slice(0, roomcount);
+//       return _cardSlice;
+//     }
+//   };
+
+  const seeMore = () => {
+    setRoomcount(roomcount + roomcount);
+  };
   const [showWriteModal, setShowWritefoModal] = React.useState(false);
   const [showCommentModal, setShowCommentfoModal] = React.useState(false);
 
@@ -29,6 +47,7 @@ const Certification = (props) => {
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
+
 
   React.useEffect(() => {
     dispatch(postActions.getPosts());
@@ -51,6 +70,13 @@ const Certification = (props) => {
         </div>
 
         <div className="certifi_card_bx">
+
+         // {cardSlice() &&
+         //   cardSlice().map((a, b) => {
+              // let HH = Math.floor(a.studyTime / 60);
+              // let MM = a.studyTime % 60;
+              // let sTime = `${HH}: ${MM}`;
+
           {_postlist &&
             _postlist.map((a, b) => {
               let postBg = a.postImg;
@@ -61,6 +87,7 @@ const Certification = (props) => {
               } else {
                 sortBg = "certifi_card_list_bx nomal-bg";
               }
+
               return (
                 <div
                   className="CertificationCardBx"
@@ -81,7 +108,7 @@ const Certification = (props) => {
             })}
         </div>
 
-        <div className="certifi_more_btn">
+        <div className="certifi_more_btn" onClick={seeMore}>
           <button>더보기</button>
         </div>
       </div>

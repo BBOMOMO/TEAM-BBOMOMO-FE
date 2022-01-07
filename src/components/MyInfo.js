@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "../elements/Input";
 import roundCircle from "../Images/Group3366.png";
-import userImg from "../Images/user.png";
+import user from "../Images/nouser.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
 import { history } from "../redux/configureStore";
@@ -28,11 +28,19 @@ const MyInfo = (props) => {
   const today = user.todayRecord[0].today;
   const total = user.totalRecord[0].total;
   const [valueName, setValue] = React.useState(statusMsg);
+  const [file, setFile] = React.useState(null);
+  const [userImg, setUserImg] = React.useState(null);
+  const profImg = user.user[0].profileImg;
+  const [background, setBackground] = React.useState(profImg?profImg:"/static/media/nouser.3c586078.png");
 
+  const css = {
+    backgroundImage: `url(${background})`,
+  };
   const saveMsg = (e) => {
     console.log(valueName);
     dispatch(userActions.statMsgDB(valueName));
   };
+
 
   // console.log("user",category)
 
@@ -53,15 +61,41 @@ const MyInfo = (props) => {
     } else if (category === "6") {
       setCateName("대학생");
     }
-  }, [category]);
+    dispatch(userActions.checkUserDB());
+  },[])
+
 
   return (
     <>
       <div className="myinfo_container">
         <div className="myinfo_profile_area">
           <img src={roundCircle} />
-          <img src={userImg} className="myinfo_user_img" />
+
+          {file===null ?
+          ( 
+         <label style={css} className="myinfo_user_img">
+            <span>사진 변경하기</span>
+            <input type="file" 
+            onChange ={(e)=>{
+              setUserImg(e.target.dataset.userImg);
+              setFile(e.target.files[0]);
+              const objectURL = URL.createObjectURL(
+                e.target.files[0]
+              );
+              console.log(objectURL)
+              setBackground(objectURL);   
+            }}
+            />
+          </label>
+          
+          ):(
+          <label style={css} className="myinfo_user_img">
+           <span onClick={()=>{  dispatch(userActions.changeImgDB(file)); }}>수정완료</span>  
+          </label>
+          )}
+          
         </div>
+        
         <div className="myinfo_txt_area">
           <div className="myinfo_user_info">
             <span className="myinfo_user_division">{cateName}</span>
@@ -101,7 +135,7 @@ const MyInfo = (props) => {
           </div>
         </div>
         <div className="myinfo_make_group">
-          <p onClick={openModal}>+ 그룹 만들기</p>
+          <p onClick={openModal}>+ 스터디룸 만들기</p>
           <CreateGroup showModal={showModalCG} closeModal={closeModal} />
         </div>
       </div>

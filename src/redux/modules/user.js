@@ -7,13 +7,13 @@ import apis from "../../shared/apis";
 const SET_USER = "SET_USER";
 const ID_CHECK = "ID_CHECK";
 const NICK_CHECK = "NICK_CHECK";
-
+const ADD_USER_IMG = "ADD_USER_IMG";
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
-const idCheck = createAction(ID_CHECK, (idCheckres) => ({ idCheckres }));
-const nickCheck = createAction(NICK_CHECK, (nickCheckres) => ({
-  nickCheckres,
-}));
+const idCheck = createAction(ID_CHECK,(idCheckres)=>({idCheckres}));
+const nickCheck = createAction(NICK_CHECK, (nickCheckres)=>({nickCheckres}));
+const addUserImg = createAction(ADD_USER_IMG,(userImg)=>({userImg}));
+
 
 // initialState
 const initialState = {
@@ -160,14 +160,41 @@ const changeInfo = (nickname, category) => {
     };
     await apis
       .changeNick(userInfo)
-      .then((response) => {
-        window.alert("ok");
+      .then((response)=>{
+        console.log(response);
+        window.alert("ok")
+      }).catch((err)=>{
+        window.alert(err.response.data.message)
       })
-      .catch((err) => {
-        window.alert(err.response.data.message);
-      });
-  };
-};
+  }
+}
+
+//프로필이미지 수정
+const changeImgDB = (file) => {
+  return async function (dispatch, getState, {history}){
+
+    const form = new FormData();
+
+    form.append("file", file);
+    
+    await apis
+      .changeImg(form)
+      .then((response)=>{
+        window.alert("수정 완료되었습니다.")
+        apis.checkUser()
+        .then((response) => {
+          dispatch(setUser(response.data));
+          window.location.reload();
+        });
+      }).catch((err)=>{
+        console.log(err);
+      })
+  }
+ 
+
+}
+
+
 
 //---- reducer ----
 export default handleActions(
@@ -183,14 +210,16 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.userInfo = action.payload.userInfo;
-
-        //자꾸 에러떠서 각각 지정
         draft.userId = action.payload.userInfo.user[0].userId;
         draft.userNick = action.payload.userInfo.user[0].nick;
         draft.userCate = action.payload.userInfo.user[0].category;
         draft.studyTime = action.payload.userInfo.todayRecord[0].today;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
+    [ADD_USER_IMG]: (state, action) =>
+    produce(state, (draft) => {
+      
+    }),
   },
   initialState
 );
@@ -203,4 +232,6 @@ export const actionCreators = {
   nickCheckDB,
   changeInfo,
   statMsgDB,
+  changeImgDB
+
 };

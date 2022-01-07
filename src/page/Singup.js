@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SingupCont from "../components/SignupCont";
-import logo from "../Images/bbomomologo.png";
+import logo from "../Images/bbomomologo_w.png";
 
 const Signup = (props) => {
   return (

@@ -55,6 +55,7 @@ Button.defaultProps = {
   color: "#fff",
   background: "#272727",
   fontSize: "24px",
+  background:"#486bff",
   _onClick: () => {},
 };
 
