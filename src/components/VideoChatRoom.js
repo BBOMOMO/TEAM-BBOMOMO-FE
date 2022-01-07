@@ -57,6 +57,10 @@ export default function VideoChatRoom() {
   let userId = localStorage.getItem("id");
   let userNick = localStorage.getItem("nick");
   let statusMsg = localStorage.getItem("statusMsg");
+  let peerstatusMsg = "";
+  let peerStatusMsg = "";
+  let peerNickname = "";
+  let peernick = "";
   const params = useParams();
   const roomId = params.roomId;
 
@@ -81,6 +85,7 @@ export default function VideoChatRoom() {
   let timerRef = useRef();
   const videoGrid = useRef();
   const myVideo = useRef();
+  const videoContainer = useRef();
 
   // TODO
   // const [todoOpen, setTodoOpen] = useState(false);
@@ -228,39 +233,113 @@ export default function VideoChatRoom() {
 
         peer.on("open", (peerId) => {
           //소켓을 통해 서버로 방ID, 유저ID 보내주기
+          console.log(peerId);
           myPeerId = peerId;
-          socket.emit("join-room", roomId, peerId, userId, userNick, streamId);
+          socket.emit(
+            "join-room",
+            roomId,
+            peerId,
+            userId,
+            userNick,
+            streamId,
+            statusMsg
+          );
+
           //전역변수 chatroom.participants에 본인 더하기
         });
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
+          // socket.on("peer-on", (peernick, peerstatusMsg) => {
+          //   peerStatusMsg = peerstatusMsg;
+          //   peerNickname = peernick;
+          //   console.log(peerStatusMsg, peerNickname);
+          // });
           //answer()를 해야 mediaConnection이 활성화됨
           mediaConnection.answer(stream);
-          const newVideo = document.createElement("video");
-          newVideo.setAttribute("autoplay", "playsinline");
+          const videoBox = document.createElement("div");
+          videoBox.classList.add("video_box");
+          console.log("div 클래스 추가 videobox");
+          const peerVideo = document.createElement("video");
+          const txtBox = document.createElement("div");
+          console.log("div 추가");
+          txtBox.classList.add("userview_txtbox");
+          console.log("클래스 추가");
+          const img = document.createElement("img");
+          img.setAttribute("src", `${profile}`);
+          img.classList.add("fl");
+          const nameBox = document.createElement("div");
+          nameBox.classList.add("userview_name", "fl");
+          const peerstatus = document.createElement("p");
+          peerstatus.innerText = peerStatusMsg;
+          const peerNick = document.createElement("p");
+          peerNick.innerText = peernick;
+          nameBox.prepend(peerstatus);
+          nameBox.prepend(peerNick);
+          txtBox.prepend(nameBox);
+          txtBox.prepend(img);
+          // 텍스트 추가
+          videoBox.prepend(peerVideo);
+          console.log("newVideo 추가");
+          videoBox.prepend(txtBox);
+          console.log("textbox 추가");
+          videoContainer.current.prepend(videoBox);
+          console.log("prepend");
 
           mediaConnection.on("stream", (newStream) => {
-            addVideoStream(newVideo, newStream);
-            videoGrid.current.prepend(newVideo);
+            addVideoStream(peerVideo, newStream);
+            videoBox.prepend(peerVideo);
             setUsers(videoGrid.current.childElementCount);
+            console.log(myPeerId, userNick);
           });
 
           mediaConnection.on("close", () => {
             socket.emit("camera-off", myPeerId, userNick);
+            console.log(myPeerId, userNick);
           });
         });
 
-        socket.on("user-connected", (peerId, userNick, streamId) => {
-          console.log(peerId, userNick, streamId);
+        socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
+          console.log(peerId, userNick, streamId, peerMsg);
+          peerstatusMsg = peerMsg;
           setUsers((prev) => prev + 1);
           const mediaConnection = peer.call(peerId, stream);
+          const videoBox = document.createElement("div");
+          videoBox.classList.add("video_box");
+          console.log("div 클래스 추가 videobox");
           const newVideo = document.createElement("video");
+          const txtBox = document.createElement("div");
+          console.log("div 추가");
+          txtBox.classList.add("userview_txtbox");
+          console.log("클래스 추가");
+          const img = document.createElement("img");
+          img.setAttribute("src", `${profile}`);
+          img.classList.add("fl");
+          const nameBox = document.createElement("div");
+          nameBox.classList.add("userview_name");
+          nameBox.classList.add("fl");
+          const peerstatus = document.createElement("p");
+          peerstatus.innerText = peerstatusMsg;
+          console.log(peerstatus.innerText);
+          const peerNick = document.createElement("p");
+          peerNick.innerText = userNick;
+          nameBox.prepend(peerstatus);
+          nameBox.prepend(peerNick);
+          txtBox.prepend(nameBox);
+          txtBox.prepend(img);
+          // 텍스트 추가
+          videoBox.prepend(newVideo);
+          console.log("newVideo 추가");
+          videoBox.prepend(txtBox);
+          console.log("textbox 추가");
+          videoContainer.current.prepend(videoBox);
+          console.log("prepend");
           // newVideo.setAttribute("id", `${peerId}`);
 
           mediaConnection.on("stream", (newStream) => {
             addVideoStream(newVideo, newStream);
-            videoGrid.current.prepend(newVideo);
+            videoBox.prepend(newVideo);
+            // videoGrid.current.prepend(newVideo);
             setUsers(videoGrid.current.childElementCount);
           });
         });
@@ -269,13 +348,22 @@ export default function VideoChatRoom() {
     socket.on("user-disconnected", (peerId, userNick, streamId) => {
       setUsers((prev) => prev - 1);
       const video = document.querySelectorAll("video");
+      const video_box = document.querySelectorAll("video_box");
+      const txt_box = document.querySelectorAll("userview_txtbox");
+      const name_box = document.querySelectorAll("userview_name");
+      console.log(video_box, txt_box, name_box);
       let removeVideo;
+      let removeBox;
+      let removeTxt;
+      let removeName;
       for (let i = 0; i < video.length; i++) {
         if (video[i].srcObject.id === streamId) {
           removeVideo = video[i];
+          removeBox = video_box[i];
+          removeTxt = txt_box[i];
+          removeName = name_box[i];
         }
       }
-
       removeVideo.remove();
     });
 
@@ -315,7 +403,7 @@ export default function VideoChatRoom() {
                 {state}
               </p>
             </GroupTimer>
-            <div id="video-grid">
+            <div id="video-grid" ref={videoContainer}>
               <div className="video_box" ref={videoGrid}>
                 <video ref={myVideo} autoPlay playsInline></video>
                 <div className="userview_txtbox clearfix">
