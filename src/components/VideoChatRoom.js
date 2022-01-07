@@ -56,6 +56,7 @@ export default function VideoChatRoom() {
   const dispatch = useDispatch();
   let userId = localStorage.getItem("id");
   let userNick = localStorage.getItem("nick");
+  let statusMsg = localStorage.getItem("statusMsg");
   const params = useParams();
   const roomId = params.roomId;
 
@@ -69,6 +70,7 @@ export default function VideoChatRoom() {
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState(1);
   const [state, setState] = useState("5 : 00");
+  const [text, setText] = useState("쉬는 시간입니다.");
   // const username = user
   //   ? user.username
   //   : `GUEST${Math.round(Math.random() * 100000)}`;
@@ -99,12 +101,22 @@ export default function VideoChatRoom() {
   // };
 
   useEffect(() => {
-    const socket = io("http://13.209.3.61");
+    const socket = io("https://hanghaelog.shop");
     const peer = new Peer({
-      config: {'iceServers': [
-        { url: 'stun:stun.l.google.com:19302' },
-       
-      ]}
+      config: {
+        iceServers: [
+          {
+            urls: [
+              // 구글 스턴 서버, 실제 배포 시 커스텀 스턴 서버 사용해야함
+              "stun:stun.l.google.com:19302",
+              "stun:stun1.l.google.com:19302",
+              "stun:stun2.l.google.com:19302",
+              "stun:stun3.l.google.com:19302",
+              "stun:stun4.l.google.com:19302",
+            ],
+          },
+        ],
+      },
     });
 
     // 클라의 영상 스트림 비디오에 넣기
@@ -130,12 +142,13 @@ export default function VideoChatRoom() {
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
           // console.log(MinTime, secTime, gapTimeFloor);
+          setText("쉬는 시간입니다.");
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
-            setState(`남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`);
+            setState(`${min} : ${sec}`);
             // console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "쉬는시간");
             // timerRef.current.innerText = `남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`;
             // if (min === 0 && sec === 0)
@@ -160,12 +173,13 @@ export default function VideoChatRoom() {
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
           // console.log(MinTime, secTime, gapTimeFloor);
+          setText("공부 시간입니다.");
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
-            setState(`남은 시간은 ${min}분 ${sec}초 입니다. 수업시간`);
+            setState(`${min} : ${sec}`);
             if (gapTimeFloor <= 0) {
               console.log(
                 currentRound,
@@ -194,15 +208,13 @@ export default function VideoChatRoom() {
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
           // console.log(MinTime, secTime, gapTimeFloor);
+          setText("모두 수고하셨습니다.");
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
-            setState(
-              `남은 시간은 ${min}분 ${sec}초 입니다.
-              수고하셨습니다.`
-            );
+            setState(`${min} : ${sec}`);
             if (gapTimeFloor <= 0) {
               clearInterval(goodByeinterval);
               // socketRef.current.emit("removeRoom", roomId);
@@ -218,7 +230,6 @@ export default function VideoChatRoom() {
           //소켓을 통해 서버로 방ID, 유저ID 보내주기
           myPeerId = peerId;
           socket.emit("join-room", roomId, peerId, userId, userNick, streamId);
-
           //전역변수 chatroom.participants에 본인 더하기
         });
 
@@ -293,6 +304,9 @@ export default function VideoChatRoom() {
           <GroupChat />
           <GroupCont>
             <GroupTimer>
+              <p style={{ color: "#000" }} className="groupTimer_whatTime">
+                {text}
+              </p>
               <p
                 ref={timerRef}
                 style={{ color: "#000" }}
@@ -307,10 +321,10 @@ export default function VideoChatRoom() {
                 <div className="userview_txtbox clearfix">
                   <img src={profile} alt="프로필" className="fl" />
                   <div className="userview_name fl">
-                    <p>김철수</p>
-                    <p>수능 11111도전</p>
+                    <p>{userNick}</p>
+                    <p>{statusMsg}</p>
                   </div>
-                  <div className="fr userview_friend">친구신청</div>
+                  {/* <div className="fr userview_friend">친구신청</div> */}
                 </div>
               </div>
             </div>

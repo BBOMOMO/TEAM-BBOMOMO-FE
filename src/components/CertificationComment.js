@@ -26,6 +26,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
   console.log(_roomlist, "여기서 확인 룸리스트");
   const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
   console.log(_detailPostIdx, "여기서 확인 디테일포스트");
+
   return (
     <>
       {showModal ? (

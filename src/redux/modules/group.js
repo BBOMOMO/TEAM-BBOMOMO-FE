@@ -74,6 +74,7 @@ const enterRoom = (newRoomId, roomPassword = null) => {
       })
       .catch((err) => {
         console.log(err.response.data.msg);
+        history.push("/");
       });
   };
 };
