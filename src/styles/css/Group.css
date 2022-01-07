@@ -147,7 +147,13 @@
 .bg06 {
   background-color: #fe9c77 !important;
 }
-
+.groupTimer_whatTime {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
 .groupTimer_timer {
   position: absolute;
   left: 50%;
