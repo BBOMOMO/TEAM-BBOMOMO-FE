@@ -4,17 +4,58 @@
   height: 100vh;
 }
 .login_left_bx {
-  width: 50%;
-  background: #486bff;
-  /* background-image: url("../../Images/loginbg.png"); */
+  position: relative;
+  width: 824px;
+  background: #486BFF;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 0 50px 50px 0;
+  padding:100px;
+  box-sizing: border-box;
+}
+.login_left_bx .login_left_bbomomo {
+  width:514px;
+  height:460px;
+  background-image: url("../../Images/login_bbomo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  position: absolute;
+  bottom: 47px;
+  left: 60px;
+  
+}
+
+.login_left_bx .clock {
+  position: absolute;
+  top:100px;
+  right:100px;
+  width:150px;
+}
+
+.login_left_bx .login_left_intro {
+  position: relative;
+  margin-top:20px;
+  color:#fff;
+  letter-spacing: -1.5px;
+  
+}
+.login_left_bx .login_left_intro > p {
+  font-size:26px;
+  font-weight:300;
+  opacity:0.6;
+  margin-bottom:20px;
+}
+.login_left_bx .login_left_intro > h2 {
+  font-size: 44px;
+  font-weight: 600;
+  line-height:1.2;
 }
 .login_rigth_bx {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: calc(100% - 824px);
 }
 .login_inner_bx {
   width: 498px;

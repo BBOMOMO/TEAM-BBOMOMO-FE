@@ -1,6 +1,9 @@
 /************************** 그룹리스트 **************************/
+.group_left_bx{
+  flex:0.2;
+}
 .group_left_h2 {
-  max-width: 220px;
+  width: 210px;
   margin-bottom: 12px;
   color: #242424;
   font-size: 16px;
@@ -19,10 +22,15 @@
 }
 .state_name_bx {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  flex-wrap:wrap;
+}
+.group_name_wrap{
+  max-width: 50%;
+  min-width: 34%;
 }
 .state_name_txt {
+  display:inline-block;
   padding: 4px 8px 4px 6px;
   border: 0.37px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
@@ -44,10 +52,11 @@
   text-indent: -9999px;
 }
 .state_name_txt + .state_name_txt {
-  margin-top: 4px;
+  *margin-top: 4px;
 }
 
 .group_right_bx {
+  flex:0.2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  baseURL: "http://13.209.3.61/", // 재원님 서버주소 //나중에 https로 바꾸기
+  baseURL: "https://hanghaelog.shop/", // 재원님 서버주소 //나중에 https로 바꾸기
   //baseURL: "http://54.180.120.210/", // 상협님서버주소
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
 });
@@ -33,7 +33,7 @@ export const apis = {
   //---- 유저 : 회원정보수정 ----//
   changeNick: (userInfo) => instance.put("/api/v1/users/info", userInfo), // 헤더 유저정보 수정
   changeMsg: (userMsg) => instance.put("/api/v1/users/status", userMsg), //마이페이지 상태메시지 수정
-  changeImg: (userImg) => instance.put("/api/v1/users/profileImg", userImg), // 마이페이지 프로필이미지 수정
+  changeImg: (formData) => instance.put("/api/v1/users/profileImg", formData), // 마이페이지 프로필이미지 수정
 
   //---- 그룹  ----//
   postRoom: (userId, roomInfo) =>

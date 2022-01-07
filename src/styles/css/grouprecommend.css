@@ -72,7 +72,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  cursor: pointer;
+
 }
 .groupreco_more_btn::before {
   position: absolute;
@@ -106,4 +106,5 @@
   font-size: 16px;
   line-height: 22px;
   z-index: 99;
+  cursor: pointer;
 }

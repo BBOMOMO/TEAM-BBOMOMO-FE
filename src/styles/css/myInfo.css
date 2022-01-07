@@ -16,11 +16,34 @@
 }
 .myinfo_user_img {
   position: absolute;
-  width:197px;
+  width: 197px;
+  height: 197px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  
 }
+.myinfo_user_img > span {
+  display:none;
+  color:#fff;
+  line-height:197px;
+  background-color:rgba(0, 0, 0, 0.384);
+  width:197px;
+  height:197px;
+  border-radius:50%;
+  
+}
+
+
+
+.myinfo_user_img:hover > span  {
+  display: block;
+}
+
+.myinfo_user_img>input{display:none;}
 
 .myinfo_user_info {
   display: flex;
