@@ -1,6 +1,6 @@
 /************************** 그룹리스트 **************************/
-.group_left_bx{
-  flex:0.2;
+.group_left_bx {
+  flex: 0.2;
 }
 .group_left_h2 {
   width: 210px;
@@ -23,14 +23,14 @@
 .state_name_bx {
   display: flex;
   align-items: center;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
-.group_name_wrap{
+.group_name_wrap {
   max-width: 50%;
   min-width: 34%;
 }
 .state_name_txt {
-  display:inline-block;
+  display: inline-block;
   padding: 4px 8px 4px 6px;
   border: 0.37px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
@@ -56,7 +56,7 @@
 }
 
 .group_right_bx {
-  flex:0.2;
+  flex: 0.2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

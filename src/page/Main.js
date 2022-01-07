@@ -55,14 +55,13 @@ const MainContainer = styled.div`
   height: auto;
   display: flex;
 
-
-  .main_wrap_index{
-    *z-index:100;
+  .main_wrap_index {
+    z-index: 1;
   }
 
   .main_wrap {
     width: 100%;
-    z-index: 0;
+    position: relative;
   }
   .main_contentArea {
     *margin-left: 80px;
@@ -93,13 +92,12 @@ const RoomSection = styled.div`
 `;
 
 const CertifiSection = styled.div`
-  margin-top:30px; 
-  position:relative;
-  width:100%;
-  min-height:40vh;
-  *height:auto; 
-  *border:1px solid #bbb; 
-  *overflow:scroll;
-  padding-bottom:80px; 
-
+  margin-top: 30px;
+  position: relative;
+  width: 100%;
+  min-height: 40vh;
+  *height: auto;
+  *border: 1px solid #bbb;
+  *overflow: scroll;
+  padding-bottom: 80px;
 `;
