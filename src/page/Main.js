@@ -13,6 +13,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Main = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userInfo);
+  console.log(user);
   let userId = localStorage.getItem("id");
   let userNick = localStorage.getItem("nick");
   React.useEffect(() => {
@@ -54,9 +55,9 @@ const MainContainer = styled.div`
   height: auto;
   display: flex;
 
-  .main_wrap_index {
+  /* .main_wrap_index {
     z-index: 100;
-  }
+  } */
   .main_wrap {
     width: 100%;
     z-index: 0;

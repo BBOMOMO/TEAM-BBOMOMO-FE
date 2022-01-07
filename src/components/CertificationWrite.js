@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../elements/index";
-// import {history} from "../redux/configureStore";
-import apis from "../shared/apis";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
-// import { getToken } from "../shared/token";
 
 import close from "../Images/ic_header_close.png";
 import BG1 from "../Images/study-certification-bg-1.png";
@@ -15,45 +12,44 @@ import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationWrite = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
+  const userTodayTime = useSelector((state) => state.user.studyTime);
+
   // 배경화면 지정
   const [background, setBackground] = useState(BG1);
   const css = {
     backgroundImage: `url(${background})`,
   };
-  // 보여주기 위한 시간
-  const [time, setTime] = useState("");
 
   // 버튼 활성화
-  const [isActive1, setActive1] = useState(false);
+  const [isActive1, setActive1] = useState(true);
   const [isActive2, setActive2] = useState(false);
   const [isActive3, setActive3] = useState(false);
   const [isActive4, setActive4] = useState(false);
 
   // dispatch
-  // const [nick, setNick] = useState("");
   const [postContent, setPostContent] = useState("");
   // post넘겨주기 위한 숫자 시간
   const [studyTime, setStudyTime] = useState(0);
   const [file, setFile] = useState(null);
-  const [bgtype, setBgType] = useState("");
-
-  // apis.getPost().then(function (response) {
-  //   console.log(response, "qweqeqwe");
-  // });
+  const [bgtype, setBgType] = useState("orange");
 
   // 공부시간 가져오기
   // apis.getStudyTime().then(function (response) {
-  //   const HH = Math.floor(response.data.studyTime.StudyTime / 60);
-  //   const MM = response.data.studyTime.StudyTime % 60;
-  //   setStudyTime(response.data.studyTime.StudyTime);
-  //   setTime(`${HH}:${MM}`);
+  // const HH = Math.floor(user.todayRecord[0].today / 60);
+  // const MM = user.todayRecord[0].today % 60;
+  // //   setStudyTime(response.data.studyTime.StudyTime);
+  // setTime(`${HH}:${MM}`);
   // });
 
   const sendPost = () => {
+    const userNick = localStorage.getItem("nick");
     dispatch(
-      postActions.addPost("walwalzz", postContent, studyTime, file, bgtype)
+      postActions.addPost(userNick, postContent, studyTime, file, bgtype)
     );
   };
+  React.useEffect(() => {
+    setBgType("orange");
+  }, []);
   return (
     <>
       {showModal ? (
@@ -69,7 +65,11 @@ const CertificationWrite = ({ showModal, closeModal }) => {
               <ModalInnerBg style={css}>
                 <div className="certifi_write_post_bx">
                   <div className="certifi_write_post_top">
-                    <h3>{time}</h3>
+                    {userTodayTime === null ? (
+                      <h3>00:00</h3>
+                    ) : (
+                      <h3>{userTodayTime}</h3>
+                    )}
                     <textarea
                       placeholder="오늘 하루도 고생한 나에게 치얼스"
                       onChange={(e) => {
@@ -174,7 +174,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       }}
                     />
                     <label
-                      for="post_img_btn"
+                      htmlFor="post_img_btn"
                       className="bg_btn bg_btn5"
                     ></label>
                   </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import {history} from "../redux/configureStore";
 import { Input } from "../elements";
+import CertificationCommentList from "./CertificationCommentList";
 
 import profileimg from "../Images/user.png";
 import close from "../Images/ic_header_close.png";
@@ -9,12 +9,7 @@ import comment from "../Images/ic-comment.png";
 import send from "../Images/ic-send 1.png";
 import BG1 from "../Images/study-certification-bg-1.png";
 
-// import BG2 from "../Images/study-certification-bg-2.png";
-// import BG3 from "../Images/study-certification-bg-3.png";
-// import BG4 from "../Images/study-certification-bg-4.png";
-import { useDispatch, useSelector } from "react-redux";
-import CertificationCommentList from "./CertificationCommentList";
-import { actionCreators as postActions } from "../redux/modules/post";
+import { useSelector } from "react-redux";
 
 const CertificationComment = ({ showModal, closeModal }) => {
   const [commentText, setCommentText] = useState("");
@@ -22,10 +17,14 @@ const CertificationComment = ({ showModal, closeModal }) => {
   const css = {
     backgroundImage: `url(${background})`,
   };
-  const _roomlist = useSelector((state) => state.post.postList.board);
-  console.log(_roomlist, "여기서 확인 룸리스트");
+  const _postlist = useSelector((state) => state.post.postList.board);
   const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
-  console.log(_detailPostIdx, "여기서 확인 디테일포스트");
+  const _postBg = useSelector((state) => state.post.detailPostBg.postBg);
+  const userTodayTime = useSelector((state) => state.user.studyTime);
+
+  React.useEffect(() => {
+    setBackground(_postBg);
+  }, [_postBg]);
 
   return (
     <>
@@ -43,8 +42,12 @@ const CertificationComment = ({ showModal, closeModal }) => {
                 <div className="comment_cont_left">
                   <ModalInnerBg style={css}>
                     <div className="certifi_comment_bg">
-                      <h3>10:12</h3>
-                      <p>{_roomlist[_detailPostIdx].postContent}</p>
+                      {userTodayTime === null ? (
+                        <h3>00:00</h3>
+                      ) : (
+                        <h3>{userTodayTime}</h3>
+                      )}
+                      <p>{_postlist[_detailPostIdx].postContent}</p>
                     </div>
                   </ModalInnerBg>
 
@@ -53,11 +56,11 @@ const CertificationComment = ({ showModal, closeModal }) => {
                       <div className="my_profile_img_bx">
                         <img src={profileimg} alt="프로필 이미지" />
                       </div>
-                      <h4>펭귄</h4>
+                      <h4>{_postlist[_detailPostIdx].nick}</h4>
                     </div>
                     <div className="my_profile_right">
                       <img src={comment} alt="댓글 아이콘" />
-                      <p>7</p>
+                      <p>1</p>
                     </div>
                   </div>
                 </div>
@@ -65,6 +68,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                 <div className="comment_cont_right">
                   <div className="certifi_conmment_list_bx">
                     <CertificationCommentList></CertificationCommentList>
+                    {/* <CertificationCommentList></CertificationCommentList>
                     <CertificationCommentList></CertificationCommentList>
                     <CertificationCommentList></CertificationCommentList>
                     <CertificationCommentList></CertificationCommentList>
@@ -75,8 +79,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                     <CertificationCommentList></CertificationCommentList>
                     <CertificationCommentList></CertificationCommentList>
                     <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
+                    <CertificationCommentList></CertificationCommentList> */}
                   </div>
 
                   <div className="certifi_conmment_input_bx">

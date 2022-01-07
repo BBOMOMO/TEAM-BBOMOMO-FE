@@ -40,7 +40,6 @@ const LoginCont = (props) => {
               padding="0 0 0 60px"
               _onChange={(e) => {
                 setId(e.target.value);
-                console.log(id);
               }}
             ></Input>
           </div>
@@ -61,7 +60,6 @@ const LoginCont = (props) => {
               padding="0 0 0 60px"
               _onChange={(e) => {
                 setPw(e.target.value);
-                console.log(pw);
               }}
             ></Input>
           </div>

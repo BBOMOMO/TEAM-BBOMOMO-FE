@@ -96,7 +96,7 @@ const loginDB = (username, password) => {
     await apis
       .login(userInfo)
       .then((response) => {
-        //console.log(response);
+        console.log(response);
         const token = response.data.token;
         setToken("login", token);
         window.alert("로그인 성공 🔥");
@@ -188,6 +188,7 @@ export default handleActions(
         draft.userId = action.payload.userInfo.user[0].userId;
         draft.userNick = action.payload.userInfo.user[0].nick;
         draft.userCate = action.payload.userInfo.user[0].category;
+        draft.studyTime = action.payload.userInfo.todayRecord[0].today;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
   },
