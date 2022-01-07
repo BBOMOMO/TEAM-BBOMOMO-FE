@@ -38,7 +38,7 @@ function App() {
 
         <Route path="/certifi" component={Certification} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
-        <Route path={"*"} component={NotFound} />
+        {/* <Route path={"*"} component={NotFound} /> */}
       </Switch>
     </>
   );

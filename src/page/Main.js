@@ -57,14 +57,16 @@ const MainContainer = styled.div`
 
 
   .main_wrap_index{
-    *z-index:100;
+    position: relative;
+    z-index:1;
   }
 
   .main_wrap {
     width: 100%;
-    z-index: 0;
+    position: relative;
   }
   .main_contentArea {
+    position: relative;
     *margin-left: 80px;
     width: 1018px;
     margin: 0 auto;
@@ -89,7 +91,7 @@ const RoomSection = styled.div`
   min-height: 35vh;
   height: auto;
 
-  padding-bottom: 60px;
+  *padding-bottom: 60px;
 `;
 
 const CertifiSection = styled.div`
