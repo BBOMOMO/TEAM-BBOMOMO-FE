@@ -80,6 +80,8 @@ const enterRoom = (newRoomId, roomPassword = null) => {
       })
       .catch((err) => {
         console.log(err.response.data.msg);
+        window.alert("공부시간에는 방에 입장할 수 없습니다!");
+        history.push("/");
       });
   };
 };

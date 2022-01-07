@@ -79,9 +79,59 @@
   z-index: 99;
 }
 /*----------공부인증 카드----------*/
-.certifi_card_list_bx:nth-child(3n + 1) {
+/* 공부인증 카드 사이 margin */
+.CertificationCardBx {
+  margin: 0 0 12px 11px;
+}
+.CertificationCardBx:nth-child(3n + 1) {
   margin: 0 0 12px 0;
 }
+/* 사용자 지정 이미지 구분 배경  시작*/
+.certifi_card_list_bx.nomal-bg .certifi_card_relative {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  padding: 40px 23px 27px;
+  width: 100%;
+  height: 100%;
+}
+
+.certifi_card_list_bx.black-bg .certifi_card_relative {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  padding: 40px 23px 27px;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+.certifi_card_list_bx.black-bg::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(0, 0, 0, 50%);
+  top: 0;
+  left: 0;
+  width: 330px;
+  height: 408px;
+  border-radius: 11px;
+}
+.certifi_card_list_bx.black-bg .certifi_card_relative .certifi_card_bottom > p {
+  color: #fff;
+  border: 0.37px solid #fff;
+}
+.certifi_card_list_bx.black-bg
+  .certifi_card_relative
+  .certifi_card_bottom
+  > p
+  > span {
+  background: #fff;
+}
+/* 사용자 지정 이미지 구분 배경 끝 */
+
 .certifi_card_top > h2 {
   margin-bottom: 30px;
   font-size: 50px;

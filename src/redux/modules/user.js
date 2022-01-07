@@ -14,13 +14,13 @@ const idCheck = createAction(ID_CHECK,(idCheckres)=>({idCheckres}));
 const nickCheck = createAction(NICK_CHECK, (nickCheckres)=>({nickCheckres}));
 const addUserImg = createAction(ADD_USER_IMG,(userImg)=>({userImg}));
 
+
 // initialState
 const initialState = {
   userInfo: null,
-  userDetail:{},
-  idCk:null,
-  nickCk:null,
-
+  userDetail: {},
+  idCk: null,
+  nickCk: null,
 };
 
 const registerDB = (name, pwd, pwdck, nickname, category) => {
@@ -49,44 +49,42 @@ const registerDB = (name, pwd, pwdck, nickname, category) => {
 
 // 아이디 중복확인
 const idCheckDB = (name) => {
-  return async function(dispatch, getState, {history}){
+  return async function (dispatch, getState, { history }) {
     const idInfo = {
-      username:name
-    }
+      username: name,
+    };
 
     await apis
       .registerID(idInfo)
-      .then(function(response){
-       // console.log(response);
+      .then(function (response) {
+        // console.log(response);
         dispatch(idCheck(response.data));
-      }).catch((err)=>{
+      })
+      .catch((err) => {
         //console.log(err.response.data.result);
         dispatch(idCheck(err.response.data));
-
-      })
-  }
-
-}
+      });
+  };
+};
 
 // 닉네임 중복확인
 const nickCheckDB = (nickname) => {
-  return async function(dispatch, getState, {history}){
+  return async function (dispatch, getState, { history }) {
     const nickInfo = {
-      nick: nickname
-    }
+      nick: nickname,
+    };
 
     await apis
       .registerNICK(nickInfo)
-      .then(function(response){
+      .then(function (response) {
         dispatch(nickCheck(response.data));
-      }).catch((err)=>{
+      })
+      .catch((err) => {
         //console.log(err.response.data.result);
         dispatch(nickCheck(err.response.data));
-
-      })
-  }
-}
-
+      });
+  };
+};
 
 // 로그인
 const loginDB = (username, password) => {
@@ -98,7 +96,7 @@ const loginDB = (username, password) => {
     await apis
       .login(userInfo)
       .then((response) => {
-        //console.log(response);
+        console.log(response);
         const token = response.data.token;
         setToken("login", token);
         window.alert("로그인 성공 🔥");
@@ -123,9 +121,10 @@ const checkUserDB = () => {
         console.log(userInfo);
         const userId = userInfo.user[0].userId;
         const userNick = userInfo.user[0].nick;
+        const statusMsg = userInfo.user[0].statusMsg;
         localStorage.setItem("id", `${userId}`);
         localStorage.setItem("nick", `${userNick}`);
-
+        localStorage.setItem("statusMsg", `${statusMsg}`);
         dispatch(setUser(userInfo));
         dispatch(nickCheck(response.data));
       })
@@ -137,29 +136,28 @@ const checkUserDB = () => {
 
 //상태명 수정하기
 const statMsgDB = (valueName) => {
-  return async function(dispatch, getState, {history}){
-
-    const userMsg ={
-      statusMsg: valueName
-    }
+  return async function (dispatch, getState, { history }) {
+    const userMsg = {
+      statusMsg: valueName,
+    };
     await apis
       .changeMsg(userMsg)
-      .then((response)=> {
-        //console.log(response);
-      }).catch((err)=> {
-        console.log(err.response.data.message)
+      .then((response) => {
+        console.log(response);
       })
-  }
-}
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
+};
 
 //유저정보수정
-const changeInfo = (nickname,category ) => {
-  return async function(dispatch, getState, { history }){
-
+const changeInfo = (nickname, category) => {
+  return async function (dispatch, getState, { history }) {
     const userInfo = {
       nick: nickname,
-      category: category
-    }
+      category: category,
+    };
     await apis
       .changeNick(userInfo)
       .then((response)=>{
@@ -197,24 +195,25 @@ const changeImgDB = (file) => {
 }
 
 
+
 //---- reducer ----
 export default handleActions(
   {
     [ID_CHECK]: (state, action) =>
-      produce(state, (draft) => { 
+      produce(state, (draft) => {
         draft.idCk = action.payload.idCheckres.result;
-    }),
+      }),
     [NICK_CHECK]: (state, action) =>
-    produce(state, (draft) => {
-      
-      draft.nickCk = action.payload.nickCheckres.result;
-    }),
+      produce(state, (draft) => {
+        draft.nickCk = action.payload.nickCheckres.result;
+      }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.userInfo = action.payload.userInfo;
         draft.userId = action.payload.userInfo.user[0].userId;
         draft.userNick = action.payload.userInfo.user[0].nick;
         draft.userCate = action.payload.userInfo.user[0].category;
+        draft.studyTime = action.payload.userInfo.todayRecord[0].today;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
     [ADD_USER_IMG]: (state, action) =>
@@ -234,4 +233,5 @@ export const actionCreators = {
   changeInfo,
   statMsgDB,
   changeImgDB
+
 };

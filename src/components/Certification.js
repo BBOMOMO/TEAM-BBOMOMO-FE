@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import CertificationCard from "./CertificationCard";
 import CertificationWrite from "./CertificationWrite";
 import CertificationComment from "./CertificationComment";
 
-import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
-// import CertificationCard from "./CertificationCard";
-import apis from "../shared/apis";
-
-const Certification = () => {
+const Certification = (props) => {
   const dispatch = useDispatch();
-  const cardList = useSelector((state) => state.post.postList.board);
-  // console.log(_roomlist.postId);
+
+ // const cardList = useSelector((state) => state.post.postList.board);
+ // console.log(_roomlist.postId);
+
+  const _postlist = useSelector((state) => state.post.postList.board);
+
 
 
   const [roomcount, setRoomcount] = React.useState(3);
 
-  const cardSlice = () => {
-    if (cardList) {
-      const _cardSlice = cardList.slice(0, roomcount);
-      return _cardSlice;
-    }
-  };
+//   const cardSlice = () => {
+//     if (cardList) {
+//       const _cardSlice = cardList.slice(0, roomcount);
+//       return _cardSlice;
+//     }
+//   };
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
@@ -43,23 +44,6 @@ const Certification = () => {
   const closePostComment = () => {
     setShowCommentfoModal(false);
   };
-
-  // apis.checkUser().then(function (response) {
-  //   console.log(response);
-  //   // dispatch(loadPosts(response));
-  // });
-
-  // apis.getPostdetail().then(function (response) {
-  //   console.log(response);
-  //   // dispatch(loadPosts(response));
-  // });
-
-  // const goDetail = () => {
-  //   apis.getPostdetail(_roomlist.postId).then(function (response) {
-  //     console.log(response);
-  //     // dispatch(loadPosts(response));
-  //   });
-  // };
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
@@ -86,26 +70,37 @@ const Certification = () => {
         </div>
 
         <div className="certifi_card_bx">
-          {cardSlice() &&
-            cardSlice().map((a, b) => {
+
+         // {cardSlice() &&
+         //   cardSlice().map((a, b) => {
               // let HH = Math.floor(a.studyTime / 60);
               // let MM = a.studyTime % 60;
               // let sTime = `${HH}: ${MM}`;
+
+          {_postlist &&
+            _postlist.map((a, b) => {
+              let postBg = a.postImg;
+              let idx = b;
+              let sortBg = "";
+              if (postBg.includes("https")) {
+                sortBg = "certifi_card_list_bx black-bg";
+              } else {
+                sortBg = "certifi_card_list_bx nomal-bg";
+              }
+
               return (
                 <div
+                  className="CertificationCardBx"
                   onClick={() => {
-                    let postId = a.postId;
-                    console.log(postId);
                     openPostComment();
-                    apis.getPostdetail(postId).then(function (response) {
-                      // console.log(a.data);
-                      // dispatch(loadPosts(response));
-                    });
+                    dispatch(postActions.detailPost(idx));
+                    dispatch(postActions.detailPostBg(postBg));
                   }}
                 >
                   <CertificationCard
                     {...a}
                     key={b}
+                    sortBg={sortBg}
                     // sTime={sTime}
                   ></CertificationCard>
                 </div>

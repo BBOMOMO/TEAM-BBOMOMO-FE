@@ -56,6 +56,7 @@ function CreateGroup({ showModal, closeModal }) {
     // setCount((prevCount) => prevCount + 1);
     // console.log(count);
 
+
     // if (count % 2 === 0) {
     //   setRoomStatus("1");
     //   console.log("비밀방");
@@ -80,27 +81,30 @@ function CreateGroup({ showModal, closeModal }) {
     } else if (roomStatus == false && roomPassword == "") {
       window.alert("방 비밀번호를 입력해주세요");
     }
-    
 
-    if(roomTitle && roomPurpose && round && studyTime && openedAt && roomStatus){
-
-       // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
-    dispatch(
-      roomActions.addRoom(
-        userId,
-        roomTitle,
-        roomStatus,
-        roomPassword,
-        roomPurpose,
-        round,
-        studyTime,
-        recessTime,
-        openedAt
-      )
-    );
+    if (
+      roomTitle &&
+      roomPurpose &&
+      round &&
+      studyTime &&
+      openedAt &&
+      roomStatus
+    ) {
+      // console.log("방정보", userId,roomTitle, roomPassword, roomPurpose, round, studyTime, recessTime, openedAt);
+      dispatch(
+        roomActions.addRoom(
+          userId,
+          roomTitle,
+          roomStatus,
+          roomPassword,
+          roomPurpose,
+          round,
+          studyTime,
+          recessTime,
+          openedAt
+        )
+      );
     }
-
-   
   };
 
   return (
@@ -253,7 +257,7 @@ function CreateGroup({ showModal, closeModal }) {
 
 const ModalContainer = styled.div`
   position: relative;
-  z-index:99999;
+  z-index: 99999;
 `;
 
 const ModalBG = styled.div`
@@ -264,7 +268,7 @@ const ModalBG = styled.div`
   left: 0;
   background-color: #000;
   opacity: 0.54;
-  z-index: 99998!important;
+  z-index: 99998 !important;
 `;
 const ModalBox = styled.div`
   position: fixed;
@@ -276,7 +280,7 @@ const ModalBox = styled.div`
   left: 50%;
   margin-top: -20%;
   margin-left: -274px;
-  z-index: 99999!important;
+  z-index: 99999 !important;
   line-height: 1.2;
 `;
 

@@ -7,12 +7,12 @@ import user from "../Images/nouser.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
 import { history } from "../redux/configureStore";
-import {actionCreators as userActions} from "../redux/modules/user";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const MyInfo = (props) => {
   const dispatch = useDispatch();
   const [showModalCG, setShowModalCG] = React.useState(false);
-  const [cateName, setCateName] = React.useState('');
+  const [cateName, setCateName] = React.useState("");
 
   //클릭 시 모달창 열기
   const openModal = () => {
@@ -37,34 +37,33 @@ const MyInfo = (props) => {
     backgroundImage: `url(${background})`,
   };
   const saveMsg = (e) => {
-    console.log(valueName)
+    console.log(valueName);
     dispatch(userActions.statMsgDB(valueName));
-  }
-
- console.log("user",file)
+  };
 
 
-  React.useEffect(()=>{
+  // console.log("user",category)
+
+  React.useEffect(() => {
     //카테고리 숫자 별 구분
-    if(category==="0"){
+    if (category === "0") {
       setCateName("중1");
-    }else if(category==="1"){
+    } else if (category === "1") {
       setCateName("중2");
-    }else if(category==="2"){
+    } else if (category === "2") {
       setCateName("중3");
-    }else if(category==="3"){
+    } else if (category === "3") {
       setCateName("고1");
-    }else if(category==="4"){
+    } else if (category === "4") {
       setCateName("고2");
-    }else if(category==="5"){
+    } else if (category === "5") {
       setCateName("고3");
-    }else if(category==="6"){
+    } else if (category === "6") {
       setCateName("대학생");
     }
-
     dispatch(userActions.checkUserDB());
-
   },[])
+
 
   return (
     <>
