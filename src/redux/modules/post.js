@@ -21,7 +21,6 @@ const initialState = {
 const getPosts = () => {
   return async function (dispatch, useState, { history }) {
     await apis.getPost().then(function (response) {
-      // console.log(response);
       dispatch(loadPosts(response));
     });
   };

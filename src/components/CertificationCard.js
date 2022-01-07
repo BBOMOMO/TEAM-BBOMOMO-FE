@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import comment from "../Images/ic-comment.png";
-
+import { useDispatch, useSelector } from "react-redux";
 const CertificationCard = (props) => {
+  const dispatch = useDispatch();
+  const _postlist = useSelector((state) => state.post.postList.board);
+  // console.log(_postlist, "123");
   // const { sTime } = props;
 
   return (

@@ -3,9 +3,21 @@ import { getToken } from "./token";
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
   baseURL: "http://13.209.3.61/", // 재원님 서버주소 //나중에 https로 바꾸기
-  //baseURL: "http://54.180.120.210/", // 상협님서버주소
+  // baseURL: "http://54.180.120.210/", // 상협님서버주소
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
 });
+
+// instance.interceptors.request.use((config) => {
+//   config.headers["Content-Type"] = "application/json; charset=utf-8";
+//   // 기본 content-type이 json이라 뒤에 따로 명시 안해도 되지만, 불안해서 명시함
+//   config.headers["X-Requested-With"] = "XMLHttpRequest";
+//   config.headers["Authorization"] =
+//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MTM5MTgxNn0.beoQmmtmi3yhwzVhcYQjDMd1LF7TVXtmymBgq1SHR_Y"
+//       ? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY0MTM5MTgxNn0.beoQmmtmi3yhwzVhcYQjDMd1LF7TVXtmymBgq1SHR_Y"
+//       : "";
+//   config.headers.Accept = "application/json";
+//   return config;
+// });
 
 instance.interceptors.request.use((config) => {
   const TOKEN = document.cookie.split("=")[1];

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../elements/index";
-// import {history} from "../redux/configureStore";
-import apis from "../shared/apis";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 // import { getToken } from "../shared/token";
@@ -36,10 +34,6 @@ const CertificationWrite = ({ showModal, closeModal }) => {
   const [studyTime, setStudyTime] = useState(0);
   const [file, setFile] = useState(null);
   const [bgtype, setBgType] = useState("");
-
-  // apis.getPost().then(function (response) {
-  //   console.log(response, "qweqeqwe");
-  // });
 
   // 공부시간 가져오기
   // apis.getStudyTime().then(function (response) {

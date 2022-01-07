@@ -11,10 +11,15 @@ import BG1 from "../Images/study-certification-bg-1.png";
 // import BG2 from "../Images/study-certification-bg-2.png";
 // import BG3 from "../Images/study-certification-bg-3.png";
 // import BG4 from "../Images/study-certification-bg-4.png";
-
+import { useDispatch, useSelector } from "react-redux";
 import CertificationCommentList from "./CertificationCommentList";
 
 const CertificationComment = ({ showModal, closeModal }) => {
+  // console.log(props);
+  const dispatch = useDispatch();
+  const _postlist = useSelector((state) => state.post.postList.board);
+  console.log(_postlist, "123");
+
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
   const css = {

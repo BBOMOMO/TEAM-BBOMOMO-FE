@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 // import CertificationCard from "./CertificationCard";
 import apis from "../shared/apis";
 
-const Certification = () => {
+const Certification = (props) => {
   const dispatch = useDispatch();
-  const _roomlist = useSelector((state) => state.post.postList.board);
-  // console.log(_roomlist.postId);
+  const _postlist = useSelector((state) => state.post.postList.board);
+
+  const user = useSelector((state) => state.user.userInfo);
+  console.log(user);
 
   const [showWriteModal, setShowWritefoModal] = React.useState(false);
   const [showCommentModal, setShowCommentfoModal] = React.useState(false);
@@ -35,18 +37,6 @@ const Certification = () => {
   //   console.log(response);
   //   // dispatch(loadPosts(response));
   // });
-
-  // apis.getPostdetail().then(function (response) {
-  //   console.log(response);
-  //   // dispatch(loadPosts(response));
-  // });
-
-  // const goDetail = () => {
-  //   apis.getPostdetail(_roomlist.postId).then(function (response) {
-  //     console.log(response);
-  //     // dispatch(loadPosts(response));
-  //   });
-  // };
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
@@ -72,18 +62,20 @@ const Certification = () => {
         </div>
 
         <div className="certifi_card_bx">
-          {_roomlist &&
-            _roomlist.map((a, b) => {
+          {_postlist &&
+            _postlist.map((a, b) => {
               // let HH = Math.floor(a.studyTime / 60);
               // let MM = a.studyTime % 60;
               // let sTime = `${HH}: ${MM}`;
               return (
                 <div
                   onClick={() => {
+                    console.log(a, "65546");
                     let postId = a.postId;
-                    console.log(postId);
+                    console.log("postId", postId);
                     openPostComment();
                     apis.getPostdetail(postId).then(function (response) {
+                      console.log(response);
                       // console.log(a.data);
                       // dispatch(loadPosts(response));
                     });

@@ -23,16 +23,14 @@ const Main = (props) => {
   return (
     <>
       <MainContainer>
-       <div className="main_wrap_index">
-        {user ? <MyInfo /> : <NoInfo />}
-       </div>
+        <div className="main_wrap_index">{user ? <MyInfo /> : <NoInfo />}</div>
 
-      <div className="main_wrap">
-        <div className="main_contentArea">
-          {/* TODO: AdSection Onclick 이벤트페이지로 이동. 있으면 ㅎ */}
-          <AdSection>
-            <img src={Banner} alt="" />
-          </AdSection>
+        <div className="main_wrap">
+          <div className="main_contentArea">
+            {/* TODO: AdSection Onclick 이벤트페이지로 이동. 있으면 ㅎ */}
+            <AdSection>
+              <img src={Banner} alt="" />
+            </AdSection>
             <RoomSection>
               <GroupRecommend />
             </RoomSection>
@@ -40,10 +38,10 @@ const Main = (props) => {
             <CertifiSection>
               <Certification />
             </CertifiSection>
-         </div>
+          </div>
 
           <Footer />
-      </div>
+        </div>
       </MainContainer>
     </>
   );
@@ -57,12 +55,12 @@ const MainContainer = styled.div`
   height: auto;
   display: flex;
 
-  .main_wrap_index{
-    z-index:100;
-  }
+  /* .main_wrap_index {
+    z-index: 100;
+  } */
   .main_wrap {
     width: 100%;
-    z-index:0;
+    z-index: 0;
   }
   .main_contentArea {
     *margin-left: 80px;
@@ -72,36 +70,33 @@ const MainContainer = styled.div`
 `;
 
 const AdSection = styled.div`
-  margin-top:120px;
-  position:relative;
-  width:100%;
-  height:150px;
+  margin-top: 120px;
+  position: relative;
+  width: 100%;
+  height: 150px;
 
-  >img {width:100%;}
- 
+  > img {
+    width: 100%;
+  }
 `;
 
 const RoomSection = styled.div`
-  position:relative;
-  margin-top:50px; 
-  width:100%;
-  min-height:35vh;
-  height:auto;
-  
-  padding-bottom:60px; 
+  position: relative;
+  margin-top: 50px;
+  width: 100%;
+  min-height: 35vh;
+  height: auto;
 
+  padding-bottom: 60px;
 `;
 
 const CertifiSection = styled.div`
-  margin-top:30px; 
-  position:relative;
-  width:100%;
-  min-height:60vh;
-  *height:auto; 
-  *border:1px solid #bbb; 
-  *overflow:scroll;
-  padding-bottom:80px; 
-
-
+  margin-top: 30px;
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  *height: auto;
+  *border: 1px solid #bbb;
+  *overflow: scroll;
+  padding-bottom: 80px;
 `;
-
