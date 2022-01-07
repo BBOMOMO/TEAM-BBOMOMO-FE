@@ -5,6 +5,7 @@ import CertificationComment from "./CertificationComment";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // import CertificationCard from "./CertificationCard";
 import apis from "../shared/apis";
@@ -72,8 +73,10 @@ const Certification = (props) => {
                   onClick={() => {
                     console.log(a, "65546");
                     let postId = a.postId;
-                    console.log("postId", postId);
+                    let idx = b;
+                    console.log(postId);
                     openPostComment();
+                    dispatch(postActions.detailPost(idx));
                     apis.getPostdetail(postId).then(function (response) {
                       console.log(response);
                       // console.log(a.data);

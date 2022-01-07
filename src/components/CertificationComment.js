@@ -8,11 +8,13 @@ import close from "../Images/ic_header_close.png";
 import comment from "../Images/ic-comment.png";
 import send from "../Images/ic-send 1.png";
 import BG1 from "../Images/study-certification-bg-1.png";
+
 // import BG2 from "../Images/study-certification-bg-2.png";
 // import BG3 from "../Images/study-certification-bg-3.png";
 // import BG4 from "../Images/study-certification-bg-4.png";
 import { useDispatch, useSelector } from "react-redux";
 import CertificationCommentList from "./CertificationCommentList";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const CertificationComment = ({ showModal, closeModal }) => {
   // console.log(props);
@@ -25,6 +27,10 @@ const CertificationComment = ({ showModal, closeModal }) => {
   const css = {
     backgroundImage: `url(${background})`,
   };
+  const _roomlist = useSelector((state) => state.post.postList.board);
+  console.log(_roomlist, "여기서 확인 룸리스트");
+  const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
+  console.log(_detailPostIdx, "여기서 확인 디테일포스트");
   return (
     <>
       {showModal ? (
@@ -42,7 +48,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   <ModalInnerBg style={css}>
                     <div className="certifi_comment_bg">
                       <h3>10:12</h3>
-                      <p>오늘 하루도 고생한 나에게 치얼스</p>
+                      <p>{_roomlist[_detailPostIdx].postContent}</p>
                     </div>
                   </ModalInnerBg>
 

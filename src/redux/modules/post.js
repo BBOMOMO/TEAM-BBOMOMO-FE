@@ -6,15 +6,20 @@ import apis from "../../shared/apis";
 
 // actions
 const GET_POST = "GET_POST";
+const DETAIL_POST = "DETAIL_POST";
 // const ADD_POST = "ADD_POST";
 
 // action creators
 const loadPosts = createAction(GET_POST, (postList) => ({ postList }));
+const detailPost = createAction(DETAIL_POST, (idx) => ({ idx }));
 // const addPosts = createAction(ADD_POST, (newPost) => ({ newPost }));
 
 // initialState
 const initialState = {
   postList: [],
+  detailPost: {
+    idx: null,
+  },
 };
 
 // middlewares
@@ -64,6 +69,10 @@ export default handleActions(
         // console.log("액션", action.payload.postList.data);
         // console.log("드래프트", draft.postList);
       }),
+    [DETAIL_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.detailPost.idx = action.payload.idx;
+      }),
     // [ADD_POST]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
@@ -72,4 +81,5 @@ export default handleActions(
 export const actionCreators = {
   addPost,
   getPosts,
+  detailPost,
 };

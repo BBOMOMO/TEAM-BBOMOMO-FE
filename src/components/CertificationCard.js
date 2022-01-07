@@ -7,7 +7,10 @@ const CertificationCard = (props) => {
   const _postlist = useSelector((state) => state.post.postList.board);
   // console.log(_postlist, "123");
   // const { sTime } = props;
-
+  const userInfo = useSelector((state) => state.user.userInfo);
+  if (userInfo == null) {
+    return <></>;
+  }
   return (
     <CertifiCont
       className="certifi_card_list_bx"
@@ -15,7 +18,7 @@ const CertificationCard = (props) => {
     >
       <div className="certifi_card_top">
         {/* <h2>{sTime}</h2> */}
-        <h2>10:12</h2>
+        <h2>{userInfo.totalRecord[0].total}</h2>
         <p>{props.postContent}</p>
       </div>
       <div className="certifi_card_bottom">
