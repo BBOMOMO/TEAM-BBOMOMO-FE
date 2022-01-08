@@ -54,8 +54,14 @@ const NoInfo = (props) => {
             <p className="myinfo_studytime_total_time">00:00</p>
           </div>
         </div>
-        <div className="myinfo_make_group disabled">
-          <p>+ 그룹 만들기</p>
+        <div className="myinfo_make_group disabled" 
+        onClick={()=>{
+          window.alert("로그인 후 사용하세요.");
+          history.push("/login");
+        }}
+        
+        >
+          <p>+ 스터디룸 만들기</p>
         </div>
       </div>
     </>
