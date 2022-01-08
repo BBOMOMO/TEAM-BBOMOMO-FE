@@ -2,17 +2,25 @@ import React from "react";
 import CertificationCard from "./CertificationCard";
 import CertificationWrite from "./CertificationWrite";
 import CertificationComment from "./CertificationComment";
+import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 
+import { history } from "../redux/configureStore";
+
 const Certification = (props) => {
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user.userInfo);
+
   const cardList = useSelector((state) => state.post.postList.board);
+  console.log(cardList);
   // console.log(_roomlist.postId);
 
   //const _postlist = useSelector((state) => state.post.postList.board);
+
+  console.log(user);
 
   const [roomcount, setRoomcount] = React.useState(3);
 
@@ -63,7 +71,19 @@ const Certification = (props) => {
         ></CertificationComment>
         <div className="certifi_title">
           <h2>공부인증</h2>
-          <button onClick={openPostWrite}>게시글 작성</button>
+          {user ? (
+            <button onClick={openPostWrite}>게시글 작성</button>
+          ) : (
+            <button
+              className="disabled"
+              onClick={() => {
+                window.alert("로그인 후 사용해주세요.");
+                history.push("/login");
+              }}
+            >
+              게시글 작성
+            </button>
+          )}
         </div>
 
         <div className="certifi_card_bx">
@@ -95,11 +115,10 @@ const Certification = (props) => {
                 >
                   <CertificationCard
                     {...a}
-                    // key={b}
+                    key={b}
                     sortBg={sortBg}
                     // sTime={sTime}
                   ></CertificationCard>
-                  {/* <CertificationCard>as</CertificationCard> */}
                 </div>
               );
             })}

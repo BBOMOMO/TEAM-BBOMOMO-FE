@@ -5,10 +5,7 @@ import commentWhite from "../Images/ic-comment-white.png";
 import { useSelector } from "react-redux";
 
 const CertificationCard = (props) => {
-  const userInfo = useSelector((state) => state.user.userInfo);
-  if (userInfo == null) {
-    return <></>;
-  }
+  const userInfo = useSelector((state) => state.user.studyTotal);
 
   return (
     <CertifiCont
@@ -17,10 +14,10 @@ const CertificationCard = (props) => {
     >
       <div className="certifi_card_relative">
         <div className="certifi_card_top">
-          {userInfo.totalRecord[0].total === null ? (
+          {userInfo === null ? (
             <h2>00:00</h2>
           ) : (
-            <h2>{userInfo.todayRecord[0].total}</h2>
+            <h2>{userInfo}</h2>
           )}
 
           <p>{props.postContent}</p>

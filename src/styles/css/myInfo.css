@@ -9,6 +9,7 @@
   border-radius:60px;
   padding:80px 116px;
   box-sizing: border-box;
+  
 }
 .myinfo_profile_area {
   margin-top: 50px;
@@ -24,6 +25,7 @@
   border-radius: 50%;
   background-position: center;
   background-size: cover;
+  cursor: pointer;
   
 }
 .myinfo_user_img > span {
@@ -169,6 +171,7 @@
   color: #fff;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 

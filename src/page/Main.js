@@ -37,6 +37,7 @@ const Main = (props) => {
 
             <CertifiSection>
               <Certification />
+              
             </CertifiSection>
           </div>
 
