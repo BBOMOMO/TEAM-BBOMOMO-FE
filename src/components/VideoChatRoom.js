@@ -109,18 +109,7 @@ export default function VideoChatRoom() {
     const socket = io("https://hanghaelog.shop");
     const peer = new Peer({
       config: {
-        iceServers: [
-          {
-            urls: [
-              // 구글 스턴 서버, 실제 배포 시 커스텀 스턴 서버 사용해야함
-              "stun:stun.l.google.com:19302",
-              "stun:stun1.l.google.com:19302",
-              "stun:stun2.l.google.com:19302",
-              "stun:stun3.l.google.com:19302",
-              "stun:stun4.l.google.com:19302",
-            ],
-          },
-        ],
+        iceServers: [{ url: "stun:stun.l.google.com:19302" }],
       },
     });
 

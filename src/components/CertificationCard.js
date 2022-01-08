@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const CertificationCard = (props) => {
   const userInfo = useSelector((state) => state.user.userInfo);
+  console.log(userInfo);
   if (userInfo == null) {
     return <></>;
   }
