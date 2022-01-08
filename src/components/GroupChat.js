@@ -16,6 +16,7 @@ function GroupChat() {
   return (
     <>
       <ChatContainer>
+        <BlockChat/>
         <p className="header_modal_title">그룹채팅</p>
         <div className="header_modal_hr"></div>
 
@@ -130,4 +131,11 @@ const ChatContainer = styled.div`
   .header_modal_title {
     margin: 30px 18px 25px;
   }
+`;
+
+const BlockChat = styled.div`
+width:100%;
+height:100%;
+background-color:#fff;
+position:relative;
 `;

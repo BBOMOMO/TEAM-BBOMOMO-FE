@@ -127,6 +127,7 @@ const HeaderIcon = styled.div`
   height: 57px;
   border-radius: 11px;
   margin-left: 50px;
+  cursor:pointer;
 
   &.header_alarm {
     width: 57px;
