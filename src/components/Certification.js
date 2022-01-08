@@ -9,19 +9,19 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const Certification = (props) => {
   const dispatch = useDispatch();
 
-  // const cardList = useSelector((state) => state.post.postList.board);
+  const cardList = useSelector((state) => state.post.postList.board);
   // console.log(_roomlist.postId);
 
-  const _postlist = useSelector((state) => state.post.postList.board);
+  //const _postlist = useSelector((state) => state.post.postList.board);
 
   const [roomcount, setRoomcount] = React.useState(3);
 
-  //   const cardSlice = () => {
-  //     if (cardList) {
-  //       const _cardSlice = cardList.slice(0, roomcount);
-  //       return _cardSlice;
-  //     }
-  //   };
+  const cardSlice = () => {
+    if (cardList) {
+      const _cardSlice = cardList.slice(0, roomcount);
+      return _cardSlice;
+    }
+  };
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
@@ -68,13 +68,13 @@ const Certification = (props) => {
 
         <div className="certifi_card_bx">
           {/* {cardSlice() &&
-            cardSlice().map((a, b) => {
+           cardSlice().map((a, b) => {
                let HH = Math.floor(a.studyTime / 60);
                let MM = a.studyTime % 60;
                let sTime = `${HH}: ${MM}`; */}
 
-          {_postlist &&
-            _postlist.map((a, b) => {
+          {cardSlice() &&
+            cardSlice().map((a, b) => {
               let postBg = a.postImg;
               let idx = b;
               let sortBg = "";
@@ -95,10 +95,11 @@ const Certification = (props) => {
                 >
                   <CertificationCard
                     {...a}
-                    key={b}
+                    // key={b}
                     sortBg={sortBg}
                     // sTime={sTime}
                   ></CertificationCard>
+                  {/* <CertificationCard>as</CertificationCard> */}
                 </div>
               );
             })}

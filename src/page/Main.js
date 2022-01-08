@@ -54,16 +54,16 @@ const MainContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-
   .main_wrap_index {
+    position: relative;
     z-index: 1;
   }
-
   .main_wrap {
-    position: relative;
     width: 100%;
+    position: relative;
   }
   .main_contentArea {
+    position: relative;
     *margin-left: 80px;
     width: 1018px;
     margin: 0 auto;
@@ -75,7 +75,6 @@ const AdSection = styled.div`
   position: relative;
   width: 100%;
   height: 150px;
-
   > img {
     width: 100%;
   }
@@ -87,8 +86,7 @@ const RoomSection = styled.div`
   width: 100%;
   min-height: 35vh;
   height: auto;
-
-  padding-bottom: 60px;
+  *padding-bottom: 60px;
 `;
 
 const CertifiSection = styled.div`
