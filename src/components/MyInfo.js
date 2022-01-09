@@ -62,7 +62,12 @@ const MyInfo = (props) => {
       setCateName("대학생");
     }
     dispatch(userActions.checkUserDB());
-  },[])
+    console.log("file:",file)
+
+    if(file){
+      dispatch(userActions.changeImgDB(file));
+    }
+  },[file])
 
 
   return (
@@ -71,9 +76,7 @@ const MyInfo = (props) => {
         <div className="myinfo_profile_area">
           <img src={roundCircle} />
 
-          {file===null ?
-          ( 
-         <label style={css} className="myinfo_user_img">
+          <label style={css} className="myinfo_user_img">
             <span>사진 변경하기</span>
             <input type="file" 
             onChange ={(e)=>{
@@ -87,12 +90,6 @@ const MyInfo = (props) => {
             }}
             />
           </label>
-          
-          ):(
-          <label style={css} className="myinfo_user_img">
-           <span onClick={()=>{  dispatch(userActions.changeImgDB(file)); }}>저장하기</span>  
-          </label>
-          )}
           
         </div>
         
