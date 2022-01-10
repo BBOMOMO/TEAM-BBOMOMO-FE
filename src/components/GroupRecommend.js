@@ -124,26 +124,6 @@ const GroupRecommend = (props) => {
           </div>
         </div>
       </div>
-      {/* <div className="groupreco_bottom">
-        <div className="groupbx_card">
-          <GroupBx roomLock></GroupBx>
-        </div>
-        <div className="groupbx_card">
-          <GroupBx></GroupBx>
-        </div>
-        <div className="groupbx_card">
-          <GroupBx></GroupBx>
-        </div>
-        <div className="groupbx_card">
-          <GroupBx></GroupBx>
-        </div>
-        <div className="groupbx_card">
-          <GroupBx></GroupBx>
-        </div>
-        <div className="groupbx_card">
-          <GroupBx></GroupBx>
-        </div>
-      </div> */}
 
       <div className="groupreco_bottom">
         {roomSlice() &&
@@ -162,19 +142,65 @@ const GroupRecommend = (props) => {
             } else if (idx % 6 === 5) {
               bgcolor = "bg06";
             }
+            let roomLock = p.isStarted;
+            let isLock = "";
+            if (roomLock === 1) {
+              // 잠긴 방
+              isLock = "cloudy_bg";
+              return (
+                <>
+                  <div
+                    className="groupbx_card"
+                    onClick={() => {
+                      // history.push("/video/" + roomlist[idx].roomId);
+                    }}
+                  >
+                    <GroupBx
+                      key={p.idx}
+                      {...p}
+                      bgcolor={bgcolor}
+                      roomLock={isLock}
+                    ></GroupBx>
+                  </div>
+                </>
+              );
+            } else {
+              return (
+                <>
+                  <div
+                    className="groupbx_card"
+                    onClick={() => {
+                      history.push("/video/" + roomlist[idx].roomId);
+                    }}
+                  >
+                    <GroupBx
+                      key={p.idx}
+                      {...p}
+                      bgcolor={bgcolor}
+                      roomLock={isLock}
+                    ></GroupBx>
+                  </div>
+                </>
+              );
+            }
 
-            return (
-              <>
-                <div
-                  className="groupbx_card"
-                  onClick={() => {
-                    history.push("/video/" + roomlist[idx].roomId);
-                  }}
-                >
-                  <GroupBx key={p.idx} {...p} bgcolor={bgcolor}></GroupBx>
-                </div>
-              </>
-            );
+            // return (
+            //   <>
+            //     <div
+            //       className="groupbx_card"
+            //       onClick={() => {
+            //         history.push("/video/" + roomlist[idx].roomId);
+            //       }}
+            //     >
+            //       <GroupBx
+            //         key={p.idx}
+            //         {...p}
+            //         bgcolor={bgcolor}
+            //         roomLock={isLock}
+            //       ></GroupBx>
+            //     </div>
+            //   </>
+            // );
           })}
       </div>
 

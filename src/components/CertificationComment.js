@@ -31,7 +31,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
   const _commentList = useSelector(
     (state) => state.comment.commentList.comment
   );
-  console.log("_commentList", _commentList);
+
   const sendComment = () => {
     const userNick = localStorage.getItem("nick");
     dispatch(commentActions.addComment(userNick, _postId, commentText));
