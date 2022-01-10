@@ -244,6 +244,7 @@ function CreateGroup({ showModal, closeModal }) {
                 fontSize="18px"
                 margin="40px 0 40px 0"
                 weight="600"
+                background="#889CF2"
               >
                 생성하기
               </Button>
