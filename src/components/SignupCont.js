@@ -120,6 +120,7 @@ const SignupCont = (props) => {
             <option name="high2" value="4"> 고2 </option>
             <option name="high3" value="5"> 고3 </option>
             <option name="univ" value="6"> 대학생 </option>
+            <option name="univ" value="7"> 직장인 </option>
           </Select>
           
           <InputWrap>

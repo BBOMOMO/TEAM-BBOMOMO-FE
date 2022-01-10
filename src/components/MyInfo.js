@@ -60,6 +60,8 @@ const MyInfo = (props) => {
       setCateName("고3");
     } else if (category === "6") {
       setCateName("대학생");
+    }else if (category === "7") {
+      setCateName("직장인");
     }
     dispatch(userActions.checkUserDB());
     console.log("file:",file)
