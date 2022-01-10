@@ -28,7 +28,7 @@ const GroupTimer = styled.div`
 `;
 const ChatRoom = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: auto;
   display: flex;
   #video-grid {
     box-sizing: border-box;
@@ -78,9 +78,13 @@ export default function VideoChatRoom() {
   const params = useParams();
   const roomId = params.roomId;
 
+  //채팅방 open/close - 민지
+  const [openChat, setOpenChat] = useState("");
+
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
-  }, []);
+    console.log("채팅상황", openChat);
+  }, [openChat]);
 
   // Local
   const [cameraOn, setCameraOn] = useState(true);
@@ -105,6 +109,7 @@ export default function VideoChatRoom() {
   const videoContainer = useRef();
   const progressbar = useRef();
   const url = process.env.REACT_APP_API_URL;
+
   let percent;
   let totalPercent;
   console.log("퍼센트", percent);
@@ -112,6 +117,7 @@ export default function VideoChatRoom() {
   const css = {
     width: `calc(100px - 10px)`,
   };
+
 
   // TODO
   // const [todoOpen, setTodoOpen] = useState(false);
@@ -166,6 +172,8 @@ export default function VideoChatRoom() {
           // console.log(MinTime, secTime, gapTimeFloor);
           totalPercent = gapTimeFloor;
           setText("쉬는 시간입니다.");
+          setOpenChat("");
+          
           let timer = () => {
             console.log(progressbar);
             gapTimeFloor = gapTimeFloor - 1;
@@ -200,6 +208,7 @@ export default function VideoChatRoom() {
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
           // console.log(MinTime, secTime, gapTimeFloor);
           setText("공부 시간입니다.");
+          setOpenChat("focusTime");
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
@@ -410,7 +419,7 @@ export default function VideoChatRoom() {
       <GroupContainer>
         <ChatRoom numberOfUsers={users}>
           {isLoading && <span>Loading...</span>}
-          <GroupChat />
+          <GroupChat openChat={openChat}/>
           <GroupCont>
             <GroupTimer>
               <p style={{ color: "#000" }} className="groupTimer_whatTime">

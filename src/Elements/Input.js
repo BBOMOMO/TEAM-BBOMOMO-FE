@@ -24,6 +24,7 @@ const Input = (props) => {
     _checked,
     size,
     maxlength,
+    onSubmit
   } = props;
 
   const labelStyle = { display, color, size };
@@ -82,6 +83,11 @@ const Input = (props) => {
         onChange={_onChange}
         value={value}
         maxLength={maxlength}
+        onKeyPress={(e)=>{
+          if(e.key === "Enter"){
+            onSubmit(e);
+          }
+        }}
         {...styles}
       />
     </ElLabel>
@@ -96,12 +102,13 @@ Input.defaultProps = {
   padding: "10px 20px",
   boxSizing: "border-box",
   _onChange: () => {},
+  onSubmit: () => {},
   width: "100%",
   height: "62px",
   radius: "11px",
   border: "none",
   size: "18px",
-  color: "#c6c6c6",
+  color: "#7A7D81",
 };
 
 const CheckboxLabel = styled.label`
@@ -121,6 +128,7 @@ const CheckInput = styled.input`
     background-color: #d8d8d8;
     font-weight: bold;
   }
+  
 `;
 
 const GroupLabel = styled.label`
@@ -133,13 +141,16 @@ const GroupInput = styled.input`
   height: 44px;
   border-radius: 11px;
   background-color: #f4f4f4;
-  color: #c6c6c6;
+  color: #7A7D81;
   border: none;
   margin: 16px 0 0 0;
   padding-left: 21px;
   box-sizing: border-box;
   font-size: 16px;
   outline: none;
+  ::placeholder {
+    color:#c6c6c6;
+  }
 `;
 
 const ElLabel = styled.label`
@@ -163,6 +174,10 @@ const ElInput = styled.input`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.color ? `color: ${props.color};` : "")};
+
+  ::placeholder {
+    color:#c6c6c6;
+  }
 `;
 
 export default Input;
