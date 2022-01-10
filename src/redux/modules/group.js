@@ -54,16 +54,17 @@ const addRoom = (
     await apis
       .postRoom(userId, roomInfo)
       .then(async function (response) {
-       // console.log(response);
-       // console.log("방 생성 완료");
-       const newRoomId = response.data.newRoomId;
-       apis.getRoom().then(function (response) {
-        dispatch(loadRooms(response));
-      }).then((response)=>{
-  
-        history.push(`/video/${newRoomId}`);
-      });
-       
+        // console.log(response);
+        // console.log("방 생성 완료");
+        const newRoomId = response.data.newRoomId;
+        apis
+          .getRoom()
+          .then(function (response) {
+            dispatch(loadRooms(response));
+          })
+          .then((response) => {
+            history.push(`/video/${newRoomId}`);
+          });
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -80,8 +81,8 @@ const enterRoom = (newRoomId, roomPassword = null) => {
       })
       .catch((err) => {
         console.log(err.response.data.msg);
-        window.alert("공부시간에는 방에 입장할 수 없습니다!");
-        history.push("/");
+        // window.alert("공부시간에는 방에 입장할 수 없습니다!");
+        // history.push("/");
       });
   };
 };

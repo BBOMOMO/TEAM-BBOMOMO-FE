@@ -12,6 +12,7 @@ import BG4 from "../Images/study-certification-bg-4.png";
 const CertificationCard = (props) => {
   const userInfo = useSelector((state) => state.user.studyTotal);
 
+
   const [background, setBackground] = React.useState(null);
   const css = {
     backgroundImage: `url(${background})`,
@@ -31,12 +32,15 @@ const CertificationCard = (props) => {
     }
   }, [props]);
 
+
   return (
     <CertifiCont className={props.sortBg} style={css}>
       <div className="certifi_card_relative">
         <div className="certifi_card_top">
+
           {/* {userInfo === null ? <h2>00:00</h2> : <h2>{userInfo}</h2>} */}
           <h2>{props.studyTime}</h2>
+
           <p>{props.postContent}</p>
         </div>
         <div className="certifi_card_bottom">

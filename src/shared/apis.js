@@ -1,9 +1,15 @@
 import axios from "axios";
 import { getToken } from "./token";
+import dotenv from "dotenv";
+dotenv.config();
+
+const url = process.env.REACT_APP_API_URL;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  baseURL: "https://hanghaelog.shop/", // 재원님 서버주소 //나중에 https로 바꾸기
-  // baseURL: "http://54.180.120.210/", // 상협님서버주소
+
+  baseURL: url, // 재원님 서버주소
+  //baseURL: "http://54.180.120.210/", // 상협님서버주소
+
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
 });
 

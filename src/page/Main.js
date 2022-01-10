@@ -37,7 +37,6 @@ const Main = (props) => {
 
             <CertifiSection>
               <Certification />
-              
             </CertifiSection>
           </div>
 
@@ -55,6 +54,7 @@ const MainContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+
   .main_wrap_index {
     position: relative;
     z-index: 1;
