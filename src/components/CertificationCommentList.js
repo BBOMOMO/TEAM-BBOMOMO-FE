@@ -25,10 +25,10 @@ const CertificationCommentList = (props) => {
             <div className="list_img_bx">
               <img src={profileimg} alt="프로필 이미지" />
             </div>
-            <h4>{props.array.nick}</h4>
-            <p>{props.array.comment}</p>
+            <h4>{props.array}</h4>
+            <p>{props.array}</p>
           </div>
-          <span>{displayCreatedAt(props.array.createdAt)}</span>
+          <span>{displayCreatedAt(props.array)}</span>
         </div>
       ) : null}
     </>

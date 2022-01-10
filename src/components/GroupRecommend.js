@@ -156,7 +156,7 @@ const GroupRecommend = (props) => {
                     }}
                   >
                     <GroupBx
-                      key={p.idx}
+                      key={idx}
                       {...p}
                       bgcolor={bgcolor}
                       roomLock={isLock}

@@ -19,7 +19,7 @@ function Header() {
   const [showInfoModal, setShowInfoModal] = React.useState(false);
 
   const user = useSelector((state) => state.user.userInfo);
-  console.log(user);
+ // console.log(user);
 
   // 주의! 다른 헤더 버튼 누르면 열려져 있던 나머지 모달창은 닫혀야 함. 그래서 open 에 나머지 modal false 값 넣어줌.
   const openAlarm = () => {

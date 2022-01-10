@@ -118,7 +118,7 @@ const checkUserDB = () => {
         //console.log(response);
         const userInfo = response.data;
 
-        console.log(userInfo);
+        //console.log(userInfo);
         const userId = userInfo.user[0].userId;
         const userNick = userInfo.user[0].nick;
         const statusMsg = userInfo.user[0].statusMsg;

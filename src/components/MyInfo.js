@@ -73,9 +73,9 @@ const MyInfo = (props) => {
     }
     
 
-    console.log("file:",file)
-    console.log("nickname:",nickname)
-    console.log("nickname:",category)
+    // console.log("file:",file)
+    // console.log("nickname:",nickname)
+    // console.log("nickname:",category)
 
     if(file){
       dispatch(userActions.changeImgDB(file));
@@ -86,7 +86,7 @@ const MyInfo = (props) => {
   const today2 = 900;
   const total2 = today2 * 0.25;
 
-  console.log("studyTotal",total2);
+  //console.log("studyTotal",total2);
 
 
 
