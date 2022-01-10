@@ -225,7 +225,7 @@
   transform: translate(-50%, -50%);
 }
 .groupTimer_progress_bar {
-  width: 100%;
+  width: 0px;
   height: 11px;
   border-radius: 31px;
   background: linear-gradient(

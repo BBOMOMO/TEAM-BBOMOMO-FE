@@ -16,6 +16,7 @@ const SignupCont = (props) => {
 
   //유효성 검사
   const [isId, setIsId] = React.useState("false");
+  const [isNick, setIsNick] = React.useState("false");
   const [isPwd, setIsPwd] = React.useState("false");
   const [samePwd, setSamePwd] = React.useState("false");
 
@@ -29,12 +30,24 @@ const SignupCont = (props) => {
   //아이디 정규식
   const onChangeId = (e) => {
     setName(e.target.value);
-    let userIdRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{3,12}$/;
+    let userIdRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{3,20}$/;
     let idRegex = userIdRegex.test(e.target.value);
     if (!idRegex) {
       setIsId(false);
     } else {
       setIsId(true);
+    }
+  };
+  //닉네임 정규식
+  const onChangeNick = (e) => {
+    setNickname(e.target.value);
+    let userNickRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
+    let NickRegex = userNickRegex.test(e.target.value);
+    console.log(NickRegex);
+    if (!NickRegex) {
+      setIsNick(false);
+    } else {
+      setIsNick(true);
     }
   };
 
@@ -98,7 +111,7 @@ const SignupCont = (props) => {
               color="#7A7D81"
               margin="18px 0 "
               width="498px"
-              placeholder="3글자 이상의 아이디를 입력하세요."
+              placeholder="영문과 숫자를 포함한 3~12자를 입력하세요."
               maxlength={20}
               value={name}
               _onChange={onChangeId}
@@ -126,20 +139,12 @@ const SignupCont = (props) => {
               placeholder="3글자 이상의 닉네임을 입력하세요."
               maxlength={20}
               value={nickname}
-              _onChange={(e) => {
-                setNickname(e.target.value);
-              }}
-              className={
-                _nickCheck === "true" && nickname.length > 2 ? "green" : "red"
-              }
+              _onChange={onChangeNick}
+              className={_nickCheck === "true" && isNick ? "green" : "red"}
             />
             <button onClick={nickCheck}>중복확인</button>
-            <span
-              className={
-                _nickCheck === "true" && nickname.length > 2 ? "green" : "red"
-              }
-            >
-              {_nickCheck === "true" && nickname.length > 2
+            <span className={_nickCheck === "true" && isNick ? "green" : "red"}>
+              {_nickCheck === "true" && isNick
                 ? "사용 가능한 닉네임입니다"
                 : "중복확인을 해주세요."}
             </span>
