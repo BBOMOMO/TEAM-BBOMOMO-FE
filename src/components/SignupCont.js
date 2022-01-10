@@ -125,7 +125,7 @@ const SignupCont = (props) => {
           
           <InputWrap>
             <Input type="password" text="비밀번호 확인" boxSizing border="none" display="block" color="#7A7D81" margin="18px 0 0" width="498px"
-              value={pwdck} _onChange={checkPwd} className={samePwd && pwdck.length? "green": "red"} />
+              value={pwdck} _onChange={checkPwd} onSubmit={signup} className={samePwd && pwdck.length? "green": "red"} />
             <span className={samePwd && pwdck.length? "green": "red"}>
               {samePwd && pwdck.length? '비밀번호가 일치합니다.': '일치하지 않는 비밀번호 입니다.'}
             </span>

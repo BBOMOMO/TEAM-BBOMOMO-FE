@@ -15,6 +15,10 @@ const LoginCont = (props) => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
+  const gotoLogin = (e) => {
+    dispatch(userActions.loginDB(id, pw));
+    dispatch(userActions.checkUserDB());
+  }
   return (
     <div className="login_container">
       <div className="login_left_bx">
@@ -74,6 +78,7 @@ const LoginCont = (props) => {
               _onChange={(e) => {
                 setPw(e.target.value);
               }}
+              onSubmit={gotoLogin}
             ></Input>
           </div>
 
@@ -83,10 +88,7 @@ const LoginCont = (props) => {
             radius="11px"
             margin="40px 0 40px 0"
             weight="600"
-            _onClick={() => {
-              dispatch(userActions.loginDB(id, pw));
-              dispatch(userActions.checkUserDB());
-            }}
+            _onClick={gotoLogin}
           >
             로그인
           </Button>

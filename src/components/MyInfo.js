@@ -37,14 +37,19 @@ const MyInfo = (props) => {
     backgroundImage: `url(${background})`,
   };
   const saveMsg = (e) => {
+    e.preventDefault();
     console.log(valueName);
-    dispatch(userActions.statMsgDB(valueName));
+
+      dispatch(userActions.statMsgDB(valueName));
+
+   
   };
 
 
   // console.log("user",category)
 
   React.useEffect(() => {
+    dispatch(userActions.checkUserDB());
     //카테고리 숫자 별 구분
     if (category === "0") {
       setCateName("중1");
@@ -63,13 +68,16 @@ const MyInfo = (props) => {
     }else if (category === "7") {
       setCateName("직장인");
     }
-    dispatch(userActions.checkUserDB());
+    
+
     console.log("file:",file)
+    console.log("nickname:",nickname)
+    console.log("nickname:",category)
 
     if(file){
       dispatch(userActions.changeImgDB(file));
     }
-  },[file])
+  },[file,category,nickname])
 
 
   return (
@@ -104,17 +112,19 @@ const MyInfo = (props) => {
             <Input
               value={valueName}
               _onChange={(e) => setValue(e.target.value)}
-              placeholder={statusMsg}
+              placeholder={statusMsg?statusMsg:"목표를 입력해주세요."}
               height="36px"
               color="#282828"
               size="13px"
+              onSubmit={saveMsg}
             />
-            <img
+            <img type="submit"
               src={pencil}
               alt="저장하기"
               title="저장하기"
               className="myinfo_user_state_pencil"
               onClick={saveMsg}
+             
             />
           </div>
         </div>

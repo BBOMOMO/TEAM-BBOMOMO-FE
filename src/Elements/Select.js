@@ -20,6 +20,7 @@ const Select = (props) => {
     right,
     width,
     height,
+    value
   } = props;
   const labelStyle = { display, color, size };
   const styles = {
@@ -31,6 +32,7 @@ const Select = (props) => {
     name,
     width,
     height,
+    value
   };
   const imgStyle = { top, right };
 

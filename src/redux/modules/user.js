@@ -143,7 +143,8 @@ const statMsgDB = (valueName) => {
     await apis
       .changeMsg(userMsg)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
+        window.alert("수정 완료되었습니다.")
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -162,7 +163,11 @@ const changeInfo = (nickname, category) => {
       .changeNick(userInfo)
       .then((response)=>{
         console.log(response);
-        window.alert("ok")
+        window.alert("수정 완료되었습니다.")
+        apis.checkUser()
+        .then((response) => {
+          dispatch(setUser(response.data));
+        });
       }).catch((err)=>{
         window.alert(err.response.data.message)
       })
