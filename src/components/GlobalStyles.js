@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
     article, aside, canvas, details, embed, 
     figure, figcaption, footer, header, hgroup, 
     menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
+    time, mark, audio, video, input {
       margin: 0;
       padding: 0;
       border: 0;
@@ -39,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
     }
     body {
       line-height: 1;
+      background-color:#FCFEFE;
     }
     ol, ul {
       list-style: none;
@@ -104,6 +105,18 @@ const GlobalStyles = createGlobalStyle`
       content: '';
       clear:both;
     }
+
+    /* 스크롤 바 커스텀 */
+
+    *::-webkit-scrollbar { width:5px; }
+    *::-webkit-scrollbar-track { background-color: #fff; border-radius: 100px; } 
+    *::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 100px;  } 
+    
+    *::-webkit-scrollbar-thumb {  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
+
+    /* disabled 비활성화 버튼  */
+    .disabled {background:#d7d7d7!important; color:#fff!important;}
+
 `;
 
 export default GlobalStyles;

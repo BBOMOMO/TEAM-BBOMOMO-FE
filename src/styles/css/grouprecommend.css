@@ -1,12 +1,14 @@
 .groupreco_bx {
   max-width: 1018px;
+  /* 헤더만큼 margin */
+  *margin-top: 80px;
 }
 .groupreco_top {
   display: flex;
   justify-content: space-between;
   margin: 30px 14px;
 }
-.groupreco_top h2 {
+.groupreco_top > h2 {
   font-size: 24px;
   font-weight: 600;
   line-height: 37px;
@@ -17,16 +19,16 @@
 .hashtag_list_bx {
   display: flex;
 }
-.hashtag_list_bx li {
+.hashtag_list_bx > li {
   margin-right: 10px;
 }
-.hashtag_list_bx li:last-child {
+.hashtag_list_bx > li:last-child {
   margin-right: 32px;
 }
 .search_bx {
   position: relative;
 }
-.search_bx img {
+.search_bx > img {
   position: absolute;
   top: 0;
   right: 0;
@@ -55,7 +57,7 @@
   border-radius: 18px;
   background: #eee;
 }
-.search_bx img {
+.search_bx > img {
   position: absolute;
   top: 6px;
   right: 7px;
@@ -66,6 +68,7 @@
 /* 더보기 버튼*/
 .groupreco_more_btn {
   margin-top: 26px;
+  height: 80px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -88,7 +91,7 @@
   background: #e7e7e7;
   content: "";
 }
-.groupreco_more_btn button {
+.groupreco_more_btn > button {
   position: absolute;
   top: 0;
   box-sizing: border-box;
@@ -101,5 +104,5 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  z-index: 9999;
+  cursor: pointer;
 }

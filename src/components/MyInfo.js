@@ -1,27 +1,121 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import Input from "../elements/Input";
 import roundCircle from "../Images/Group3366.png";
-import user from "../Images/user.png";
+import user from "../Images/nouser.png";
 import pencil from "../Images/pencil.png";
+import CreateGroup from "../components/CreateGroup";
+import { history } from "../redux/configureStore";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 const MyInfo = (props) => {
+  const dispatch = useDispatch();
+  const [showModalCG, setShowModalCG] = React.useState(false);
+  const [cateName, setCateName] = React.useState("");
+
+  //클릭 시 모달창 열기
+  const openModal = () => {
+    setShowModalCG(true);
+  };
+  const closeModal = () => {
+    setShowModalCG(false);
+  };
+  const user = useSelector((state) => state.user.userInfo);
+  const nickname = user.user[0].nick;
+  const category = user.user[0].category;
+  const statusMsg = user.user[0].statusMsg;
+  const today = user.todayRecord[0].today;
+  const total = user.totalRecord[0].total;
+  const [valueName, setValue] = React.useState(statusMsg);
+  const [file, setFile] = React.useState(null);
+  const [userImg, setUserImg] = React.useState(null);
+  const profImg = user.user[0].profileImg;
+  const [background, setBackground] = React.useState(profImg?profImg:"/static/media/nouser.3c586078.png");
+
+  const css = {
+    backgroundImage: `url(${background})`,
+  };
+  const saveMsg = (e) => {
+    console.log(valueName);
+    dispatch(userActions.statMsgDB(valueName));
+  };
+
+
+  // console.log("user",category)
+
+  React.useEffect(() => {
+    //카테고리 숫자 별 구분
+    if (category === "0") {
+      setCateName("중1");
+    } else if (category === "1") {
+      setCateName("중2");
+    } else if (category === "2") {
+      setCateName("중3");
+    } else if (category === "3") {
+      setCateName("고1");
+    } else if (category === "4") {
+      setCateName("고2");
+    } else if (category === "5") {
+      setCateName("고3");
+    } else if (category === "6") {
+      setCateName("대학생");
+    }
+    dispatch(userActions.checkUserDB());
+  },[])
+
+
   return (
     <>
       <div className="myinfo_container">
         <div className="myinfo_profile_area">
           <img src={roundCircle} />
-          <img src={user} className="myinfo_user_img" />
+
+          {file===null ?
+          ( 
+         <label style={css} className="myinfo_user_img">
+            <span>사진 변경하기</span>
+            <input type="file" 
+            onChange ={(e)=>{
+              setUserImg(e.target.dataset.userImg);
+              setFile(e.target.files[0]);
+              const objectURL = URL.createObjectURL(
+                e.target.files[0]
+              );
+              console.log(objectURL)
+              setBackground(objectURL);   
+            }}
+            />
+          </label>
+          
+          ):(
+          <label style={css} className="myinfo_user_img">
+           <span onClick={()=>{  dispatch(userActions.changeImgDB(file)); }}>저장하기</span>  
+          </label>
+          )}
+          
         </div>
+        
         <div className="myinfo_txt_area">
           <div className="myinfo_user_info">
-            <span className="myinfo_user_division">고3</span>
-            <h3 className="myinfo_user_name">뽀모모</h3>
+            <span className="myinfo_user_division">{cateName}</span>
+            <h3 className="myinfo_user_name">{nickname}</h3>
           </div>
           <div className="myinfo_user_state_area">
-            <p className="myinfo_user_state">2020수능 가자!</p>
+            <Input
+              value={valueName}
+              _onChange={(e) => setValue(e.target.value)}
+              placeholder={statusMsg}
+              height="36px"
+              color="#282828"
+              size="13px"
+            />
             <img
               src={pencil}
-              alt="pencil"
+              alt="저장하기"
+              title="저장하기"
               className="myinfo_user_state_pencil"
+              onClick={saveMsg}
             />
           </div>
         </div>
@@ -33,15 +127,16 @@ const MyInfo = (props) => {
           </div>
           <div className="myinfo_studytime_mid">
             <p className="myinfo_studytime_today">Today</p>
-            <p className="myinfo_studytime_today_time">01:23:34</p>
+            <p className="myinfo_studytime_today_time">{today}</p>
           </div>
           <div className="myinfo_studytime_bot">
             <p className="myinfo_studytime_total">Total</p>
-            <p className="myinfo_studytime_total_time">1233:03:34</p>
+            <p className="myinfo_studytime_total_time">{total}</p>
           </div>
         </div>
         <div className="myinfo_make_group">
-          <p>+ 그룹 만들기</p>
+          <p onClick={openModal}>+ 스터디룸 만들기</p>
+          <CreateGroup showModal={showModalCG} closeModal={closeModal} />
         </div>
       </div>
     </>

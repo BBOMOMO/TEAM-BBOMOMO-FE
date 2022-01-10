@@ -3,13 +3,38 @@
 }
 
 .signup_img_area {
-  width: 650px;
+  width:580px;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:url('/src/Images/registerBG_2.png') no-repeat;
+  background-size:cover; 
+}
+.signup_img_area_logo {
+  width:260px;
 }
 
-.signup_container {
-  width: 1270px;
-  padding-top: 163px;
+.signup_container_wrap{
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup_inputWrap{
+  position:relative;
+}
+.signup_inputWrap >button {
+  position:absolute;
+  top:55px;
+  right:18px;
+  border:none;
+  background-color:#889cf2;
+  color:#fff;
+  font-size:12px;
+  padding:6px 20px;
+  border-radius:20px;
+  cursor:pointer;
 }
 .signup_title {
   font-size: 32px;
@@ -17,12 +42,12 @@
   line-height: 38px;
   margin-bottom: 99px;
 }
-.singup_content {
+.signup_content {
   width: 1110px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.singup_content label + label + label {
+.signup_content label + label + label {
   margin-top: 28px;
 }

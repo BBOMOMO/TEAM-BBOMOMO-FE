@@ -3,11 +3,38 @@ import styled from "styled-components";
 import arrow from "../Images/arrow.png";
 
 const Select = (props) => {
-  const { text, children, boxSizing, border, display, color, margin,createGroup, className , name, _onChange} = props;
-  const labelStyle = { display, color };
-  const styles = { boxSizing, border, display, margin,className,name };
+  const {
+    text,
+    children,
+    boxSizing,
+    border,
+    display,
+    color,
+    margin,
+    createGroup,
+    className,
+    name,
+    _onChange,
+    size,
+    top,
+    right,
+    width,
+    height,
+  } = props;
+  const labelStyle = { display, color, size };
+  const styles = {
+    boxSizing,
+    border,
+    display,
+    margin,
+    className,
+    name,
+    width,
+    height,
+  };
+  const imgStyle = { top, right };
 
-  if(createGroup){
+  if (createGroup) {
     return (
       <GroupSelectLabel {...labelStyle}>
         {text}
@@ -18,106 +45,94 @@ const Select = (props) => {
     );
   }
 
-
   return (
     <ElLabel {...labelStyle}>
       {text}
-      <ElImg src={arrow} />
-      <ElSelect {...styles}>
-        <option key="middle1" value="middle1">
-          중1
-        </option>
-        <option key="middle2" value="middle2">
-          중2
-        </option>
-        <option key="middle3" value="middle3">
-          중3
-        </option>
-        <option key="high1" value="high1">
-          고1
-        </option>
-        <option key="high2" value="high2">
-          고2
-        </option>
-        <option key="high3" value="high3">
-          고3
-        </option>
-        <option key="univ" value="univ">
-          대학생
-        </option>
+      <ElImg src={arrow} {...imgStyle} />
+      <ElSelect {...styles} onChange={_onChange}>
+        {children}
       </ElSelect>
     </ElLabel>
   );
 };
 
 Select.defaultProps = {
-  _onChange: ()=>{}
-}
+  _onChange: () => {},
+  size: "18px",
+  top: "69px",
+  right: "21px",
+  width: "498px",
+  height: "62px",
+  
+};
 
 const GroupSelectLabel = styled.label`
-font-size:16px;
-font-weight:normal;
-position: relative;
+  font-size: 16px;
+  font-weight: normal;
+  position: relative;
 `;
-const GroupSelect=styled.select`
-  width:100%;
-  height:44px;
-  border-radius:11px;
-  font-size:16px;
-  font-weight:bold;
-  padding:0 27px;
+const GroupSelect = styled.select`
+  width: 100%;
+  height: 44px;
+  border-radius: 11px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 27px;
   background-color: #f4f4f4;
-  border:none;
+  border: none;
   color: #222;
-  margin-top:16px;
+  margin-top: 16px;
   text-align: center;
-  appearance: none;  
-  -webkit-appearance:none; /* for chrome */
-  -moz-appearance:none; /*for firefox*/
+  appearance: none;
+  -webkit-appearance: none; /* for chrome */
+  -moz-appearance: none; /*for firefox*/
 
-  background-image:url(${arrow});
+  background-image: url(${arrow});
   background-repeat: no-repeat;
-  background-position:  95% 17px;
+  background-position: 95% 17px;
   background-size: 24px;
-   :focus {  
+  :focus {
     outline: none;
   }
 
   option {
-    padding:5px;
+    padding: 5px;
+
   }
 `;
 
 const ElLabel = styled.label`
-  font-size: 20px;
   font-weight: normal;
   ${(props) => (props.color ? `color: ${props.color};` : "")}
   position: relative;
+  ${(props) => (props.size ? `font-size: ${props.size};` : "")}
 `;
 
 const ElImg = styled.img`
   width: 14px;
   height: 8px;
   position: absolute;
-  top: 69px;
-  right: 21px;
+  z-index: 999;
+  ${(props) => (props.top ? `top: ${props.top};` : "")}
+  ${(props) => (props.right ? `right: ${props.right};` : "")}
 `;
 
 const ElSelect = styled.select`
-  width: 498px;
-  height: 62px;
   border-radius: 11px;
   font-size: 24px;
   padding: 0 27px;
   background-color: #f4f4f4;
+  font-size:18px; 
   color: #7a7d81;
   appearance: none;
-  -webkit-appearance:none; /* for chrome */
-  -moz-appearance:none; /*for firefox*/
+  -webkit-appearance: none; /* for chrome */
+  -moz-appearance: none; /*for firefox*/
   ${(props) => (props.boxSizing ? `box-sizing: border-box;` : "")}
   ${(props) => (props.border ? `border: ${props.border};` : "")}
   ${(props) => (props.display ? `display: ${props.display};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.width ? `width: ${props.width};` : "")};
+  ${(props) => (props.height ? `height: ${props.height};` : "")};
 `;
 
 export default Select;

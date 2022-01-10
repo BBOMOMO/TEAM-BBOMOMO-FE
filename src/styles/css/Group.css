@@ -1,16 +1,173 @@
 /************************** 그룹리스트 **************************/
+.group_left_bx{
+  flex:0.2;
+}
+.group_left_h2 {
+  width: 210px;
+  margin-bottom: 12px;
+  color: #242424;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.group_left_h2 > span {
+  margin-right: 8px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.state_name_bx {
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;
+}
+.group_name_wrap{
+  max-width: 50%;
+  min-width: 34%;
+}
+.state_name_txt {
+  display:inline-block;
+  padding: 4px 8px 4px 6px;
+  border: 0.37px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  color: #282828;
+  font-size: 10px;
+  line-height: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 130px;
+  text-overflow: ellipsis;
+}
+.state_name_circle {
+  display: inline-block;
+  margin-right: 4px;
+  width: 13.32px;
+  height: 13.32px;
+  border-radius: 13.32px;
+  background: #797979;
+  text-indent: -9999px;
+}
+.state_name_txt + .state_name_txt {
+  *margin-top: 4px;
+}
 
+.group_right_bx {
+  flex:0.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-/************************** 그룹만들기 모달창 **************************/
+.ic_top_bx {
+  display: flex;
+  justify-content: flex-end;
+}
+.ic_top_bx > img {
+  width: 20px;
+  height: 20px;
+  mix-blend-mode: difference;
+}
+.ic_bottom_bx {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.ic_bottom_bx > img {
+  margin-right: 6px;
+  width: 10px;
+  height: 10px;
+  mix-blend-mode: difference;
+}
+.ic_bottom_bx > p {
+  color: #282828;
+  font-size: 14px;
+  font-weight: 600;
+}
 
-.group_modal_title {color:#242424;font-size:18px; font-weight:bold;margin-left:10px;}
-.group_modal_hr {background:#E7E7E7;width:100%; height:1px;margin:20px 0;}
+.group_modal_title {
+  color: #242424;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.group_modal_hr {
+  background: #e7e7e7;
+  width: 100%;
+  height: 1px;
+  margin: 20px 0;
+}
 
-.group_modal_subtitle{font-size:16px;margin-bottom:16px;}
+.group_modal_subtitle {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
 
-.group_modal_relative {position:relative;}
-.group_modal_roomStatus {position:absolute;top:40px; right:14px;display:inline-block;width:24px;cursor: pointer;}
-.group_modal_roomStatus img {  width:100%; }
+.group_modal_relative {
+  position: relative;
+}
+.group_modal_roomStatus {
+  position: absolute;
+  top: 44px;
+  right: 14px;
+  display: inline-block;
+  width: 24px;
+  cursor: pointer;
+}
+.group_modal_roomStatus > img {
+  width: 100%;
+}
 
-.group_modal_close {position:absolute;top:0; right:0;width:24px;cursor: pointer;}
-.group_modal_close img {  width:100%; }
+.group_modal_close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  cursor: pointer;
+}
+.group_modal_close > img {
+  width: 100%;
+}
+
+/* 그룹 룸 리스트 순서별 컬러 */
+.bg01 {
+  background-color: #bef5a4 !important;
+}
+
+.bg02 {
+  background-color: #889cf2 !important;
+}
+
+.bg03 {
+  background-color: #ffd678 !important;
+}
+
+.bg04 {
+  background-color: #a4e1fa !important;
+}
+
+.bg05 {
+  background-color: #c4c5fb !important;
+}
+
+.bg06 {
+  background-color: #fe9c77 !important;
+}
+.groupTimer_whatTime {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+.groupTimer_timer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 68px;
+  font-weight: 300;
+}

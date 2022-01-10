@@ -1,0 +1,432 @@
+import React, { useState, useEffect, useRef } from "react";
+import { io } from "socket.io-client";
+import Peer from "peerjs";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
+import ChatRoomNav from "./ChatRoomNav";
+import { history } from "../redux/configureStore";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as groupAction } from "../redux/modules/group";
+import Timer from "./Timer";
+import GroupChat from "./GroupChat";
+import profile from "../Images/profile.png";
+//if (min === 0 && sec === 0)  -> if (gapTimeFloor <= 0)
+const GroupContainer = styled.div`
+  padding-top: 110px;
+  display: flex;
+`;
+const GroupCont = styled.div`
+  width: 1197px;
+`;
+const GroupTimer = styled.div`
+  height: 152px;
+  position: relative;
+`;
+const ChatRoom = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  #video-grid {
+    box-sizing: border-box;
+    width: 1197px;
+    display: flex;
+    flex-wrap: wrap;
+    .video_box {
+      height: 300px;
+      margin-left: 18px;
+      &:nth-child(3n + 1) {
+        margin-left: 0px;
+      }
+      &:nth-child(n + 4) {
+        margin-top: 25px;
+      }
+      video {
+        width: 387px;
+        height: 236px;
+        border-radius: 11px;
+        object-fit: cover;
+      }
+    }
+  }
+`;
+
+export default function VideoChatRoom() {
+  // Global
+  const dispatch = useDispatch();
+  let userId = localStorage.getItem("id");
+  let userNick = localStorage.getItem("nick");
+  let statusMsg = localStorage.getItem("statusMsg");
+  let peerstatusMsg = "";
+  let peerStatusMsg = "";
+  let peerNickname = "";
+  let peernick = "";
+  const params = useParams();
+  const roomId = params.roomId;
+
+  useEffect(() => {
+    dispatch(groupAction.enterRoom(roomId));
+  }, []);
+
+  // Local
+  const [cameraOn, setCameraOn] = useState(true);
+  const [roomClosed, setRoomClosed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [users, setUsers] = useState(1);
+  const [state, setState] = useState("5 : 00");
+  const [text, setText] = useState("쉬는 시간입니다.");
+  // const username = user
+  //   ? user.username
+  //   : `GUEST${Math.round(Math.random() * 100000)}`;
+
+  let myStream = null;
+  let myPeerId = "";
+  let allStream = useRef();
+  let timerRef = useRef();
+  const videoGrid = useRef();
+  const myVideo = useRef();
+  const videoContainer = useRef();
+
+  // TODO
+  // const [todoOpen, setTodoOpen] = useState(false);
+
+  const handleCamera = () => {
+    setCameraOn((prev) => !prev);
+    if (cameraOn) {
+      let video = allStream.current.getTracks();
+      video[0].enabled = false;
+    } else {
+      let video = allStream.current.getTracks();
+      video[0].enabled = true;
+    }
+  };
+
+  // const toggleTodo = () => {
+  //   setTodoOpen(!todoOpen);
+  // };
+
+  useEffect(() => {
+    const socket = io("https://hanghaelog.shop");
+    const peer = new Peer({
+      config: {
+        iceServers: [
+          {
+            urls: [
+              // 구글 스턴 서버, 실제 배포 시 커스텀 스턴 서버 사용해야함
+              "stun:stun.l.google.com:19302",
+              "stun:stun1.l.google.com:19302",
+              "stun:stun2.l.google.com:19302",
+              "stun:stun3.l.google.com:19302",
+              "stun:stun4.l.google.com:19302",
+            ],
+          },
+        ],
+      },
+    });
+
+    // 클라의 영상 스트림 비디오에 넣기
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        let streamId = stream.id;
+        myStream = stream;
+        addVideoStream(myVideo.current, stream);
+        videoGrid.current.prepend(myVideo.current);
+        setIsLoading(false);
+        allStream.current = stream;
+        // 타이머 이벤트
+        let gapTimeFloor;
+
+        socket.on("restTime", (currentRound, totalRound, time) => {
+          console.log(currentRound, totalRound, time);
+          const endTime = time;
+          const nowTime = new Date().getTime();
+          const gapTime = endTime - nowTime;
+          console.log(gapTime);
+          gapTimeFloor = Math.floor(gapTime / 1000);
+          let MinTime = Math.floor(gapTime / (1000 * 60));
+          let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+          // console.log(MinTime, secTime, gapTimeFloor);
+          setText("쉬는 시간입니다.");
+          let timer = () => {
+            gapTimeFloor = gapTimeFloor - 1;
+            console.log(gapTimeFloor);
+            let min = Math.floor(gapTimeFloor / 60);
+            let sec = gapTimeFloor % 60;
+            setState(`${min} : ${sec}`);
+            // console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "쉬는시간");
+            // timerRef.current.innerText = `남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`;
+            // if (min === 0 && sec === 0)
+            if (gapTimeFloor <= 0) {
+              console.log(currentRound, totalRound);
+              console.log("쉬는시간 종료");
+              currentRound = currentRound + 1;
+              console.log(currentRound, "현재 라운드");
+              socket.emit("endRest", roomId, currentRound);
+              clearInterval(restinterval);
+            }
+          };
+          const restinterval = setInterval(timer, 1000);
+        });
+
+        socket.on("studyTime", (currentRound, totalRound, time) => {
+          console.log(time);
+          const endTime = time;
+          const nowTime = new Date().getTime();
+          const gapTime = endTime - nowTime;
+          gapTimeFloor = Math.floor(gapTime / 1000);
+          let MinTime = Math.floor(gapTime / (1000 * 60));
+          let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+          // console.log(MinTime, secTime, gapTimeFloor);
+          setText("공부 시간입니다.");
+          let timer = () => {
+            gapTimeFloor = gapTimeFloor - 1;
+            console.log(gapTimeFloor);
+            let min = Math.floor(gapTimeFloor / 60);
+            let sec = gapTimeFloor % 60;
+            setState(`${min} : ${sec}`);
+            if (gapTimeFloor <= 0) {
+              console.log(
+                currentRound,
+                totalRound,
+                "현재 라운드와 토탈 라운드"
+              );
+              console.log("수업시간 종료");
+              if (currentRound !== totalRound) {
+                socket.emit("endStudy", roomId, userId, userNick);
+                console.log("endStudy 발생");
+              }
+              if (currentRound === totalRound) {
+                socket.emit("totalEnd", roomId, userId, userNick);
+              }
+              clearInterval(studyinterval);
+            }
+          };
+          const studyinterval = setInterval(timer, 1000);
+        });
+
+        socket.on("totalEnd", (time) => {
+          const endTime = time;
+          const nowTime = new Date().getTime();
+          const gapTime = endTime - nowTime;
+          gapTimeFloor = Math.floor(gapTime / 1000);
+          let MinTime = Math.floor(gapTime / (1000 * 60));
+          let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
+          // console.log(MinTime, secTime, gapTimeFloor);
+          setText("모두 수고하셨습니다.");
+          let timer = () => {
+            gapTimeFloor = gapTimeFloor - 1;
+            console.log(gapTimeFloor);
+            let min = Math.floor(gapTimeFloor / 60);
+            let sec = gapTimeFloor % 60;
+            setState(`${min} : ${sec}`);
+            if (gapTimeFloor <= 0) {
+              clearInterval(goodByeinterval);
+              // socketRef.current.emit("removeRoom", roomId);
+              history.push("/");
+            }
+          };
+          const goodByeinterval = setInterval(timer, 1000);
+        });
+
+        // 피어 생성하기
+
+        peer.on("open", (peerId) => {
+          //소켓을 통해 서버로 방ID, 유저ID 보내주기
+          console.log(peerId);
+          myPeerId = peerId;
+          socket.emit(
+            "join-room",
+            roomId,
+            peerId,
+            userId,
+            userNick,
+            streamId,
+            statusMsg
+          );
+
+          //전역변수 chatroom.participants에 본인 더하기
+        });
+
+        // 새로운 피어가 연결을 원할 때
+        peer.on("call", (mediaConnection) => {
+          // socket.on("peer-on", (peernick, peerstatusMsg) => {
+          //   peerStatusMsg = peerstatusMsg;
+          //   peerNickname = peernick;
+          //   console.log(peerStatusMsg, peerNickname);
+          // });
+          //answer()를 해야 mediaConnection이 활성화됨
+          mediaConnection.answer(stream);
+          const videoBox = document.createElement("div");
+          videoBox.classList.add("video_box");
+          console.log("div 클래스 추가 videobox");
+          const peerVideo = document.createElement("video");
+          const txtBox = document.createElement("div");
+          console.log("div 추가");
+          txtBox.classList.add("userview_txtbox");
+          console.log("클래스 추가");
+          const img = document.createElement("img");
+          img.setAttribute("src", `${profile}`);
+          img.classList.add("fl");
+          const nameBox = document.createElement("div");
+          nameBox.classList.add("userview_name", "fl");
+          const peerstatus = document.createElement("p");
+          peerstatus.innerText = peerStatusMsg;
+          const peerNick = document.createElement("p");
+          peerNick.innerText = peernick;
+          nameBox.prepend(peerstatus);
+          nameBox.prepend(peerNick);
+          txtBox.prepend(nameBox);
+          txtBox.prepend(img);
+          // 텍스트 추가
+          videoBox.prepend(peerVideo);
+          console.log("newVideo 추가");
+          videoBox.prepend(txtBox);
+          console.log("textbox 추가");
+          videoContainer.current.prepend(videoBox);
+          console.log("prepend");
+
+          mediaConnection.on("stream", (newStream) => {
+            addVideoStream(peerVideo, newStream);
+            videoBox.prepend(peerVideo);
+            setUsers(videoGrid.current.childElementCount);
+            console.log(myPeerId, userNick);
+          });
+
+          mediaConnection.on("close", () => {
+            socket.emit("camera-off", myPeerId, userNick);
+            console.log(myPeerId, userNick);
+          });
+        });
+
+        socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
+          console.log(peerId, userNick, streamId, peerMsg);
+          peerstatusMsg = peerMsg;
+          setUsers((prev) => prev + 1);
+          const mediaConnection = peer.call(peerId, stream);
+          const videoBox = document.createElement("div");
+          videoBox.classList.add("video_box");
+          console.log("div 클래스 추가 videobox");
+          const newVideo = document.createElement("video");
+          const txtBox = document.createElement("div");
+          console.log("div 추가");
+          txtBox.classList.add("userview_txtbox");
+          console.log("클래스 추가");
+          const img = document.createElement("img");
+          img.setAttribute("src", `${profile}`);
+          img.classList.add("fl");
+          const nameBox = document.createElement("div");
+          nameBox.classList.add("userview_name");
+          nameBox.classList.add("fl");
+          const peerstatus = document.createElement("p");
+          peerstatus.innerText = peerstatusMsg;
+          console.log(peerstatus.innerText);
+          const peerNick = document.createElement("p");
+          peerNick.innerText = userNick;
+          nameBox.prepend(peerstatus);
+          nameBox.prepend(peerNick);
+          txtBox.prepend(nameBox);
+          txtBox.prepend(img);
+          // 텍스트 추가
+          videoBox.prepend(newVideo);
+          console.log("newVideo 추가");
+          videoBox.prepend(txtBox);
+          console.log("textbox 추가");
+          videoContainer.current.prepend(videoBox);
+          console.log("prepend");
+          // newVideo.setAttribute("id", `${peerId}`);
+
+          mediaConnection.on("stream", (newStream) => {
+            addVideoStream(newVideo, newStream);
+            videoBox.prepend(newVideo);
+            // videoGrid.current.prepend(newVideo);
+            setUsers(videoGrid.current.childElementCount);
+          });
+        });
+      });
+
+    socket.on("user-disconnected", (peerId, userNick, streamId) => {
+      setUsers((prev) => prev - 1);
+      const video = document.querySelectorAll("video");
+      const video_box = document.querySelectorAll("video_box");
+      const txt_box = document.querySelectorAll("userview_txtbox");
+      const name_box = document.querySelectorAll("userview_name");
+      console.log(video_box, txt_box, name_box);
+      let removeVideo;
+      let removeBox;
+      let removeTxt;
+      let removeName;
+      for (let i = 0; i < video.length; i++) {
+        if (video[i].srcObject.id === streamId) {
+          removeVideo = video[i];
+          removeBox = video_box[i];
+          removeTxt = txt_box[i];
+          removeName = name_box[i];
+        }
+      }
+      removeVideo.remove();
+    });
+
+    // 테스팅 필요
+    return function cleanup() {
+      myStream.getTracks().forEach((track) => {
+        track.stop();
+      });
+      socket.disconnect();
+      peer.destroy();
+    };
+  }, []);
+  // if (userInfo == null) {
+  //   return <></>;
+  // }
+  return (
+    <>
+      {/* <ChatRoomNav
+        cameraOn={cameraOn}
+        handleCamera={handleCamera}
+        // toggleTodo={toggleTodo}
+      /> */}
+      <GroupContainer>
+        <ChatRoom numberOfUsers={users}>
+          {isLoading && <span>Loading...</span>}
+          <GroupChat />
+          <GroupCont>
+            <GroupTimer>
+              <p style={{ color: "#000" }} className="groupTimer_whatTime">
+                {text}
+              </p>
+              <p
+                ref={timerRef}
+                style={{ color: "#000" }}
+                className="groupTimer_timer"
+              >
+                {state}
+              </p>
+            </GroupTimer>
+            <div id="video-grid" ref={videoContainer}>
+              <div className="video_box" ref={videoGrid}>
+                <video ref={myVideo} autoPlay playsInline></video>
+                <div className="userview_txtbox clearfix">
+                  <img src={profile} alt="프로필" className="fl" />
+                  <div className="userview_name fl">
+                    <p>{userNick}</p>
+                    <p>{statusMsg}</p>
+                  </div>
+                  {/* <div className="fr userview_friend">친구신청</div> */}
+                </div>
+              </div>
+            </div>
+          </GroupCont>
+        </ChatRoom>
+      </GroupContainer>
+    </>
+  );
+}
+
+// 영상 스트림을 DOM 비디오 엘리먼트에 넣어주는 함수
+function addVideoStream(video, stream) {
+  video.srcObject = stream;
+  video.addEventListener("loadedmetadata", () => {
+    video.play();
+  });
+}

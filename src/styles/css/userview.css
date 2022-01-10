@@ -39,7 +39,7 @@
   flex-direction: column;
   margin: 3px 0 0 16px;
 }
-.userview_name p {
+.userview_name > p {
   font-size: 16px;
   font-weight: 600;
 }
