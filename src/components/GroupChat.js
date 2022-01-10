@@ -1,22 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import OneChatList from "./OneChatList";
+import icon_lock from "../Images/chat-lock_2.png";
 
 import send from "../Images/ic-send 1.png";
 
 import "../styles/css/chat.css";
 
-function GroupChat() {
+function GroupChat({openChat}) {
   const [chatMessage, setChatMessage] = React.useState("");
 
   const sendMessage = (e) => {
     setChatMessage(e.target.value);
   };
-
+//console.log("채팅방현황:",openChat)
   return (
     <>
       <ChatContainer>
-        <BlockChat/>
+        <BlockChat className={openChat}>
+          <div className="blockBG"></div>         
+          <img src={icon_lock} alt="집중시간" />
+        </BlockChat>
         <p className="header_modal_title">그룹채팅</p>
         <div className="header_modal_hr"></div>
 
@@ -134,8 +138,31 @@ const ChatContainer = styled.div`
 `;
 
 const BlockChat = styled.div`
+position: absolute;
 width:100%;
 height:100%;
-background-color:#fff;
-position:relative;
+display:none;
+text-align: center;
+z-index:1;
+
+> .blockBG {
+  position: relative;
+  width:100%;
+  height:100%;
+  background-color:#fff;
+  opacity:0.8;
+  border-radius:16px;  
+
+}
+> img {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:80px;
+  opacity:1; 
+  z-index:1;
+}
+
+&&.focusTime {display:block;}
 `;
