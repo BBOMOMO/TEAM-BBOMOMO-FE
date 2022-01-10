@@ -10,10 +10,11 @@ const NICK_CHECK = "NICK_CHECK";
 const ADD_USER_IMG = "ADD_USER_IMG";
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
-const idCheck = createAction(ID_CHECK,(idCheckres)=>({idCheckres}));
-const nickCheck = createAction(NICK_CHECK, (nickCheckres)=>({nickCheckres}));
-const addUserImg = createAction(ADD_USER_IMG,(userImg)=>({userImg}));
-
+const idCheck = createAction(ID_CHECK, (idCheckres) => ({ idCheckres }));
+const nickCheck = createAction(NICK_CHECK, (nickCheckres) => ({
+  nickCheckres,
+}));
+const addUserImg = createAction(ADD_USER_IMG, (userImg) => ({ userImg }));
 
 // initialState
 const initialState = {
@@ -144,7 +145,7 @@ const statMsgDB = (valueName) => {
       .changeMsg(userMsg)
       .then((response) => {
         //console.log(response);
-        window.alert("수정 완료되었습니다.")
+        window.alert("수정 완료되었습니다.");
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -161,44 +162,39 @@ const changeInfo = (nickname, category) => {
     };
     await apis
       .changeNick(userInfo)
-      .then((response)=>{
+      .then((response) => {
         console.log(response);
-        window.alert("수정 완료되었습니다.")
-        apis.checkUser()
-        .then((response) => {
+        window.alert("수정 완료되었습니다.");
+        apis.checkUser().then((response) => {
           dispatch(setUser(response.data));
         });
-      }).catch((err)=>{
-        window.alert(err.response.data.message)
       })
-  }
-}
+      .catch((err) => {
+        window.alert(err.response.data.message);
+      });
+  };
+};
 
 //프로필이미지 수정
 const changeImgDB = (file) => {
-  return async function (dispatch, getState, {history}){
-
+  return async function (dispatch, getState, { history }) {
     const form = new FormData();
 
     form.append("file", file);
-    
+
     await apis
       .changeImg(form)
-      .then((response)=>{
-        window.alert("수정 완료되었습니다.")
-        apis.checkUser()
-        .then((response) => {
+      .then((response) => {
+        window.alert("수정 완료되었습니다.");
+        apis.checkUser().then((response) => {
           dispatch(setUser(response.data));
         });
-      }).catch((err)=>{
-        console.log(err);
       })
-  }
- 
-
-}
-
-
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 //---- reducer ----
 export default handleActions(
@@ -221,10 +217,7 @@ export default handleActions(
         draft.studyTotal = action.payload.userInfo.totalRecord[0].total;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
-    [ADD_USER_IMG]: (state, action) =>
-    produce(state, (draft) => {
-      
-    }),
+    [ADD_USER_IMG]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -237,6 +230,5 @@ export const actionCreators = {
   nickCheckDB,
   changeInfo,
   statMsgDB,
-  changeImgDB
-
+  changeImgDB,
 };
