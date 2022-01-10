@@ -11,16 +11,10 @@ import { history } from "../redux/configureStore";
 
 const Certification = (props) => {
   const dispatch = useDispatch();
-
   const user = useSelector((state) => state.user.userInfo);
-
   const cardList = useSelector((state) => state.post.postList.board);
-  console.log(cardList);
-  // console.log(_roomlist.postId);
-
-  //const _postlist = useSelector((state) => state.post.postList.board);
-
-  console.log(user);
+  // console.log("user", user);
+  // console.log("cardList", cardList.studyTime);
 
   const [roomcount, setRoomcount] = React.useState(3);
 
@@ -97,19 +91,32 @@ const Certification = (props) => {
             cardSlice().map((a, b) => {
               let postBg = a.postImg;
               let idx = b;
+              let postId = a.postId;
               let sortBg = "";
               if (postBg.includes("https")) {
                 sortBg = "certifi_card_list_bx black-bg";
               } else {
                 sortBg = "certifi_card_list_bx nomal-bg";
               }
-
+              let styudyTime;
+              let what = a.studyTime;
+              let HH = Math.floor(what / 60);
+              let MM = what % 60;
+              if (HH < 10 && MM < 10) {
+                styudyTime = `0${HH}:0${MM}`;
+              } else if (HH < 10) {
+                styudyTime = `0${HH}:${MM}`;
+              } else if (MM < 10) {
+                styudyTime = `${HH}:0${MM}`;
+              } else {
+                styudyTime = `${HH}:${MM}`;
+              }
               return (
                 <div
                   className="CertificationCardBx"
                   onClick={() => {
                     openPostComment();
-                    dispatch(postActions.detailPost(idx));
+                    dispatch(postActions.detailPost(idx, postId));
                     dispatch(postActions.detailPostBg(postBg));
                   }}
                 >
@@ -117,7 +124,7 @@ const Certification = (props) => {
                     {...a}
                     key={b}
                     sortBg={sortBg}
-                    // sTime={sTime}
+                    studyTime={styudyTime}
                   ></CertificationCard>
                 </div>
               );

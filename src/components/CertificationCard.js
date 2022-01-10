@@ -4,22 +4,39 @@ import comment from "../Images/ic-comment.png";
 import commentWhite from "../Images/ic-comment-white.png";
 import { useSelector } from "react-redux";
 
+import BG1 from "../Images/study-certification-bg-1.png";
+import BG2 from "../Images/study-certification-bg-2.png";
+import BG3 from "../Images/study-certification-bg-3.png";
+import BG4 from "../Images/study-certification-bg-4.png";
+
 const CertificationCard = (props) => {
   const userInfo = useSelector((state) => state.user.studyTotal);
 
+  const [background, setBackground] = React.useState(null);
+  const css = {
+    backgroundImage: `url(${background})`,
+  };
+
+  React.useEffect(() => {
+    if (props.postImg === "orange") {
+      setBackground(BG1);
+    } else if (props.postImg === "blue") {
+      setBackground(BG2);
+    } else if (props.postImg === "green") {
+      setBackground(BG3);
+    } else if (props.postImg === "purple") {
+      setBackground(BG4);
+    } else if (props.postImg.includes("https")) {
+      setBackground(props.postImg);
+    }
+  }, [props]);
+
   return (
-    <CertifiCont
-      className={props.sortBg}
-      style={{ backgroundImage: `url(${props.postImg})` }}
-    >
+    <CertifiCont className={props.sortBg} style={css}>
       <div className="certifi_card_relative">
         <div className="certifi_card_top">
-          {userInfo === null ? (
-            <h2>00:00</h2>
-          ) : (
-            <h2>{userInfo}</h2>
-          )}
-
+          {/* {userInfo === null ? <h2>00:00</h2> : <h2>{userInfo}</h2>} */}
+          <h2>{props.studyTime}</h2>
           <p>{props.postContent}</p>
         </div>
         <div className="certifi_card_bottom">
