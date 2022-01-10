@@ -11,7 +11,10 @@ const DETAIL_POST_BG = "DETAIL_POST_BG";
 
 // action creators
 const loadPosts = createAction(GET_POST, (postList) => ({ postList }));
-const detailPost = createAction(DETAIL_POST, (idx) => ({ idx }));
+const detailPost = createAction(DETAIL_POST, (idx, postId) => ({
+  idx,
+  postId,
+}));
 const detailPostBg = createAction(DETAIL_POST_BG, (postBg) => ({ postBg }));
 // const addPosts = createAction(ADD_POST, (newPost) => ({ newPost }));
 
@@ -20,6 +23,7 @@ const initialState = {
   postList: [],
   detailPost: {
     idx: null,
+    postId: null,
   },
   detailPostBg: {
     postBg: null,
@@ -30,6 +34,7 @@ const initialState = {
 const getPosts = () => {
   return async function (dispatch, useState, { history }) {
     await apis.getPost().then(function (response) {
+      // console.log(response.data.borad.reverse());
       dispatch(loadPosts(response));
     });
   };
@@ -37,7 +42,7 @@ const getPosts = () => {
 
 const addPost = (nick, postContent, studyTime, file, bgtype) => {
   return async function (dispatch, useState, { history }) {
-    // console.log(nick, postContent, studyTime, file, bgtype);
+    console.log(nick, postContent, studyTime, file, bgtype);
     const form = new FormData();
     if (file === null) {
       form.append("nick", nick);
@@ -76,6 +81,7 @@ export default handleActions(
     [DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.detailPost.idx = action.payload.idx;
+        draft.detailPost.postId = action.payload.postId;
       }),
     [DETAIL_POST_BG]: (state, action) =>
       produce(state, (draft) => {

@@ -13,7 +13,10 @@ import BG4 from "../Images/study-certification-bg-4.png";
 const CertificationWrite = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
   const userTodayTime = useSelector((state) => state.user.studyTime);
-  console.log(userTodayTime);
+
+  const cardList = useSelector((state) => state.post.postList.board);
+
+
   // 배경화면 지정
   const [background, setBackground] = useState(BG1);
   const css = {
@@ -47,14 +50,24 @@ const CertificationWrite = ({ showModal, closeModal }) => {
       postActions.addPost(userNick, postContent, studyTime, file, bgtype)
     );
   };
-  React.useEffect(() => {
+  // React.useEffect(() => {
+
+  // }, [cardList]);
+  const buttton = () => {
     setBgType("orange");
-  }, []);
+    setBackground(BG1);
+    setPostContent("");
+    setFile(null);
+    setActive1(true);
+    setActive2(false);
+    setActive3(false);
+    setActive4(false);
+  };
   return (
     <>
       {showModal ? (
         <ModalContainer>
-          <ModalBG />
+          <ModalBG onClick={closeModal} />
           <ModalBox>
             <ModalInnerContainer>
               <div className="certifi_write_title_bx">
@@ -83,7 +96,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       className={
                         isActive1 ? "bg_btn black_btn1" : "bg_btn bg_btn1"
                       }
-                      data-bgtype="/static/media/study-certification-bg-1.ae6a94aa.png"
+                      data-bgtype="orange"
                       onClick={(e) => {
                         setActive1((isActive1) => {
                           if (isActive1 === false) {
@@ -103,7 +116,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       className={
                         isActive2 ? "bg_btn black_btn2" : "bg_btn bg_btn2"
                       }
-                      data-bgtype="/static/media/study-certification-bg-2.80d12dee.png"
+                      data-bgtype="blue"
                       onClick={(e) => {
                         setActive2((isActive2) => {
                           if (isActive2 === false) {
@@ -123,7 +136,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       className={
                         isActive3 ? "bg_btn black_btn3" : "bg_btn bg_btn3"
                       }
-                      data-bgtype="/static/media/study-certification-bg-3.61f1bcea.png"
+                      data-bgtype="green"
                       onClick={(e) => {
                         setActive3((isActive3) => {
                           if (isActive3 === false) {
@@ -143,7 +156,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                       className={
                         isActive4 ? "bg_btn black_btn4" : "bg_btn bg_btn4"
                       }
-                      data-bgtype="/static/media/study-certification-bg-4.770b8b22.png"
+                      data-bgtype="purple"
                       onClick={(e) => {
                         setActive4((isActive4) => {
                           if (isActive4 === false) {
@@ -172,6 +185,9 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                         );
                         setBackground(objectURL);
                       }}
+                      onClick={() => {
+                        setActive1(false);
+                      }}
                     />
                     <label
                       htmlFor="post_img_btn"
@@ -192,6 +208,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                   _onClick={() => {
                     sendPost();
                     closeModal();
+                    buttton();
                   }}
                 >
                   작성하기

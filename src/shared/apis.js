@@ -6,8 +6,10 @@ dotenv.config();
 const url = process.env.REACT_APP_API_URL;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
+
   baseURL: url, // 재원님 서버주소
   //baseURL: "http://54.180.120.210/", // 상협님서버주소
+
   // baseURL: "http://54.180.107.194/", // 원래 서버주소
 });
 
@@ -48,10 +50,12 @@ export const apis = {
 
   //---- 공부인증  ----//
   getStudyTime: () => instance.get("/api/v1/posts/time"),
-  postWrite: (formData) => instance.post("/api/v1/posts", formData),
-  getPost: () => instance.get("/api/v1/posts"),
   getCommentNum: () => instance.get("/api/v1/posts/comments"),
+  getPost: () => instance.get("/api/v1/posts"),
   getPostdetail: () => instance.get("/api/v1/posts/:postId"),
+  postWrite: (formData) => instance.post("/api/v1/posts", formData),
+  getComment: (postId) => instance.get(`/api/v1/posts/${postId}/comments`),
+  commentWrite: (commentInfo) =>
+    instance.post(`/api/v1/posts/${commentInfo.postId}}/comments`, commentInfo),
 };
-
 export default apis;

@@ -3,15 +3,20 @@ import styled from "styled-components";
 import { Input } from "../elements";
 import CertificationCommentList from "./CertificationCommentList";
 
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
+
 import profileimg from "../Images/user.png";
 import close from "../Images/ic_header_close.png";
 import comment from "../Images/ic-comment.png";
 import send from "../Images/ic-send 1.png";
 import BG1 from "../Images/study-certification-bg-1.png";
-
-import { useSelector } from "react-redux";
+import BG2 from "../Images/study-certification-bg-2.png";
+import BG3 from "../Images/study-certification-bg-3.png";
+import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationComment = ({ showModal, closeModal }) => {
+  const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
   const css = {
@@ -19,18 +24,42 @@ const CertificationComment = ({ showModal, closeModal }) => {
   };
   const _postlist = useSelector((state) => state.post.postList.board);
   const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
+  const _postId = useSelector((state) => state.post.detailPost.postId);
   const _postBg = useSelector((state) => state.post.detailPostBg.postBg);
   const userTodayTime = useSelector((state) => state.user.studyTime);
 
+  const _commentList = useSelector(
+    (state) => state.comment.commentList.comment
+  );
+  console.log("_commentList", _commentList);
+  const sendComment = () => {
+    const userNick = localStorage.getItem("nick");
+    dispatch(commentActions.addComment(userNick, _postId, commentText));
+  };
+
   React.useEffect(() => {
-    setBackground(_postBg);
+    if (_postBg === "orange") {
+      setBackground(BG1);
+    } else if (_postBg === "blue") {
+      setBackground(BG2);
+    } else if (_postBg === "green") {
+      setBackground(BG3);
+    } else if (_postBg === "purple") {
+      setBackground(BG4);
+    } else {
+      setBackground(_postBg);
+    }
   }, [_postBg]);
+
+  React.useEffect(() => {
+    dispatch(commentActions.getComments(_postId));
+  }, []);
 
   return (
     <>
       {showModal ? (
         <ModalContainer>
-          <ModalBG />
+          <ModalBG onClick={closeModal} />
           <ModalBox>
             <ModalInnerContainer>
               <div className="certifi_comment_title_bx">
@@ -67,23 +96,22 @@ const CertificationComment = ({ showModal, closeModal }) => {
 
                 <div className="comment_cont_right">
                   <div className="certifi_conmment_list_bx">
-                    <CertificationCommentList></CertificationCommentList>
-                    {/* <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList>
-                    <CertificationCommentList></CertificationCommentList> */}
+                    {/* {_commentList &&
+                      _commentList.map((a, b) => {
+                        return (
+                          <CertificationCommentList
+                            {...a}
+                            key={b}
+                          ></CertificationCommentList>
+                        );
+                      })} */}
+                    <CertificationCommentList
+                      array={_commentList}
+                    ></CertificationCommentList>
                   </div>
 
                   <div className="certifi_conmment_input_bx">
-                    <img src={send} alt="자물쇠 아이콘" />
+                    <img src={send} alt="자물쇠 아이콘" onClick={sendComment} />
                     <Input
                       value={commentText}
                       boxSizing

@@ -59,7 +59,6 @@ const MainContainer = styled.div`
     position: relative;
     z-index: 1;
   }
-
   .main_wrap {
     width: 100%;
     position: relative;
@@ -77,7 +76,6 @@ const AdSection = styled.div`
   position: relative;
   width: 100%;
   height: 150px;
-
   > img {
     width: 100%;
   }
@@ -89,7 +87,6 @@ const RoomSection = styled.div`
   width: 100%;
   min-height: 35vh;
   height: auto;
-
   *padding-bottom: 60px;
 `;
 

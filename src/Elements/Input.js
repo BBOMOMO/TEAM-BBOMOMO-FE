@@ -23,7 +23,7 @@ const Input = (props) => {
     _name,
     _checked,
     size,
-    maxlength
+    maxlength,
   } = props;
 
   const labelStyle = { display, color, size };
@@ -39,7 +39,7 @@ const Input = (props) => {
     radius,
     color,
     size,
-    maxlength
+    maxlength,
   };
 
   if (createGroup) {

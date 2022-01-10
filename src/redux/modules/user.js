@@ -184,7 +184,6 @@ const changeImgDB = (file) => {
         apis.checkUser()
         .then((response) => {
           dispatch(setUser(response.data));
-          window.location.reload();
         });
       }).catch((err)=>{
         console.log(err);
