@@ -68,20 +68,22 @@ const GroupButton = styled.div`
   color: #cdcdcd;
   font-weight: normal;
   margin: 0 15px 16px 0;
+  cursor: pointer;
 `;
 
 const ElButton = styled.button`
+  cursor: pointer;
   text-align: center;
   width: 100%;
   color: ${(props) => props.color};
   background: ${(props) => props.background};
   font-size: ${(props) => props.fontSize};
-  ${(props) => (props.border ? `border: ${props.border};` : "")}
-  ${(props) => (props.height ? `height: ${props.height};` : "")}
-  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.weight ? `font-weight: ${props.weight};` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : "")};
+  ${(props) => (props.height ? `height: ${props.height};` : "")};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  ${(props) => (props.weight ? `font-weight: ${props.weight};` : "")};
 `;
 
 export default Button;

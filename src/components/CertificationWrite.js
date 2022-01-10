@@ -13,7 +13,7 @@ import BG4 from "../Images/study-certification-bg-4.png";
 const CertificationWrite = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
   const userTodayTime = useSelector((state) => state.user.studyTime);
-
+  console.log(userTodayTime);
   // 배경화면 지정
   const [background, setBackground] = useState(BG1);
   const css = {

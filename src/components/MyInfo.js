@@ -90,7 +90,7 @@ const MyInfo = (props) => {
           
           ):(
           <label style={css} className="myinfo_user_img">
-           <span onClick={()=>{  dispatch(userActions.changeImgDB(file)); }}>수정완료</span>  
+           <span onClick={()=>{  dispatch(userActions.changeImgDB(file)); }}>저장하기</span>  
           </label>
           )}
           

@@ -5,12 +5,8 @@ import commentWhite from "../Images/ic-comment-white.png";
 import { useSelector } from "react-redux";
 
 const CertificationCard = (props) => {
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const userInfo = useSelector((state) => state.user.studyTotal);
   console.log(userInfo);
-  if (userInfo == null) {
-    return <></>;
-  }
-
   return (
     <CertifiCont
       className={props.sortBg}
@@ -18,11 +14,7 @@ const CertificationCard = (props) => {
     >
       <div className="certifi_card_relative">
         <div className="certifi_card_top">
-          {userInfo.totalRecord[0].total === null ? (
-            <h2>00:00</h2>
-          ) : (
-            <h2>{userInfo.todayRecord[0].total}</h2>
-          )}
+          {userInfo === null ? <h2>00:00</h2> : <h2>{userInfo}</h2>}
 
           <p>{props.postContent}</p>
         </div>

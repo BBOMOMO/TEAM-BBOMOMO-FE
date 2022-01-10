@@ -214,6 +214,7 @@ export default handleActions(
         draft.userNick = action.payload.userInfo.user[0].nick;
         draft.userCate = action.payload.userInfo.user[0].category;
         draft.studyTime = action.payload.userInfo.todayRecord[0].today;
+        draft.studyTotal = action.payload.userInfo.totalRecord[0].total;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
     [ADD_USER_IMG]: (state, action) =>
