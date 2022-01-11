@@ -198,7 +198,22 @@
   font-size: 16px;
   line-height: 22px;
 }
-  /*타이머*/
+.groupTimer_end_btn {
+  position: absolute;
+  border: 1px solid #d7d7d7;
+  border-radius: 38px;
+  width: 88px;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+/*타이머*/
 .groupTimer_progress_background {
   width: 100%;
   height: 11px;
@@ -209,13 +224,42 @@
   top: 70%;
   transform: translate(-50%, -50%);
 }
-.groupTimer_progress_bar1 {
-  width: 100%;
+.groupTimer_progress_bar {
+  width: 0px;
   height: 11px;
   border-radius: 31px;
-  background-color: #ffd678;
+  background: linear-gradient(
+    90deg,
+    #eaf692 4.65%,
+    #fcdf29 21.59%,
+    #ffd678 39.49%,
+    #fe9c77 58.32%,
+    #c4c5fb 77.56%,
+    #889cf2 97.59%
+  );
   position: absolute;
   left: 0;
   top: 70%;
   transform: translateY(-50%);
+  transition: all 2.2s ease;
+}
+.groupTimer_progress_bar::after {
+  display: inline-block;
+  content: "";
+  width: 55px;
+  height: 46px;
+  background-image: url(../../Images/flag.png);
+  position: absolute;
+  top: 0;
+  right: -24px;
+  transform: translateY(-76%);
+  background-size: contain;
+}
+.groupTimer_round {
+  padding: 7px 12px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 14px;
+  font-weight: 600;
 }

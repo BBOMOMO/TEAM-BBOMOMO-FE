@@ -54,17 +54,6 @@ const ChatRoom = styled.div`
   }
 `;
 
-const Progressbar = styled.div`
-  width: 100%;
-  height: 11px;
-  border-radius: 31px;
-  background-color: #ffd678;
-  position: absolute;
-  left: 0;
-  top: 70%;
-  transform: translateY(-50%);
-`;
-
 export default function VideoChatRoom() {
   // Global
   const dispatch = useDispatch();
@@ -97,9 +86,7 @@ export default function VideoChatRoom() {
   // const username = user
   //   ? user.username
   //   : `GUEST${Math.round(Math.random() * 100000)}`;
-  useEffect(() => {
-    console.log(timerTime);
-  }, [timerTime]);
+
   let myStream = null;
   let myPeerId = "";
   let allStream = useRef();
@@ -108,20 +95,18 @@ export default function VideoChatRoom() {
   const myVideo = useRef();
   const videoContainer = useRef();
   const progressbar = useRef();
+  const round = useRef();
   const url = process.env.REACT_APP_API_URL;
 
   let percent;
   let totalPercent;
-  console.log("퍼센트", percent);
-  console.log("토탈퍼센트", totalPercent);
-  const css = {
-    width: `calc(100px - 10px)`,
-  };
-
+  let percentBar;
 
   // TODO
   // const [todoOpen, setTodoOpen] = useState(false);
-
+  const endBtn = () => {
+    history.push("/");
+  };
   const handleCamera = () => {
     setCameraOn((prev) => !prev);
     if (cameraOn) {
@@ -173,13 +158,15 @@ export default function VideoChatRoom() {
           totalPercent = gapTimeFloor;
           setText("쉬는 시간입니다.");
           setOpenChat("");
-          
+          progressbar.current.style.width = `0%`;
+          round.current.innerText = `${currentRound} / ${totalRound} 라운드`;
           let timer = () => {
-            console.log(progressbar);
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
             percent = totalPercent - gapTimeFloor;
-            console.log(percent);
+            percentBar = (percent / totalPercent) * 100;
+            console.log(percent, totalPercent, percentBar);
+            progressbar.current.style.width = `${percentBar}%`;
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
             setState(`${min} : ${sec}`);
@@ -207,11 +194,18 @@ export default function VideoChatRoom() {
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
           // console.log(MinTime, secTime, gapTimeFloor);
+          totalPercent = gapTimeFloor;
           setText("공부 시간입니다.");
           setOpenChat("focusTime");
+          progressbar.current.style.width = `0%`;
+          round.current.innerText = `${currentRound} / ${totalRound} 라운드`;
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
+            percent = totalPercent - gapTimeFloor;
+            percentBar = (percent / totalPercent) * 100;
+            console.log(percent, totalPercent, percentBar);
+            progressbar.current.style.width = `${percentBar}%`;
             let min = Math.floor(gapTimeFloor / 60);
             let sec = gapTimeFloor % 60;
             setState(`${min} : ${sec}`);
@@ -419,7 +413,7 @@ export default function VideoChatRoom() {
       <GroupContainer>
         <ChatRoom numberOfUsers={users}>
           {isLoading && <span>Loading...</span>}
-          <GroupChat openChat={openChat}/>
+          <GroupChat openChat={openChat} />
           <GroupCont>
             <GroupTimer>
               <p style={{ color: "#000" }} className="groupTimer_whatTime">
@@ -432,8 +426,14 @@ export default function VideoChatRoom() {
               >
                 {state}
               </p>
+              <p className="groupTimer_end_btn" onClick={endBtn}>
+                공부 끝내기
+              </p>
               <div className="groupTimer_progress_background"></div>
-              <Progressbar style={css}></Progressbar>
+              <div className="groupTimer_progress_bar" ref={progressbar}></div>
+              <p className="groupTimer_round" ref={round}>
+                0 / 4 라운드
+              </p>
             </GroupTimer>
             <div id="video-grid" ref={videoContainer}>
               <div className="video_box" ref={videoGrid}>
