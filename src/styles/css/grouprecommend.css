@@ -19,12 +19,10 @@
 .hashtag_list_bx {
   display: flex;
 }
-.hashtag_list_bx > li {
+.hashtag_list_bx > button {
   margin-right: 10px;
 }
-.hashtag_list_bx > li:last-child {
-  margin-right: 32px;
-}
+
 .search_bx {
   position: relative;
 }

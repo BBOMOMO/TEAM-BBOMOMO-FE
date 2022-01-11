@@ -27,8 +27,25 @@ function GroupChat({openChat}) {
         <div className="group_chat_container">
           <div className="chat_render_oneChat">
             <div className="chat_from_friend">
-              <p className="chat_message">지금 뭐 공부하고있어?</p>
-              <span className="chat_message_time">10:34</span>
+              <div className="chat_nick">닉네임1</div>
+              <div className="chat_content">
+                <p className="chat_message">다들 공부하고계신가여</p>
+                <span className="chat_message_time">10:34</span>
+              </div>
+            </div>
+            <div className="chat_from_friend">
+              <div className="chat_nick">닉네임2</div>
+              <div className="chat_content">
+                <p className="chat_message">ㅋㅋ그게뭐죠?</p>
+                <span className="chat_message_time">10:34</span>
+              </div>
+            </div>
+            <div className="chat_from_friend">
+              <div className="chat_nick">닉네임3</div>
+              <div className="chat_content">
+                <p className="chat_message">귀찮네여</p>
+                <span className="chat_message_time">10:34</span>
+              </div>
             </div>
 
             <div className="chat_from_me">
@@ -37,55 +54,32 @@ function GroupChat({openChat}) {
             </div>
 
             <div className="chat_from_friend">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?지금 뭐하고 있어?
-              </p>
-              <span className="chat_message_time">10:34</span>
+              <div className="chat_nick">닉네임1</div>
+              <div className="chat_content">
+                <p className="chat_message">지금 뭐 공부하고있어여?</p>
+                <span className="chat_message_time">10:34</span>
+              </div>
             </div>
 
             <div className="chat_from_me">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?
-              </p>
+              <p className="chat_message">호에에에에호에에에엥</p>
               <span className="chat_message_time">10:34</span>
             </div>
             <div className="chat_from_me">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?
-              </p>
+              <p className="chat_message">호에에에에호에에에엥</p>
               <span className="chat_message_time">10:34</span>
             </div>
-            <div className="chat_from_me">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?
-              </p>
-              <span className="chat_message_time">10:34</span>
-            </div>
+
             <div className="chat_from_friend">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?지금 뭐하고 있어?
-              </p>
-              <span className="chat_message_time">10:34</span>
+              <div className="chat_nick">닉네임2</div>
+              <div className="chat_content">
+                <p className="chat_message">ㅋ</p>
+                <span className="chat_message_time">10:34</span>
+              </div>
             </div>
-            <div className="chat_from_friend">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?지금 뭐하고 있어?
-              </p>
-              <span className="chat_message_time">10:34</span>
-            </div>
-            <div className="chat_from_friend">
-              <p className="chat_message">
-                지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고 있어?지금 뭐하고
-                있어?지금 뭐하고 있어?
-              </p>
-              <span className="chat_message_time">10:34</span>
-            </div>
+
+            
+            
           </div>
           <div className="chat_textfield_container">
             <input
@@ -122,13 +116,13 @@ const ChatContainer = styled.div`
   }
   .chat_render_oneChat {
     min-height: auto;
-    height: 600px;
+    height: 615px;
     overflow: auto;
   }
   .chat_textfield_container {
     position: absolute;
-    bottom: 30px;
-    width: 380px;
+    bottom: 20px;
+    width: 92%;
     left: 50%;
     transform: translateX(-50%);
   }

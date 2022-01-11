@@ -14,6 +14,8 @@ const NoInfo = (props) => {
         <div className="myinfo_profile_area">
           <img src={roundCircle} style={{ width: "260px" }} />
           <img src={user} className="myinfo_user_img" />
+
+         
         </div>
         <div className="myinfo_txt_area">
           <div className="myinfo_nouser_info">
