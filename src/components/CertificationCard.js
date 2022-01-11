@@ -51,7 +51,7 @@ const CertificationCard = (props) => {
             ) : (
               <img src={comment} alt="댓글 아이콘" />
             )}
-            <p>1</p>
+            <p>{props.commentCnt}</p>
           </div>
         </div>
       </div>

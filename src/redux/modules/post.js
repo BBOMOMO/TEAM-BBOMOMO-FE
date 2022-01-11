@@ -44,16 +44,12 @@ const getPosts = () => {
     });
   };
 };
-const getPostDetailDB = (postId) => {
+
+const getPostDetail = (postId) => {
   return async function (dispatch, useState, { history }) {
-    await api
-    .get(`/api/v1/posts/${postId}`)
-    // .getPostDetail(postId)
-    .then(function (response) {
-      //console.log(response, "postaction");
+    await apis.getPostDetail(postId).then(function (response) {
+      console.log(response.data, "postaction");
       dispatch(loadPostDetail(response.data.post));
-    }).catch((err)=>{
-      console.log(err.response);
     });
   };
 };
@@ -99,7 +95,7 @@ export default handleActions(
     [GET_POST_DETAIL]: (state, action) =>
       produce(state, (draft) => {
         draft.postListDetail = action.payload.postListDetail;
-        //console.log(draft.postListDetailt);
+        // console.log(draft.postListDetailt);
       }),
 
     [DETAIL_POST]: (state, action) =>
@@ -119,7 +115,7 @@ export default handleActions(
 export const actionCreators = {
   addPost,
   getPosts,
-  getPostDetailDB,
+  getPostDetail,
   detailPost,
   detailPostBg,
 };

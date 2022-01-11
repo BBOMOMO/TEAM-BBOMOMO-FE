@@ -15,7 +15,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
   const userTodayTime = useSelector((state) => state.user.studyTime);
 
   const cardList = useSelector((state) => state.post.postList.board);
-
+  // console.log(cardList, 333);
 
   // 배경화면 지정
   const [background, setBackground] = useState(BG1);
@@ -50,9 +50,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
       postActions.addPost(userNick, postContent, studyTime, file, bgtype)
     );
   };
-  // React.useEffect(() => {
 
-  // }, [cardList]);
   const buttton = () => {
     setBgType("orange");
     setBackground(BG1);

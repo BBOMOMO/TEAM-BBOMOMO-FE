@@ -16,7 +16,7 @@ import BG2 from "../Images/study-certification-bg-2.png";
 import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
-const CertificationComment = ({postId, showModal, closeModal }) => {
+const CertificationComment = ({ postId, showModal, closeModal }) => {
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
@@ -24,15 +24,11 @@ const CertificationComment = ({postId, showModal, closeModal }) => {
     backgroundImage: `url(${background})`,
   };
 
-
-
- // console.log("props 잘 넘어오나", postId);
-
-
-
+  // console.log("props 잘 넘어오나", postId);
 
   const _postlist = useSelector((state) => state.post.postListDetail);
-//console.log(_postlist)
+  //console.log(_postlist)
+  
   //const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
   const _postId = useSelector((state) => state.post.detailPost);
   const _postBg = useSelector((state) => state.post.detailPostBg.postBg);
@@ -46,7 +42,7 @@ const CertificationComment = ({postId, showModal, closeModal }) => {
 
   const sendComment = () => {
     const userNick = localStorage.getItem("nick");
-   // dispatch(commentActions.addComment(userNick, _postId ));
+    // dispatch(commentActions.addComment(userNick, _postId ));
   };
  
   
@@ -66,11 +62,9 @@ const CertificationComment = ({postId, showModal, closeModal }) => {
   }, [_postBg]);
 
   React.useEffect(() => {
-
-   if(postId){
-    dispatch(postActions.getPostDetailDB(postId));
-   }
-   
+    if (postId) {
+      dispatch(postActions.getPostDetailDB(postId));
+    }
   }, [postId]);
 
   return (
