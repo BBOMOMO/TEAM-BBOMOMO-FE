@@ -22,7 +22,7 @@ const initialState = {
 const getComments = (postId) => {
   return async function (dispatch, useState, { history }) {
     await apis.getComment(postId).then(function (response) {
-      console.log(response);
+      // console.log(response);
       dispatch(loadcomments(response));
     });
   };

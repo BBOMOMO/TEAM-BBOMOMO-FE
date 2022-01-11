@@ -5,6 +5,7 @@ import CertificationCommentList from "./CertificationCommentList";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import profileimg from "../Images/user.png";
 import close from "../Images/ic_header_close.png";
@@ -15,18 +16,24 @@ import BG2 from "../Images/study-certification-bg-2.png";
 import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
-const CertificationComment = ({ showModal, closeModal }) => {
+const CertificationComment = ({ postId, showModal, closeModal }) => {
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
   const css = {
     backgroundImage: `url(${background})`,
   };
-  const _postlist = useSelector((state) => state.post.postList.board);
-  const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
-  const _postId = useSelector((state) => state.post.detailPost.postId);
+
+  // console.log("props 잘 넘어오나", postId);
+
+  const _postlist = useSelector((state) => state.post.postListDetail);
+  //console.log(_postlist)
+  //const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
+  const _postId = useSelector((state) => state.post.detailPost);
   const _postBg = useSelector((state) => state.post.detailPostBg.postBg);
   const userTodayTime = useSelector((state) => state.user.studyTime);
+
+  //console.log("여기서 확인할 수 있는것은?",_postId );
 
   const _commentList = useSelector(
     (state) => state.comment.commentList.comment
@@ -34,7 +41,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
 
   const sendComment = () => {
     const userNick = localStorage.getItem("nick");
-    dispatch(commentActions.addComment(userNick, _postId, commentText));
+    // dispatch(commentActions.addComment(userNick, _postId ));
   };
 
   React.useEffect(() => {
@@ -52,12 +59,14 @@ const CertificationComment = ({ showModal, closeModal }) => {
   }, [_postBg]);
 
   React.useEffect(() => {
-    dispatch(commentActions.getComments(_postId));
-  }, []);
+    if (postId) {
+      dispatch(postActions.getPostDetailDB(postId));
+    }
+  }, [postId]);
 
   return (
     <>
-      {showModal ? (
+      {showModal && postId ? (
         <ModalContainer>
           <ModalBG onClick={closeModal} />
           <ModalBox>
@@ -74,9 +83,10 @@ const CertificationComment = ({ showModal, closeModal }) => {
                       {userTodayTime === null ? (
                         <h3>00:00</h3>
                       ) : (
-                        <h3>{userTodayTime}</h3>
+                        // <h3>00:{userTodayTime}</h3>
+                        <h3>00:뭐냐</h3>
                       )}
-                      <p>{_postlist[_detailPostIdx].postContent}</p>
+                      {/* <p>{_postlist.postContent}</p> */}
                     </div>
                   </ModalInnerBg>
 
@@ -85,7 +95,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                       <div className="my_profile_img_bx">
                         <img src={profileimg} alt="프로필 이미지" />
                       </div>
-                      <h4>{_postlist[_detailPostIdx].nick}</h4>
+                      {/* <h4>{_postlist.nick}</h4> */}
                     </div>
                     <div className="my_profile_right">
                       <img src={comment} alt="댓글 아이콘" />

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import { history } from "../redux/configureStore";
+// import apis from "../shared/apis";
 
 const Certification = (props) => {
   const dispatch = useDispatch();
@@ -15,8 +16,7 @@ const Certification = (props) => {
   const user = useSelector((state) => state.user.userInfo);
   const cardList = useSelector((state) => state.post.postList.board);
   // console.log("user", user);
-  // console.log("cardList", cardList.studyTime);
-
+  // console.log("cardList", cardList);
 
   const [roomcount, setRoomcount] = React.useState(3);
 
@@ -26,6 +26,10 @@ const Certification = (props) => {
       return _cardSlice;
     }
   };
+
+  React.useEffect(() => {
+    dispatch(postActions.getPosts());
+  }, []);
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
@@ -40,8 +44,8 @@ const Certification = (props) => {
     setShowWritefoModal(false);
   };
 
-  const openPostComment = () => {
-    setShowCommentfoModal(true);
+  const openPostComment = (postId) => {
+    setShowCommentfoModal(postId, true);
   };
   const closePostComment = () => {
     setShowCommentfoModal(false);
@@ -49,10 +53,6 @@ const Certification = (props) => {
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
-
-  React.useEffect(() => {
-    dispatch(postActions.getPosts());
-  }, []);
 
   return (
     <>
@@ -63,6 +63,7 @@ const Certification = (props) => {
         ></CertificationWrite>
         <CertificationComment
           showModal={showCommentModal}
+          postId={showCommentModal}
           closeModal={closePostComment}
         ></CertificationComment>
         <div className="certifi_title">
@@ -91,9 +92,11 @@ const Certification = (props) => {
 
           {cardSlice() &&
             cardSlice().map((a, b) => {
+              console.log(a);
               let postBg = a.postImg;
               let idx = b;
               let postId = a.postId;
+              //console.log("이거 나오나?", postId);
               let sortBg = "";
               if (postBg.includes("https")) {
                 sortBg = "certifi_card_list_bx black-bg";
@@ -101,9 +104,9 @@ const Certification = (props) => {
                 sortBg = "certifi_card_list_bx nomal-bg";
               }
               let styudyTime;
-              let what = a.studyTime;
-              let HH = Math.floor(what / 60);
-              let MM = what % 60;
+              let getTime = a.studyTime;
+              let HH = Math.floor(getTime / 60);
+              let MM = getTime % 60;
               if (HH < 10 && MM < 10) {
                 styudyTime = `0${HH}:0${MM}`;
               } else if (HH < 10) {
@@ -117,9 +120,11 @@ const Certification = (props) => {
                 <div
                   className="CertificationCardBx"
                   onClick={() => {
-                    openPostComment();
-                    dispatch(postActions.detailPost(idx, postId));
-                    dispatch(postActions.detailPostBg(postBg));
+                    //console.log("얘 넘겨주면 됨",postId)
+                    // dispatch(postActions.getPostDetailDB(postId));
+                    // dispatch(postActions.detailPost(idx, postId));
+                    // dispatch(postActions.detailPostBg(postBg));
+                    openPostComment(postId);
                   }}
                 >
                   <CertificationCard
