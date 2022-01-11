@@ -2,15 +2,20 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
 import apis from "../../shared/apis";
+import api from "../../api/api";
 
 // actions
 const GET_POST = "GET_POST";
+const GET_POST_DETAIL = "GET_POST_DETAIL";
 const DETAIL_POST = "DETAIL_POST";
 const DETAIL_POST_BG = "DETAIL_POST_BG";
 // const ADD_POST = "ADD_POST";
 
 // action creators
 const loadPosts = createAction(GET_POST, (postList) => ({ postList }));
+const loadPostDetail = createAction(GET_POST_DETAIL, (postListDetail) => ({
+  postListDetail,
+}));
 const detailPost = createAction(DETAIL_POST, (idx, postId) => ({
   idx,
   postId,
@@ -34,8 +39,21 @@ const initialState = {
 const getPosts = () => {
   return async function (dispatch, useState, { history }) {
     await apis.getPost().then(function (response) {
-      // console.log(response.data.borad.reverse());
+      // console.log(response.data.board, 123);
       dispatch(loadPosts(response));
+    });
+  };
+};
+const getPostDetailDB = (postId) => {
+  return async function (dispatch, useState, { history }) {
+    await api
+    .get(`/api/v1/posts/${postId}`)
+    // .getPostDetail(postId)
+    .then(function (response) {
+      //console.log(response, "postaction");
+      dispatch(loadPostDetail(response.data.post));
+    }).catch((err)=>{
+      console.log(err.response);
     });
   };
 };
@@ -78,6 +96,12 @@ export default handleActions(
         // console.log("액션", action.payload.postList.data);
         // console.log("드래프트", draft.postList);
       }),
+    [GET_POST_DETAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.postListDetail = action.payload.postListDetail;
+        //console.log(draft.postListDetailt);
+      }),
+
     [DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.detailPost.idx = action.payload.idx;
@@ -95,6 +119,7 @@ export default handleActions(
 export const actionCreators = {
   addPost,
   getPosts,
+  getPostDetailDB,
   detailPost,
   detailPostBg,
 };

@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "../elements/Input";
-import roundCircle from "../Images/Group3366.png";
+import roundCircle from "../Images/timestat/notimestat.png";
 import user from "../Images/nouser.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
+import camera from "../Images/icon_camera_w.png";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -32,6 +33,8 @@ const MyInfo = (props) => {
   const [userImg, setUserImg] = React.useState(null);
   const profImg = user.user[0].profileImg;
   const [background, setBackground] = React.useState(profImg?profImg:"/static/media/nouser.3c586078.png");
+
+  const [studyCnt, setStudyCnt] = React.useState(0);
 
   const css = {
     backgroundImage: `url(${background})`,
@@ -70,24 +73,35 @@ const MyInfo = (props) => {
     }
     
 
-    console.log("file:",file)
-    console.log("nickname:",nickname)
-    console.log("nickname:",category)
+    // console.log("file:",file)
+    // console.log("nickname:",nickname)
+    // console.log("nickname:",category)
 
     if(file){
       dispatch(userActions.changeImgDB(file));
     }
-  },[file,category,nickname])
+    
+  },[file,category,nickname]);
+
+  const today2 = 900;
+  const total2 = today2 * 0.25;
+
+  //console.log("studyTotal",total2);
+
 
 
   return (
     <>
       <div className="myinfo_container">
         <div className="myinfo_profile_area">
-          <img src={roundCircle} />
-
+          <CircleWrap >
+            <img src={roundCircle} style={{ width: "260px" }}/>
+            <Circlebar  studyTotal={"rotate("+ total2+"deg)"}/>
+          </CircleWrap>
+            
+          
           <label style={css} className="myinfo_user_img">
-            <span>사진 변경하기</span>
+            <span><img src={camera} alt="사진변경하기" /></span>
             <input type="file" 
             onChange ={(e)=>{
               setUserImg(e.target.dataset.userImg);
@@ -153,3 +167,58 @@ const MyInfo = (props) => {
 };
 
 export default MyInfo;
+
+const Circlebar = styled.span`
+position:absolute; 
+display:block;
+width:50%;
+height:1px;
+*background:#ff0000;
+left:50%;
+top:50%;
+z-index:1;
+transform:rotate(95deg);
+*transform:rotate(445deg);
+
+
+
+
+:before {
+  content:"";
+  position:absolute;
+  top:-14px;
+  right:-10px; 
+  display:block; 
+  width:30px;
+  height:30px; 
+  border-radius:50%;
+  background-color:#fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  
+}
+transform-origin:left;
+animation:animate 1s forwards;
+
+  @keyframes animate
+{
+  0%
+  {
+    transform:rotate(95deg);
+  }
+  100%
+  {
+    transform: ${(props) => props.studyTotal};
+    
+  }
+}
+`;
+
+const CircleWrap = styled.div`
+  position: relative;
+  display: block;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+ 
+
+`;

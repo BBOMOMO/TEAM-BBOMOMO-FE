@@ -26,8 +26,8 @@ function InfoModal({ showModal, closeModal }) {
   //selected 기존 값으로 seleced 로 고정
 
 
-  console.log("category",category,userCate);
-  console.log(_nickCheck )
+  //console.log("category",category,userCate);
+  //console.log(_nickCheck )
   React.useEffect(()=>{ 
     
   },[]);
@@ -48,7 +48,7 @@ function InfoModal({ showModal, closeModal }) {
   }
   const profileUpdate = () => {
     //TODO : 수정완료
-    console.log(nickname, category);
+    //console.log(nickname, category);
     dispatch(userActions.changeInfo(nickname,category));
     closeModal();
   }

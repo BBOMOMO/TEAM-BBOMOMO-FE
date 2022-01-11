@@ -13,7 +13,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Main = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userInfo);
-  console.log(user);
+  //console.log(user);
   let userId = localStorage.getItem("id");
   let userNick = localStorage.getItem("nick");
   React.useEffect(() => {

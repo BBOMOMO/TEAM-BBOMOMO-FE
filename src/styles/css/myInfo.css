@@ -15,6 +15,7 @@
   margin-top: 50px;
   position: relative;
 }
+
 .myinfo_user_img {
   position: absolute;
   width: 197px;
@@ -31,8 +32,8 @@
 .myinfo_user_img > span {
   display:none;
   color:#fff;
-  line-height:197px;
-  background-color:rgba(0, 0, 0, 0.384);
+  line-height:213px;
+  background-color:rgba(0, 0, 0, 0.5);
   width:197px;
   height:197px;
   border-radius:50%;
