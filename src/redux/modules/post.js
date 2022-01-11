@@ -2,7 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
 import apis from "../../shared/apis";
-import api from "../../api/api";
 
 // actions
 const GET_POST = "GET_POST";

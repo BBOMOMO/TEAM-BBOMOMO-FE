@@ -112,6 +112,9 @@
   margin: 0 auto;
   font-size: 18px;
 }
+.myinfo_studytime_top > p {
+  width:105px;
+}
 .myinfo_studytime_mid {
   width: 429px;
   height: 112px;

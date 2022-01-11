@@ -14,7 +14,7 @@ function AlarmModal({showModal,closeModal}) {
           </span>
           <div className="header_modal_hr"></div>
 
-          <div className="header_friend_container">
+          {/* <div className="header_friend_container">
             <div className="header_friend_thumb"></div>
             <div className="header_friend_content">
               <span className="header_friend_alarmmessage">김철수님이 친구 신청을 요청하였습니다.</span>
@@ -24,32 +24,9 @@ function AlarmModal({showModal,closeModal}) {
                 <div className="btn">거절</div>
               </div>
             </div>  
-          </div>
+          </div> */}
 
-          <div className="header_friend_container">
-            <div className="header_friend_thumb"></div>
-            <div className="header_friend_content">
-              <span className="header_friend_alarmmessage">김철수님이 친구 신청을 요청하였습니다.</span>
-              <span className="header_friend_alartime">2분 전</span>
-              <div className="header_friend_allowBtnWrap">
-                <div className="btn">수락</div>
-                <div className="btn">거절</div>
-              </div>
-            </div>  
-          </div>
-          <div className="header_friend_container">
-            <div className="header_friend_thumb"></div>
-            <div className="header_friend_content">
-              <span className="header_friend_alarmmessage">김철수님이 친구 신청을 요청하였습니다.</span>
-              <span className="header_friend_alartime">2분 전</span>
-              <div className="header_friend_allowBtnWrap">
-                <div className="btn">수락</div>
-                <div className="btn">거절</div>
-              </div>
-            </div>  
-          </div>
- 
-
+          
 
         </div>
       :null}

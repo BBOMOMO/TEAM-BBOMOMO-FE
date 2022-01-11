@@ -14,7 +14,7 @@ function InfoModal({ showModal, closeModal }) {
   const userCate = useSelector((state) => state.user.userCate);
 
   const [nickname, setNickname] = React.useState('');
-  const [category, setCategory] = React.useState("");
+  const [category, setCategory] = React.useState(userCate);
   
 
 
@@ -88,10 +88,8 @@ function InfoModal({ showModal, closeModal }) {
               </div>
               <div className="division_edit">
               <Select text="구분" boxSizing border="none" display="block" color="#7A7D81" margin="18px 0 "
-                width="100%" height="51px" padding="0 10px" name="category" value={userCate} _onChange={(e)=>{
-                const selectedCate = e.target.value;
-                setCategory(selectedCate);
-
+                width="100%" height="51px" padding="0 10px" name="category" value={category} _onChange={(e)=>{
+                setCategory(e.target.value);
               }} >
                 <option name="middle1" value="0"> 중1 </option>
                 <option name="middle2" value="1" > 중2 </option>

@@ -169,12 +169,12 @@ function CreateGroup({ showModal, closeModal }) {
                   setRoomPurpose(selectedPurpose);
                 }}
               >
-                <option value="0">자율할습</option>
-                <option value="1">시험공부</option>
-                <option value="2">수능공부</option>
-                <option value="3">자격증 준비</option>
-                <option value="4">공시</option>
-                <option value="5">독서</option>
+                <option value="1">자율할습</option>
+                <option value="2">시험공부</option>
+                <option value="3">수능공부</option>
+                <option value="4">자격증 준비</option>
+                <option value="5">공무원 준비</option>
+                <option value="6">기타</option>
               </Select>
 
               <Select
