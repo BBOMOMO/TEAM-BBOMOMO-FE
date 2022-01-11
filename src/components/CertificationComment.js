@@ -28,6 +28,7 @@ const CertificationComment = ({ postId, showModal, closeModal }) => {
 
   const _postlist = useSelector((state) => state.post.postListDetail);
   //console.log(_postlist)
+  
   //const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
   const _postId = useSelector((state) => state.post.detailPost);
   const _postBg = useSelector((state) => state.post.detailPostBg.postBg);
@@ -43,6 +44,8 @@ const CertificationComment = ({ postId, showModal, closeModal }) => {
     const userNick = localStorage.getItem("nick");
     // dispatch(commentActions.addComment(userNick, _postId ));
   };
+ 
+  
 
   React.useEffect(() => {
     if (_postBg === "orange") {

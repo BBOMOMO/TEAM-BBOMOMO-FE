@@ -13,6 +13,7 @@ import { history } from "../redux/configureStore";
 const Certification = (props) => {
   const dispatch = useDispatch();
 
+  
   const user = useSelector((state) => state.user.userInfo);
   const cardList = useSelector((state) => state.post.postList.board);
   // console.log("user", user);
@@ -45,7 +46,7 @@ const Certification = (props) => {
   };
 
   const openPostComment = (postId) => {
-    setShowCommentfoModal(postId, true);
+    setShowCommentfoModal(postId,true);
   };
   const closePostComment = () => {
     setShowCommentfoModal(false);
