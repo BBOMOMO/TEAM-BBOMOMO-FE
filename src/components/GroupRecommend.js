@@ -19,7 +19,7 @@ const GroupRecommend = (props) => {
   const [roomcount, setRoomcount] = React.useState(6);
   
   const [activeCate, setActiveCate] = React.useState("All");
-  const [roomPurpose, setRoomPurpose] = React.useState(0);
+  const [roomPurpose, setRoomPurpose] = React.useState(null);
 
 
   const roomSlice = () => {
@@ -57,13 +57,13 @@ const GroupRecommend = (props) => {
 
         <div className="groupreco_search">
           <div className="hashtag_list_bx">
-            <SearchTab name="0" onClick={()=>{setRoomPurpose(0)}}>ALL</SearchTab>
-            <SearchTab name="1" onClick={()=>{setRoomPurpose(1)}}>자율학습</SearchTab>
-            <SearchTab name="2" onClick={()=>{setRoomPurpose(2)}}>시험공부</SearchTab>
-            <SearchTab name="3" onClick={()=>{setRoomPurpose(3)}}>수능공부</SearchTab>
-            <SearchTab name="4" onClick={()=>{setRoomPurpose(4)}}>자격증</SearchTab>
-            <SearchTab name="5" onClick={()=>{setRoomPurpose(5)}}>공무원</SearchTab>
-            <SearchTab name="6" onClick={()=>{setRoomPurpose(6)}}>기타</SearchTab>
+            <SearchTab name="all" onClick={()=>{setRoomPurpose(null)}}>ALL</SearchTab>
+            <SearchTab name="0" onClick={()=>{setRoomPurpose(0)}}>자율학습</SearchTab>
+            <SearchTab name="1" onClick={()=>{setRoomPurpose(1)}}>시험공부</SearchTab>
+            <SearchTab name="2" onClick={()=>{setRoomPurpose(2)}}>수능공부</SearchTab>
+            <SearchTab name="3" onClick={()=>{setRoomPurpose(3)}}>자격증</SearchTab>
+            <SearchTab name="4" onClick={()=>{setRoomPurpose(4)}}>공무원</SearchTab>
+            <SearchTab name="5" onClick={()=>{setRoomPurpose(5)}}>기타</SearchTab>
           </div>
 
           {/* <div className="search_bx">
@@ -80,7 +80,7 @@ const GroupRecommend = (props) => {
         </div>
       </div>
 
-      {roomPurpose === 0 ? (
+      {roomPurpose === null ? (
         <>
         <div className="groupreco_bottom">
         {roomSlice() &&

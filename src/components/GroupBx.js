@@ -15,17 +15,17 @@ const GroupBx = (props) => {
 
   React.useEffect(()=>{
 
-    if(props.purpose === 1 ){
+    if(props.purpose === 0 ){
       setPurpose("자율학습");
-    }else if(props.purpose === 2 ){
+    }else if(props.purpose === 1 ){
       setPurpose("시험공부");
-    }else if(props.purpose === 3 ){
+    }else if(props.purpose === 2 ){
       setPurpose("수능공부");
-    }else if(props.purpose === 4 ){
+    }else if(props.purpose === 3 ){
       setPurpose("자격증");
-    }else if(props.purpose === 5 ){
+    }else if(props.purpose === 4 ){
       setPurpose("공무원");
-    }else if(props.purpose === 6 ){
+    }else if(props.purpose === 5 ){
       setPurpose("기타");
     }
    

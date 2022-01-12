@@ -3,7 +3,6 @@ import { Button, Input } from "../elements";
 import person from "../Images/ic-people.png";
 import lock from "../Images/ic-lock-alt.png";
 import clock from "../Images/login_clock.png";
-import logo from "../Images/bbomomologo.png";
 import googlelogo from "../Images/googlelogo.png";
 import kakaologo from "../Images/kakaologo.png";
 import logo from "../Images/logo_b.png";
