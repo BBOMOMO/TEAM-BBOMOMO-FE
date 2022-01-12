@@ -124,7 +124,9 @@ const GroupRecommend = (props) => {
             } else if (roomLock === 0) {
               return (
                 <>
-                  <div
+                {user? ( 
+                //로그인회원
+                <div
                     className="groupbx_card"
                     onClick={() => {
                       history.push("/video/" + roomlist[idx].roomId);
@@ -137,6 +139,25 @@ const GroupRecommend = (props) => {
                       roomLock={isLock}
                     ></GroupBx>
                   </div>
+                  
+                  ) : (
+                    //비로그인 : 방입장불가
+                     <div
+                     className="groupbx_card"
+                     onClick={() => {
+                       window.alert("로그인 후 입장하실 수 있습니다.")
+                       history.push("/login");
+                     }}
+                   >
+                     <GroupBx
+                       key={p.idx}
+                       {...p}
+                       bgcolor={bgcolor}
+                       roomLock={isLock}
+                     ></GroupBx>
+                   </div>
+                  )}
+                 
                 </>
               );
             }
@@ -244,12 +265,7 @@ font-size:14px;
   border:1px solid #889cf2; 
 }
 
-:first-child &:active {
-  background: #889cf2;
-  color:#fff;
-  font-weight:bold; 
-  border:1px solid #889cf2; 
-}
+
 
 
 `;

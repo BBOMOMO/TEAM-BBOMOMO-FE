@@ -119,10 +119,10 @@ const checkUserDB = () => {
         //console.log(response);
         const userInfo = response.data;
 
-        //console.log(userInfo);
-        const userId = userInfo.user[0].userId;
-        const userNick = userInfo.user[0].nick;
-        const statusMsg = userInfo.user[0].statusMsg;
+        console.log(userInfo);
+        const userId = userInfo.user.userId;
+        const userNick = userInfo.user.nick;
+        const statusMsg = userInfo.user.statusMsg;
         localStorage.setItem("id", `${userId}`);
         localStorage.setItem("nick", `${userNick}`);
         localStorage.setItem("statusMsg", `${statusMsg}`);
@@ -211,11 +211,11 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.userInfo = action.payload.userInfo;
-        draft.userId = action.payload.userInfo.user[0].userId;
-        draft.userNick = action.payload.userInfo.user[0].nick;
-        draft.userCate = action.payload.userInfo.user[0].category;
-        draft.studyTime = action.payload.userInfo.todayRecord[0].today;
-        draft.studyTotal = action.payload.userInfo.totalRecord[0].total;
+        draft.userId = action.payload.userInfo.user.userId;
+        draft.userNick = action.payload.userInfo.user.nick;
+        draft.userCate = action.payload.userInfo.user.category;
+        draft.studyTime = action.payload.userInfo.todayRecord.today;
+        draft.studyTotal = action.payload.userInfo.totalRecord.total;
         //console.log(action.payload.userInfo.user[0].nick)
       }),
     [ADD_USER_IMG]: (state, action) => produce(state, (draft) => {}),

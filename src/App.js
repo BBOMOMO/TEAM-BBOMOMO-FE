@@ -15,7 +15,7 @@ import Login from "./page/Login";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
 import Group from "./page/Group";
-import Header from "./components/Header";
+
 import Main from "./page/Main";
 import NotFound from "./page/NotFound";
 import Certification from "./components/Certification";
@@ -29,18 +29,17 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Route path="/signup" component={Signup} exact />
-      <Route path="/login" component={Login} exact />
-      <Header />
+      
       <Switch>
+        <Route path="/signup" component={Signup} exact />
+        <Route path="/login" component={Login} exact />
+
         <Route path="/" component={Main} exact />
         <Route path="/chat/:roomId" component={PostChat} exact />
-        <Route path="/group" component={Group} exact />
-
-        <Route path="/certifi" component={Certification} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
-        {/* <Route path={"*"} component={NotFound} /> */}
+      
         <Route path="/re" component={VideoRefact} />
+        <Route path={"*"} component={NotFound} /> 
       </Switch>
     </>
   );

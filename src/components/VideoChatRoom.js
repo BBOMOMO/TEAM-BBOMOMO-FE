@@ -8,6 +8,7 @@ import ChatRoomNav from "./ChatRoomNav";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as groupAction } from "../redux/modules/group";
+import Header from "../components/Header";
 import GroupChat from "./GroupChat";
 import profile from "../Images/profile.png";
 import dotenv from "dotenv";
@@ -96,6 +97,7 @@ export default function VideoChatRoom() {
 
   const endBtn = () => {
     history.push("/");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -380,6 +382,7 @@ export default function VideoChatRoom() {
   return (
     <>
       {/* <ChatRoomNav /> */}
+      <Header is_studyroom />
       <GroupContainer>
         <ChatRoom>
           <GroupChat openChat={openChat} />
@@ -424,7 +427,6 @@ export default function VideoChatRoom() {
   );
 }
 
-// 영상 스트림을 DOM 비디오 엘리먼트에 넣어주는 함수
 function addVideoStream(video, stream) {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
