@@ -23,15 +23,15 @@ const MyInfo = (props) => {
     setShowModalCG(false);
   };
   const user = useSelector((state) => state.user.userInfo);
-  const nickname = user.user[0].nick;
-  const category = user.user[0].category;
-  const statusMsg = user.user[0].statusMsg;
-  const today = user.todayRecord[0].today;
-  const total = user.totalRecord[0].total;
+  const nickname = user.user.nick;
+  const category = user.user.category;
+  const statusMsg = user.user.statusMsg;
+  const today = user.todayRecord.today;
+  const total = user.totalRecord.total;
   const [valueName, setValue] = React.useState(statusMsg);
   const [file, setFile] = React.useState(null);
   const [userImg, setUserImg] = React.useState(null);
-  const profImg = user.user[0].profileImg;
+  const profImg = user.user.profileImg;
   const [background, setBackground] = React.useState(profImg?profImg:"/static/media/nouser.3c586078.png");
 
   const [studyCnt, setStudyCnt] = React.useState(0);

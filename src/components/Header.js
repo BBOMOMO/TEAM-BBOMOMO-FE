@@ -13,7 +13,9 @@ import InfoModal from "./InfoModal";
 import { useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 
-function Header() {
+function Header(props) {
+  const {is_studyroom} = props;
+
   const [showAlarmModal, setShowAlarmModal] = React.useState(false);
   const [showChatModal, setShowChatModal] = React.useState(false);
   const [showInfoModal, setShowInfoModal] = React.useState(false);
@@ -52,6 +54,25 @@ function Header() {
   const alertLogin = () => {
     history.push("/login");
   };
+
+  if(is_studyroom){
+    return(
+      <>
+          <HeaderContainer>
+            <img
+              src={logo}
+              alt=""
+              onClick={()=>{window.alert("쉬는시간 혹은 공부가 끝나면 공부끝내기 버튼을 이용해주세요. ")}}
+            />
+            <div className="header_menu_container">
+              <HeaderIcon className="header_alarm" onClick={()=>{window.alert("공부중에는 사용할 수 없습니다.")}} />
+              <HeaderIcon className="header_msg" onClick={()=>{window.alert("공부중에는 사용할 수 없습니다.")}} />
+              <HeaderIcon className="header_friend" onClick={()=>{window.alert("공부중에는 사용할 수 없습니다.")}} />
+            </div>
+          </HeaderContainer>
+        </>
+    );
+  }
 
   return (
     <div>

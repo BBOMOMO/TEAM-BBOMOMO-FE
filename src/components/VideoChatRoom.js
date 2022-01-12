@@ -8,6 +8,7 @@ import ChatRoomNav from "./ChatRoomNav";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as groupAction } from "../redux/modules/group";
+import Header from "../components/Header";
 import GroupChat from "./GroupChat";
 import profile from "../Images/profile.png";
 import dotenv from "dotenv";
@@ -380,6 +381,7 @@ export default function VideoChatRoom() {
   return (
     <>
       {/* <ChatRoomNav /> */}
+      <Header is_studyroom/>
       <GroupContainer>
         <ChatRoom>
           <GroupChat openChat={openChat} />
