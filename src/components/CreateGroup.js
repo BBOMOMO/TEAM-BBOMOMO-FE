@@ -55,8 +55,6 @@ function CreateGroup({ showModal, closeModal }) {
   const is_status = (e) => {
     // setCount((prevCount) => prevCount + 1);
     // console.log(count);
-
-
     // if (count % 2 === 0) {
     //   setRoomStatus("1");
     //   console.log("비밀방");
@@ -169,7 +167,7 @@ function CreateGroup({ showModal, closeModal }) {
                   setRoomPurpose(selectedPurpose);
                 }}
               >
-                <option value="0">자율할습</option>
+                <option value="0">자율학습</option>
                 <option value="1">시험공부</option>
                 <option value="2">수능공부</option>
                 <option value="3">자격증 준비</option>

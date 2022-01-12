@@ -104,11 +104,12 @@ export default function VideoChatRoom() {
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
     const socket = io(url);
-    const peer = new Peer({
-      config: {
-        iceServers: [{ url: "stun:stun.l.google.com:19302" }],
-      },
-    },[]);
+    const peer = new Peer();
+    //   {
+    //   config: {
+    //     iceServers: [{ url: "stun:stun.l.google.com:19302" }],
+    //   },
+    // }
 
     console.log(peer);
 
@@ -238,16 +239,6 @@ export default function VideoChatRoom() {
           const goodByeinterval = setInterval(timer, 1000);
         });
 
-        // socket.emit(
-        //   "join-room",
-        //   roomId,
-        //   myPeerId,
-        //   userId,
-        //   userNick,
-        //   streamId,
-        //   statusMsg
-        // );
-
         // 피어 생성하기
 
         peer.on("open", (peerId) => {
@@ -264,16 +255,6 @@ export default function VideoChatRoom() {
             statusMsg
           );
         });
-
-        // socket.emit(
-        //   "join-room",
-        //   roomId,
-        //   myPeerId,
-        //   userId,
-        //   userNick,
-        //   streamId,
-        //   statusMsg
-        // );
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
