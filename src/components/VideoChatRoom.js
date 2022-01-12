@@ -8,7 +8,6 @@ import ChatRoomNav from "./ChatRoomNav";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as groupAction } from "../redux/modules/group";
-import Timer from "./Timer";
 import GroupChat from "./GroupChat";
 import profile from "../Images/profile.png";
 import dotenv from "dotenv";
@@ -72,20 +71,13 @@ export default function VideoChatRoom() {
 
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
-    console.log("채팅상황", openChat);
-  }, [openChat]);
+  }, []);
 
   // Local
-  const [cameraOn, setCameraOn] = useState(true);
-  const [roomClosed, setRoomClosed] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [users, setUsers] = useState(1);
+  // const [cameraOn, setCameraOn] = useState(true);
   const [state, setState] = useState("5 : 00");
   const [text, setText] = useState("쉬는 시간입니다.");
   const [timerTime, setTimerTime] = useState(0);
-  // const username = user
-  //   ? user.username
-  //   : `GUEST${Math.round(Math.random() * 100000)}`;
 
   let myStream = null;
   let myPeerId = "";
@@ -102,25 +94,9 @@ export default function VideoChatRoom() {
   let totalPercent;
   let percentBar;
 
-  // TODO
-  // const [todoOpen, setTodoOpen] = useState(false);
   const endBtn = () => {
     history.push("/");
   };
-  const handleCamera = () => {
-    setCameraOn((prev) => !prev);
-    if (cameraOn) {
-      let video = allStream.current.getTracks();
-      video[0].enabled = false;
-    } else {
-      let video = allStream.current.getTracks();
-      video[0].enabled = true;
-    }
-  };
-
-  // const toggleTodo = () => {
-  //   setTodoOpen(!todoOpen);
-  // };
 
   useEffect(() => {
     const socket = io(url);
@@ -130,18 +106,21 @@ export default function VideoChatRoom() {
       },
     });
 
+    console.log(peer);
+
     // 클라의 영상 스트림 비디오에 넣기
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
-        let streamId = stream.id;
         myStream = stream;
+        let streamId = stream.id;
         addVideoStream(myVideo.current, stream);
         videoGrid.current.prepend(myVideo.current);
-        setIsLoading(false);
         allStream.current = stream;
+
         // 타이머 이벤트
         let gapTimeFloor;
+        // 쉬는시간
         socket.on("restTime", (currentRound, totalRound, time) => {
           console.log(currentRound, totalRound, time);
           const endTime = time;
@@ -185,6 +164,7 @@ export default function VideoChatRoom() {
           const restinterval = setInterval(timer, 1000);
         });
 
+        // 공부시간
         socket.on("studyTime", (currentRound, totalRound, time) => {
           console.log(time);
           const endTime = time;
@@ -246,7 +226,6 @@ export default function VideoChatRoom() {
             setState(`${min} : ${sec}`);
             if (gapTimeFloor <= 0) {
               clearInterval(goodByeinterval);
-              // socketRef.current.emit("removeRoom", roomId);
               history.push("/");
             }
           };
@@ -268,8 +247,6 @@ export default function VideoChatRoom() {
             streamId,
             statusMsg
           );
-
-          //전역변수 chatroom.participants에 본인 더하기
         });
 
         // 새로운 피어가 연결을 원할 때
@@ -313,7 +290,6 @@ export default function VideoChatRoom() {
           mediaConnection.on("stream", (newStream) => {
             addVideoStream(peerVideo, newStream);
             videoBox.prepend(peerVideo);
-            setUsers(videoGrid.current.childElementCount);
             console.log(myPeerId, userNick);
           });
 
@@ -322,11 +298,10 @@ export default function VideoChatRoom() {
             console.log(myPeerId, userNick);
           });
         });
-
+        // 이게 제일 첫번째 순서 -> peer.call(peerId, stream)
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
           console.log(peerId, userNick, streamId, peerMsg);
           peerstatusMsg = peerMsg;
-          setUsers((prev) => prev + 1);
           const mediaConnection = peer.call(peerId, stream);
           const videoBox = document.createElement("div");
           videoBox.classList.add("video_box");
@@ -364,31 +339,30 @@ export default function VideoChatRoom() {
             addVideoStream(newVideo, newStream);
             videoBox.prepend(newVideo);
             // videoGrid.current.prepend(newVideo);
-            setUsers(videoGrid.current.childElementCount);
           });
         });
       });
 
     socket.on("user-disconnected", (peerId, userNick, streamId) => {
-      setUsers((prev) => prev - 1);
       const video = document.querySelectorAll("video");
       const video_box = document.querySelectorAll("video_box");
       const txt_box = document.querySelectorAll("userview_txtbox");
       const name_box = document.querySelectorAll("userview_name");
       console.log(video_box, txt_box, name_box);
       let removeVideo;
-      let removeBox;
-      let removeTxt;
-      let removeName;
+      // let removeBox;
+      // let removeTxt;
+      // let removeName;
       for (let i = 0; i < video.length; i++) {
         if (video[i].srcObject.id === streamId) {
           removeVideo = video[i];
-          removeBox = video_box[i];
-          removeTxt = txt_box[i];
-          removeName = name_box[i];
+          // removeBox = video_box[i];
+          // removeTxt = txt_box[i];
+          // removeName = name_box[i];
         }
       }
-      removeVideo.remove();
+      // removeVideo.remove();
+      removeVideo.parentNode.remove();
     });
 
     // 테스팅 필요
@@ -405,14 +379,9 @@ export default function VideoChatRoom() {
   // }
   return (
     <>
-      {/* <ChatRoomNav
-        cameraOn={cameraOn}
-        handleCamera={handleCamera}
-        // toggleTodo={toggleTodo}
-      /> */}
+      {/* <ChatRoomNav /> */}
       <GroupContainer>
-        <ChatRoom numberOfUsers={users}>
-          {isLoading && <span>Loading...</span>}
+        <ChatRoom>
           <GroupChat openChat={openChat} />
           <GroupCont>
             <GroupTimer>
