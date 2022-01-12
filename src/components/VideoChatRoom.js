@@ -238,6 +238,16 @@ export default function VideoChatRoom() {
           const goodByeinterval = setInterval(timer, 1000);
         });
 
+        // socket.emit(
+        //   "join-room",
+        //   roomId,
+        //   myPeerId,
+        //   userId,
+        //   userNick,
+        //   streamId,
+        //   statusMsg
+        // );
+
         // 피어 생성하기
 
         peer.on("open", (peerId) => {
@@ -254,6 +264,16 @@ export default function VideoChatRoom() {
             statusMsg
           );
         });
+
+        // socket.emit(
+        //   "join-room",
+        //   roomId,
+        //   myPeerId,
+        //   userId,
+        //   userNick,
+        //   streamId,
+        //   statusMsg
+        // );
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
