@@ -23,6 +23,7 @@ import VideoComponent from "./components/VideoComponent";
 import VideoChatRoom from "./components/VideoChatRoom";
 import Video from "./components/Video";
 import { useSelector, useDispatch } from "react-redux";
+import VideoRefact from "./components/VideoRefactoring";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/certifi" component={Certification} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
         {/* <Route path={"*"} component={NotFound} /> */}
+        <Route path="/re" component={VideoRefact} />
       </Switch>
     </>
   );

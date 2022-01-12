@@ -4,11 +4,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const url = process.env.REACT_APP_API_URL;
+const url_sub = process.env.REACT_APP_API_URL_SUB;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  // baseURL: url, // 재원님 서버주소
-   baseURL: "http://54.180.120.210/", // 상협님서버주소
-  // baseURL: "http://54.180.107.194/", // 원래 서버주소
+  baseURL: url, // 재원님 서버주소
 });
 
 instance.interceptors.request.use((config) => {

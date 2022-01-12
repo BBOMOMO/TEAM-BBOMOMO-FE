@@ -80,7 +80,7 @@ export default function ChatRoomNav({ cameraOn, handleCamera, toggleTodo }) {
   };
 
   const handleExit = () => {
-    history.push("/studyroom");
+    history.push("/");
   };
 
   useEffect(() => {
