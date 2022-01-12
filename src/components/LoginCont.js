@@ -38,7 +38,7 @@ const LoginCont = (props) => {
       <div className="login_rigth_bx">
         <div className="login_inner_bx">
           <h2 className="login_h2">
-           <img src={logo} alt="로고" />
+            <img src={logo} alt="로고" />
           </h2>
 
           <div className="mb20 login_input_id">
