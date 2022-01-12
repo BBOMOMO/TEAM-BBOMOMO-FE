@@ -3,7 +3,6 @@ import { Button, Input } from "../elements";
 import person from "../Images/ic-people.png";
 import lock from "../Images/ic-lock-alt.png";
 import clock from "../Images/login_clock.png";
-import logo from "../Images/bbomomologo.png";
 import googlelogo from "../Images/googlelogo.png";
 import kakaologo from "../Images/kakaologo.png";
 import logo from "../Images/logo_b.png";
@@ -39,7 +38,7 @@ const LoginCont = (props) => {
       <div className="login_rigth_bx">
         <div className="login_inner_bx">
           <h2 className="login_h2">
-           <img src={logo} alt="로고" />
+            <img src={logo} alt="로고" />
           </h2>
 
           <div className="mb20 login_input_id">
