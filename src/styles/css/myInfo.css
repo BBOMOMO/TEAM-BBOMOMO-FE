@@ -116,12 +116,12 @@
   width:105px;
 }
 .myinfo_studytime_mid {
-  width: 429px;
+  width: 100%;
   height: 112px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 42px;
+  *padding: 0 42px;
   box-sizing: border-box;
   position: relative;
 }
@@ -147,12 +147,12 @@
   opacity: 0.2;
 }
 .myinfo_studytime_bot {
-  width: 429px;
+  width: 100%;
   height: 112px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 42px;
+  *padding: 0 42px;
   box-sizing: border-box;
 }
 .myinfo_studytime_total {

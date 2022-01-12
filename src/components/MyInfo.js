@@ -141,7 +141,7 @@ const MyInfo = (props) => {
           </div>
         </div>
         <div className="myinfo_studytime">
-          <MyContents/>
+          <MyContents today={today} total={total}/>
         </div>
         <div className="myinfo_make_group">
           <p onClick={openModal}>+ 스터디룸 만들기</p>
