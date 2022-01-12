@@ -7,89 +7,119 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
 
+import apis from "../shared/apis";
+
 import profileimg from "../Images/user.png";
 import close from "../Images/ic_header_close.png";
-import comment from "../Images/ic-comment.png";
 import send from "../Images/ic-send 1.png";
 import BG1 from "../Images/study-certification-bg-1.png";
 import BG2 from "../Images/study-certification-bg-2.png";
 import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
-const CertificationComment = ({ postId, showModal, closeModal }) => {
+const CertificationComment = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
   const css = {
     backgroundImage: `url(${background})`,
   };
+  const [editTxt, setEditTxt] = React.useState(true);
+  const [postContent, setPostContent] = useState("");
 
-  // console.log("props 잘 넘어오나", postId);
+  const test = useSelector((state) => state.post.postListDetail);
+  // console.log(test);
+  const postId = useSelector((state) => state.post.postListDetail.postId);
+  const postBg = useSelector((state) => state.post.postListDetail.postImg);
+  const array = useSelector((state) => state.post.postListDetail.Comments);
+  const commentList = useSelector((state) => state.comment.commentList);
 
-  const _postlist = useSelector((state) => state.post.postListDetail);
-  //console.log(_postlist)
-  
-  //const _detailPostIdx = useSelector((state) => state.post.detailPost.idx);
-  const _postId = useSelector((state) => state.post.detailPost);
-  const _postBg = useSelector((state) => state.post.detailPostBg.postBg);
-  const userTodayTime = useSelector((state) => state.user.studyTime);
+  // let qaz = response.data;
+  // console.log(qaz);
+  // const reverse = commentList.reverse();
+  // console.log(reverse);
+  // console.log(array.length);
+  // if (typeof commentList === ob) {
+  //   console.log(123);
+  // }
 
-  //console.log("여기서 확인할 수 있는것은?",_postId );
-
-  const _commentList = useSelector(
-    (state) => state.comment.commentList.comment
-  );
-
+  const userNick = localStorage.getItem("nick");
   const sendComment = () => {
-    const userNick = localStorage.getItem("nick");
-    // dispatch(commentActions.addComment(userNick, _postId ));
+    dispatch(commentActions.addCommentDB(userNick, postId, commentText));
   };
- 
-  
+
+  let studyTime;
+  let getTime = test.studyTime;
+  let HH = Math.floor(getTime / 60);
+  let MM = getTime % 60;
+  if (HH < 10 && MM < 10) {
+    studyTime = `0${HH}:0${MM}`;
+  } else if (HH < 10) {
+    studyTime = `0${HH}:${MM}`;
+  } else if (MM < 10) {
+    studyTime = `${HH}:0${MM}`;
+  } else {
+    studyTime = `${HH}:${MM}`;
+  }
 
   React.useEffect(() => {
-    if (_postBg === "orange") {
+    if (postBg === "orange") {
       setBackground(BG1);
-    } else if (_postBg === "blue") {
+    } else if (postBg === "blue") {
       setBackground(BG2);
-    } else if (_postBg === "green") {
+    } else if (postBg === "green") {
       setBackground(BG3);
-    } else if (_postBg === "purple") {
+    } else if (postBg === "purple") {
       setBackground(BG4);
     } else {
-      setBackground(_postBg);
+      setBackground(postBg);
     }
-  }, [_postBg]);
+  }, [postBg]);
 
   React.useEffect(() => {
-    if (postId) {
-      dispatch(postActions.getPostDetailDB(postId));
-    }
-  }, [postId]);
+    dispatch(commentActions.loadcomments(test.Comments));
+  }, [test]);
 
   return (
     <>
-      {showModal && postId ? (
+      {showModal && test ? (
         <ModalContainer>
-          <ModalBG onClick={closeModal} />
+          <ModalBG
+            onClick={() => {
+              dispatch(postActions.getPostsDB());
+              closeModal();
+            }}
+          />
           <ModalBox>
             <ModalInnerContainer>
               <div className="certifi_comment_title_bx">
                 <h2>공부인증</h2>
-                <img src={close} alt="닫기 아이콘" onClick={closeModal} />
+                <img
+                  src={close}
+                  alt="닫기 아이콘"
+                  onClick={() => {
+                    dispatch(postActions.getPostsDB());
+                    closeModal();
+                  }}
+                />
               </div>
 
               <div className="certifi_comment_cont_bx">
                 <div className="comment_cont_left">
                   <ModalInnerBg style={css}>
                     <div className="certifi_comment_bg">
-                      {userTodayTime === null ? (
-                        <h3>00:00</h3>
+                      <h3>{studyTime}</h3>
+                      {editTxt ? (
+                        <p>{test.postContent}</p>
                       ) : (
-                        // <h3>00:{userTodayTime}</h3>
-                        <h3>00:뭐냐</h3>
+                        <textarea
+                          value={postContent}
+                          placeholder={test.postContent}
+                          onChange={(e) => {
+                            setPostContent(e.target.value);
+                          }}
+                        ></textarea>
                       )}
-                      {/* <p>{_postlist.postContent}</p> */}
                     </div>
                   </ModalInnerBg>
 
@@ -98,33 +128,66 @@ const CertificationComment = ({ postId, showModal, closeModal }) => {
                       <div className="my_profile_img_bx">
                         <img src={profileimg} alt="프로필 이미지" />
                       </div>
-                      {/* <h4>{_postlist.nick}</h4> */}
+                      <h4>{test.nick}</h4>
                     </div>
                     <div className="my_profile_right">
-                      <img src={comment} alt="댓글 아이콘" />
-                      <p>1</p>
+                      {/* <img src={comment} alt="댓글 아이콘" />
+                      <p>{commentCnt}</p> */}
+                      {test.nick !== userNick ? null : (
+                        <>
+                          <button
+                            className="post_edit_btn"
+                            onClick={() => {
+                              console.log("수정");
+                              setEditTxt(false);
+                            }}
+                          >
+                            수정
+                          </button>
+                          <button
+                            className="post_del_btn"
+                            onClick={() => {
+                              // console.log("삭제");
+                              apis.postDelete(postId);
+                              dispatch(postActions.getPostsDB());
+                              closeModal();
+                            }}
+                          >
+                            삭제
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 <div className="comment_cont_right">
                   <div className="certifi_conmment_list_bx">
-                    {/* {_commentList &&
-                      _commentList.map((a, b) => {
+                    {commentList &&
+                      commentList.map((a, b) => {
+                        if (a.length === 1) {
+                          console.log(123);
+                        }
                         return (
                           <CertificationCommentList
                             {...a}
                             key={b}
                           ></CertificationCommentList>
                         );
-                      })} */}
-                    <CertificationCommentList
-                      array={_commentList}
-                    ></CertificationCommentList>
+                      })}
+                    {/* {} */}
+                    {/* <CertificationCommentList></CertificationCommentList> */}
                   </div>
 
                   <div className="certifi_conmment_input_bx">
-                    <img src={send} alt="자물쇠 아이콘" onClick={sendComment} />
+                    <img
+                      src={send}
+                      alt="자물쇠 아이콘"
+                      onClick={() => {
+                        sendComment();
+                        setCommentText("");
+                      }}
+                    />
                     <Input
                       value={commentText}
                       boxSizing

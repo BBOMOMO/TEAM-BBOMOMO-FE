@@ -10,7 +10,7 @@ import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationCard = (props) => {
-  const userInfo = useSelector((state) => state.user.studyTotal);
+  // console.log(props);
   const [background, setBackground] = React.useState(null);
   const css = {
     backgroundImage: `url(${background})`,

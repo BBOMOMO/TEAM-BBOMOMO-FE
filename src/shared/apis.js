@@ -7,10 +7,8 @@ const url = process.env.REACT_APP_API_URL;
 const url_sub = process.env.REACT_APP_API_URL_SUB;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-
    baseURL: url, // 재원님 서버주소
    //baseURL: url_sub, // 상협님서버주소
-  // baseURL: "http://54.180.107.194/", // 원래 서버주소
 });
 
 instance.interceptors.request.use((config) => {
@@ -51,13 +49,27 @@ export const apis = {
     instance.post(`/api/v1/studyRoom/enterRoom/${roomId}`, roomPassword),//스터디룸 생성하기-(생성자바로입장)
 
   //---- 공부인증  ----//
-  getStudyTime: () => instance.get("/api/v1/posts/time"),
-
+  // 전체 조회
   getPost: () => instance.get("/api/v1/posts"),
+  // 상세조회
   getPostDetail: (postId) => instance.get(`/api/v1/posts/${postId}`),
+  // 글 작성
   postWrite: (formData) => instance.post("/api/v1/posts", formData),
-  getComment: (postId) => instance.get(`/api/v1/posts/${postId}/comments`),
+  // 글 삭제
+  postDelete: (postId) => instance.delete(`/api/v1/posts/${postId}`),
+  // 글 수정
+  postEdit: (postId) => instance.put(`/api/v1/posts/${postId}`),
+  // 댓글 작성
   commentWrite: (commentInfo) =>
     instance.post(`/api/v1/posts/${commentInfo.postId}}/comments`, commentInfo),
+  // 댓글 삭제
+  commentDelete: (postId, commentId) =>
+    instance.delete(`/api/v1/posts/${postId}/comments/${commentId}`),
+  // 댓글 수정
+  commentEdit: () => instance.put(),
+
+  // 보류
+  getStudyTime: () => instance.get("/api/v1/posts/time"),
+  getComment: (postId) => instance.get(`/api/v1/posts/${postId}/comments`),
 };
 export default apis;

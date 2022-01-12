@@ -108,9 +108,9 @@ const GroupRecommend = (props) => {
                 <>
                   <div
                     className="groupbx_card"
-                    onClick={() => {
-                      // history.push("/video/" + roomlist[idx].roomId);
-                    }}
+                    // onClick={() => {
+                    //   history.push("/video/" + roomlist[idx].roomId);
+                    // }}
                   >
                     <GroupBx
                       key={idx}
@@ -121,7 +121,7 @@ const GroupRecommend = (props) => {
                   </div>
                 </>
               );
-            } else {
+            } else if (roomLock === 0) {
               return (
                 <>
                   <div

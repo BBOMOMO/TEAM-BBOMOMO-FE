@@ -6,8 +6,6 @@ import apis from "../../shared/apis";
 // actions
 const GET_POST = "GET_POST";
 const GET_POST_DETAIL = "GET_POST_DETAIL";
-const DETAIL_POST = "DETAIL_POST";
-const DETAIL_POST_BG = "DETAIL_POST_BG";
 // const ADD_POST = "ADD_POST";
 
 // action creators
@@ -15,47 +13,52 @@ const loadPosts = createAction(GET_POST, (postList) => ({ postList }));
 const loadPostDetail = createAction(GET_POST_DETAIL, (postListDetail) => ({
   postListDetail,
 }));
-const detailPost = createAction(DETAIL_POST, (idx, postId) => ({
-  idx,
-  postId,
-}));
-const detailPostBg = createAction(DETAIL_POST_BG, (postBg) => ({ postBg }));
-// const addPosts = createAction(ADD_POST, (newPost) => ({ newPost }));
+// // const addPosts = createAction(ADD_POST, (newPost) => ({ newPost }));
 
 // initialState
 const initialState = {
   postList: [],
-  detailPost: {
-    idx: null,
-    postId: null,
-  },
-  detailPostBg: {
-    postBg: null,
+  postListDetail: {
+    // postId: "",
+    // nick: "",
+    // postContent: "",
+    // postImg: "",
+    // studyTime: "",
+    // createdAt: "",
+    // updatedAt: "",
+    // userId: "",
+    // Comments: [
+    //   {
+    //     nick: "",
+    //     comment: "",
+    //     createdAt: "",
+    //   },
+    // ],
   },
 };
 
 // middlewares
-const getPosts = () => {
+const getPostsDB = () => {
   return async function (dispatch, useState, { history }) {
     await apis.getPost().then(function (response) {
-      // console.log(response.data.board, 123);
+      // console.log(response.data.board);
       dispatch(loadPosts(response));
     });
   };
 };
 
-const getPostDetail = (postId) => {
+const getPostDetailDB = (postId) => {
   return async function (dispatch, useState, { history }) {
     await apis.getPostDetail(postId).then(function (response) {
-      console.log(response.data, "postaction");
+      // console.log(response.data, "postaction");
       dispatch(loadPostDetail(response.data.post));
     });
   };
 };
 
-const addPost = (nick, postContent, studyTime, file, bgtype) => {
+const addPostDB = (nick, postContent, studyTime, file, bgtype) => {
   return async function (dispatch, useState, { history }) {
-    console.log(nick, postContent, studyTime, file, bgtype);
+    // console.log(nick, postContent, studyTime, file, bgtype);
     const form = new FormData();
     if (file === null) {
       form.append("nick", nick);
@@ -94,27 +97,15 @@ export default handleActions(
     [GET_POST_DETAIL]: (state, action) =>
       produce(state, (draft) => {
         draft.postListDetail = action.payload.postListDetail;
-        // console.log(draft.postListDetailt);
+        draft.array = action.payload.postListDetail.Comments;
+        // console.log(draft.array);
       }),
-
-    [DETAIL_POST]: (state, action) =>
-      produce(state, (draft) => {
-        draft.detailPost.idx = action.payload.idx;
-        draft.detailPost.postId = action.payload.postId;
-      }),
-    [DETAIL_POST_BG]: (state, action) =>
-      produce(state, (draft) => {
-        draft.detailPostBg.postBg = action.payload.postBg;
-      }),
-    // [ADD_POST]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
 
 export const actionCreators = {
-  addPost,
-  getPosts,
-  getPostDetail,
-  detailPost,
-  detailPostBg,
+  addPostDB,
+  getPostsDB,
+  getPostDetailDB,
 };
