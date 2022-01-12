@@ -12,13 +12,15 @@ const LOAD_CATEROOMS = "LOAD_CATEROOMS";
 
 // action creators
 const loadRooms = createAction(LOAD_ROOMS, (room_list) => ({ room_list }));
-const loadCateRooms = createAction(LOAD_CATEROOMS, (cateroom_list)=> ({cateroom_list}));
+const loadCateRooms = createAction(LOAD_CATEROOMS, (cateroom_list) => ({
+  cateroom_list,
+}));
 const addRooms = createAction(ADD_ROOMS, (newRoom) => ({ newRoom }));
 
 // initialState
 const initialState = {
   roomList: [],
-  cateroom:[],
+  cateroom: [],
 };
 
 // middlewares
@@ -76,19 +78,18 @@ const addRoom = (
 };
 
 const sortRooms = (roomPurpose) => {
-  return async function(dispatch, useState, {history}){
+  return async function (dispatch, useState, { history }) {
     await apis
-    .searchRoom(roomPurpose)
-    .then(async function(response) {
-      //console.log("response: ",response.data.list);
-      dispatch(loadCateRooms(response));
-    }).catch((err)=>{
-      console.log("err response: ",err.response)
-    })
-  }
-
-}
-
+      .searchRoom(roomPurpose)
+      .then(async function (response) {
+        //console.log("response: ",response.data.list);
+        dispatch(loadCateRooms(response));
+      })
+      .catch((err) => {
+        console.log("err response: ", err.response);
+      });
+  };
+};
 
 const enterRoom = (newRoomId, roomPassword = null) => {
   return async function (dispatch, useState, { history }) {
@@ -105,6 +106,19 @@ const enterRoom = (newRoomId, roomPassword = null) => {
       });
   };
 };
+const exitRoom = (roomId) => {
+  return async function (dispatch, useState, { history }) {
+    await apis
+      .exitRoom(roomId)
+      .then((response) => {
+        console.log(response);
+        console.log("exitRoom 성공");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 // reducer
 export default handleActions(
   {
@@ -114,12 +128,12 @@ export default handleActions(
         //draft.roomSmall =  draft.roomList.list.slice(0,6);
         //console.log("호잉", draft.roomList.list.slice(0,6));
       }),
-    [LOAD_CATEROOMS]: (state, action) => produce(state, (draft) => {
-      draft.cateroom = action.payload.cateroom_list.data.list
-      //console.log("여기야 여기!",action.payload.cateroom_list.data.list)
-    }),
+    [LOAD_CATEROOMS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.cateroom = action.payload.cateroom_list.data.list;
+        //console.log("여기야 여기!",action.payload.cateroom_list.data.list)
+      }),
     [ADD_ROOMS]: (state, action) => produce(state, (draft) => {}),
-    
   },
   initialState
 );
@@ -130,4 +144,5 @@ export const actionCreators = {
   addRoom,
   enterRoom,
   sortRooms,
+  exitRoom,
 };

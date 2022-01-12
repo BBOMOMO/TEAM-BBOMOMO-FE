@@ -70,9 +70,9 @@ export default function VideoChatRoom() {
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
 
-  useEffect(() => {
-    dispatch(groupAction.enterRoom(roomId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(groupAction.enterRoom(roomId));
+  // }, []);
 
   // Local
   // const [cameraOn, setCameraOn] = useState(true);
@@ -96,17 +96,19 @@ export default function VideoChatRoom() {
   let percentBar;
 
   const endBtn = () => {
+    dispatch(groupAction.exitRoom(roomId));
     history.push("/");
     window.location.reload();
   };
 
   useEffect(() => {
+    dispatch(groupAction.enterRoom(roomId));
     const socket = io(url);
     const peer = new Peer({
       config: {
         iceServers: [{ url: "stun:stun.l.google.com:19302" }],
       },
-    });
+    },[]);
 
     console.log(peer);
 
@@ -159,7 +161,7 @@ export default function VideoChatRoom() {
               console.log("쉬는시간 종료");
               currentRound = currentRound + 1;
               console.log(currentRound, "현재 라운드");
-              socket.emit("endRest", roomId, currentRound);
+              socket.emit("endRest", currentRound);
               clearInterval(restinterval);
             }
           };
@@ -199,11 +201,13 @@ export default function VideoChatRoom() {
               );
               console.log("수업시간 종료");
               if (currentRound !== totalRound) {
-                socket.emit("endStudy", roomId, userId, userNick);
+                socket.emit("endStudy");
+                // socket.emit("endStudy", roomId, userId, userNick);
                 console.log("endStudy 발생");
               }
               if (currentRound === totalRound) {
-                socket.emit("totalEnd", roomId, userId, userNick);
+                socket.emit("totalEnd");
+                // socket.emit("totalEnd", roomId, userId, userNick);
               }
               clearInterval(studyinterval);
             }
