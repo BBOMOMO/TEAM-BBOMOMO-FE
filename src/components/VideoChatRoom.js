@@ -97,6 +97,7 @@ export default function VideoChatRoom() {
 
   const endBtn = () => {
     history.push("/");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -381,7 +382,7 @@ export default function VideoChatRoom() {
   return (
     <>
       {/* <ChatRoomNav /> */}
-      <Header is_studyroom/>
+      <Header is_studyroom />
       <GroupContainer>
         <ChatRoom>
           <GroupChat openChat={openChat} />
