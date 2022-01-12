@@ -424,7 +424,6 @@ export default function VideoChatRoom() {
   );
 }
 
-// 영상 스트림을 DOM 비디오 엘리먼트에 넣어주는 함수
 function addVideoStream(video, stream) {
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
