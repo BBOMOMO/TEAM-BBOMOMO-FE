@@ -7,8 +7,8 @@ const url = process.env.REACT_APP_API_URL;
 const url_sub = process.env.REACT_APP_API_URL_SUB;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-   baseURL: url, // 재원님 서버주소
-   //baseURL: url_sub, // 상협님서버주소
+  baseURL: url, // 재원님 서버주소
+  //baseURL: url_sub, // 상협님서버주소
 });
 
 instance.interceptors.request.use((config) => {
@@ -41,12 +41,14 @@ export const apis = {
   changeImg: (formData) => instance.put("/api/v1/users/profileImg", formData), // 마이페이지 프로필이미지 수정
 
   //---- 그룹  ----//
-  searchRoom: (roomPurpose) => instance.get(`api/v1/studyRoom/list/keyword/${roomPurpose}`),//스터디룸 조회하기
+  searchRoom: (roomPurpose) =>
+    instance.get(`api/v1/studyRoom/list/keyword/${roomPurpose}`), //스터디룸 조회하기
   postRoom: (userId, roomInfo) =>
     instance.post(`api/v1/studyRoom/hostRoom`, roomInfo), //그룹추가하기
   getRoom: () => instance.get("/api/v1/studyRoom/list/all"), //그룹 리스트 불러오기
   enterRoom: (roomId, roomPassword) =>
-    instance.post(`/api/v1/studyRoom/enterRoom/${roomId}`, roomPassword),//스터디룸 생성하기-(생성자바로입장)
+    instance.post(`/api/v1/studyRoom/enterRoom/${roomId}`, roomPassword), //스터디룸 생성하기-(생성자바로입장)
+  exitRoom: (roomId) => instance.delete(`/api/v1/studyRoom/exitRoom/${roomId}`),
 
   //---- 공부인증  ----//
   // 전체 조회

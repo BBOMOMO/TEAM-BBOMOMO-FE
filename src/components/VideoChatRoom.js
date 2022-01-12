@@ -96,6 +96,7 @@ export default function VideoChatRoom() {
   let percentBar;
 
   const endBtn = () => {
+    dispatch(groupAction.exitRoom(roomId));
     history.push("/");
     window.location.reload();
   };
