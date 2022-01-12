@@ -8,7 +8,7 @@ const url_sub = process.env.REACT_APP_API_URL_SUB;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
   baseURL: url, // 재원님 서버주소
-  //baseURL: url_sub, // 상협님서버주소
+  // baseURL: url_sub, // 상협님서버주소
 });
 
 instance.interceptors.request.use((config) => {

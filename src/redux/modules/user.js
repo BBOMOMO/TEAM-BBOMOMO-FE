@@ -187,6 +187,7 @@ const changeImgDB = (file) => {
       .then((response) => {
         window.alert("수정 완료되었습니다.");
         apis.checkUser().then((response) => {
+          console.log(response.data);
           dispatch(setUser(response.data));
         });
       })
