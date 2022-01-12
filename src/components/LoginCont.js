@@ -6,6 +6,7 @@ import clock from "../Images/login_clock.png";
 import logo from "../Images/bbomomologo.png";
 import googlelogo from "../Images/googlelogo.png";
 import kakaologo from "../Images/kakaologo.png";
+import logo from "../Images/logo_b.png";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
@@ -37,7 +38,9 @@ const LoginCont = (props) => {
 
       <div className="login_rigth_bx">
         <div className="login_inner_bx">
-          <img src={logo} alt="뽀모모 로고" />
+          <h2 className="login_h2">
+           <img src={logo} alt="로고" />
+          </h2>
 
           <div className="mb20 login_input_id">
             <img src={person} alt="사람 아이콘" />
