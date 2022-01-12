@@ -108,7 +108,7 @@ export default function VideoChatRoom() {
       config: {
         iceServers: [{ url: "stun:stun.l.google.com:19302" }],
       },
-    });
+    },[]);
 
     console.log(peer);
 
