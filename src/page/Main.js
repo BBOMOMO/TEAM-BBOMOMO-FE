@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MyInfo from "../components/MyInfo";
 import NoInfo from "../components/NoInfo";
+import Header from "../components/Header";
 import GroupRecommend from "../components/GroupRecommend";
 import Certification from "../components/Certification";
 import Footer from "../components/Footer";
@@ -22,7 +23,9 @@ const Main = (props) => {
 
   return (
     <>
+      <Header/>
       <MainContainer>
+      
         <div className="main_wrap_index">{user ? <MyInfo /> : <NoInfo />}</div>
 
         <div className="main_wrap">
