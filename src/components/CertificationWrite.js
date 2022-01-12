@@ -13,7 +13,6 @@ import BG4 from "../Images/study-certification-bg-4.png";
 const CertificationWrite = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
   const userTodayTime = useSelector((state) => state.user.studyTime);
-
   const cardList = useSelector((state) => state.post.postList.board);
   // console.log(cardList, 333);
 
@@ -47,7 +46,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
   const sendPost = () => {
     const userNick = localStorage.getItem("nick");
     dispatch(
-      postActions.addPost(userNick, postContent, studyTime, file, bgtype)
+      postActions.addPostDB(userNick, postContent, studyTime, file, bgtype)
     );
   };
 

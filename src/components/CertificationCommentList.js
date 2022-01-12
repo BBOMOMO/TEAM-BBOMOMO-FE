@@ -3,6 +3,7 @@ import profileimg from "../Images/user.png";
 // import { useSelector } from "react-redux";
 import Moment from "react-moment";
 import "moment/locale/ko";
+
 const CertificationCommentList = (props) => {
   const displayCreatedAt = (createdAt) => {
     let startTime = new Date(createdAt);
@@ -25,12 +26,34 @@ const CertificationCommentList = (props) => {
             <div className="list_img_bx">
               <img src={profileimg} alt="프로필 이미지" />
             </div>
-            <h4>{props.array}</h4>
-            <p>{props.array}</p>
+            <h4>{props.nick}</h4>
+            <p>{props.comment}</p>
           </div>
-          <span>{displayCreatedAt(props.array)}</span>
+          <span>{displayCreatedAt(props.createdAt)}</span>
         </div>
-      ) : null}
+      ) : (
+        <div className="certifi_conmment_list">
+          <div className="list_profile_bx">
+            <div className="list_img_bx">
+              <img src={profileimg} alt="프로필 이미지" />
+            </div>
+            <h4>앙</h4>
+            <p>잉</p>
+          </div>
+          <span>옹</span>
+        </div>
+      )}
+
+      {/* <div className="certifi_conmment_list">
+        <div className="list_profile_bx">
+          <div className="list_img_bx">
+            <img src={profileimg} alt="프로필 이미지" />
+          </div>
+          <h4>앙</h4>
+          <p>잉</p>
+        </div>
+        <span>옹</span>
+      </div> */}
     </>
   );
 };

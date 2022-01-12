@@ -3,6 +3,7 @@ import { Button, Input } from "../elements";
 import person from "../Images/ic-people.png";
 import lock from "../Images/ic-lock-alt.png";
 import clock from "../Images/login_clock.png";
+import logo from "../Images/bbomomologo.png";
 import googlelogo from "../Images/googlelogo.png";
 import kakaologo from "../Images/kakaologo.png";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -18,18 +19,17 @@ const LoginCont = (props) => {
   const gotoLogin = (e) => {
     dispatch(userActions.loginDB(id, pw));
     dispatch(userActions.checkUserDB());
-  }
+  };
   return (
     <div className="login_container">
       <div className="login_left_bx">
         <div className="login_left_bbomomo"></div>
-        <img src={clock} alt="시계" className="clock"/>
+        <img src={clock} alt="시계" className="clock" />
         <div className="login_left_intro">
-          <p>
-            시간은 누가잴래? 공부는 내가할게!
-          </p>
+          <p>시간은 누가잴래? 공부는 내가할게!</p>
           <h2>
-            스터디 메이트와 함께<br/>
+            스터디 메이트와 함께
+            <br />
             뽀모도로 타이머로 집콕집중
           </h2>
         </div>
@@ -37,11 +37,7 @@ const LoginCont = (props) => {
 
       <div className="login_rigth_bx">
         <div className="login_inner_bx">
-          <h2 className="login_h2">
-            뽀모모와
-            <br />
-            함께 공부를 시작해볼까요?
-          </h2>
+          <img src={logo} alt="뽀모모 로고" />
 
           <div className="mb20 login_input_id">
             <img src={person} alt="사람 아이콘" />
