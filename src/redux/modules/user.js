@@ -116,7 +116,7 @@ const checkUserDB = () => {
     await apis
       .checkUser()
       .then((response) => {
-        //console.log(response);
+        // console.log(response);
         const userInfo = response.data;
 
         console.log(userInfo);
