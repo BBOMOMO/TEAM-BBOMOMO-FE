@@ -10,12 +10,33 @@ const GroupBx = (props) => {
   // console.log("이건뭐지", roomLock);
   const userlist = props.peopleInRoom;
 
+ // console.log("목적 뜨나",props.purpose);
+  const [purpose, setPurpose] = React.useState("");
+
+  React.useEffect(()=>{
+
+    if(props.purpose === 1 ){
+      setPurpose("자율학습");
+    }else if(props.purpose === 2 ){
+      setPurpose("시험공부");
+    }else if(props.purpose === 3 ){
+      setPurpose("수능공부");
+    }else if(props.purpose === 4 ){
+      setPurpose("자격증");
+    }else if(props.purpose === 5 ){
+      setPurpose("공무원");
+    }else if(props.purpose === 6 ){
+      setPurpose("기타");
+    }
+   
+  },[purpose]);
+  
   return (
     <GroupCont className={bgcolor}>
       <div className="group_left_bx">
         <div>
           <h2 className="group_left_h2">
-            <span>수능공부</span>
+            <span>{purpose}</span>
             {props.roomTittle}
           </h2>
         </div>

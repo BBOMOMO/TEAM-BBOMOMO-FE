@@ -41,11 +41,8 @@ const MyInfo = (props) => {
   };
   const saveMsg = (e) => {
     e.preventDefault();
-    console.log(valueName);
-
-      dispatch(userActions.statMsgDB(valueName));
-
-   
+    //console.log(valueName);
+    dispatch(userActions.statMsgDB(valueName)); 
   };
 
 
@@ -145,7 +142,7 @@ const MyInfo = (props) => {
         <div className="myinfo_studytime">
           <div className="myinfo_studytime_top">
             <p className="underline">내 공부시간</p>
-            {/* <p>랭킹</p> */}
+            <p className="">랭킹</p>
             {/* 랭킹은 추후 업데이트 */}
           </div>
           <div className="myinfo_studytime_mid">
