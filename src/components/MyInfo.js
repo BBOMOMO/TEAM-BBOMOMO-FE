@@ -33,7 +33,9 @@ const MyInfo = (props) => {
   const [file, setFile] = React.useState(null);
   const [userImg, setUserImg] = React.useState(null);
   const profImg = user.user.profileImg;
-  const [background, setBackground] = React.useState(profImg?profImg:"/static/media/nouser.3c586078.png");
+  const [background, setBackground] = React.useState(
+    profImg ? profImg : "/static/media/nouser.3c586078.png"
+  );
 
   const [studyCnt, setStudyCnt] = React.useState(0);
 
@@ -43,9 +45,8 @@ const MyInfo = (props) => {
   const saveMsg = (e) => {
     e.preventDefault();
     //console.log(valueName);
-    dispatch(userActions.statMsgDB(valueName)); 
+    dispatch(userActions.statMsgDB(valueName));
   };
-
 
   // console.log("user",category)
 
@@ -66,55 +67,50 @@ const MyInfo = (props) => {
       setCateName("고3");
     } else if (category === "6") {
       setCateName("대학생");
-    }else if (category === "7") {
+    } else if (category === "7") {
       setCateName("직장인");
     }
-    
 
     // console.log("file:",file)
     // console.log("nickname:",nickname)
     // console.log("nickname:",category)
 
-    if(file){
+    if (file) {
       dispatch(userActions.changeImgDB(file));
     }
-    
-  },[file,category,nickname]);
+  }, [file, category, nickname]);
 
   const today2 = 900;
   const total2 = today2 * 0.25;
 
   //console.log("studyTotal",total2);
 
-
-
   return (
     <>
       <div className="myinfo_container">
         <div className="myinfo_profile_area">
-          <CircleWrap >
-            <img src={roundCircle} style={{ width: "260px" }}/>
-            <Circlebar  studyTotal={"rotate("+ total2+"deg)"}/>
+          <CircleWrap>
+            <img src={roundCircle} style={{ width: "260px" }} />
+            <Circlebar studyTotal={"rotate(" + total2 + "deg)"} />
           </CircleWrap>
-            
-          
+
           <label style={css} className="myinfo_user_img">
-            <span><img src={camera} alt="사진변경하기" /></span>
-            <input type="file" 
-            onChange ={(e)=>{
-              setUserImg(e.target.dataset.userImg);
-              setFile(e.target.files[0]);
-              const objectURL = URL.createObjectURL(
-                e.target.files[0]
-              );
-              console.log(objectURL)
-              setBackground(objectURL);   
-            }}
+            <span>
+              <img src={camera} alt="사진변경하기" />
+            </span>
+            <input
+              type="file"
+              onChange={(e) => {
+                setUserImg(e.target.dataset.userImg);
+                setFile(e.target.files[0]);
+                const objectURL = URL.createObjectURL(e.target.files[0]);
+                console.log(objectURL);
+                setBackground(objectURL);
+              }}
             />
           </label>
-          
         </div>
-        
+
         <div className="myinfo_txt_area">
           <div className="myinfo_user_info">
             <span className="myinfo_user_division">{cateName}</span>
@@ -124,19 +120,19 @@ const MyInfo = (props) => {
             <Input
               value={valueName}
               _onChange={(e) => setValue(e.target.value)}
-              placeholder={statusMsg?statusMsg:"목표를 입력해주세요."}
+              placeholder={statusMsg ? statusMsg : "목표를 입력해주세요."}
               height="36px"
               color="#282828"
               size="13px"
               onSubmit={saveMsg}
             />
-            <img type="submit"
+            <img
+              type="submit"
               src={pencil}
               alt="저장하기"
               title="저장하기"
               className="myinfo_user_state_pencil"
               onClick={saveMsg}
-             
             />
           </div>
         </div>
@@ -155,48 +151,40 @@ const MyInfo = (props) => {
 export default MyInfo;
 
 const Circlebar = styled.span`
-position:absolute; 
-display:block;
-width:50%;
-height:1px;
-*background:#ff0000;
-left:50%;
-top:50%;
-z-index:1;
-transform:rotate(95deg);
-*transform:rotate(445deg);
+  position: absolute;
+  display: block;
+  width: 50%;
+  height: 1px;
+  *background: #ff0000;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: rotate(95deg);
+  *transform: rotate(445deg);
 
-
-
-
-:before {
-  content:"";
-  position:absolute;
-  top:-14px;
-  right:-10px; 
-  display:block; 
-  width:30px;
-  height:30px; 
-  border-radius:50%;
-  background-color:#fff;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
-  
-}
-transform-origin:left;
-animation:animate 1s forwards;
-
-  @keyframes animate
-{
-  0%
-  {
-    transform:rotate(95deg);
+  :before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    right: -10px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
   }
-  100%
-  {
-    transform: ${(props) => props.studyTotal};
-    
+  transform-origin: left;
+  animation: animate 1s forwards;
+
+  @keyframes animate {
+    0% {
+      transform: rotate(95deg);
+    }
+    100% {
+      transform: ${(props) => props.studyTotal};
+    }
   }
-}
 `;
 
 const CircleWrap = styled.div`
@@ -205,6 +193,4 @@ const CircleWrap = styled.div`
   width: 260px;
   height: 260px;
   margin: 0 auto;
- 
-
 `;

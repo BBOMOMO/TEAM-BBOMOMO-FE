@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      
+
       <Switch>
         <Route path="/signup" component={Signup} exact />
         <Route path="/login" component={Login} exact />
@@ -37,9 +37,9 @@ function App() {
         <Route path="/" component={Main} exact />
         <Route path="/chat/:roomId" component={PostChat} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
-      
+
         <Route path="/re" component={VideoRefact} />
-        <Route path={"*"} component={NotFound} /> 
+        <Route path={"*"} component={NotFound} />
       </Switch>
     </>
   );

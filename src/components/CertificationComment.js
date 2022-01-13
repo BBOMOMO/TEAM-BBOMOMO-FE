@@ -12,36 +12,45 @@ import apis from "../shared/apis";
 import profileimg from "../Images/user.png";
 import close from "../Images/ic_header_close.png";
 import send from "../Images/ic-send 1.png";
+import menu from "../Images/ic-comment-menu.png";
 import BG1 from "../Images/study-certification-bg-1.png";
 import BG2 from "../Images/study-certification-bg-2.png";
 import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationComment = ({ showModal, closeModal }) => {
+  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const openDeleteBtn = () => {
+    setShowDeleteModal(true);
+  };
+  const closeDeleteBtn = () => {
+    setShowDeleteModal(false);
+  };
+
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
+  const [isShow, setIsShow] = useState("none");
+  const opendel = () => {
+    if (isShow === "none") {
+      setIsShow("block");
+    } else {
+      setIsShow("none");
+    }
+  };
+
+  const [ckNum, setCkNum] = useState(0);
   const [background, setBackground] = useState(BG1);
   const css = {
     backgroundImage: `url(${background})`,
   };
-  const [editTxt, setEditTxt] = React.useState(true);
-  const [postContent, setPostContent] = useState("");
 
-  const test = useSelector((state) => state.post.postListDetail);
-  // console.log(test);
+  // 댓글 작성 막기
+  const user = useSelector((state) => state.user.userInfo);
+  const postDetail = useSelector((state) => state.post.postListDetail);
+  // console.log("게시글 상세조회", postDetail);
   const postId = useSelector((state) => state.post.postListDetail.postId);
   const postBg = useSelector((state) => state.post.postListDetail.postImg);
-  const array = useSelector((state) => state.post.postListDetail.Comments);
   const commentList = useSelector((state) => state.comment.commentList);
-
-  // let qaz = response.data;
-  // console.log(qaz);
-  // const reverse = commentList.reverse();
-  // console.log(reverse);
-  // console.log(array.length);
-  // if (typeof commentList === ob) {
-  //   console.log(123);
-  // }
 
   const userNick = localStorage.getItem("nick");
   const sendComment = () => {
@@ -49,7 +58,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
   };
 
   let studyTime;
-  let getTime = test.studyTime;
+  let getTime = postDetail.studyTime;
   let HH = Math.floor(getTime / 60);
   let MM = getTime % 60;
   if (HH < 10 && MM < 10) {
@@ -77,16 +86,17 @@ const CertificationComment = ({ showModal, closeModal }) => {
   }, [postBg]);
 
   React.useEffect(() => {
-    dispatch(commentActions.loadcomments(test.Comments));
-  }, [test]);
+    dispatch(commentActions.loadcomments(postDetail.Comments));
+  }, [postDetail]);
 
   return (
     <>
-      {showModal && test ? (
+      {showModal && postDetail ? (
         <ModalContainer>
           <ModalBG
             onClick={() => {
               dispatch(postActions.getPostsDB());
+              setIsShow("none");
               closeModal();
             }}
           />
@@ -99,6 +109,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   alt="닫기 아이콘"
                   onClick={() => {
                     dispatch(postActions.getPostsDB());
+                    setIsShow("none");
                     closeModal();
                   }}
                 />
@@ -109,17 +120,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   <ModalInnerBg style={css}>
                     <div className="certifi_comment_bg">
                       <h3>{studyTime}</h3>
-                      {editTxt ? (
-                        <p>{test.postContent}</p>
-                      ) : (
-                        <textarea
-                          value={postContent}
-                          placeholder={test.postContent}
-                          onChange={(e) => {
-                            setPostContent(e.target.value);
-                          }}
-                        ></textarea>
-                      )}
+                      <p>{postDetail.postContent}</p>
                     </div>
                   </ModalInnerBg>
 
@@ -128,22 +129,11 @@ const CertificationComment = ({ showModal, closeModal }) => {
                       <div className="my_profile_img_bx">
                         <img src={profileimg} alt="프로필 이미지" />
                       </div>
-                      <h4>{test.nick}</h4>
+                      <h4>{postDetail.nick}</h4>
                     </div>
                     <div className="my_profile_right">
-                      {/* <img src={comment} alt="댓글 아이콘" />
-                      <p>{commentCnt}</p> */}
-                      {test.nick !== userNick ? null : (
+                      {postDetail.nick !== userNick ? null : (
                         <>
-                          <button
-                            className="post_edit_btn"
-                            onClick={() => {
-                              console.log("수정");
-                              setEditTxt(false);
-                            }}
-                          >
-                            수정
-                          </button>
                           <button
                             className="post_del_btn"
                             onClick={() => {
@@ -165,29 +155,65 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   <div className="certifi_conmment_list_bx">
                     {commentList &&
                       commentList.map((a, b) => {
-                        if (a.length === 1) {
-                          console.log(123);
+                        // console.log(b);
+                        if (a.nick !== userNick) {
+                          return (
+                            <QWE>
+                              <CertificationCommentList
+                                {...a}
+                                key={b}
+                              ></CertificationCommentList>
+                            </QWE>
+                          );
+                        } else {
+                          return (
+                            <QWE>
+                              <CertificationCommentList
+                                {...a}
+                                key={b}
+                                show={showDeleteModal}
+                                close={closeDeleteBtn}
+                                ckNum={ckNum}
+                              ></CertificationCommentList>
+                              <img
+                                src={menu}
+                                alt="메뉴 아이콘"
+                                className="delete_img"
+                                onClick={() => {
+                                  setCkNum(a.commentId);
+                                  console.log(a.commentId, "여기는 이미지");
+                                  openDeleteBtn();
+                                  opendel();
+                                }}
+                              />
+                              {/* <div className={isShow}>보여라</div> */}
+                            </QWE>
+                          );
                         }
-                        return (
-                          <CertificationCommentList
-                            {...a}
-                            key={b}
-                          ></CertificationCommentList>
-                        );
                       })}
-                    {/* {} */}
+
                     {/* <CertificationCommentList></CertificationCommentList> */}
                   </div>
-
                   <div className="certifi_conmment_input_bx">
-                    <img
-                      src={send}
-                      alt="자물쇠 아이콘"
-                      onClick={() => {
-                        sendComment();
-                        setCommentText("");
-                      }}
-                    />
+                    {user ? (
+                      <img
+                        src={send}
+                        alt="자물쇠 아이콘"
+                        onClick={() => {
+                          sendComment();
+                          setCommentText("");
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={send}
+                        alt="자물쇠 아이콘"
+                        onClick={() => {
+                          window.alert("로그인 필요합니다");
+                        }}
+                      />
+                    )}
+
                     <Input
                       value={commentText}
                       boxSizing
@@ -211,7 +237,16 @@ const CertificationComment = ({ showModal, closeModal }) => {
     </>
   );
 };
-
+const QWE = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  .delete_img {
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+  }
+`;
 const ModalContainer = styled.div`
   position: relative;
 `;
