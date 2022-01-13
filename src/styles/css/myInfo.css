@@ -1,15 +1,14 @@
 .myinfo_container {
-  position:sticky;
-  left:0;
-  top:0;
+  position: sticky;
+  left: 0;
+  top: 0;
   width: 660px;
-  height:100vh;
+  height: 100vh;
   text-align: center;
-  background: #F8FDFD;
-  border-radius:60px;
-  padding:80px 116px;
+  background: #f8fdfd;
+  border-radius: 60px;
+  padding: 80px 116px;
   box-sizing: border-box;
-  
 }
 .myinfo_profile_area {
   margin-top: 50px;
@@ -27,26 +26,24 @@
   background-position: center;
   background-size: cover;
   cursor: pointer;
-  
 }
 .myinfo_user_img > span {
-  display:none;
-  color:#fff;
-  line-height:213px;
-  background-color:rgba(0, 0, 0, 0.5);
-  width:197px;
-  height:197px;
-  border-radius:50%;
-  
+  display: none;
+  color: #fff;
+  line-height: 213px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 197px;
+  height: 197px;
+  border-radius: 50%;
 }
 
-
-
-.myinfo_user_img:hover > span  {
+.myinfo_user_img:hover > span {
   display: block;
 }
 
-.myinfo_user_img>input{display:none;}
+.myinfo_user_img > input {
+  display: none;
+}
 
 .myinfo_user_info {
   display: flex;
@@ -55,7 +52,6 @@
   margin: 26px auto 12px auto;
 }
 
-
 .myinfo_txt_area {
 }
 .myinfo_user_name {
@@ -63,16 +59,15 @@
   font-weight: bold;
 }
 
-
 .myinfo_user_division {
   font-size: 16px;
   font-weight: 400;
-  display:inline-block;
-  padding:0 10px;
+  display: inline-block;
+  padding: 0 10px;
   line-height: 30px;
   border-radius: 30px;
   border: 0.38px solid #959595;
-  margin-right:10px;
+  margin-right: 10px;
 }
 .myinfo_user_state {
   width: 193px;
@@ -113,7 +108,7 @@
   font-size: 18px;
 }
 .myinfo_studytime_top > p {
-  width:105px;
+  width: 105px;
 }
 .myinfo_studytime_mid {
   width: 100%;
@@ -179,44 +174,79 @@
   cursor: pointer;
 }
 
-
 /************************** 비로그인 NoInfo.js **************************/
 
 .myinfo_nouser_info {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px auto ;
+  margin: 40px auto;
 }
 
 .myinfo_nouser_info .myinfo_user_name {
-  
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
 .myinfo_nouser_info .myinfo_user_name > span {
- position:relative;
- display:inline-block;
- margin:0 5px;
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
 }
 
 .myinfo_nouser_info .myinfo_user_name > span:before {
-  content:'';
+  content: "";
   position: absolute;
-  bottom:-10px;
-  width:0;
-  height:3px;
+  bottom: -10px;
+  width: 0;
+  height: 3px;
 }
 
 .myinfo_nouser_info .myinfo_user_name > span:hover:before {
-  content:'';
+  content: "";
   position: absolute;
-  bottom:-10px;
-  width:100%;
-  background-color:#889cf2;
-  transition:0.5s;
-  transition-delay:0s;
-  
+  bottom: -10px;
+  width: 100%;
+  background-color: #889cf2;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+/* rank */
+.myinfo_rank_wrap {
+  margin-top: 16px;
+}
+.myinfo_rank_wrap:nth-child(1) {
+  margin-top: 20px;
+}
+.myinfo_rank_wrap:nth-child(1) .myinfo_rank_name::after {
+  display: inline-block;
+  content: "";
+  width: 13px;
+  height: 13px;
+  background-image: url(../../Images/crown.png);
+  background-size: contain;
+  position: absolute;
+  left: 20px;
+}
+.myinfo_rank {
+  font-size: 16px;
+  font-weight: 600;
+  color: #889cf2;
+  float: left;
+}
+.myinfo_rank_name {
+  font-size: 16px;
+  font-weight: 400;
+  color: #282828;
+  margin-left: 42px;
+  float: left;
+  position: relative;
+}
+.myinfo_rank_time {
+  font-weight: 600;
+  color: #242424;
+  float: right;
+  text-align: right;
 }

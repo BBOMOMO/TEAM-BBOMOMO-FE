@@ -41,7 +41,7 @@ export const apis = {
   changeMsg: (userMsg) => instance.put("/api/v1/users/status", userMsg), //마이페이지 상태메시지 수정
   changeImg: (formData) => instance.put("/api/v1/users/profileImg", formData), // 마이페이지 프로필이미지 수정
   // 유저 : 랭킹
-  getLank: () => instance.get("/api/v1/users/ranking"), //랭킹 불러오기
+  getRank: () => instance.get("/api/v1/users/ranking"), //랭킹 불러오기
 
   //---- 그룹  ----//
   searchRoom: (roomPurpose) =>

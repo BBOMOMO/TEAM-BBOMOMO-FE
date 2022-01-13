@@ -8,7 +8,7 @@ const SET_USER = "SET_USER";
 const ID_CHECK = "ID_CHECK";
 const NICK_CHECK = "NICK_CHECK";
 const ADD_USER_IMG = "ADD_USER_IMG";
-const GET_LANK = "GET_LANK";
+const GET_RANK = "GET_RANK";
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
 const idCheck = createAction(ID_CHECK, (idCheckres) => ({ idCheckres }));
@@ -16,7 +16,7 @@ const nickCheck = createAction(NICK_CHECK, (nickCheckres) => ({
   nickCheckres,
 }));
 const addUserImg = createAction(ADD_USER_IMG, (userImg) => ({ userImg }));
-const getLank = createAction(GET_LANK, (studyRanking) => ({
+const getRank = createAction(GET_RANK, (studyRanking) => ({
   studyRanking,
 }));
 
@@ -216,14 +216,14 @@ const changeImgDB = (file) => {
   };
 };
 
-const getLankDB = () => {
+const getRankDB = () => {
   return async function (dispatch, getState, { history }) {
     await apis
-      .getLank()
+      .getRank()
       .then((response) => {
         console.log(response);
         const studyRanking = response.data.studyRanking;
-        dispatch(getLank(studyRanking));
+        dispatch(getRank(studyRanking));
       })
       .catch((err) => {
         console.log(err);
@@ -253,7 +253,7 @@ export default handleActions(
         //console.log(action.payload.userInfo.user[0].nick)
       }),
     [ADD_USER_IMG]: (state, action) => produce(state, (draft) => {}),
-    [GET_LANK]: (state, action) =>
+    [GET_RANK]: (state, action) =>
       produce(state, (draft) => {
         draft.studyRanking = action.payload.studyRanking;
       }),
@@ -272,4 +272,5 @@ export const actionCreators = {
   changeImgDB,
   getLankDB,
   kakaoLogin
+
 };
