@@ -115,6 +115,20 @@ const loginDB = (username, password) => {
   };
 };
 
+//kakao social 로그인
+const kakaoLogin = (authorization_code) => {
+  return async function(dispatch, getState, {history}){
+    await apis
+      .kakao(authorization_code)
+      .then((response)=> {
+        console.log("카카오 로그인성공",response)
+        console.log("카카오 여기로 넘어오긴 하나")
+      }).catch((err)=>{
+        console.log("카카오 로그인실패",err.response)
+      })
+  }
+};
+
 //유저확인
 const checkUserDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -256,5 +270,7 @@ export const actionCreators = {
   changeInfo,
   statMsgDB,
   changeImgDB,
-  getRankDB,
+  getLankDB,
+  kakaoLogin
+
 };

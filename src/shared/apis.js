@@ -7,8 +7,8 @@ const url = process.env.REACT_APP_API_URL;
 const url_sub = process.env.REACT_APP_API_URL_SUB;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  baseURL: url, // 재원님 서버주소
-  // baseURL: url_sub, // 상협님서버주소
+  //baseURL: url, // 재원님 서버주소
+  baseURL: url_sub, // 상협님서버주소
 });
 
 instance.interceptors.request.use((config) => {
@@ -29,6 +29,7 @@ instance.interceptors.request.use((config) => {
 
 export const apis = {
   //---- 유저  ----//
+  kakao: (authorization_code)=> instance.get(`/api/v1/auth/kakao/callback?code=${authorization_code}`),//카카오로그인
   register: (userInfo) => instance.post("/api/v1/auth/signup", userInfo), //회원가입
   registerID: (idInfo) => instance.post("/api/v1/auth/nameck", idInfo), //아이디 중복확인
   registerNICK: (nickInfo) => instance.post("/api/v1/auth/nickck", nickInfo), //닉네임 중복확인

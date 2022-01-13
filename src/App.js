@@ -15,6 +15,7 @@ import Login from "./page/Login";
 import Signup from "./page/Singup";
 import PostChat from "./components/PostChat";
 import Group from "./page/Group";
+import Kakao from "./shared/social/Kakao";
 
 import Main from "./page/Main";
 import NotFound from "./page/NotFound";
@@ -33,7 +34,7 @@ function App() {
       <Switch>
         <Route path="/signup" component={Signup} exact />
         <Route path="/login" component={Login} exact />
-
+        <Route path="/api/v1/auth/kakao/callback" component={Kakao}></Route>
         <Route path="/" component={Main} exact />
         <Route path="/chat/:roomId" component={PostChat} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
