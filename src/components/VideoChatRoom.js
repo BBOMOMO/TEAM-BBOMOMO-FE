@@ -105,7 +105,6 @@ export default function VideoChatRoom() {
     dispatch(groupAction.enterRoom(roomId));
     const socket = io(url, { transports: ["websocket"] });
     const peer = new Peer();
-
     console.log(peer);
 
     // 클라의 영상 스트림 비디오에 넣기
@@ -234,31 +233,31 @@ export default function VideoChatRoom() {
           const goodByeinterval = setInterval(timer, 1000);
         });
 
-        peer.on("open", (peerId) => {
-          //소켓을 통해 서버로 방ID, 유저ID 보내주기
-          console.log(peerId);
-          myPeerId = peerId;
-          setTimeout((peerId) => {
-            socket.emit(
-              "join-room",
-              roomId,
-              peerId,
-              userId,
-              userNick,
-              streamId,
-              statusMsg
-            );
-          }, 2000);
-          // socket.emit(
-          //   "join-room",
-          //   roomId,
-          //   peerId,
-          //   userId,
-          //   userNick,
-          //   streamId,
-          //   statusMsg
-          // );
-        });
+        socket.emit(
+          "join-room",
+          roomId,
+          peer._id,
+          userId,
+          userNick,
+          streamId,
+          statusMsg
+        );
+
+        // peer.on("open", (peerId) => {
+        //   //소켓을 통해 서버로 방ID, 유저ID 보내주기
+        //   console.log(peerId);
+        //   myPeerId = peerId;
+
+        //   socket.emit(
+        //     "join-room",
+        //     roomId,
+        //     peerId,
+        //     userId,
+        //     userNick,
+        //     streamId,
+        //     statusMsg
+        //   );
+        // });
 
         // 피어 생성하기
         // peer.on("open", (peerId) => {
