@@ -53,9 +53,9 @@ export default handleActions(
     [GET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.commentList = action.payload.commentList;
+        // draft.list.unshift(action.payload.post);
         console.log("드래프트", draft.commentList);
       }),
-    // [ADD_POST]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -63,9 +63,4 @@ export default handleActions(
 export const actionCreators = {
   loadcomments,
   addCommentDB,
-  // getComments,
-  //   addPost,
-  //   getPosts,
-  //   detailPost,
-  //   detailPostBg,
 };

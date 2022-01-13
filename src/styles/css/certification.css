@@ -85,7 +85,7 @@
 .CertificationCardBx:nth-child(3n + 1) {
   margin: 0 0 12px 0;
 }
-/* 사용자 지정 이미지 구분 배경  시작*/
+/* 사용자 지정 이미지 구분 배경 시작*/
 .certifi_card_list_bx.nomal-bg .certifi_card_relative {
   display: flex;
   flex-direction: column;
@@ -349,21 +349,6 @@
   line-height: 22px;
   letter-spacing: -0.0041em;
 }
-.certifi_comment_bg > textarea {
-  padding: 24px;
-  width: 100%;
-  height: 122px;
-  border: none;
-  border-radius: 11px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #7a7d81;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: -0.0041em;
-  outline: none;
-  resize: none;
-}
 .comment_my_profile_bx {
   display: flex;
   justify-content: space-between;
@@ -398,20 +383,6 @@
   display: flex;
 }
 
-.my_profile_right .post_edit_btn {
-  margin-right: 8px;
-  padding: 7px 20px;
-  box-sizing: border-box;
-  border: none;
-  border-radius: 21px;
-  background-color: #889cf2;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 600;
-  /* line-height: 16px; */
-  text-align: center;
-  letter-spacing: -0.0008em;
-}
 .my_profile_right .post_del_btn {
   padding: 7px 20px;
   box-sizing: border-box;
@@ -425,29 +396,50 @@
   text-align: center;
   letter-spacing: -0.0008em;
 }
-/* 디자인 변경 */
-/* .my_profile_right > img {
-  margin-right: 10px;
+.certifi_conmment_input_bx {
+  position: relative;
+}
+.certifi_conmment_input_bx > img {
+  position: absolute;
+  top: 16px;
+  right: 26px;
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
-.my_profile_right > p {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: -0.0041em;
-} */
 
+/* 댓글 컴포넌트 css */
 .certifi_conmment_list_bx {
+  overflow: scroll;
   margin-bottom: 40px;
   width: 477px;
   height: 564px;
-  overflow: scroll;
+  cursor: pointer;
+}
+
+.certifi_conmment_list_bx .none {
+  display: none;
+}
+.certifi_conmment_list_bx .block {
+  position: absolute;
+  top: 40px;
+  right: 15px;
+  width: 90px;
+  /* height: 45px; */
+  background: #ffffff;
+  box-shadow: 0px 1px 8px 2px rgba(150, 150, 150, 0.25);
+  color: #242424;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 45px;
+  text-align: center;
+  letter-spacing: -0.0008em;
 }
 .certifi_conmment_list {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .certifi_conmment_list + .certifi_conmment_list {
   margin-top: 22px;
@@ -487,21 +479,10 @@
   text-overflow: ellipsis;
   max-width: 240px;
 }
-
 .certifi_conmment_list > span {
+  margin-right: 10px;
   color: #a3a6aa;
   font-size: 13px;
   line-height: 18px;
   letter-spacing: -0.0008em;
-}
-.certifi_conmment_input_bx {
-  position: relative;
-}
-.certifi_conmment_input_bx > img {
-  position: absolute;
-  top: 16px;
-  right: 26px;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
 }

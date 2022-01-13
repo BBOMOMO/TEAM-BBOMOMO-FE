@@ -26,21 +26,21 @@ const Certification = (props) => {
     setRoomcount(roomcount + roomcount);
   };
 
-  const [showWriteModal, setShowWritefoModal] = React.useState(false);
-  const [showCommentModal, setShowCommentfoModal] = React.useState(false);
+  const [showWriteModal, setShowWriteModal] = React.useState(false);
+  const [showCommentModal, setShowCommentModal] = React.useState(false);
 
   const openPostWrite = () => {
-    setShowWritefoModal(true);
+    setShowWriteModal(true);
   };
   const closePostWrite = () => {
-    setShowWritefoModal(false);
+    setShowWriteModal(false);
   };
 
   const openPostComment = () => {
-    setShowCommentfoModal(true);
+    setShowCommentModal(true);
   };
   const closePostComment = () => {
-    setShowCommentfoModal(false);
+    setShowCommentModal(false);
   };
 
   React.useEffect(() => {

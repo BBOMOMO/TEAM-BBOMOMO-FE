@@ -21,6 +21,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
   const css = {
     backgroundImage: `url(${background})`,
   };
+  // const [studyTime, setStudyTime] = useState(0);
 
   // 버튼 활성화
   const [isActive1, setActive1] = useState(true);
@@ -28,25 +29,29 @@ const CertificationWrite = ({ showModal, closeModal }) => {
   const [isActive3, setActive3] = useState(false);
   const [isActive4, setActive4] = useState(false);
 
+  // 공부시간
+  let studyTime;
+  let HH = Math.floor(userTodayTime / 60);
+  let MM = userTodayTime % 60;
+  if (HH < 10 && MM < 10) {
+    studyTime = `0${HH}:0${MM}`;
+  } else if (HH < 10) {
+    studyTime = `0${HH}:${MM}`;
+  } else if (MM < 10) {
+    studyTime = `${HH}:0${MM}`;
+  } else {
+    studyTime = `${HH}:${MM}`;
+  }
+
   // dispatch
   const [postContent, setPostContent] = useState("");
-  // post넘겨주기 위한 숫자 시간
-  const [studyTime, setStudyTime] = useState(0);
   const [file, setFile] = useState(null);
   const [bgtype, setBgType] = useState("orange");
-
-  // 공부시간 가져오기
-  // apis.getStudyTime().then(function (response) {
-  // const HH = Math.floor(user.todayRecord[0].today / 60);
-  // const MM = user.todayRecord[0].today % 60;
-  // //   setStudyTime(response.data.studyTime.StudyTime);
-  // setTime(`${HH}:${MM}`);
-  // });
 
   const sendPost = () => {
     const userNick = localStorage.getItem("nick");
     dispatch(
-      postActions.addPostDB(userNick, postContent, studyTime, file, bgtype)
+      postActions.addPostDB(userNick, postContent, userTodayTime, file, bgtype)
     );
   };
 
@@ -75,11 +80,7 @@ const CertificationWrite = ({ showModal, closeModal }) => {
               <ModalInnerBg style={css}>
                 <div className="certifi_write_post_bx">
                   <div className="certifi_write_post_top">
-                    {userTodayTime === null ? (
-                      <h3>00:00</h3>
-                    ) : (
-                      <h3>{userTodayTime}</h3>
-                    )}
+                    {studyTime ? <h3>{studyTime}</h3> : <h3>00:00</h3>}
                     <textarea
                       placeholder="오늘 하루도 고생한 나에게 치얼스"
                       onChange={(e) => {
