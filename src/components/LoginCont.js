@@ -100,7 +100,7 @@ const LoginCont = (props) => {
               <span className="ml20">구글 로그인</span>
             </button>
 
-            <button className="login_btn login_kakao" >
+            <button className="login_btn login_kakao" onClick={()=>{window.location.href = KAKAO_API_URL}}>
               <img src={kakaologo} alt="카카오 로고" />
               <span className="ml20">카카오 로그인</span>
             </button>
