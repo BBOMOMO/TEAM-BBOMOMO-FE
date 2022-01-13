@@ -8,6 +8,7 @@ import kakaologo from "../Images/kakaologo.png";
 import logo from "../Images/logo_b.png";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
+import { KAKAO_API_URL } from "../shared/social/OAuth";
 import { history } from "../redux/configureStore";
 
 const LoginCont = (props) => {
@@ -99,7 +100,7 @@ const LoginCont = (props) => {
               <span className="ml20">구글 로그인</span>
             </button>
 
-            <button className="login_btn login_kakao">
+            <button className="login_btn login_kakao" >
               <img src={kakaologo} alt="카카오 로고" />
               <span className="ml20">카카오 로그인</span>
             </button>
