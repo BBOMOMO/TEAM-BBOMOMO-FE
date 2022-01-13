@@ -234,22 +234,47 @@ export default function VideoChatRoom() {
           const goodByeinterval = setInterval(timer, 1000);
         });
 
-        // 피어 생성하기
-
         peer.on("open", (peerId) => {
           //소켓을 통해 서버로 방ID, 유저ID 보내주기
           console.log(peerId);
           myPeerId = peerId;
-          socket.emit(
-            "join-room",
-            roomId,
-            peerId,
-            userId,
-            userNick,
-            streamId,
-            statusMsg
-          );
+          setTimeout((peerId) => {
+            socket.emit(
+              "join-room",
+              roomId,
+              peerId,
+              userId,
+              userNick,
+              streamId,
+              statusMsg
+            );
+          }, 2000);
+          // socket.emit(
+          //   "join-room",
+          //   roomId,
+          //   peerId,
+          //   userId,
+          //   userNick,
+          //   streamId,
+          //   statusMsg
+          // );
         });
+
+        // 피어 생성하기
+        // peer.on("open", (peerId) => {
+        //   //소켓을 통해 서버로 방ID, 유저ID 보내주기
+        //   console.log(peerId);
+        //   myPeerId = peerId;
+        //   socket.emit(
+        //     "join-room",
+        //     roomId,
+        //     peerId,
+        //     userId,
+        //     userNick,
+        //     streamId,
+        //     statusMsg
+        //   );
+        // });
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
@@ -300,7 +325,7 @@ export default function VideoChatRoom() {
             console.log(myPeerId, userNick);
           });
         });
-        // 이게 제일 첫번째 순서 -> peer.call(peerId, stream)
+        // 이게 제일 두번째 순서 -> peer.call(peerId, stream)
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
           console.log(peerId, userNick, streamId, peerMsg);
           peerstatusMsg = peerMsg;
