@@ -19,13 +19,13 @@ const Main = (props) => {
   let userNick = localStorage.getItem("nick");
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
+    dispatch(userActions.getRankDB());
   }, []);
 
   return (
     <>
-      <Header/>
+      <Header />
       <MainContainer>
-      
         <div className="main_wrap_index">{user ? <MyInfo /> : <NoInfo />}</div>
 
         <div className="main_wrap">

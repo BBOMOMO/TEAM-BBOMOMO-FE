@@ -4,36 +4,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 function Rank({ today, total }) {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(userActions.getLankDB());
-  }, []);
-  const rankInfo = useSelector((state) => state);
+  const rankInfo = useSelector((state) => state.user.studyRanking);
   console.log(rankInfo);
-
   return (
     <RankContainer>
-      <div className="myinfo_studytime_mid">
-        <p className="myinfo_studytime_today">랭크</p>
-        <p className="myinfo_studytime_today_time">{today}</p>
-      </div>
+      {rankInfo.map((el, key) => {
+        let hour = Math.floor(Number(el.weeklyRecord) / 60);
+        let min = Number(el.weeklyRecord) % 60;
+        let newHour = hour <= 9 ? "0" + hour : hour;
+        let newMin = min == 0 ? min + "0" : min;
 
-      <div className="myinfo_studytime_bot">
-        <p className="myinfo_studytime_total">랭크</p>
-        <p className="myinfo_studytime_total_time">{total}</p>
-      </div>
-      <div className="myinfo_studytime_bot">
-        <p className="myinfo_studytime_total">랭크</p>
-        <p className="myinfo_studytime_total_time">{total}</p>
-      </div>
-      <div className="myinfo_studytime_bot">
-        <p className="myinfo_studytime_total">랭크</p>
-        <p className="myinfo_studytime_total_time">{total}</p>
-      </div>
-      <div className="myinfo_studytime_bot">
-        <p className="myinfo_studytime_total">랭크</p>
-        <p className="myinfo_studytime_total_time">{total}</p>
-      </div>
+        return (
+          <div className="myinfo_rank_wrap clearfix">
+            <p className="myinfo_rank">{key + 1}</p>
+            <p className="myinfo_rank_name">{el.userId}</p>
+            <p className="myinfo_rank_time">
+              {newHour} : {newMin}
+            </p>
+          </div>
+        );
+      })}
     </RankContainer>
   );
 }
