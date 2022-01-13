@@ -121,11 +121,14 @@ const kakaoLogin = (authorization_code) => {
     await apis
       .kakao(authorization_code)
       .then((response) => {
-        console.log("카카오 로그인성공", response);
-        console.log("카카오 여기로 넘어오긴 하나");
+        console.log(response.data.user.token);
+        const token = response.data.user.token;
+        setToken("login", token);
+        window.alert("카카오 로그인 성공 🔥");
+        history.push("/");
       })
       .catch((err) => {
-        console.log("카카오 로그인실패", err.response);
+        console.log("카카오 로그인실패", authorization_code, err.response);
       });
   };
 };
