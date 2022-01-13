@@ -103,13 +103,8 @@ export default function VideoChatRoom() {
 
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
-    const socket = io(url);
+    const socket = io(url, { transports: ["websocket"] });
     const peer = new Peer();
-    //   {
-    //   config: {
-    //     iceServers: [{ url: "stun:stun.l.google.com:19302" }],
-    //   },
-    // }
 
     console.log(peer);
 

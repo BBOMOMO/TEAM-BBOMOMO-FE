@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import PropTypes from "prop-types";
+import SwipeableViews from "react-swipeable-views";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
-import Rank from './Rank';
-import MyStudy from './MyStudy';
+import Rank from "./Rank";
+import MyStudy from "./MyStudy";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,7 +41,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
 
@@ -66,7 +66,6 @@ export default function FullWidthTabs() {
   };
 
   return (
-   
     <MyContentWrap>
       <AppBarCustom position="static" color="default">
         <TabsCustom
@@ -79,29 +78,27 @@ export default function FullWidthTabs() {
         >
           <Tab label="내 공부시간" {...a11yProps(0)} />
           <Tab label="랭킹" {...a11yProps(1)} />
-         
         </TabsCustom>
       </AppBarCustom>
       <SwipeableViewsCustom
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <MyStudy/>
+          <MyStudy />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Rank/>
+          <Rank />
         </TabPanel>
-       
       </SwipeableViewsCustom>
     </MyContentWrap>
   );
 }
 
 const MyContentWrap = styled.div`
-  border-radius:25px; 
-  overflow:hidden;
+  border-radius: 25px;
+  overflow: hidden;
 `;
 
 const AppBarCustom = styled(AppBar)`
@@ -112,48 +109,46 @@ const AppBarCustom = styled(AppBar)`
     flex-direction: initial;
   }
   &.MuiAppBar-colorDefault {
-    background-color:#EFF6F8;
-    color:#282828;
-    padding:10px 0 0 30px; 
+    background-color: #eff6f8;
+    color: #282828;
+    padding: 10px 0 0 30px;
   }
 `;
 
 const TabsCustom = styled(Tabs)`
- .MuiTabs-flexContainer{
-  *background-color:red;
-  font-size:18px;
-}
-.MuiTabs-flexContainer .MuiTab-textColorPrimary.Mui-selected {
-  *background-color: #889CF2;
-  *background-color: #fff;
-  color:#282828;
-  font-size:18px;
-}
-.MuiTab-fullWidth {
-  font-size:18px;
-  color:#7A7D81;
-  font-family: 'Pretendard';
-  font-weight:500;
-  letter-spacing: -0.5px;
-}
+  .MuiTabs-flexContainer {
+    *background-color: red;
+    font-size: 18px;
+  }
+  .MuiTabs-flexContainer .MuiTab-textColorPrimary.Mui-selected {
+    *background-color: #889cf2;
+    *background-color: #fff;
+    color: #282828;
+    font-size: 18px;
+  }
+  .MuiTab-fullWidth {
+    font-size: 18px;
+    color: #7a7d81;
+    font-family: "Pretendard";
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
 
-.PrivateTabIndicator-colorPrimary-3{
-  background-color:#889CF2; 
-}
-.PrivateTabIndicator-root-2 {
-  height:3px; 
-}
-.MuiTab-root {
-  padding: 0 ; 
-  min-width:105px; 
-  margin-right:10px; 
-}
-
+  .PrivateTabIndicator-colorPrimary-3 {
+    background-color: #889cf2;
+  }
+  .PrivateTabIndicator-root-2 {
+    height: 3px;
+  }
+  .MuiTab-root {
+    padding: 0;
+    min-width: 105px;
+    margin-right: 10px;
+  }
 `;
 
 const SwipeableViewsCustom = styled(SwipeableViews)`
   .MuiBox-root {
-    padding:10px 44px; 
+    padding: 10px 44px;
   }
-
 `;

@@ -8,6 +8,7 @@ const SET_USER = "SET_USER";
 const ID_CHECK = "ID_CHECK";
 const NICK_CHECK = "NICK_CHECK";
 const ADD_USER_IMG = "ADD_USER_IMG";
+const GET_LANK = "GET_LANK";
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
 const idCheck = createAction(ID_CHECK, (idCheckres) => ({ idCheckres }));
@@ -15,6 +16,9 @@ const nickCheck = createAction(NICK_CHECK, (nickCheckres) => ({
   nickCheckres,
 }));
 const addUserImg = createAction(ADD_USER_IMG, (userImg) => ({ userImg }));
+const getLank = createAction(GET_LANK, (studyRanking) => ({
+  studyRanking,
+}));
 
 // initialState
 const initialState = {
@@ -22,6 +26,7 @@ const initialState = {
   userDetail: {},
   idCk: null,
   nickCk: null,
+  studyRanking: null,
 };
 
 const registerDB = (name, pwd, pwdck, nickname, category) => {
@@ -197,6 +202,21 @@ const changeImgDB = (file) => {
   };
 };
 
+const getLankDB = () => {
+  return async function (dispatch, getState, { history }) {
+    await apis
+      .getLank()
+      .then((response) => {
+        console.log(response);
+        const studyRanking = response.data.studyRanking;
+        dispatch(getLank(studyRanking));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 //---- reducer ----
 export default handleActions(
   {
@@ -219,6 +239,10 @@ export default handleActions(
         //console.log(action.payload.userInfo.user[0].nick)
       }),
     [ADD_USER_IMG]: (state, action) => produce(state, (draft) => {}),
+    [GET_LANK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.studyRanking = action.payload.studyRanking;
+      }),
   },
   initialState
 );
@@ -232,4 +256,5 @@ export const actionCreators = {
   changeInfo,
   statMsgDB,
   changeImgDB,
+  getLankDB,
 };
