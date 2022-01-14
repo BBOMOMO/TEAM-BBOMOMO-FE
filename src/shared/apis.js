@@ -63,16 +63,12 @@ export const apis = {
   postWrite: (formData) => instance.post("/api/v1/posts", formData),
   // 글 삭제
   postDelete: (postId) => instance.delete(`/api/v1/posts/${postId}`),
-  // 글 수정
-  postEdit: (postId) => instance.put(`/api/v1/posts/${postId}`),
   // 댓글 작성
   commentWrite: (commentInfo) =>
     instance.post(`/api/v1/posts/${commentInfo.postId}}/comments`, commentInfo),
   // 댓글 삭제
   commentDelete: (postId, commentId) =>
     instance.delete(`/api/v1/posts/${postId}/comments/${commentId}`),
-  // 댓글 수정
-  commentEdit: () => instance.put(),
 
   // 보류
   getStudyTime: () => instance.get("/api/v1/posts/time"),
