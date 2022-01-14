@@ -265,3 +265,47 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+.video_modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 80%;
+  overflow-y: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.video_modal_fighting {
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.video_modal_round {
+  color: #fff;
+  font-weight: 800;
+  font-size: 80px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.video_modal_img {
+  width: 476px;
+  height: 540px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.video_modal_close_btn {
+  position: absolute;
+  top: 80px;
+  right: 100px;
+  z-index: 101;
+  cursor: pointer;
+}

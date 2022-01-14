@@ -12,7 +12,7 @@ function Rank({ today, total }) {
         let hour = Math.floor(Number(el.weeklyRecord) / 60);
         let min = Number(el.weeklyRecord) % 60;
         let newHour = hour <= 9 ? "0" + hour : hour;
-        let newMin = min == 0 ? min + "0" : min;
+        let newMin = min <= 9 ? "0" + min : min;
 
         return (
           <div className="myinfo_rank_wrap clearfix">
@@ -32,4 +32,5 @@ export default Rank;
 const RankContainer = styled.div`
   width: 100%;
   height: 224px;
+  overflow-y: scroll;
 `;

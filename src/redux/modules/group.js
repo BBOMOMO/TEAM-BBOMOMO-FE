@@ -9,6 +9,8 @@ import { getContrastRatio } from "@material-ui/core";
 const LOAD_ROOMS = "LOAD_ROOMS";
 const ADD_ROOMS = "ADD_ROOMS";
 const LOAD_CATEROOMS = "LOAD_CATEROOMS";
+const GROUP_MODAL = "GROUP_MODAL";
+const GROUP_ROUND = "GROUP_ROUND";
 
 // action creators
 const loadRooms = createAction(LOAD_ROOMS, (room_list) => ({ room_list }));
@@ -16,11 +18,15 @@ const loadCateRooms = createAction(LOAD_CATEROOMS, (cateroom_list) => ({
   cateroom_list,
 }));
 const addRooms = createAction(ADD_ROOMS, (newRoom) => ({ newRoom }));
+const groupModal = createAction(GROUP_MODAL, (modalState) => ({ modalState }));
+const groupRound = createAction(GROUP_ROUND, (round) => ({ round }));
 
 // initialState
 const initialState = {
   roomList: [],
   cateroom: [],
+  modalState: false,
+  round: 1,
 };
 
 // middlewares
@@ -134,6 +140,14 @@ export default handleActions(
         //console.log("여기야 여기!",action.payload.cateroom_list.data.list)
       }),
     [ADD_ROOMS]: (state, action) => produce(state, (draft) => {}),
+    [GROUP_MODAL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.modalState = action.payload.modalState;
+      }),
+    [GROUP_ROUND]: (state, action) =>
+      produce(state, (draft) => {
+        draft.round = action.payload.round;
+      }),
   },
   initialState
 );
@@ -145,4 +159,6 @@ export const actionCreators = {
   enterRoom,
   sortRooms,
   exitRoom,
+  groupModal,
+  groupRound,
 };

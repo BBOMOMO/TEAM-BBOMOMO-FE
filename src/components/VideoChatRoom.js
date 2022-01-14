@@ -103,9 +103,12 @@ export default function VideoChatRoom() {
 
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
-    const socket = io(url, { transports: ["websocket"] });
+    const socket = io(url);
     const peer = new Peer();
-    console.log(peer);
+
+    // for (const b in peer) {
+    //   console.log(peer[b]);
+    // }
 
     // 클라의 영상 스트림 비디오에 넣기
     navigator.mediaDevices
@@ -232,16 +235,34 @@ export default function VideoChatRoom() {
           };
           const goodByeinterval = setInterval(timer, 1000);
         });
-
-        socket.emit(
-          "join-room",
-          roomId,
-          peer._id,
-          userId,
-          userNick,
-          streamId,
-          statusMsg
-        );
+        if (peer._id == null) {
+          peer.on("open", (peerId) => {
+            //소켓을 통해 서버로 방ID, 유저ID 보내주기
+            console.log(peerId);
+            myPeerId = peerId;
+            socket.emit(
+              "join-room",
+              roomId,
+              peerId,
+              userId,
+              userNick,
+              streamId,
+              statusMsg
+            );
+          });
+          console.log(myPeerId);
+        } else {
+          socket.emit(
+            "join-room",
+            roomId,
+            peer._id,
+            userId,
+            userNick,
+            streamId,
+            statusMsg
+          );
+          console.log(peer._id);
+        }
 
         // peer.on("open", (peerId) => {
         //   //소켓을 통해 서버로 방ID, 유저ID 보내주기
