@@ -1,7 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { setToken } from "../../shared/token";
+import { setToken, setKakao } from "../../shared/token";
 import apis from "../../shared/apis";
+import api from "../../api/api";
 
 // actions
 const SET_USER = "SET_USER";
@@ -118,20 +119,54 @@ const loginDB = (username, password) => {
 //kakao social 로그인
 const kakaoLogin = (authorization_code) => {
   return async function (dispatch, getState, { history }) {
-    await apis
-      .kakao(authorization_code)
+    await api
+      .get(`/api/v1/auth/kakao/callback?code=${authorization_code}`)
       .then((response) => {
         console.log(response.data.user.token);
         const token = response.data.user.token;
-        setToken("login", token);
-        window.alert("카카오 로그인 성공 🔥");
-        history.push("/");
+        
+        setKakao( token);//쿠키에 저장     
+       localStorage.setItem("token", `${token}`);//로컬스토레지에 토큰저장
+
+     
+
+        //window.alert("카카오 로그인 성공 🔥");
+        //history.push("/");
+       
       })
       .catch((err) => {
-        console.log("카카오 로그인실패", authorization_code, err.response);
+        console.log("카카오 로그인실패", err);
+       
+      
       });
   };
 };
+
+// //kakao social 로그인
+// const kakaoLogin = (authorization_code) => {
+//   return async function (dispatch, getState, { history }) {
+//     await apis
+//       .kakao(authorization_code)
+//       .then((response) => {
+//         console.log(response);
+//         //const token = response.data.user.token;
+        
+//        // setToken("kakao", token);//쿠키에 저장     
+//        // localStorage.setItem("token", `${token}`);//로컬스토레지에 토큰저장
+
+//         //localStorage.setItem("nick", `${userNick}`);
+//         //localStorage.setItem("statusMsg", `${statusMsg}`);
+
+//         //window.alert("카카오 로그인 성공 🔥");
+//         //history.push("/");
+//       })
+//       .catch((err) => {
+//         console.log("카카오 로그인실패", err.response);
+//         window.alert("로그인에 실패하였습니다.");
+//         //history.replace("/login"); // 로그인 실패하면 로그인화면으로 돌려보냄
+//       });
+//   };
+// };
 
 //유저확인
 const checkUserDB = () => {

@@ -7,8 +7,9 @@ const Kakao = (props) => {
   const dispatch = useDispatch();
   let authorization_code = new URL(window.location.href).searchParams.get("code");
 
+
   React.useEffect(()=>{
-    console.log("잘 찍히나",authorization_code);
+  //  console.log("잘 찍히나",authorization_code);
     dispatch(userActions.kakaoLogin(authorization_code));
    
   },[]);
