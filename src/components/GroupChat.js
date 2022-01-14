@@ -1,24 +1,64 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import OneChatList from "./OneChatList";
 import icon_lock from "../Images/chat-lock_2.png";
-
 import send from "../Images/ic-send 1.png";
-
 import "../styles/css/chat.css";
-
-function GroupChat({openChat}) {
+import { useParams } from "react-router-dom";
+import io from "socket.io-client";
+import dotenv from "dotenv";
+dotenv.config();
+function GroupChat({ openChat }) {
   const [chatMessage, setChatMessage] = React.useState("");
+  const url = process.env.REACT_APP_API_URL;
+  const params = useParams();
+  const roomId = params.roomId;
+  let userId = localStorage.getItem("nick");
+  const socket = useRef();
+  React.useEffect(() => {
+    socket.current = io(url);
+    socket.current.emit("join-chatRoom", roomId, userId);
+    socket.current.on("message", (userId, message, roomId) => {
+      console.log(userId, message, roomId);
+      //
+      const chat_from_friend = document.createElement("div");
+      chat_from_friend.classList.add("chat_from_friend");
+      //
+      const chat_nick = document.createElement("div");
+      chat_nick.classList.add("chat_nick");
+      chat_nick.innerText = userId;
+      //
+      const chat_content = document.createElement("div");
+      chat_content.classList.add("chat_content");
+      //
+      chat_from_friend.prepend(chat_content);
+      chat_from_friend.prepend(chat_nick);
+      //
+      const chat_message = document.createElement("p");
+      chat_message.classList.add("chat_message");
+      chat_message.innerText = message;
+      //
+      chat_content.prepend(chat_message);
+      //
+      const chat_render_oneChat = document.querySelector(
+        ".chat_render_oneChat"
+      );
+      chat_render_oneChat.prepend(chat_from_friend);
+    });
+  }, []);
+  const sendChat = () => {
+    socket.current.emit("message", userId, chatMessage, roomId);
+    setChatMessage("");
+  };
 
   const sendMessage = (e) => {
     setChatMessage(e.target.value);
   };
-//console.log("채팅방현황:",openChat)
   return (
     <>
       <ChatContainer>
         <BlockChat className={openChat}>
-          <div className="blockBG"></div>         
+          <div className="blockBG"></div>
           <img src={icon_lock} alt="집중시간" />
         </BlockChat>
         <p className="header_modal_title">그룹채팅</p>
@@ -26,14 +66,14 @@ function GroupChat({openChat}) {
 
         <div className="group_chat_container">
           <div className="chat_render_oneChat">
-            <div className="chat_from_friend">
-              <div className="chat_nick">닉네임1</div>
+            {/* <div className="chat_from_friend">
+              <div className="chat_nick"></div>
               <div className="chat_content">
-                <p className="chat_message">다들 공부하고계신가여</p>
+                <p className="chat_message"></p>
                 <span className="chat_message_time">10:34</span>
               </div>
-            </div>
-            <div className="chat_from_friend">
+            </div> */}
+            {/* <div className="chat_from_friend">
               <div className="chat_nick">닉네임2</div>
               <div className="chat_content">
                 <p className="chat_message">ㅋㅋ그게뭐죠?</p>
@@ -76,10 +116,7 @@ function GroupChat({openChat}) {
                 <p className="chat_message">ㅋ</p>
                 <span className="chat_message_time">10:34</span>
               </div>
-            </div>
-
-            
-            
+            </div> */}
           </div>
           <div className="chat_textfield_container">
             <input
@@ -91,7 +128,7 @@ function GroupChat({openChat}) {
               onChange={sendMessage}
             />
             <span className="chat_send_btn">
-              <img src={send} alt="" />
+              <img src={send} alt="" onClick={sendChat} />
             </span>
           </div>
         </div>
@@ -132,31 +169,32 @@ const ChatContainer = styled.div`
 `;
 
 const BlockChat = styled.div`
-position: absolute;
-width:100%;
-height:100%;
-display:none;
-text-align: center;
-z-index:1;
-
-> .blockBG {
-  position: relative;
-  width:100%;
-  height:100%;
-  background-color:#fff;
-  opacity:0.8;
-  border-radius:16px;  
-
-}
-> img {
   position: absolute;
-  top: 50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:80px;
-  opacity:1; 
-  z-index:1;
-}
+  width: 100%;
+  height: 100%;
+  display: none;
+  text-align: center;
+  z-index: 1;
 
-&&.focusTime {display:block;}
+  > .blockBG {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.8;
+    border-radius: 16px;
+  }
+  > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  &&.focusTime {
+    display: block;
+  }
 `;

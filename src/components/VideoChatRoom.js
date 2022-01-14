@@ -12,6 +12,8 @@ import Header from "../components/Header";
 import GroupChat from "./GroupChat";
 import profile from "../Images/profile.png";
 import dotenv from "dotenv";
+import PostChat from "../components/PostChat";
+import VideoModal from "../components/VideoModal";
 
 dotenv.config();
 
@@ -66,7 +68,8 @@ export default function VideoChatRoom() {
   let peernick = "";
   const params = useParams();
   const roomId = params.roomId;
-
+  const modalState = useSelector((state) => state.group.modalState);
+  const studyRound = useSelector((state) => state.group.round);
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
 
@@ -122,6 +125,7 @@ export default function VideoChatRoom() {
 
         // 타이머 이벤트
         let gapTimeFloor;
+
         // 쉬는시간
         socket.on("restTime", (currentRound, totalRound, time) => {
           console.log(currentRound, totalRound, time);
@@ -168,6 +172,7 @@ export default function VideoChatRoom() {
 
         // 공부시간
         socket.on("studyTime", (currentRound, totalRound, time) => {
+          dispatch(groupAction.groupRound(studyRound + 1));
           console.log(time);
           const endTime = time;
           const nowTime = new Date().getTime();
@@ -199,6 +204,7 @@ export default function VideoChatRoom() {
               );
               console.log("수업시간 종료");
               if (currentRound !== totalRound) {
+                dispatch(groupAction.groupModal(true));
                 socket.emit("endStudy");
                 // socket.emit("endStudy", roomId, userId, userNick);
                 console.log("endStudy 발생");
@@ -427,6 +433,7 @@ export default function VideoChatRoom() {
   return (
     <>
       {/* <ChatRoomNav /> */}
+      {modalState ? <VideoModal /> : null}
       <Header is_studyroom />
       <GroupContainer>
         <ChatRoom>
