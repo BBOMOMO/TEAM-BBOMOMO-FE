@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { setToken, setKakao } from "../../shared/token";
+import { setToken, setCookie } from "../../shared/token";
 import apis from "../../shared/apis";
 import api from "../../api/api";
 
@@ -122,22 +122,14 @@ const kakaoLogin = (authorization_code) => {
     await api
       .get(`/api/v1/auth/kakao/callback?code=${authorization_code}`)
       .then((response) => {
-        console.log(response.data.user.token);
+        console.log(response);
         const token = response.data.user.token;
-        
-        setKakao( token);//쿠키에 저장     
-       localStorage.setItem("token", `${token}`);//로컬스토레지에 토큰저장
-
-     
-
-        //window.alert("카카오 로그인 성공 🔥");
-        //history.push("/");
-       
+        setCookie("login", token);
+        window.alert("로그인 성공 🔥");
+        history.push("/");
       })
       .catch((err) => {
         console.log("카카오 로그인실패", err);
-       
-      
       });
   };
 };
@@ -150,8 +142,8 @@ const kakaoLogin = (authorization_code) => {
 //       .then((response) => {
 //         console.log(response);
 //         //const token = response.data.user.token;
-        
-//        // setToken("kakao", token);//쿠키에 저장     
+
+//        // setToken("kakao", token);//쿠키에 저장
 //        // localStorage.setItem("token", `${token}`);//로컬스토레지에 토큰저장
 
 //         //localStorage.setItem("nick", `${userNick}`);
