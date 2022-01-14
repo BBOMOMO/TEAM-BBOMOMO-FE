@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import UserView from "../components/UserView";
 import GroupRoomTimer from "../components/GroupRoomTimer";
 import GroupChat from "../components/GroupChat";
-
+import PostChat from "../components/PostChat";
 import "../styles/css/chat.css";
 
 const Group = () => {

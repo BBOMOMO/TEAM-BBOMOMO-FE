@@ -12,6 +12,7 @@ import Header from "../components/Header";
 import GroupChat from "./GroupChat";
 import profile from "../Images/profile.png";
 import dotenv from "dotenv";
+import PostChat from "../components/PostChat";
 
 dotenv.config();
 
@@ -122,6 +123,7 @@ export default function VideoChatRoom() {
 
         // 타이머 이벤트
         let gapTimeFloor;
+
         // 쉬는시간
         socket.on("restTime", (currentRound, totalRound, time) => {
           console.log(currentRound, totalRound, time);
