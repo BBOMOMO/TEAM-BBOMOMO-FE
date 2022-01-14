@@ -13,7 +13,7 @@ import BG4 from "../Images/study-certification-bg-4.png";
 const CertificationWrite = ({ showModal, closeModal }) => {
   const dispatch = useDispatch();
   const userTodayTime = useSelector((state) => state.user.studyTime);
-  const cardList = useSelector((state) => state.post.postList.board);
+  // const cardList = useSelector((state) => state.post.postList.board);
   // console.log(cardList, 333);
 
   // 배경화면 지정

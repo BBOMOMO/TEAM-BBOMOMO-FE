@@ -10,7 +10,7 @@ import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationCard = (props) => {
-  // console.log(props);
+  // console.log(props.User.nick);
   const [background, setBackground] = React.useState(null);
   const css = {
     backgroundImage: `url(${background})`,
@@ -42,7 +42,7 @@ const CertificationCard = (props) => {
         <div className="certifi_card_bottom">
           <p>
             <span className="">동그라미</span>
-            {props.nick}
+            {/* {props.User.nick} */}
           </p>
 
           <div className="certifi_card_bottom_comment">

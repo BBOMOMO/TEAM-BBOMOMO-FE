@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "../elements";
 import CertificationCommentList from "./CertificationCommentList";
+import CertificationDeleteModal from "./CertificationDeleteModal";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -9,7 +10,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 import apis from "../shared/apis";
 
-import profileimg from "../Images/user.png";
+import profileimg_default from "../Images/nouser_2.png";
 import close from "../Images/ic_header_close.png";
 import send from "../Images/ic-send 1.png";
 import menu from "../Images/ic-comment-menu.png";
@@ -19,7 +20,7 @@ import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationComment = ({ showModal, closeModal }) => {
-  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const openDeleteBtn = () => {
     setShowDeleteModal(true);
   };
@@ -27,18 +28,11 @@ const CertificationComment = ({ showModal, closeModal }) => {
     setShowDeleteModal(false);
   };
 
+  const [ckNum, setCkNum] = useState(0);
+
+  // ///////////////////////////////////////////////////////////
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
-  const [isShow, setIsShow] = useState("none");
-  const opendel = () => {
-    if (isShow === "none") {
-      setIsShow("block");
-    } else {
-      setIsShow("none");
-    }
-  };
-
-  const [ckNum, setCkNum] = useState(0);
   const [background, setBackground] = useState(BG1);
   const css = {
     backgroundImage: `url(${background})`,
@@ -46,17 +40,23 @@ const CertificationComment = ({ showModal, closeModal }) => {
 
   // 댓글 작성 막기
   const user = useSelector((state) => state.user.userInfo);
+  const userGetNick = useSelector((state) => state.user.userNick);
+  const test = useSelector((state) => state.user.profileImg);
+  // console.log(test);
+  console.log(userGetNick);
+  const userNick = localStorage.getItem("nick");
+  console.log(userNick);
   const postDetail = useSelector((state) => state.post.postListDetail);
-  // console.log("게시글 상세조회", postDetail);
+  const profileImg = useSelector((state) => state.post.profileImg);
   const postId = useSelector((state) => state.post.postListDetail.postId);
   const postBg = useSelector((state) => state.post.postListDetail.postImg);
   const commentList = useSelector((state) => state.comment.commentList);
-
-  const userNick = localStorage.getItem("nick");
+  // console.log(commentList.length);
   const sendComment = () => {
     dispatch(commentActions.addCommentDB(userNick, postId, commentText));
   };
 
+  // 공부시간
   let studyTime;
   let getTime = postDetail.studyTime;
   let HH = Math.floor(getTime / 60);
@@ -87,6 +87,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
 
   React.useEffect(() => {
     dispatch(commentActions.loadcomments(postDetail.Comments));
+    // dispatch(postActions.getPostsDB());
   }, [postDetail]);
 
   return (
@@ -96,7 +97,6 @@ const CertificationComment = ({ showModal, closeModal }) => {
           <ModalBG
             onClick={() => {
               dispatch(postActions.getPostsDB());
-              setIsShow("none");
               closeModal();
             }}
           />
@@ -109,7 +109,6 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   alt="닫기 아이콘"
                   onClick={() => {
                     dispatch(postActions.getPostsDB());
-                    setIsShow("none");
                     closeModal();
                   }}
                 />
@@ -127,12 +126,16 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   <div className="comment_my_profile_bx">
                     <div className="my_profile_left">
                       <div className="my_profile_img_bx">
-                        <img src={profileimg} alt="프로필 이미지" />
+                        {!profileImg ? (
+                          <img src={profileimg_default} alt="프로필 이미지" />
+                        ) : (
+                          <img src={profileImg} alt="프로필 이미지" />
+                        )}
                       </div>
-                      <h4>{postDetail.nick}</h4>
+                      <h4>{userGetNick}</h4>
                     </div>
                     <div className="my_profile_right">
-                      {postDetail.nick !== userNick ? null : (
+                      {userGetNick !== userNick ? null : (
                         <>
                           <button
                             className="post_del_btn"
@@ -140,6 +143,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                               // console.log("삭제");
                               apis.postDelete(postId);
                               dispatch(postActions.getPostsDB());
+                              // setCommentNum(commentList.length);
                               closeModal();
                             }}
                           >
@@ -155,45 +159,77 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   <div className="certifi_conmment_list_bx">
                     {commentList &&
                       commentList.map((a, b) => {
-                        // console.log(b);
-                        if (a.nick !== userNick) {
+                        console.log(userNick);
+                        console.log(a.User);
+                        if (userGetNick !== userNick) {
                           return (
-                            <QWE>
+                            <CertificationCommentListBx>
                               <CertificationCommentList
                                 {...a}
                                 key={b}
                               ></CertificationCommentList>
-                            </QWE>
+                            </CertificationCommentListBx>
                           );
                         } else {
                           return (
-                            <QWE>
+                            <CertificationCommentListBx>
                               <CertificationCommentList
                                 {...a}
                                 key={b}
-                                show={showDeleteModal}
-                                close={closeDeleteBtn}
-                                ckNum={ckNum}
                               ></CertificationCommentList>
                               <img
+                                data-commentidnum={a.commentId}
                                 src={menu}
                                 alt="메뉴 아이콘"
                                 className="delete_img"
-                                onClick={() => {
-                                  setCkNum(a.commentId);
-                                  console.log(a.commentId, "여기는 이미지");
-                                  openDeleteBtn();
-                                  opendel();
+                                onClick={(e) => {
+                                  let commentIdNum = Number(
+                                    e.target.dataset.commentidnum
+                                  );
+                                  setCkNum(
+                                    Number(e.target.dataset.commentidnum)
+                                  );
+                                  if (commentIdNum === a.commentId) {
+                                    console.log("같다");
+                                    console.log(a.commentId);
+                                    openDeleteBtn();
+                                  }
                                 }}
                               />
-                              {/* <div className={isShow}>보여라</div> */}
-                            </QWE>
+                              <div
+                                onClick={() => {
+                                  console.log(ckNum);
+                                  console.log(postId);
+                                  // apis.commentDelete(postId, a.commentId);
+
+                                  // closeDeleteBtn();
+                                  console.log(postDetail.Comments);
+
+                                  // apis
+                                  //   .getComment(postId)
+                                  //   .then(function (response) {
+                                  //     console.log(response.data);
+                                  //     dispatch(
+                                  //       commentActions.loadcomments(
+                                  //         response.data.comments
+                                  //       )
+                                  //     );
+                                  //   });
+                                }}
+                              >
+                                <CertificationDeleteModal
+                                  showModal={showDeleteModal}
+                                  closeModal={closeDeleteBtn}
+                                  qwe={ckNum}
+                                  asd={postId}
+                                ></CertificationDeleteModal>
+                              </div>
+                            </CertificationCommentListBx>
                           );
                         }
                       })}
-
-                    {/* <CertificationCommentList></CertificationCommentList> */}
                   </div>
+
                   <div className="certifi_conmment_input_bx">
                     {user ? (
                       <img
@@ -209,7 +245,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                         src={send}
                         alt="자물쇠 아이콘"
                         onClick={() => {
-                          window.alert("로그인 필요합니다");
+                          window.alert("로그인 후 사용해주세요.");
                         }}
                       />
                     )}
@@ -237,10 +273,10 @@ const CertificationComment = ({ showModal, closeModal }) => {
     </>
   );
 };
-const QWE = styled.div`
-  position: relative;
+const CertificationCommentListBx = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
   .delete_img {
     width: 21px;
     height: 21px;

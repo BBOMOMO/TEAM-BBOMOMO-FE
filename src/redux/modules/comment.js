@@ -10,21 +10,20 @@ const GET_COMMENT = "GET_COMMENT";
 const loadcomments = createAction(GET_COMMENT, (commentList) => ({
   commentList,
 }));
-
 // initialState
 const initialState = {
   commentList: [],
 };
 
 // middlewares
-// const getComments = (postId) => {
-//   return async function (dispatch, useState, { history }) {
-//     await apis.getComment(postId).then(function (response) {
-//       // console.log(response);
-//       dispatch(loadcomments(response));
-//     });
-//   };
-// };
+const getCommentsDB = (postId) => {
+  return async function (dispatch, useState, { history }) {
+    await apis.getComment(postId).then(function (response) {
+      console.log(response.data.comments);
+      dispatch(loadcomments(response.data.comments));
+    });
+  };
+};
 
 const addCommentDB = (nick, postId, comment) => {
   return async function (dispatch, useState, { history }) {
@@ -47,14 +46,24 @@ const addCommentDB = (nick, postId, comment) => {
   };
 };
 
+const deleteCommentDB = (postId, commentId) => {
+  return async function (dispatch, useState, { history }) {
+    await apis.commentDelete(postId, commentId).then(function (response) {
+      apis.getPostDetail(postId, commentId).then(function (response) {
+        console.log(response);
+        dispatch(loadcomments(response.data.post.Comments));
+      });
+    });
+  };
+};
+
 // reducer
 export default handleActions(
   {
     [GET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.commentList = action.payload.commentList;
-        // draft.list.unshift(action.payload.post);
-        console.log("드래프트", draft.commentList);
+        // console.log("드래프트", draft.commentList);
       }),
   },
   initialState
@@ -63,4 +72,6 @@ export default handleActions(
 export const actionCreators = {
   loadcomments,
   addCommentDB,
+  getCommentsDB,
+  deleteCommentDB,
 };

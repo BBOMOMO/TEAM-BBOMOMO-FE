@@ -1,10 +1,10 @@
 import React from "react";
-import profileimg from "../Images/user.png";
+import profileimg from "../Images/nouser_2.png";
 import Moment from "react-moment";
 import "moment/locale/ko";
 
 const CertificationCommentList = (props) => {
-  console.log(props);
+  console.log(props.User);
   const displayCreatedAt = (createdAt) => {
     let startTime = new Date(createdAt);
     let nowTime = Date.now();
@@ -18,34 +18,25 @@ const CertificationCommentList = (props) => {
       return <Moment fromNow>{startTime}</Moment>;
     }
   };
-  const clickNum = () => {
-    console.log(props.commentId);
-  };
+
   return (
     <>
       {props ? (
         <div className="certifi_conmment_list">
           <div className="list_profile_bx">
             <div className="list_img_bx">
-              <img src={profileimg} alt="프로필 이미지" />
+              {/* <img src={profileimg} alt="프로필 이미지" /> */}
+              {props.profileImg !== null ? (
+                <img src={props.profileImg} alt="프로필 이미지" />
+              ) : (
+                <img src={profileimg} alt="프로필 이미지" />
+              )}
             </div>
-            <h4>{props.nick}</h4>
+            {/* <h4>{props.User.nick}</h4> */}
             <p>{props.comment}</p>
           </div>
 
           <span>{displayCreatedAt(props.createdAt)}</span>
-          {props.show ? (
-            <div
-              onClick={(e) => {
-                console.log(e.target)
-                console.log(123);
-              }}
-            >
-              나와라
-            </div>
-          ) : (
-            <div>음</div>
-          )}
         </div>
       ) : (
         <div className="certifi_conmment_list">
@@ -53,7 +44,7 @@ const CertificationCommentList = (props) => {
             <div className="list_img_bx">
               <img src={profileimg} alt="프로필 이미지" />
             </div>
-            <h4></h4>
+            <h4>아직 댓글이 없어요</h4>
             <p></p>
           </div>
           <span></span>
