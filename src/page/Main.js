@@ -10,6 +10,7 @@ import Banner from "../Images/banner.png";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as groupAction } from "../redux/modules/group";
 
 const Main = (props) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Main = (props) => {
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
     dispatch(userActions.getRankDB());
+    // dispatch(groupAction.groupRound(1));
   }, []);
 
   return (
