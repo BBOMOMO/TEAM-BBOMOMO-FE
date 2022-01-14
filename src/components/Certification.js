@@ -84,6 +84,8 @@ const Certification = (props) => {
               let postBg = a.postImg;
               let postId = a.postId;
               let sortBg = "";
+              let commentCnt = a.commentCnt;
+              console.log(commentCnt);
               if (postBg.includes("https")) {
                 sortBg = "certifi_card_list_bx black-bg";
               } else {
@@ -115,6 +117,7 @@ const Certification = (props) => {
                     key={b}
                     sortBg={sortBg}
                     studyTime={studyTime}
+                    commentCnt={commentCnt}
                   ></CertificationCard>
                 </div>
               );

@@ -15,7 +15,8 @@ const CertificationCard = (props) => {
   const css = {
     backgroundImage: `url(${background})`,
   };
-
+  const commentCount = useSelector((state) => state.post.postList.board);
+  console.log(commentCount);
   React.useEffect(() => {
     if (props.postImg === "orange") {
       setBackground(BG1);
