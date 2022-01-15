@@ -18,21 +18,28 @@ function GroupChat({ openChat }) {
   React.useEffect(() => {
     socket.current = io(url);
     socket.current.emit("join-chatRoom", roomId, userId);
-    socket.current.on("message", (userId, message, roomId) => {
-      console.log(userId, message, roomId);
+    socket.current.on("message", (user, message, roomId) => {
+      console.log(user, message, roomId);
       //
       const chat_from_friend = document.createElement("div");
-      chat_from_friend.classList.add("chat_from_friend");
+      userId == user
+        ? chat_from_friend.classList.add("chat_from_me")
+        : chat_from_friend.classList.add("chat_from_friend");
       //
-      const chat_nick = document.createElement("div");
-      chat_nick.classList.add("chat_nick");
-      chat_nick.innerText = userId;
+      let chat_nick;
+      if (userId != user) {
+        chat_nick = document.createElement("div");
+        chat_nick.classList.add("chat_nick");
+        chat_nick.innerText = userId;
+      }
       //
       const chat_content = document.createElement("div");
       chat_content.classList.add("chat_content");
       //
       chat_from_friend.prepend(chat_content);
-      chat_from_friend.prepend(chat_nick);
+      if (userId != user) {
+        chat_from_friend.prepend(chat_nick);
+      }
       //
       const chat_message = document.createElement("p");
       chat_message.classList.add("chat_message");
