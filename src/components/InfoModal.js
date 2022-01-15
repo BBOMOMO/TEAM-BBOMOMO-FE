@@ -12,17 +12,18 @@ import { actionCreators as userActions } from "../redux/modules/user";
 function InfoModal({ showModal, closeModal }) {
   const dispatch = useDispatch();
   const userCate = useSelector((state) => state.user.userCate);
+  const userId = useSelector((state) => state.user.userId);
+  const userNick = useSelector((state) => state.user.userNick);
 
-  const [nickname, setNickname] = React.useState('');
-  const [category, setCategory] = React.useState(userCate);
+  const [nickname, setNickname] = React.useState(userNick);
+  const [category, setCategory] = React.useState(1);
   
 
 
   const _nickCheck = useSelector((state) => state.user.nickCk);
   //TODO : 닉네임, 구분 정보 가져와서 기본값으로 넣어주기
 
-  const userId = useSelector((state) => state.user.userId);
-  const userNick = useSelector((state) => state.user.userNick);
+
   //selected 기존 값으로 seleced 로 고정
 
 
@@ -56,6 +57,10 @@ function InfoModal({ showModal, closeModal }) {
   //로그아웃버튼
   const logout = () => {
     delToken("login");
+    localStorage.removeItem('id');
+    localStorage.removeItem('nick');
+    localStorage.removeItem('statusMsg');
+
     window.location.reload("/");
   }
 
@@ -91,14 +96,14 @@ function InfoModal({ showModal, closeModal }) {
                 width="100%" height="51px" padding="0 10px" name="category" value={category} _onChange={(e)=>{
                 setCategory(e.target.value);
               }} >
-                <option name="middle1" value="0"> 중1 </option>
-                <option name="middle2" value="1" > 중2 </option>
-                <option name="middle3" value="2" > 중3 </option>
-                <option name="high1" value="3"> 고1 </option>
-                <option name="high2" value="4" > 고2 </option>
-                <option name="high3" value="5" > 고3 </option>
-                <option name="univ" value="6" > 대학생 </option>
-                <option name="worker" value="7"> 직장인 </option>
+                <option name="middle1" value="1"> 중1 </option>
+                <option name="middle2" value="2" > 중2 </option>
+                <option name="middle3" value="3" > 중3 </option>
+                <option name="high1" value="4"> 고1 </option>
+                <option name="high2" value="5" > 고2 </option>
+                <option name="high3" value="6" > 고3 </option>
+                <option name="univ" value="7" > 대학생 </option>
+                <option name="worker" value="8"> 직장인 </option>
               </Select>
               </div>
 
