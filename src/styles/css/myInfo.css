@@ -220,6 +220,8 @@
 .myinfo_rank_wrap:nth-child(1) {
   margin-top: 20px;
 }
+.myinfo_rank_wrap:nth-child(1) .myinfo_rank_name {
+}
 .myinfo_rank_wrap:nth-child(1) .myinfo_rank_name::after {
   display: inline-block;
   content: "";
@@ -236,15 +238,17 @@
   font-weight: 600;
   color: #889cf2;
   float: left;
+  width: 50px;
+  text-align: left;
 }
 .myinfo_rank_name {
   font-size: 16px;
   font-weight: 400;
   color: #282828;
-  margin-left: 42px;
   float: left;
   position: relative;
 }
+
 .myinfo_rank_time {
   font-weight: 600;
   color: #242424;

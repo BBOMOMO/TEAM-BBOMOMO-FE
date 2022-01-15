@@ -17,7 +17,7 @@ function Rank({ today, total }) {
         return (
           <div className="myinfo_rank_wrap clearfix">
             <p className="myinfo_rank">{key + 1}</p>
-            <p className="myinfo_rank_name">{el.nick}</p>
+            <p className="myinfo_rank_name">{el.User.nick}</p>
             <p className="myinfo_rank_time">
               {newHour} : {newMin}
             </p>
