@@ -1,10 +1,9 @@
 import React from "react";
-import profileimg from "../Images/nouser_2.png";
+import profileimg_default from "../Images/nouser_2.png";
 import Moment from "react-moment";
 import "moment/locale/ko";
 
 const CertificationCommentList = (props) => {
-  console.log(props.User);
   const displayCreatedAt = (createdAt) => {
     let startTime = new Date(createdAt);
     let nowTime = Date.now();
@@ -25,14 +24,13 @@ const CertificationCommentList = (props) => {
         <div className="certifi_conmment_list">
           <div className="list_profile_bx">
             <div className="list_img_bx">
-              {/* <img src={profileimg} alt="프로필 이미지" /> */}
-              {props.profileImg !== null ? (
-                <img src={props.profileImg} alt="프로필 이미지" />
+              {props.User.profileImg !== null ? (
+                <img src={props.User.profileImg} alt="프로필 이미지" />
               ) : (
-                <img src={profileimg} alt="프로필 이미지" />
+                <img src={profileimg_default} alt="프로필 이미지" />
               )}
             </div>
-            {/* <h4>{props.User.nick}</h4> */}
+            <h4>{props.User.nick}</h4>
             <p>{props.comment}</p>
           </div>
 
@@ -42,7 +40,7 @@ const CertificationCommentList = (props) => {
         <div className="certifi_conmment_list">
           <div className="list_profile_bx">
             <div className="list_img_bx">
-              <img src={profileimg} alt="프로필 이미지" />
+              <img src={profileimg_default} alt="프로필 이미지" />
             </div>
             <h4>아직 댓글이 없어요</h4>
             <p></p>

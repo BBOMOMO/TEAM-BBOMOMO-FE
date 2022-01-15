@@ -326,6 +326,20 @@
   justify-content: space-between;
   margin-top: 26px;
 }
+/* 게시글 상세조회 사용자 지정 배경 처리 */
+.bg_black .certifi_comment_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 56px 30px 30px;
+  width: 456px;
+  height: 564px;
+}
+.bg_black .certifi_comment_bg > h3,
+.bg_black .certifi_comment_bg > p {
+  color: #fff;
+}
+
 .certifi_comment_bg {
   display: flex;
   flex-direction: column;
@@ -370,6 +384,7 @@
   max-width: 100px;
 }
 .my_profile_img_bx {
+  overflow: hidden;
   margin-right: 22px;
   width: 36px;
   height: 36px;
@@ -377,6 +392,7 @@
 }
 .my_profile_img_bx > img {
   width: 100%;
+  height: 100%;
 }
 
 .my_profile_right {
@@ -449,6 +465,7 @@
   align-items: center;
 }
 .certifi_conmment_list .list_img_bx {
+  overflow: hidden;
   margin-right: 20px;
   width: 36px;
   height: 36px;
@@ -456,6 +473,7 @@
 }
 .certifi_conmment_list .list_img_bx > img {
   width: 100%;
+  height: 100%;
 }
 .certifi_conmment_list .list_profile_bx > h4 {
   margin-right: 16px;

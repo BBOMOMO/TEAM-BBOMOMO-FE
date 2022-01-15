@@ -28,7 +28,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
     setShowDeleteModal(false);
   };
 
-  const [ckNum, setCkNum] = useState(0);
+  const [commentIdNum, setCommentIdNum] = useState(0);
 
   // ///////////////////////////////////////////////////////////
   const dispatch = useDispatch();
@@ -37,21 +37,19 @@ const CertificationComment = ({ showModal, closeModal }) => {
   const css = {
     backgroundImage: `url(${background})`,
   };
+  const [bgBlack, setbgBlack] = useState("");
 
   // 댓글 작성 막기
   const user = useSelector((state) => state.user.userInfo);
-  const userGetNick = useSelector((state) => state.user.userNick);
-  const test = useSelector((state) => state.user.profileImg);
-  // console.log(test);
-  console.log(userGetNick);
   const userNick = localStorage.getItem("nick");
-  console.log(userNick);
   const postDetail = useSelector((state) => state.post.postListDetail);
+  // console.log(postDetail.User);
   const profileImg = useSelector((state) => state.post.profileImg);
+  const profileNick = useSelector((state) => state.post.profileNick);
   const postId = useSelector((state) => state.post.postListDetail.postId);
   const postBg = useSelector((state) => state.post.postListDetail.postImg);
   const commentList = useSelector((state) => state.comment.commentList);
-  // console.log(commentList.length);
+
   const sendComment = () => {
     dispatch(commentActions.addCommentDB(userNick, postId, commentText));
   };
@@ -74,20 +72,24 @@ const CertificationComment = ({ showModal, closeModal }) => {
   React.useEffect(() => {
     if (postBg === "orange") {
       setBackground(BG1);
+      setbgBlack("");
     } else if (postBg === "blue") {
       setBackground(BG2);
+      setbgBlack("");
     } else if (postBg === "green") {
       setBackground(BG3);
+      setbgBlack("");
     } else if (postBg === "purple") {
       setBackground(BG4);
+      setbgBlack("");
     } else {
       setBackground(postBg);
+      setbgBlack("bg_black");
     }
   }, [postBg]);
 
   React.useEffect(() => {
     dispatch(commentActions.loadcomments(postDetail.Comments));
-    // dispatch(postActions.getPostsDB());
   }, [postDetail]);
 
   return (
@@ -116,7 +118,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
 
               <div className="certifi_comment_cont_bx">
                 <div className="comment_cont_left">
-                  <ModalInnerBg style={css}>
+                  <ModalInnerBg style={css} className={bgBlack}>
                     <div className="certifi_comment_bg">
                       <h3>{studyTime}</h3>
                       <p>{postDetail.postContent}</p>
@@ -132,18 +134,17 @@ const CertificationComment = ({ showModal, closeModal }) => {
                           <img src={profileImg} alt="프로필 이미지" />
                         )}
                       </div>
-                      <h4>{userGetNick}</h4>
+                      <h4>{profileNick}</h4>
                     </div>
                     <div className="my_profile_right">
-                      {userGetNick !== userNick ? null : (
+                      {/* 로그인한 아이디랑 상세조회 아이디랑 비교 */}
+                      {profileNick !== userNick ? null : (
                         <>
                           <button
                             className="post_del_btn"
                             onClick={() => {
-                              // console.log("삭제");
                               apis.postDelete(postId);
                               dispatch(postActions.getPostsDB());
-                              // setCommentNum(commentList.length);
                               closeModal();
                             }}
                           >
@@ -159,9 +160,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   <div className="certifi_conmment_list_bx">
                     {commentList &&
                       commentList.map((a, b) => {
-                        console.log(userNick);
-                        console.log(a.User);
-                        if (userGetNick !== userNick) {
+                        if (a.User.nick !== userNick) {
                           return (
                             <CertificationCommentListBx>
                               <CertificationCommentList
@@ -186,44 +185,20 @@ const CertificationComment = ({ showModal, closeModal }) => {
                                   let commentIdNum = Number(
                                     e.target.dataset.commentidnum
                                   );
-                                  setCkNum(
+                                  setCommentIdNum(
                                     Number(e.target.dataset.commentidnum)
                                   );
                                   if (commentIdNum === a.commentId) {
-                                    console.log("같다");
-                                    console.log(a.commentId);
                                     openDeleteBtn();
                                   }
                                 }}
                               />
-                              <div
-                                onClick={() => {
-                                  console.log(ckNum);
-                                  console.log(postId);
-                                  // apis.commentDelete(postId, a.commentId);
-
-                                  // closeDeleteBtn();
-                                  console.log(postDetail.Comments);
-
-                                  // apis
-                                  //   .getComment(postId)
-                                  //   .then(function (response) {
-                                  //     console.log(response.data);
-                                  //     dispatch(
-                                  //       commentActions.loadcomments(
-                                  //         response.data.comments
-                                  //       )
-                                  //     );
-                                  //   });
-                                }}
-                              >
-                                <CertificationDeleteModal
-                                  showModal={showDeleteModal}
-                                  closeModal={closeDeleteBtn}
-                                  qwe={ckNum}
-                                  asd={postId}
-                                ></CertificationDeleteModal>
-                              </div>
+                              <CertificationDeleteModal
+                                showModal={showDeleteModal}
+                                closeModal={closeDeleteBtn}
+                                commentIdNum={commentIdNum}
+                                deleteCommentId={postId}
+                              ></CertificationDeleteModal>
                             </CertificationCommentListBx>
                           );
                         }
@@ -234,16 +209,20 @@ const CertificationComment = ({ showModal, closeModal }) => {
                     {user ? (
                       <img
                         src={send}
-                        alt="자물쇠 아이콘"
+                        alt="보내기 아이콘"
                         onClick={() => {
-                          sendComment();
-                          setCommentText("");
+                          if (commentText === "") {
+                            window.alert("내용을 입력해주세요.");
+                          } else {
+                            sendComment();
+                            setCommentText("");
+                          }
                         }}
                       />
                     ) : (
                       <img
                         src={send}
-                        alt="자물쇠 아이콘"
+                        alt="보내기 아이콘"
                         onClick={() => {
                           window.alert("로그인 후 사용해주세요.");
                         }}
@@ -320,12 +299,24 @@ const ModalInnerContainer = styled.div`
 `;
 
 const ModalInnerBg = styled.div`
+  position: relative;
   margin-bottom: 40px;
   padding: 56px 30px 30px;
+  width: 456px;
   height: 564px;
   border-radius: 11px;
   background-repeat: no-repeat;
   background-size: cover;
+  &.bg_black:before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 50%);
+    top: 0;
+    left: 0;
+    width: 456px;
+    height: 564px;
+    border-radius: 11px;
+  }
 `;
 
 export default CertificationComment;
