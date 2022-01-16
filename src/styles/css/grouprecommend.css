@@ -38,13 +38,16 @@
 .groupreco_bottom {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  gap: 14px;
 }
-.groupbx_card {
+/* .groupbx_card {
   margin: 0 0 14px 14px;
 }
 .groupbx_card:nth-child(3n + 1) {
   margin: 0 0 14px 0;
-}
+} */
 .search_bx {
   position: relative;
   width: 41px;

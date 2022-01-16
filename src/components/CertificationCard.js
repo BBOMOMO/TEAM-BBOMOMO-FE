@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import comment from "../Images/ic-comment.png";
 import commentWhite from "../Images/ic-comment-white.png";
-import { useSelector } from "react-redux";
 
 import BG1 from "../Images/study-certification-bg-1.png";
 import BG2 from "../Images/study-certification-bg-2.png";
@@ -14,8 +13,7 @@ const CertificationCard = (props) => {
   const css = {
     backgroundImage: `url(${background})`,
   };
-  const commentCount = useSelector((state) => state.post.postList.board);
-  console.log(commentCount);
+
   React.useEffect(() => {
     if (props.postImg === "orange") {
       setBackground(BG1);
