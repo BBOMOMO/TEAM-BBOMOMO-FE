@@ -10,6 +10,7 @@ const ID_CHECK = "ID_CHECK";
 const NICK_CHECK = "NICK_CHECK";
 const ADD_USER_IMG = "ADD_USER_IMG";
 const GET_RANK = "GET_RANK";
+const LOG_OUT = "LOG_OUT";
 // action creators
 const setUser = createAction(SET_USER, (userInfo) => ({ userInfo }));
 const idCheck = createAction(ID_CHECK, (idCheckres) => ({ idCheckres }));
@@ -17,6 +18,7 @@ const nickCheck = createAction(NICK_CHECK, (nickCheckres) => ({
   nickCheckres,
 }));
 const addUserImg = createAction(ADD_USER_IMG, (userImg) => ({ userImg }));
+const logout = createAction(LOG_OUT, (user) => ({ user }));
 const getRank = createAction(GET_RANK, (studyRanking) => ({
   studyRanking,
 }));
@@ -122,7 +124,6 @@ const kakaoLogin = (authorization_code) => {
     await api
       .get(`/api/v1/auth/kakao/callback?code=${authorization_code}`)
       .then((response) => {
-        console.log(response);
         const token = response.data.user.token;
         setCookie("login", token);
         window.alert("로그인 성공 🔥");
@@ -130,6 +131,24 @@ const kakaoLogin = (authorization_code) => {
       })
       .catch((err) => {
         console.log("카카오 로그인실패", err);
+      });
+  };
+};
+
+//Google social 로그인
+const GoogleLogin = (authorization_code) => {
+  return async function (dispatch, getState, { history }) {
+    await api
+      .get(`/api/v1/auth/google/callback?code=${authorization_code}`)
+      .then((response) => {
+        //console.log("googlelogin",response)
+        const token = response.data.user.token;
+        setCookie("login", token);
+        window.alert("구글 성공 🔥");
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log("구글 로그인실패", err);
       });
   };
 };
@@ -262,6 +281,8 @@ const getRankDB = () => {
   };
 };
 
+
+
 //---- reducer ----
 export default handleActions(
   {
@@ -288,6 +309,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.studyRanking = action.payload.studyRanking;
       }),
+    [LOG_OUT]: (state, action) => produce(state, (draft) => {
+      localStorage.removeItem('id');
+      localStorage.removeItem('nick');
+      localStorage.removeItem('statusMsg');
+    }),
   },
   initialState
 );
@@ -303,4 +329,6 @@ export const actionCreators = {
   changeImgDB,
   getRankDB,
   kakaoLogin,
+  GoogleLogin,
+  logout 
 };
