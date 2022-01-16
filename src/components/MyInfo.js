@@ -8,6 +8,7 @@ import user from "../Images/nouser.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
 import camera from "../Images/icon_camera_w.png";
+import Spinner from "../shared/Spinner";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -92,7 +93,7 @@ const MyInfo = (props) => {
      //MEMO: 오늘 공부시간 max 15시간 StudyTime = 900; today*0.388 / 24시간 StudyTime = 1440; today*0.24;
       setStudyTime(today*0.388 + 95);
     }
-  }, [file, category, nickname, total]);
+  }, [file, category, nickname, today]);
 
 
 
@@ -100,7 +101,9 @@ const MyInfo = (props) => {
 
   return (
     <>
+    
       <div className="myinfo_container">
+     
         <div className="myinfo_profile_area">
           <CircleWrap>
             <img src={roundCircle} style={{ width: "260px" }} />

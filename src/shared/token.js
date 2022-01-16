@@ -34,6 +34,16 @@ const delToken = (name) => {
   console.log(date);
 
   document.cookie = name + "=; expires=" + date;
+  console.log("쿠키삭제",document.cookie)
+};
+const delCookie = (name) => {
+  let date = new Date("2020-01-01").toUTCString();
+
+  console.log(date);
+
+  document.cookie = name + "=; expires=" + date + "; path=/";
+  console.log("쿠키삭제",document.cookie)
 };
 
-export { getToken, setToken, delToken ,setCookie};
+
+export { getToken, setToken, delToken ,setCookie,delCookie};

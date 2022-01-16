@@ -7,6 +7,7 @@ import GroupRecommend from "../components/GroupRecommend";
 import Certification from "../components/Certification";
 import Footer from "../components/Footer";
 import Banner from "../Images/banner.png";
+
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";

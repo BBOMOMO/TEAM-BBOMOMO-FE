@@ -84,6 +84,10 @@ const GlobalStyles = createGlobalStyle`
       content: '';
       content: none;
     }
+    a, a:hover, a:active, a:visited, a:focus {
+      text-decoration: none;
+      color:inherit;
+    }
     table {
       border-collapse: collapse;
       border-spacing: 0;

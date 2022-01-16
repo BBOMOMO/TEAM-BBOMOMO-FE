@@ -22,6 +22,7 @@ const GroupRecommend = (props) => {
   const [roomPurpose, setRoomPurpose] = React.useState(null);
 
 
+  console.log("caterooms",caterooms,roomlist)
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);

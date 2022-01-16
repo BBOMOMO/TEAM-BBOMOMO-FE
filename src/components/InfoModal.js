@@ -3,7 +3,7 @@ import styled from "styled-components";
 import close from "../Images/ic_header_close.png";
 import Input from "../elements/Input";
 import Select from "../elements/Select";
-import { delToken } from "../shared/token";
+import { delToken,delCookie } from "../shared/token";
 import {useSelector, useDispatch} from "react-redux";
 import {history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -56,9 +56,10 @@ function InfoModal({ showModal, closeModal }) {
 
   //로그아웃버튼
   const logout = () => {
-    delToken("login");
+   
     dispatch(userActions.logout());
-    window.location.reload("/");
+    delCookie("login");
+   
   }
 
   return (
@@ -90,7 +91,7 @@ function InfoModal({ showModal, closeModal }) {
               </div>
               <div className="division_edit">
               <Select text="구분" boxSizing border="none" display="block" color="#7A7D81" margin="18px 0 "
-                width="100%" height="51px" padding="0 10px" name="category" value={category} _onChange={(e)=>{
+                width="100%" height="51px" top="58px" padding="0 10px" name="category" value={category} _onChange={(e)=>{
                 setCategory(e.target.value);
               }} >
                 <option name="middle1" value="1"> 중1 </option>
@@ -141,6 +142,7 @@ const EditBtn = styled.button`
   border:none;
   outline:none;
   margin-top:15px; 
+  cursor:pointer;
 `;
 
 const NickEdit = styled.div`
@@ -148,7 +150,7 @@ const NickEdit = styled.div`
 
   >button {
     position:absolute;
-    top:45px;
+    top:47px;
     right:18px;
     border:none;
     background-color:#889cf2;
