@@ -184,35 +184,35 @@ const SignupCont = (props) => {
               setCategory(selectedCate);
             }}
           >
-            <option name="middle1" value="0">
+            <option name="middle1" value="1">
               {" "}
               중1{" "}
             </option>
-            <option name="middle2" value="1">
+            <option name="middle2" value="2">
               {" "}
               중2{" "}
             </option>
-            <option name="middle3" value="2">
+            <option name="middle3" value="3">
               {" "}
               중3{" "}
             </option>
-            <option name="high1" value="3">
+            <option name="high1" value="4">
               {" "}
               고1{" "}
             </option>
-            <option name="high2" value="4">
+            <option name="high2" value="5">
               {" "}
               고2{" "}
             </option>
-            <option name="high3" value="5">
+            <option name="high3" value="6">
               {" "}
               고3{" "}
             </option>
-            <option name="univ" value="6">
+            <option name="univ" value="7">
               {" "}
               대학생{" "}
             </option>
-            <option name="univ" value="7">
+            <option name="univ" value="8">
               {" "}
               직장인{" "}
             </option>

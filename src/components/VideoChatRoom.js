@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ChatRoomNav from "./ChatRoomNav";
 import { history } from "../redux/configureStore";
-import { actionCreators as userActions } from "../redux/modules/user";
+import user, { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as groupAction } from "../redux/modules/group";
 import Header from "../components/Header";
 import GroupChat from "./GroupChat";
@@ -14,6 +14,7 @@ import profile from "../Images/profile.png";
 import dotenv from "dotenv";
 import PostChat from "../components/PostChat";
 import VideoModal from "../components/VideoModal";
+import { getContrastRatio } from "@material-ui/core";
 
 dotenv.config();
 
@@ -66,6 +67,8 @@ export default function VideoChatRoom() {
   let peerStatusMsg = "";
   let peerNickname = "";
   let peernick = "";
+  let users;
+  let personInroom;
   const params = useParams();
   const roomId = params.roomId;
   const modalState = useSelector((state) => state.group.modalState);
@@ -165,6 +168,7 @@ export default function VideoChatRoom() {
               console.log(currentRound, "현재 라운드");
               socket.emit("endRest", currentRound);
               clearInterval(restinterval);
+              dispatch(groupAction.groupRound(currentRound));
             }
           };
           const restinterval = setInterval(timer, 1000);
@@ -172,7 +176,8 @@ export default function VideoChatRoom() {
 
         // 공부시간
         socket.on("studyTime", (currentRound, totalRound, time) => {
-          dispatch(groupAction.groupRound(studyRound + 1));
+          dispatch(groupAction.groupRound(currentRound));
+          console.log(studyRound);
           console.log(time);
           const endTime = time;
           const nowTime = new Date().getTime();
@@ -302,15 +307,19 @@ export default function VideoChatRoom() {
         //   );
         // });
 
+        socket.on("welcome", (user, person) => {
+          // peerStatusMsg = peerstatusMsg;
+          // peerNickname = peernick;
+          users = user;
+          personInroom = person - 1;
+        });
+
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
-          // socket.on("peer-on", (peernick, peerstatusMsg) => {
-          //   peerStatusMsg = peerstatusMsg;
-          //   peerNickname = peernick;
-          //   console.log(peerStatusMsg, peerNickname);
-          // });
           //answer()를 해야 mediaConnection이 활성화됨
+          console.log(users);
           mediaConnection.answer(stream);
+          console.log(mediaConnection);
           const videoBox = document.createElement("div");
           videoBox.classList.add("video_box");
           console.log("div 클래스 추가 videobox");
@@ -326,8 +335,12 @@ export default function VideoChatRoom() {
           nameBox.classList.add("userview_name", "fl");
           const peerstatus = document.createElement("p");
           peerstatus.innerText = peerStatusMsg;
+          console.log(peerStatusMsg, "이너텍스트");
           const peerNick = document.createElement("p");
-          peerNick.innerText = peernick;
+          console.log(users);
+          peerNick.innerText = users[0].nick;
+          // peerNick.innerText = peerNickname;
+          console.log(peerNickname, "이너텍스트");
           nameBox.prepend(peerstatus);
           nameBox.prepend(peerNick);
           txtBox.prepend(nameBox);
@@ -339,7 +352,7 @@ export default function VideoChatRoom() {
           console.log("textbox 추가");
           videoContainer.current.prepend(videoBox);
           console.log("prepend");
-
+          //
           mediaConnection.on("stream", (newStream) => {
             addVideoStream(peerVideo, newStream);
             videoBox.prepend(peerVideo);

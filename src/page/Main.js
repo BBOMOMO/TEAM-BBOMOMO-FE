@@ -21,7 +21,7 @@ const Main = (props) => {
   React.useEffect(() => {
     dispatch(userActions.checkUserDB());
     dispatch(userActions.getRankDB());
-    // dispatch(groupAction.groupRound(1));
+    dispatch(groupAction.groupRound(1));
   }, []);
 
   return (
