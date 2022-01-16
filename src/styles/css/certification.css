@@ -34,6 +34,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
+  gap: 11px;
   overflow: scroll;
 }
 /* 더보기 버튼 */
@@ -79,12 +80,12 @@
 }
 /*----------공부인증 카드----------*/
 /* 공부인증 카드 사이 margin */
-.CertificationCardBx {
+/* .CertificationCardBx {
   margin: 0 0 12px 11px;
 }
 .CertificationCardBx:nth-child(3n + 1) {
   margin: 0 0 12px 0;
-}
+} */
 /* 사용자 지정 이미지 구분 배경 시작*/
 .certifi_card_list_bx.nomal-bg .certifi_card_relative {
   display: flex;
