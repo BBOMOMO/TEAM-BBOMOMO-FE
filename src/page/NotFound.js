@@ -10,9 +10,9 @@ function NotFound() {
         요청하신 페이지를 찾을 수 없습니다.<br/>
         Page Not Found.
       </h1>
-      <div onClick={()=>{console.log("클릭");history.push('/')}}>
+      <GoHome onClick={()=>{console.log("클릭");history.push('/')}}>
         홈으로 이동
-      </div>
+      </GoHome>
     </Container>
   )
 }
@@ -27,4 +27,17 @@ const Container = styled.div`
     font-size:30px; 
     line-height:1.5;
   }
+`;
+
+const GoHome = styled.button`
+  width:498px;
+  height:70px;
+  background:#486bff;
+  border-radius:11px;
+  color:#fff;
+  font-size:24px;
+  border:none;
+  cursor:pointer;
+  font-family: 'Pretendard';
+
 `;
