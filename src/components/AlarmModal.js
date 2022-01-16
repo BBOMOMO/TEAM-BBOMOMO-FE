@@ -1,5 +1,6 @@
 import React from 'react';
 import close from "../Images/ic_header_close.png";
+import noAlarm from "../Images/noAlarm.png";
 
 
 function AlarmModal({showModal,closeModal}) {
@@ -13,6 +14,10 @@ function AlarmModal({showModal,closeModal}) {
             <img src={close} alt="" />
           </span>
           <div className="header_modal_hr"></div>
+
+          <div className="header_modal_nothing">
+            <img src={noAlarm} alt="알람없음" />
+          </div>
 
           {/* <div className="header_friend_container">
             <div className="header_friend_thumb"></div>

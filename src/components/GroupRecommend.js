@@ -20,6 +20,7 @@ const GroupRecommend = (props) => {
   const [activeCate, setActiveCate] = React.useState("All");
   const [roomPurpose, setRoomPurpose] = React.useState(null);
 
+
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);

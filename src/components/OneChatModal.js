@@ -1,6 +1,7 @@
 import React from 'react';
 import close from "../Images/ic_header_close.png";
 import goback from "../Images/ic_header_left.png";
+import noChat from "../Images/noMsg.png";
 
 
 import Chatting from './Chatting';
@@ -26,6 +27,7 @@ const is_open = (e) => {
     <div>
       { showModal ? 
         <div className="header_modal_container chat_modal" >
+           
           {/* 메시지 헤더 */}
           {chatStatus ? 
           (<p className="header_modal_title" style={{marginLeft:"24px"}}><span className="group_modal_goback" onClick={is_open}><img src={goback} alt="뒤로가기"/></span>메시지</p>)
@@ -36,14 +38,18 @@ const is_open = (e) => {
           </span>
           <div className="header_modal_hr"></div>
 
+          <div className="header_modal_nothing">
+            <img src={noChat} alt="메시지없음" />
+          </div>
+
           {/* 채팅리스트 */}
-          {chatStatus ? (<Chatting className=""></Chatting>):(
+          {/* {chatStatus ? (<Chatting className=""></Chatting>):(
          <>
           <OneChatList _onClick={is_open}/>
           <OneChatList _onClick={is_open}/>
           <OneChatList _onClick={is_open}/>
           </>
-          )}
+          )} */}
 
         </div>
       :null}

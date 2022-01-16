@@ -8,6 +8,7 @@ import user from "../Images/nouser.png";
 import pencil from "../Images/pencil.png";
 import CreateGroup from "../components/CreateGroup";
 import camera from "../Images/icon_camera_w.png";
+import Spinner from "../shared/Spinner";
 import { history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -29,6 +30,9 @@ const MyInfo = (props) => {
   const statusMsg = user.user.statusMsg;
   const today = user.todayRecord.today;
   const total = user.totalRecord.total;
+
+  
+  const [studyTime, setStudyTime] = React.useState(today);
   const [valueName, setValue] = React.useState(statusMsg);
   const [file, setFile] = React.useState(null);
   const [userImg, setUserImg] = React.useState(null);
@@ -38,6 +42,8 @@ const MyInfo = (props) => {
   );
 
   const [studyCnt, setStudyCnt] = React.useState(0);
+
+    console.log(today, total)
 
   const css = {
     backgroundImage: `url(${background})`,
@@ -80,20 +86,28 @@ const MyInfo = (props) => {
     if (file) {
       dispatch(userActions.changeImgDB(file));
     }
-  }, [file, category, nickname]);
+    if(!today){
+      //MEMO : 기본 95deg;
+      setStudyTime(95);
+    }else{
+     //MEMO: 오늘 공부시간 max 15시간 StudyTime = 900; today*0.388 / 24시간 StudyTime = 1440; today*0.24;
+      setStudyTime(today*0.388 + 95);
+    }
+  }, [file, category, nickname, today]);
 
-  const today2 = 900;
-  const total2 = today2 * 0.25;
+
 
   //console.log("studyTotal",total2);
 
   return (
     <>
+    
       <div className="myinfo_container">
+     
         <div className="myinfo_profile_area">
           <CircleWrap>
             <img src={roundCircle} style={{ width: "260px" }} />
-            <Circlebar studyTotal={"rotate(" + total2 + "deg)"} />
+            <Circlebar studyTotal={"rotate(" + studyTime + "deg)"} />
           </CircleWrap>
 
           <label style={css} className="myinfo_user_img">

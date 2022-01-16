@@ -18,7 +18,7 @@ const nickCheck = createAction(NICK_CHECK, (nickCheckres) => ({
   nickCheckres,
 }));
 const addUserImg = createAction(ADD_USER_IMG, (userImg) => ({ userImg }));
-const logout = createAction(LOG_OUT, (user) => ({ user }));
+const logout = createAction(LOG_OUT, (userInfo) => ({ userInfo }));
 const getRank = createAction(GET_RANK, (studyRanking) => ({
   studyRanking,
 }));
@@ -313,6 +313,7 @@ export default handleActions(
       localStorage.removeItem('id');
       localStorage.removeItem('nick');
       localStorage.removeItem('statusMsg');
+      window.location.reload("/");
     }),
   },
   initialState

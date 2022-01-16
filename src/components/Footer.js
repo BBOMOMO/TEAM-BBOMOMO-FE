@@ -8,8 +8,8 @@ const Footer = () => {
     <FooterContainer>
       <ul>
         <li>공지사항</li>
-        <li>뽀모모팀 소개</li>
-        <li>뽀모모팀 인스타그램</li>
+        <li><a href="https://bit.ly/bbomomo" target="_blank"> 뽀모모팀 소개</a></li>
+        <li><a href="https://www.instagram.com/bbomomo/" target="_blank"> 뽀모모팀 인스타그램</a></li>
 
       </ul>
       <div>
