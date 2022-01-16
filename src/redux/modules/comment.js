@@ -18,9 +18,9 @@ const initialState = {
 // middlewares
 const getCommentsDB = (postId) => {
   return async function (dispatch, useState, { history }) {
-    await apis.getComment(postId).then(function (response) {
-      console.log(response.data.comments);
-      dispatch(loadcomments(response.data.comments));
+    await apis.getPostDetail(postId).then(function (response) {
+      console.log(response);
+      dispatch(loadcomments(response.data.post.Comments));
     });
   };
 };
@@ -35,9 +35,8 @@ const addCommentDB = (nick, postId, comment) => {
     await apis
       .commentWrite(commentInfo)
       .then(function (response) {
-        apis.getComment(commentInfo.postId).then(function (response) {
-          console.log(response.data);
-          dispatch(loadcomments(response.data.comments));
+        apis.getPostDetail(postId).then(function (response) {
+          dispatch(loadcomments(response.data.post.Comments));
         });
       })
       .catch(function (error) {
@@ -49,8 +48,7 @@ const addCommentDB = (nick, postId, comment) => {
 const deleteCommentDB = (postId, commentId) => {
   return async function (dispatch, useState, { history }) {
     await apis.commentDelete(postId, commentId).then(function (response) {
-      apis.getPostDetail(postId, commentId).then(function (response) {
-        console.log(response);
+      apis.getPostDetail(postId).then(function (response) {
         dispatch(loadcomments(response.data.post.Comments));
       });
     });
@@ -63,7 +61,6 @@ export default handleActions(
     [GET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.commentList = action.payload.commentList;
-        // console.log("드래프트", draft.commentList);
       }),
   },
   initialState

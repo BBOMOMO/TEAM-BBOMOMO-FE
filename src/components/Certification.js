@@ -45,7 +45,7 @@ const Certification = (props) => {
 
   React.useEffect(() => {
     dispatch(postActions.getPostsDB());
-  }, []);
+  }, [user]);
 
   //TODO : map list 연결 되면, button 눌렀을 때 3개씩 추가되는 부분 처리하기.
   //GroupRecommend 참고
@@ -84,8 +84,7 @@ const Certification = (props) => {
               let postBg = a.postImg;
               let postId = a.postId;
               let sortBg = "";
-              let commentCnt = a.commentCnt;
-              console.log(commentCnt);
+              let commentNum = a.Comments.length;
               if (postBg.includes("https")) {
                 sortBg = "certifi_card_list_bx black-bg";
               } else {
@@ -117,7 +116,7 @@ const Certification = (props) => {
                     key={b}
                     sortBg={sortBg}
                     studyTime={studyTime}
-                    commentCnt={commentCnt}
+                    commentNum={commentNum}
                   ></CertificationCard>
                 </div>
               );

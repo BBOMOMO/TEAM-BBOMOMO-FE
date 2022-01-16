@@ -36,15 +36,16 @@ const initialState = {
 };
 
 // middlewares
+// 게시글 전체 조회
 const getPostsDB = () => {
   return async function (dispatch, useState, { history }) {
     await apis.getPost().then(function (response) {
-      console.log(response.data.board);
       dispatch(loadPosts(response));
     });
   };
 };
 
+// 게시글 상세조회
 const getPostDetailDB = (postId) => {
   return async function (dispatch, useState, { history }) {
     await apis.getPostDetail(postId).then(function (response) {
@@ -72,7 +73,6 @@ const addPostDB = (nick, postContent, studyTime, file, bgtype) => {
       .postWrite(form)
       .then(function (response) {
         apis.getPost().then(function (response) {
-          // console.log(response.data.board);
           dispatch(loadPosts(response));
         });
       })
@@ -93,7 +93,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.postListDetail = action.payload.postListDetail;
         draft.profileImg = action.payload.postListDetail.User.profileImg;
-        console.log(draft.profileImg);
+        draft.profileNick = action.payload.postListDetail.User.nick;
       }),
   },
   initialState

@@ -5,10 +5,15 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 import close from "../Images/ic_header_close.png";
 
-const CertificationDeleteModal = ({ showModal, closeModal, qwe, asd }) => {
-  console.log(qwe, asd);
+const CertificationDeleteModal = ({
+  showModal,
+  closeModal,
+  commentIdNum,
+  deleteCommentId,
+}) => {
+  // console.log(qwe, asd);
   const dispatch = useDispatch();
-  React.useEffect(() => {}, []);
+  // React.useEffect(() => {}, []);
   return (
     <>
       {showModal ? (
@@ -20,7 +25,9 @@ const CertificationDeleteModal = ({ showModal, closeModal, qwe, asd }) => {
             <ModalP>정말 삭제하시겠습니까?</ModalP>
             <ModalDeleteBtn
               onClick={() => {
-                dispatch(commentActions.deleteCommentDB(asd, qwe));
+                dispatch(
+                  commentActions.deleteCommentDB(deleteCommentId, commentIdNum)
+                );
                 closeModal();
               }}
             >
@@ -42,7 +49,7 @@ const ModalBx = styled.div`
   z-index: 1000;
   background-color: #fff;
   border-radius: 16px;
-  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.5);
+  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.1);
 `;
 
 const ModalInnerBx = styled.div`
