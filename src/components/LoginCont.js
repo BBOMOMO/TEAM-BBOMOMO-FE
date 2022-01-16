@@ -8,7 +8,8 @@ import kakaologo from "../Images/kakaologo.png";
 import logo from "../Images/logo_b.png";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
-import { KAKAO_API_URL } from "../shared/social/OAuth";
+import { KAKAO_API_URL, GOOGLE_API_URL } from "../shared/social/OAuth";
+
 import { history } from "../redux/configureStore";
 
 const LoginCont = (props) => {
@@ -95,7 +96,10 @@ const LoginCont = (props) => {
           <div className="login_guideline">또는</div>
 
           <div className="login_btn_bx">
-            <button className="login_btn login_google">
+            <button className="login_btn login_google"
+             onClick={() => {
+              window.location.href = GOOGLE_API_URL;
+            }}>
               <img src={googlelogo} alt="구글 로고" />
               <span className="ml20">구글 로그인</span>
             </button>

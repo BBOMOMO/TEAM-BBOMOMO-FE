@@ -57,10 +57,7 @@ function InfoModal({ showModal, closeModal }) {
   //로그아웃버튼
   const logout = () => {
     delToken("login");
-    localStorage.removeItem('id');
-    localStorage.removeItem('nick');
-    localStorage.removeItem('statusMsg');
-
+    dispatch(userActions.logout());
     window.location.reload("/");
   }
 
