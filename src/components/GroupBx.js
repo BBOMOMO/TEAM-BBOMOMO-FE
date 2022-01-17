@@ -7,11 +7,11 @@ import timer from "../Images/ic-timer.png";
 
 const GroupBx = (props) => {
   const { roomLock, bgcolor, onClick } = props;
-  // console.log("이건뭐지", roomLock);
   const userlist = props.peopleInRoom;
 
-  // console.log("목적 뜨나",props.purpose);
   const [purpose, setPurpose] = React.useState("");
+  const [started, setStarted] = React.useState(props.isStarted);
+
 
   React.useEffect(() => {
     if (props.purpose === 0) {
@@ -27,7 +27,15 @@ const GroupBx = (props) => {
     } else if (props.purpose === 5) {
       setPurpose("기타");
     }
-  }, [purpose]);
+
+    if(props.isStarted===0){
+      console.log("쉬는시간")
+      setStarted(0)
+    }else{
+      console.log("공부시간")
+      setStarted(1)
+    }
+  }, [props.purpose,props.isStarted]);
 
   return (
     <GroupCont className={bgcolor}>
@@ -55,6 +63,7 @@ const GroupBx = (props) => {
       </div>
 
       <div className="group_right_bx">
+        {started}/{props.currentRound}/{props.round}
         <div className="ic_top_bx">
           <img src={camera} alt="카메라 아이콘" />
         </div>

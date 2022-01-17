@@ -12,6 +12,7 @@ const LOAD_CATEROOMS = "LOAD_CATEROOMS";
 const GROUP_MODAL = "GROUP_MODAL";
 const GROUP_ROUND = "GROUP_ROUND";
 
+
 // action creators
 const loadRooms = createAction(LOAD_ROOMS, (room_list) => ({ room_list }));
 const loadCateRooms = createAction(LOAD_CATEROOMS, (cateroom_list) => ({
@@ -20,6 +21,7 @@ const loadCateRooms = createAction(LOAD_CATEROOMS, (cateroom_list) => ({
 const addRooms = createAction(ADD_ROOMS, (newRoom) => ({ newRoom }));
 const groupModal = createAction(GROUP_MODAL, (modalState) => ({ modalState }));
 const groupRound = createAction(GROUP_ROUND, (round) => ({ round }));
+
 
 // initialState
 const initialState = {
@@ -125,6 +127,8 @@ const exitRoom = (roomId) => {
       });
   };
 };
+
+
 // reducer
 export default handleActions(
   {
@@ -148,6 +152,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.round = action.payload.round;
       }),
+    
   },
   initialState
 );
@@ -161,4 +166,5 @@ export const actionCreators = {
   exitRoom,
   groupModal,
   groupRound,
+
 };

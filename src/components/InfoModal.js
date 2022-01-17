@@ -109,13 +109,12 @@ function InfoModal({ showModal, closeModal }) {
               수정완료
               </EditBtn>
             </div>
-            
-            
-            
             <div className="header_modal_hr mt0"></div>
             <div className="userservice">
-              <p className="userservice_btn">계정 설정</p>
-              <p className="userservice_btn">문의 하기</p>
+              <p className="userservice_btn">기술문의하기</p>
+              <p className="userservice_btn">
+                <a href="https://forms.gle/WemcWEYWGBVoSjxW8" target="_blank">사용자피드백</a>
+              </p>
             </div>
             <div className="logout clearfix">
               <p className="logout_btn fr" onClick={logout}>로그아웃</p>

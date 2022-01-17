@@ -19,6 +19,9 @@ const GroupRecommend = (props) => {
 
   const [activeCate, setActiveCate] = React.useState("All");
   const [roomPurpose, setRoomPurpose] = React.useState(null);
+  const [isStarted, setIsStarted] = React.useState("");
+
+
 
   const roomSlice = () => {
     if (roomlist) {
@@ -32,21 +35,21 @@ const GroupRecommend = (props) => {
       return _cateSlice;
     }
   };
-  //console.log(roomPurpose,"번 카테고리 리스트",_roomlist,caterooms);
+ 
+  console.log(roomPurpose,"번 카테고리 리스트",_roomlist);
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
   };
 
+  
   React.useEffect(() => {
     dispatch(roomActions.getRooms());
-  }, []);
-
-  React.useEffect(() => {
     dispatch(roomActions.sortRooms(roomPurpose));
+
+    
   }, [roomPurpose]);
 
-  React.useEffect(() => {}, []);
   //console.log(roomPurpose,"카테고리별 방 확인 ",caterooms);
   return (
     <div className="groupreco_bx">
@@ -132,9 +135,12 @@ const GroupRecommend = (props) => {
       </div>
 
       {roomPurpose === null ? (
+        
         <>
+        
           <div className="groupreco_bottom">
-            {roomSlice() &&
+            {
+            roomSlice() &&
               roomSlice().map((p, idx) => {
                 let bgcolor = "";
                 if (idx % 6 === 0) {
@@ -150,21 +156,23 @@ const GroupRecommend = (props) => {
                 } else if (idx % 6 === 5) {
                   bgcolor = "bg06";
                 }
+
+               
+               
                 let roomLock = p.isStarted;
+                //console.log("roomLock",roomLock);
+               dispatch(roomActions.reloadRoom(roomLock));
                 let isLock = "";
                 if (roomLock === 1) {
                   // 잠긴 방
                   isLock = "cloudy_bg";
+                  console.log(idx,p.isStarted)
                   return (
                     <>
-                      <div
-                        className="groupbx_card"
-                        // onClick={() => {
-                        //   history.push("/video/" + roomlist[idx].roomId);
-                        // }}
-                      >
+                   
+                      <div className="groupbx_card">
                         <GroupBx
-                          key={idx}
+                          key={p.idx}
                           {...p}
                           bgcolor={bgcolor}
                           roomLock={isLock}
@@ -173,6 +181,7 @@ const GroupRecommend = (props) => {
                     </>
                   );
                 } else if (roomLock === 0) {
+                  console.log(idx, p.isStarted)
                   return (
                     <>
                       {user ? (
@@ -243,14 +252,9 @@ const GroupRecommend = (props) => {
                   isLock = "cloudy_bg";
                   return (
                     <>
-                      <div
-                        className="groupbx_card"
-                        onClick={() => {
-                          // history.push("/video/" + roomlist[idx].roomId);
-                        }}
-                      >
+                      <div className="groupbx_card">
                         <GroupBx
-                          key={idx}
+                          key={p.idx}
                           {...p}
                           bgcolor={bgcolor}
                           roomLock={isLock}
