@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Input, Select } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import _ from "lodash";
 
 const SignupCont = (props) => {
   const dispatch = useDispatch();
@@ -27,19 +28,30 @@ const SignupCont = (props) => {
   // 주의 : 아이디, 닉네임 체크 true,false 값은 string으로 넘어옴.
   // console.log("값 넘어오나",_idCheck, _nickCheck);
 
+
+
   //아이디 정규식
   const onChangeId = (e) => {
+ 
     setName(e.target.value);
+    console.log(e.target.value)
     let userIdRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{3,20}$/;
     let idRegex = userIdRegex.test(e.target.value);
+    console.log("아디체인지",_idCheck,isId)
     if (!idRegex) {
       setIsId(false);
     } else {
       setIsId(true);
     }
+    if(_idCheck == true && setName!== setName){
+      _idCheck = false;
+    }
+
   };
   //닉네임 정규식
+ 
   const onChangeNick = (e) => {
+
     setNickname(e.target.value);
     let userNickRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
     let NickRegex = userNickRegex.test(e.target.value);
@@ -49,8 +61,10 @@ const SignupCont = (props) => {
     } else {
       setIsNick(true);
     }
-  };
+ 
 
+  };
+  console.log("_idCheck",_idCheck)
   const onChangePwd = (e) => {
     const pwdRegex = /^[a-zA-Z0-9]{6,12}$/;
     const pwdcurrent = e.target.value;
@@ -74,9 +88,12 @@ const SignupCont = (props) => {
       setSamePwd(false);
     }
   };
+
   const idCheck = () => {
     // 아이디 중복체크
+    
     dispatch(userActions.idCheckDB(name));
+    
   };
   const nickCheck = () => {
     // 닉네임 중복체크
@@ -115,13 +132,13 @@ const SignupCont = (props) => {
               maxlength={20}
               value={name}
               _onChange={onChangeId}
-              className={_idCheck === "true" && isId === true ? "green" : "red"}
+              className={isId === "false" ? "" : _idCheck === "true" && isId === true ? "green" : "red"}
             />
             <button onClick={idCheck}>중복확인</button>
             <span
-              className={_idCheck === "true" && isId === true ? "green" : "red"}
+              className={isId === "false" ? "" : _idCheck === "true" && isId === true ? "green" : "red"}
             >
-              {_idCheck === "true" && isId === true
+              {isId === "false" ? "" : _idCheck === "true" && isId === true
                 ? "사용 가능한 아이디입니다"
                 : "중복확인을 해주세요."}
             </span>
@@ -140,11 +157,11 @@ const SignupCont = (props) => {
               maxlength={20}
               value={nickname}
               _onChange={onChangeNick}
-              className={_nickCheck === "true" && isNick ? "green" : "red"}
+              className={isNick === "false" ? "" : _nickCheck === "true" && isNick ? "green" : "red"}
             />
             <button onClick={nickCheck}>중복확인</button>
-            <span className={_nickCheck === "true" && isNick ? "green" : "red"}>
-              {_nickCheck === "true" && isNick
+            <span className={isNick === "false" ? "" : _nickCheck === "true" && isNick ? "green" : "red"}>
+              {isNick === "false" ? "" : _nickCheck === "true" && isNick
                 ? "사용 가능한 닉네임입니다"
                 : "중복확인을 해주세요."}
             </span>
@@ -161,10 +178,10 @@ const SignupCont = (props) => {
               width="498px"
               value={pwd}
               _onChange={onChangePwd}
-              className={isPwd && pwd.length ? "green" : "red"}
+              className={pwd.length===0 ? "" : isPwd && pwd.length ? "green" : "red"}
             />
-            <span className={isPwd && pwd.length ? "green" : "red"}>
-              {isPwd && pwd.length
+            <span className={pwd.length===0 ? "" : isPwd && pwd.length ? "green" : "red"}>
+              { isPwd && pwd.length
                 ? "사용 가능한 비밀번호입니다"
                 : "영문,숫자, 6-12자로 구성된 비밀번호를 입력해 주세요."}
             </span>
@@ -231,9 +248,9 @@ const SignupCont = (props) => {
               value={pwdck}
               _onChange={checkPwd}
               onSubmit={signup}
-              className={samePwd && pwdck.length ? "green" : "red"}
+              className={pwdck.length===0 ? "" : samePwd && pwdck.length ? "green" : "red"}
             />
-            <span className={samePwd && pwdck.length ? "green" : "red"}>
+            <span className={pwdck.length===0 ? "" : samePwd && pwdck.length ? "green" : "red"}>
               {samePwd && pwdck.length
                 ? "비밀번호가 일치합니다."
                 : "일치하지 않는 비밀번호 입니다."}
