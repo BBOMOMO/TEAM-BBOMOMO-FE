@@ -99,6 +99,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
           <ModalBG
             onClick={() => {
               dispatch(postActions.getPostsDB());
+              setCommentText("");
               closeModal();
             }}
           />
@@ -111,6 +112,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                   alt="닫기 아이콘"
                   onClick={() => {
                     dispatch(postActions.getPostsDB());
+                    setCommentText("");
                     closeModal();
                   }}
                 />
@@ -240,6 +242,15 @@ const CertificationComment = ({ showModal, closeModal }) => {
                       padding="5px 55px 5px 18px"
                       _onChange={(e) => {
                         setCommentText(e.target.value);
+                      }}
+                      onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                          onsubmit(e);
+                        }
+                      }}
+                      onSubmit={() => {
+                        sendComment();
+                        setCommentText("");
                       }}
                     ></Input>
                   </div>

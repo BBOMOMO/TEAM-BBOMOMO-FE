@@ -24,7 +24,7 @@ const Input = (props) => {
     _checked,
     size,
     maxlength,
-    onSubmit
+    onSubmit,
   } = props;
 
   const labelStyle = { display, color, size };
@@ -83,8 +83,8 @@ const Input = (props) => {
         onChange={_onChange}
         value={value}
         maxLength={maxlength}
-        onKeyPress={(e)=>{
-          if(e.key === "Enter"){
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
             onSubmit(e);
           }
         }}
@@ -128,7 +128,6 @@ const CheckInput = styled.input`
     background-color: #d8d8d8;
     font-weight: bold;
   }
-  
 `;
 
 const GroupLabel = styled.label`
@@ -141,7 +140,7 @@ const GroupInput = styled.input`
   height: 44px;
   border-radius: 11px;
   background-color: #f4f4f4;
-  color: #7A7D81;
+  color: #7a7d81;
   border: none;
   margin: 16px 0 0 0;
   padding-left: 21px;
@@ -149,7 +148,7 @@ const GroupInput = styled.input`
   font-size: 16px;
   outline: none;
   ::placeholder {
-    color:#c6c6c6;
+    color: #c6c6c6;
   }
 `;
 
@@ -176,7 +175,7 @@ const ElInput = styled.input`
   ${(props) => (props.color ? `color: ${props.color};` : "")};
 
   ::placeholder {
-    color:#c6c6c6;
+    color: #c6c6c6;
   }
 `;
 

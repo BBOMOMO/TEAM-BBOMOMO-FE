@@ -20,7 +20,6 @@ const GroupRecommend = (props) => {
   const [activeCate, setActiveCate] = React.useState("All");
   const [roomPurpose, setRoomPurpose] = React.useState(null);
 
-
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);
@@ -46,6 +45,8 @@ const GroupRecommend = (props) => {
   React.useEffect(() => {
     dispatch(roomActions.sortRooms(roomPurpose));
   }, [roomPurpose]);
+
+  React.useEffect(() => {}, []);
   //console.log(roomPurpose,"카테고리별 방 확인 ",caterooms);
   return (
     <div className="groupreco_bx">
@@ -297,7 +298,6 @@ const SearchTab = styled.button`
   background-color: #fff;
   color: #000;
   font-size: 14px;
-
   &:active,
   &:hover,
   &:focus {
