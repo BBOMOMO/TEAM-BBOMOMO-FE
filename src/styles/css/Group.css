@@ -309,3 +309,15 @@
   z-index: 101;
   cursor: pointer;
 }
+
+.video_background {
+  width: 387px;
+  height: 236px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 11px;
+  background-color: #000;
+  opacity: 0.7;
+  display: none;
+}
