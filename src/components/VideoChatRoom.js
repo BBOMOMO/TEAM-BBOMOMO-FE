@@ -39,6 +39,7 @@ const ChatRoom = styled.div`
     display: flex;
     flex-wrap: wrap;
     .video_box {
+      position: relative;
       height: 300px;
       margin-left: 18px;
       &:nth-child(3n + 1) {
@@ -52,6 +53,9 @@ const ChatRoom = styled.div`
         height: 236px;
         border-radius: 11px;
         object-fit: cover;
+        position: relative;
+        }
+      
       }
     }
   }
@@ -92,6 +96,7 @@ export default function VideoChatRoom() {
   let timerRef = useRef();
   const videoGrid = useRef();
   const myVideo = useRef();
+  const videoBack = useRef();
   const videoContainer = useRef();
   const progressbar = useRef();
   const round = useRef();
@@ -111,10 +116,6 @@ export default function VideoChatRoom() {
     dispatch(groupAction.enterRoom(roomId));
     const socket = io(url);
     const peer = new Peer();
-
-    // for (const b in peer) {
-    //   console.log(peer[b]);
-    // }
 
     // 클라의 영상 스트림 비디오에 넣기
     navigator.mediaDevices
@@ -474,7 +475,19 @@ export default function VideoChatRoom() {
             </GroupTimer>
             <div id="video-grid" ref={videoContainer}>
               <div className="video_box" ref={videoGrid}>
-                <video ref={myVideo} autoPlay playsInline></video>
+                <video
+                  ref={myVideo}
+                  className="myvideo"
+                  autoPlay
+                  playsInline
+                  onMouseEnter={() => {
+                    videoBack.current.style.display = "block";
+                  }}
+                  onMouseLeave={() => {
+                    videoBack.current.style.display = "none";
+                  }}
+                ></video>
+                <div className="video_background" ref={videoBack}></div>
                 <div className="userview_txtbox clearfix">
                   <img src={profile} alt="프로필" className="fl" />
                   <div className="userview_name fl">

@@ -30,14 +30,14 @@ function GroupChat({ openChat }) {
       if (userId != user) {
         chat_nick = document.createElement("div");
         chat_nick.classList.add("chat_nick");
-        chat_nick.innerText = userId;
+        chat_nick.innerText = user;
       }
       //
       const chat_content = document.createElement("div");
       chat_content.classList.add("chat_content");
       //
       chat_from_friend.prepend(chat_content);
-      if (userId != user) {
+      if (chat_from_friend.classList[0] === "chat_from_friend") {
         chat_from_friend.prepend(chat_nick);
       }
       //
@@ -50,12 +50,16 @@ function GroupChat({ openChat }) {
       const chat_render_oneChat = document.querySelector(
         ".chat_render_oneChat"
       );
-      chat_render_oneChat.prepend(chat_from_friend);
+      chat_render_oneChat.append(chat_from_friend);
+      chat_render_oneChat.lastChild.scrollIntoView();
     });
   }, []);
+
   const sendChat = () => {
-    socket.current.emit("message", userId, chatMessage, roomId);
-    setChatMessage("");
+    if (chatMessage != "") {
+      socket.current.emit("message", userId, chatMessage, roomId);
+      setChatMessage("");
+    }
   };
 
   const sendMessage = (e) => {
@@ -133,6 +137,11 @@ function GroupChat({ openChat }) {
               name="oneChat"
               value={chatMessage}
               onChange={sendMessage}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  sendChat();
+                }
+              }}
             />
             <span className="chat_send_btn">
               <img src={send} alt="" onClick={sendChat} />

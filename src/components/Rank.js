@@ -32,5 +32,5 @@ export default Rank;
 const RankContainer = styled.div`
   width: 100%;
   height: 224px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
