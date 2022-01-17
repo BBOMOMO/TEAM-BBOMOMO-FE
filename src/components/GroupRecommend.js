@@ -23,7 +23,6 @@ const GroupRecommend = (props) => {
 
 
 
-
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);
@@ -50,7 +49,6 @@ const GroupRecommend = (props) => {
 
     
   }, [roomPurpose]);
-
 
   //console.log(roomPurpose,"카테고리별 방 확인 ",caterooms);
   return (
@@ -304,7 +302,6 @@ const SearchTab = styled.button`
   background-color: #fff;
   color: #000;
   font-size: 14px;
-
   &:active,
   &:hover,
   &:focus {
