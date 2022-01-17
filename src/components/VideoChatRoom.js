@@ -15,7 +15,7 @@ import dotenv from "dotenv";
 import PostChat from "../components/PostChat";
 import VideoModal from "../components/VideoModal";
 import { getContrastRatio } from "@material-ui/core";
-
+import CameraBtn from "./CameraBtn";
 dotenv.config();
 
 const GroupContainer = styled.div`
@@ -86,9 +86,11 @@ export default function VideoChatRoom() {
 
   // Local
   // const [cameraOn, setCameraOn] = useState(true);
-  const [state, setState] = useState("5 : 00");
+  const [state, setState] = useState("05 : 00");
   const [text, setText] = useState("쉬는 시간입니다.");
   const [timerTime, setTimerTime] = useState(0);
+  const [cameraOn, setCameraOn] = useState(true);
+  const [display, setDisplay] = useState(false);
 
   let myStream = null;
   let myPeerId = "";
@@ -105,6 +107,17 @@ export default function VideoChatRoom() {
   let percent;
   let totalPercent;
   let percentBar;
+
+  const handleCamera = () => {
+    setCameraOn((prev) => !prev);
+    if (cameraOn) {
+      let video = allStream.current.getTracks();
+      video[0].enabled = false;
+    } else {
+      let video = allStream.current.getTracks();
+      video[0].enabled = true;
+    }
+  };
 
   const endBtn = () => {
     dispatch(groupAction.exitRoom(roomId));
@@ -157,7 +170,9 @@ export default function VideoChatRoom() {
             console.log(percent, totalPercent, percentBar);
             progressbar.current.style.width = `${percentBar}%`;
             let min = Math.floor(gapTimeFloor / 60);
+            min = min < 10 ? "0" + min : min;
             let sec = gapTimeFloor % 60;
+            sec = sec < 10 ? "0" + sec : sec;
             setState(`${min} : ${sec}`);
             // console.log(`남은 시간은 ${min}분 ${sec}초 입니다.`, "쉬는시간");
             // timerRef.current.innerText = `남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`;
@@ -200,7 +215,9 @@ export default function VideoChatRoom() {
             console.log(percent, totalPercent, percentBar);
             progressbar.current.style.width = `${percentBar}%`;
             let min = Math.floor(gapTimeFloor / 60);
+            min = min < 10 ? "0" + min : min;
             let sec = gapTimeFloor % 60;
+            sec = sec < 10 ? "0" + sec : sec;
             setState(`${min} : ${sec}`);
             if (gapTimeFloor <= 0) {
               console.log(
@@ -238,7 +255,9 @@ export default function VideoChatRoom() {
             gapTimeFloor = gapTimeFloor - 1;
             console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
+            min = min < 10 ? "0" + min : min;
             let sec = gapTimeFloor % 60;
+            sec = sec < 10 ? "0" + sec : sec;
             setState(`${min} : ${sec}`);
             if (gapTimeFloor <= 0) {
               clearInterval(goodByeinterval);
@@ -480,14 +499,24 @@ export default function VideoChatRoom() {
                   className="myvideo"
                   autoPlay
                   playsInline
-                  onMouseEnter={() => {
+                  onMouseOver={() => {
                     videoBack.current.style.display = "block";
-                  }}
-                  onMouseLeave={() => {
-                    videoBack.current.style.display = "none";
+                    setDisplay(!display);
                   }}
                 ></video>
-                <div className="video_background" ref={videoBack}></div>
+                <div
+                  className="video_background"
+                  ref={videoBack}
+                  onMouseOut={() => {
+                    videoBack.current.style.display = "none";
+                    setDisplay(!display);
+                  }}
+                ></div>
+                <CameraBtn
+                  cameraOn={cameraOn}
+                  display={display}
+                  handleCamera={handleCamera}
+                />
                 <div className="userview_txtbox clearfix">
                   <img src={profile} alt="프로필" className="fl" />
                   <div className="userview_name fl">
