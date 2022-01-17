@@ -163,7 +163,7 @@ const GroupRecommend = (props) => {
                
                 let roomLock = p.isStarted;
                 //console.log("roomLock",roomLock);
-               dispatch(roomActions.reloadRoom(roomLock));
+             
                 let isLock = "";
                 if (roomLock === 1) {
                   // 잠긴 방
