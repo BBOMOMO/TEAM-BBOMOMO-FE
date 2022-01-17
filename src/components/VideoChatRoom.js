@@ -55,17 +55,7 @@ const ChatRoom = styled.div`
         object-fit: cover;
         position: relative;
         }
-      .video_background {
-        width: 387px;
-        height: 236px;
-        position: absolute;
-        top:0;
-        left:0;
-        border-radius: 11px;
-        background-color:#000;
-        opacity: 0.7;
-        display:none
-      }
+      
       }
     }
   }
@@ -490,6 +480,12 @@ export default function VideoChatRoom() {
                   className="myvideo"
                   autoPlay
                   playsInline
+                  onMouseEnter={() => {
+                    videoBack.current.style.display = "block";
+                  }}
+                  onMouseLeave={() => {
+                    videoBack.current.style.display = "none";
+                  }}
                 ></video>
                 <div className="video_background" ref={videoBack}></div>
                 <div className="userview_txtbox clearfix">
