@@ -131,9 +131,11 @@ export default function VideoChatRoom() {
     const peer = new Peer();
 
     // 클라의 영상 스트림 비디오에 넣기
+
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
+        console.log(stream);
         myStream = stream;
         let streamId = stream.id;
         addVideoStream(myVideo.current, stream);
@@ -427,6 +429,11 @@ export default function VideoChatRoom() {
             // videoGrid.current.prepend(newVideo);
           });
         });
+      })
+      .catch((err) => {
+        window.alert("브라우저의 카메라를 재설정 후 시도해주세요");
+        history.push("/");
+        dispatch(groupAction.exitRoom(roomId));
       });
 
     socket.on("user-disconnected", (peerId, userNick, streamId) => {
