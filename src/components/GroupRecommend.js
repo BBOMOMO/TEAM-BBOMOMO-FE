@@ -21,8 +21,6 @@ const GroupRecommend = (props) => {
   const [roomPurpose, setRoomPurpose] = React.useState(null);
   const [isStarted, setIsStarted] = React.useState("");
 
-
-
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);
@@ -35,19 +33,16 @@ const GroupRecommend = (props) => {
       return _cateSlice;
     }
   };
- 
-  console.log(roomPurpose,"번 카테고리 리스트",_roomlist);
+
+  console.log(roomPurpose, "번 카테고리 리스트", _roomlist);
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
   };
 
-  
   React.useEffect(() => {
     dispatch(roomActions.getRooms());
     dispatch(roomActions.sortRooms(roomPurpose));
-
-    
   }, [roomPurpose]);
 
   //console.log(roomPurpose,"카테고리별 방 확인 ",caterooms);
@@ -135,12 +130,9 @@ const GroupRecommend = (props) => {
       </div>
 
       {roomPurpose === null ? (
-        
         <>
-        
           <div className="groupreco_bottom">
-            {
-            roomSlice() &&
+            {roomSlice() &&
               roomSlice().map((p, idx) => {
                 let bgcolor = "";
                 if (idx % 6 === 0) {
@@ -157,19 +149,15 @@ const GroupRecommend = (props) => {
                   bgcolor = "bg06";
                 }
 
-               
-               
                 let roomLock = p.isStarted;
                 //console.log("roomLock",roomLock);
-             
                 let isLock = "";
                 if (roomLock === 1) {
                   // 잠긴 방
                   isLock = "cloudy_bg";
-                  console.log(idx,p.isStarted)
+                  console.log(idx, p.isStarted);
                   return (
                     <>
-                   
                       <div className="groupbx_card">
                         <GroupBx
                           key={p.idx}
@@ -181,7 +169,7 @@ const GroupRecommend = (props) => {
                     </>
                   );
                 } else if (roomLock === 0) {
-                  console.log(idx, p.isStarted)
+                  console.log(idx, p.isStarted);
                   return (
                     <>
                       {user ? (
