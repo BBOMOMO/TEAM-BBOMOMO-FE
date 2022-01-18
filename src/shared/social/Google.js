@@ -7,7 +7,7 @@ const Google = (props) => {
   const dispatch = useDispatch();
   let authorization_code = new URL(window.location.href).searchParams.get("code");
 
-  console.log("구글로그인 ",authorization_code)
+ // console.log("구글로그인 ",authorization_code)
 
   React.useEffect(()=>{
   //  console.log("잘 찍히나",authorization_code);

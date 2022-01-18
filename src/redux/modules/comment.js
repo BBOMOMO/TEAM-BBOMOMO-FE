@@ -19,7 +19,7 @@ const initialState = {
 const getCommentsDB = (postId) => {
   return async function (dispatch, useState, { history }) {
     await apis.getPostDetail(postId).then(function (response) {
-      console.log(response);
+     // console.log(response);
       dispatch(loadcomments(response.data.post.Comments));
     });
   };

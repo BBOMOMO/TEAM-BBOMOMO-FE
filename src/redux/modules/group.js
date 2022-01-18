@@ -102,8 +102,8 @@ const enterRoom = (newRoomId, roomPassword = null) => {
     await apis
       .enterRoom(newRoomId, roomPassword)
       .then((response) => {
-        console.log(response);
-        console.log("enterRoom 성공");
+      //  console.log(response);
+      //  console.log("enterRoom 성공");
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -117,8 +117,8 @@ const exitRoom = (roomId) => {
     await apis
       .exitRoom(roomId)
       .then((response) => {
-        console.log(response);
-        console.log("exitRoom 성공");
+        //console.log(response);
+       // console.log("exitRoom 성공");
       })
       .catch((err) => {
         console.log(err);

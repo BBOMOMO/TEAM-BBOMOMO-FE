@@ -43,7 +43,7 @@ const MyInfo = (props) => {
 
   const [studyCnt, setStudyCnt] = React.useState(0);
 
-    console.log(today, total)
+    //console.log(today, total)
 
   const css = {
     backgroundImage: `url(${background})`,
@@ -120,7 +120,7 @@ const MyInfo = (props) => {
                 setUserImg(e.target.dataset.userImg);
                 setFile(e.target.files[0]);
                 const objectURL = URL.createObjectURL(e.target.files[0]);
-                console.log(objectURL);
+                //console.log(objectURL);
                 setBackground(objectURL);
               }}
             />

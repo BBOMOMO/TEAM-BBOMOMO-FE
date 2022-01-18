@@ -111,7 +111,9 @@ function InfoModal({ showModal, closeModal }) {
             </div>
             <div className="header_modal_hr mt0"></div>
             <div className="userservice">
-              <p className="userservice_btn">기술문의하기</p>
+              <p className="userservice_btn">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScnvlLWbDtzPT7UTagUx4uvRVLbmeAsA-NkmhbvrvWzPqLQcA/viewform?usp=sf_link"
+            target="_blank" >기술문의하기</a></p>
               <p className="userservice_btn">
                 <a href="https://forms.gle/WemcWEYWGBVoSjxW8" target="_blank">사용자피드백</a>
               </p>
