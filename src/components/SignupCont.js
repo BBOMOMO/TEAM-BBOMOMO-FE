@@ -34,10 +34,10 @@ const SignupCont = (props) => {
   const onChangeId = (e) => {
  
     setName(e.target.value);
-    console.log(e.target.value)
+   // console.log(e.target.value)
     let userIdRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{3,20}$/;
     let idRegex = userIdRegex.test(e.target.value);
-    console.log("아디체인지",_idCheck,isId)
+    //console.log("아디체인지",_idCheck,isId)
     if (!idRegex) {
       setIsId(false);
     } else {
@@ -55,7 +55,7 @@ const SignupCont = (props) => {
     setNickname(e.target.value);
     let userNickRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
     let NickRegex = userNickRegex.test(e.target.value);
-    console.log(NickRegex);
+    //console.log(NickRegex);
     if (!NickRegex) {
       setIsNick(false);
     } else {
@@ -64,7 +64,7 @@ const SignupCont = (props) => {
  
 
   };
-  console.log("_idCheck",_idCheck)
+ // console.log("_idCheck",_idCheck)
   const onChangePwd = (e) => {
     const pwdRegex = /^[a-zA-Z0-9]{6,12}$/;
     const pwdcurrent = e.target.value;
@@ -81,7 +81,7 @@ const SignupCont = (props) => {
   const checkPwd = (e) => {
     const pwdcurrent2 = e.target.value;
     setPwdck(pwdcurrent2);
-    console.log(pwdcurrent2);
+    //console.log(pwdcurrent2);
     if (pwdcurrent2 === pwd) {
       setSamePwd(true);
     } else {
@@ -107,7 +107,7 @@ const SignupCont = (props) => {
       _idCheck === "true" &&
       _nickCheck === "true"
     ) {
-      console.log(name, nickname, pwd, pwdck, category);
+      //console.log(name, nickname, pwd, pwdck, category);
       dispatch(userActions.registerDB(name, pwd, pwdck, nickname, category));
     } else {
       window.alert("모든 조건이 맞는지 확인해주세요.");

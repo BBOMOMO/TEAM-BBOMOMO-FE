@@ -14,7 +14,7 @@ function MyStudy({ today, total }) {
   //
   const totalHour = Math.floor(studyTotal / 60);
   const totalyMin = studyTotal % 60;
-  console.log(totalHour);
+  //console.log(totalHour);
   const newTotalHour = totalHour < 10 ? "0" + totalHour : totalHour;
   const newTotalmin = totalyMin < 10 ? "0" + totalyMin : totalyMin;
   if (!user) {

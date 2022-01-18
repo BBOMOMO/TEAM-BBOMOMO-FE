@@ -27,20 +27,20 @@ function PostChat() {
   // let userId = 1;
 
   useEffect(() => {
-    console.log(user);
-    console.log(inputRef);
+    //console.log(user);
+    //console.log(inputRef);
     socketRef.current = io.connect(url);
     socketRef.current.emit("join-chatRoom", roomId, userId);
     socketRef.current.on("message", (name, message, roomId) => {
-      console.log(name, message, roomId);
+      //console.log(name, message, roomId);
       setChat([...chat, { name, message }]);
     });
     socketRef.current.on("welcome", (roomId) => {
-      console.log("안녕하세요");
-      console.log(roomId);
+      //console.log("안녕하세요");
+     // console.log(roomId);
     });
     socketRef.current.on("hi", (msg) => {
-      console.log(msg);
+     // console.log(msg);
     });
 
     // socketRef.current.emit("disconnect", roomId);

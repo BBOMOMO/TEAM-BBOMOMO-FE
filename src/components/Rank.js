@@ -5,7 +5,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 function Rank({ today, total }) {
   const rankInfo = useSelector((state) => state.user.studyRanking);
-  console.log(rankInfo);
+ // console.log(rankInfo);
   return (
     <RankContainer>
       {rankInfo.map((el, key) => {
