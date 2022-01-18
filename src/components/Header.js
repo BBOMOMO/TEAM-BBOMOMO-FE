@@ -62,7 +62,7 @@ function Header(props) {
     return(
       <>
           <HeaderContainer>
-            <img src={logo} alt="" onClick={()=>{window.alert("쉬는시간 혹은 공부가 끝나면 공부끝내기 버튼을 이용해주세요. ")}}/>
+            <img src={logo} alt="" />
             <div className="header_menu_container">
               <HeaderIconNone className="header_alarm" />
               <HeaderIconNone className="header_msg" />

@@ -76,12 +76,12 @@
 .ic_bottom_bx {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 5px;
 }
 .ic_bottom_bx > img {
-  margin-right: 6px;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   mix-blend-mode: difference;
 }
 .ic_bottom_bx > p {

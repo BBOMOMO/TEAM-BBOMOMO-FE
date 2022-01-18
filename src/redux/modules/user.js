@@ -50,7 +50,7 @@ const registerDB = (name, pwd, pwdck, nickname, category) => {
       })
       .catch((err) => {
         const message = err;
-        console.log(message);
+       // console.log(message);
         window.alert(message);
       });
   };
@@ -112,7 +112,7 @@ const loginDB = (username, password) => {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
         window.alert("아이디 / 비밀번호를 확인해주세요! 🥸");
       });
   };
@@ -217,7 +217,7 @@ const statMsgDB = (valueName) => {
         window.alert("수정 완료되었습니다.");
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+       // console.log(err.response.data.message);
       });
   };
 };
@@ -261,7 +261,7 @@ const changeImgDB = (file) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 };
@@ -276,7 +276,7 @@ const getRankDB = () => {
         dispatch(getRank(studyRanking));
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 };

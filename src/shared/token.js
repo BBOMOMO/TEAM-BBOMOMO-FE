@@ -17,7 +17,7 @@ const setToken = (name, token, exp = 5) => {
   date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
 
   document.cookie = `${name}=${token}; expires=${date.toUTCString()}`;
-  console.log(document.cookie);
+  //console.log(document.cookie);
 };
 
 function setCookie(name, value, exp = 5) {
@@ -25,24 +25,24 @@ function setCookie(name, value, exp = 5) {
   date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
   document.cookie =
     name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
-    console.log("setcookie",document.cookie);
+    //console.log("setcookie",document.cookie);
   }
 
 const delToken = (name) => {
   let date = new Date("2020-01-01").toUTCString();
 
-  console.log(date);
+  //console.log(date);
 
   document.cookie = name + "=; expires=" + date;
-  console.log("쿠키삭제",document.cookie)
+  //console.log("쿠키삭제",document.cookie)
 };
 const delCookie = (name) => {
   let date = new Date("2020-01-01").toUTCString();
 
-  console.log(date);
+  //console.log(date);
 
   document.cookie = name + "=; expires=" + date + "; path=/";
-  console.log("쿠키삭제",document.cookie)
+  //console.log("쿠키삭제",document.cookie)
 };
 
 
