@@ -118,40 +118,40 @@ const loginDB = (username, password) => {
   };
 };
 
-//kakao social 로그인
-const kakaoLogin = (authorization_code) => {
-  return async function (dispatch, getState, { history }) {
-    await api
-      .get(`/api/v1/auth/kakao/callback?code=${authorization_code}`)
-      .then((response) => {
-        const token = response.data.user.token;
-        setCookie("login", token);
-        window.alert("로그인 성공 🔥");
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log("카카오 로그인실패", err);
-      });
-  };
-};
+// //kakao social 로그인
+// const kakaoLogin = (authorization_code) => {
+//   return async function (dispatch, getState, { history }) {
+//     await api
+//       .get(`/api/v1/auth/kakao/callback?code=${authorization_code}`)
+//       .then((response) => {
+//         const token = response.data.user.token;
+//         setCookie("login", token);
+//         window.alert("로그인 성공 🔥");
+//         history.push("/");
+//       })
+//       .catch((err) => {
+//         console.log("카카오 로그인실패", err);
+//       });
+//   };
+// };
 
-//Google social 로그인
-const GoogleLogin = (authorization_code) => {
-  return async function (dispatch, getState, { history }) {
-    await api
-      .get(`/api/v1/auth/google/callback?code=${authorization_code}`)
-      .then((response) => {
-        //console.log("googlelogin",response)
-        const token = response.data.user.token;
-        setCookie("login", token);
-        window.alert("구글 성공 🔥");
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log("구글 로그인실패", err);
-      });
-  };
-};
+// //Google social 로그인
+// const GoogleLogin = (authorization_code) => {
+//   return async function (dispatch, getState, { history }) {
+//     await api
+//       .get(`/api/v1/auth/google/callback?code=${authorization_code}`)
+//       .then((response) => {
+//         //console.log("googlelogin",response)
+//         const token = response.data.user.token;
+//         setCookie("login", token);
+//         window.alert("구글 성공 🔥");
+//         history.push("/");
+//       })
+//       .catch((err) => {
+//         console.log("구글 로그인실패", err);
+//       });
+//   };
+// };
 
 // //kakao social 로그인
 // const kakaoLogin = (authorization_code) => {
@@ -329,7 +329,7 @@ export const actionCreators = {
   statMsgDB,
   changeImgDB,
   getRankDB,
-  kakaoLogin,
-  GoogleLogin,
+  //kakaoLogin,
+  //GoogleLogin,
   logout 
 };

@@ -96,13 +96,13 @@ const LoginCont = (props) => {
           <div className="login_guideline">또는</div>
 
           <div className="login_btn_bx">
-            {/*<button className="login_btn login_google"
+            <button className="login_btn login_google"
              onClick={() => {
               window.location.href = GOOGLE_API_URL;
             }}>
               <img src={googlelogo} alt="구글 로고" />
               <span className="ml20">구글 로그인</span>
-            </button>*/}
+            </button>
 
             <button
               className="login_btn login_kakao"
