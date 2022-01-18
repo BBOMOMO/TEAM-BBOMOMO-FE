@@ -135,7 +135,7 @@ export default function VideoChatRoom() {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
-        console.log(stream);
+        // console.log(stream);
         myStream = stream;
         let streamId = stream.id;
         addVideoStream(myVideo.current, stream);
@@ -147,7 +147,7 @@ export default function VideoChatRoom() {
 
         // 쉬는시간
         socket.on("restTime", (currentRound, totalRound, time) => {
-          console.log(currentRound, totalRound, time);
+          // console.log(currentRound, totalRound, time);
           const endTime = time;
           const nowTime = new Date().getTime();
           const gapTime = endTime - nowTime;
@@ -166,10 +166,10 @@ export default function VideoChatRoom() {
           round.current.innerText = `${currentRound} / ${totalRound} 라운드`;
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
-            console.log(gapTimeFloor);
+            // console.log(gapTimeFloor);
             percent = totalPercent - gapTimeFloor;
             percentBar = (percent / totalPercent) * 100;
-            console.log(percent, totalPercent, percentBar);
+            // console.log(percent, totalPercent, percentBar);
             progressbar.current.style.width = `${percentBar}%`;
             let min = Math.floor(gapTimeFloor / 60);
             min = min < 10 ? "0" + min : min;
@@ -180,10 +180,10 @@ export default function VideoChatRoom() {
             // timerRef.current.innerText = `남은 시간은 ${min}분 ${sec}초 입니다. 쉬는시간`;
             // if (min === 0 && sec === 0)
             if (gapTimeFloor <= 0) {
-              console.log(currentRound, totalRound);
-              console.log("쉬는시간 종료");
+              // console.log(currentRound, totalRound);
+              // console.log("쉬는시간 종료");
               currentRound = currentRound + 1;
-              console.log(currentRound, "현재 라운드");
+              // console.log(currentRound, "현재 라운드");
               socket.emit("endRest", currentRound);
               clearInterval(restinterval);
               dispatch(groupAction.groupRound(currentRound));
@@ -195,8 +195,8 @@ export default function VideoChatRoom() {
         // 공부시간
         socket.on("studyTime", (currentRound, totalRound, time) => {
           dispatch(groupAction.groupRound(currentRound));
-          console.log(studyRound);
-          console.log(time);
+          // console.log(studyRound);
+          // console.log(time);
           const endTime = time;
           const nowTime = new Date().getTime();
           const gapTime = endTime - nowTime;
@@ -211,10 +211,10 @@ export default function VideoChatRoom() {
           round.current.innerText = `${currentRound} / ${totalRound} 라운드`;
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
-            console.log(gapTimeFloor);
+            // console.log(gapTimeFloor);
             percent = totalPercent - gapTimeFloor;
             percentBar = (percent / totalPercent) * 100;
-            console.log(percent, totalPercent, percentBar);
+            // console.log(percent, totalPercent, percentBar);
             progressbar.current.style.width = `${percentBar}%`;
             let min = Math.floor(gapTimeFloor / 60);
             min = min < 10 ? "0" + min : min;
@@ -222,17 +222,17 @@ export default function VideoChatRoom() {
             sec = sec < 10 ? "0" + sec : sec;
             setState(`${min} : ${sec}`);
             if (gapTimeFloor <= 0) {
-              console.log(
-                currentRound,
-                totalRound,
-                "현재 라운드와 토탈 라운드"
-              );
-              console.log("수업시간 종료");
+              // console.log(
+              //   currentRound,
+              //   totalRound,
+              //   "현재 라운드와 토탈 라운드"
+              // );
+              // console.log("수업시간 종료");
               if (currentRound !== totalRound) {
                 dispatch(groupAction.groupModal(true));
                 socket.emit("endStudy");
                 // socket.emit("endStudy", roomId, userId, userNick);
-                console.log("endStudy 발생");
+                // console.log("endStudy 발생");
               }
               if (currentRound === totalRound) {
                 socket.emit("totalEnd");
@@ -255,7 +255,7 @@ export default function VideoChatRoom() {
           setText("모두 수고하셨습니다.");
           let timer = () => {
             gapTimeFloor = gapTimeFloor - 1;
-            console.log(gapTimeFloor);
+            // console.log(gapTimeFloor);
             let min = Math.floor(gapTimeFloor / 60);
             min = min < 10 ? "0" + min : min;
             let sec = gapTimeFloor % 60;
@@ -271,7 +271,7 @@ export default function VideoChatRoom() {
         if (peer._id == null) {
           peer.on("open", (peerId) => {
             //소켓을 통해 서버로 방ID, 유저ID 보내주기
-            console.log(peerId);
+            // console.log(peerId);
             myPeerId = peerId;
             socket.emit(
               "join-room",
@@ -283,7 +283,7 @@ export default function VideoChatRoom() {
               statusMsg
             );
           });
-          console.log(myPeerId);
+          // console.log(myPeerId);
         } else {
           socket.emit(
             "join-room",
@@ -294,7 +294,7 @@ export default function VideoChatRoom() {
             streamId,
             statusMsg
           );
-          console.log(peer._id);
+          // console.log(peer._id);
         }
 
         // peer.on("open", (peerId) => {
@@ -339,17 +339,17 @@ export default function VideoChatRoom() {
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
           //answer()를 해야 mediaConnection이 활성화됨
-          console.log(users);
+          // console.log(users);
           mediaConnection.answer(stream);
-          console.log(mediaConnection);
+          // console.log(mediaConnection);
           const videoBox = document.createElement("div");
           videoBox.classList.add("video_box");
           console.log("div 클래스 추가 videobox");
           const peerVideo = document.createElement("video");
           const txtBox = document.createElement("div");
-          console.log("div 추가");
+          // console.log("div 추가");
           txtBox.classList.add("userview_txtbox");
-          console.log("클래스 추가");
+          // console.log("클래스 추가");
           const img = document.createElement("img");
           img.setAttribute("src", `${profile}`);
           img.classList.add("fl");
@@ -357,48 +357,48 @@ export default function VideoChatRoom() {
           nameBox.classList.add("userview_name", "fl");
           const peerstatus = document.createElement("p");
           peerstatus.innerText = peerStatusMsg;
-          console.log(peerStatusMsg, "이너텍스트");
+          // console.log(peerStatusMsg, "이너텍스트");
           const peerNick = document.createElement("p");
-          console.log(users);
+          // console.log(users);
           peerNick.innerText = users[0].nick;
           // peerNick.innerText = peerNickname;
-          console.log(peerNickname, "이너텍스트");
+          // console.log(peerNickname, "이너텍스트");
           nameBox.prepend(peerstatus);
           nameBox.prepend(peerNick);
           txtBox.prepend(nameBox);
           txtBox.prepend(img);
           // 텍스트 추가
           videoBox.prepend(peerVideo);
-          console.log("newVideo 추가");
+          // console.log("newVideo 추가");
           videoBox.prepend(txtBox);
-          console.log("textbox 추가");
+          // console.log("textbox 추가");
           videoContainer.current.prepend(videoBox);
-          console.log("prepend");
+          // console.log("prepend");
           //
           mediaConnection.on("stream", (newStream) => {
             addVideoStream(peerVideo, newStream);
             videoBox.prepend(peerVideo);
-            console.log(myPeerId, userNick);
+            // console.log(myPeerId, userNick);
           });
 
           mediaConnection.on("close", () => {
             socket.emit("camera-off", myPeerId, userNick);
-            console.log(myPeerId, userNick);
+            // console.log(myPeerId, userNick);
           });
         });
         // 이게 제일 두번째 순서 -> peer.call(peerId, stream)
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
-          console.log(peerId, userNick, streamId, peerMsg);
+          // console.log(peerId, userNick, streamId, peerMsg);
           peerstatusMsg = peerMsg;
           const mediaConnection = peer.call(peerId, stream);
           const videoBox = document.createElement("div");
           videoBox.classList.add("video_box");
-          console.log("div 클래스 추가 videobox");
+          // console.log("div 클래스 추가 videobox");
           const newVideo = document.createElement("video");
           const txtBox = document.createElement("div");
-          console.log("div 추가");
+          // console.log("div 추가");
           txtBox.classList.add("userview_txtbox");
-          console.log("클래스 추가");
+          // console.log("클래스 추가");
           const img = document.createElement("img");
           img.setAttribute("src", `${profile}`);
           img.classList.add("fl");
@@ -407,7 +407,7 @@ export default function VideoChatRoom() {
           nameBox.classList.add("fl");
           const peerstatus = document.createElement("p");
           peerstatus.innerText = peerstatusMsg;
-          console.log(peerstatus.innerText);
+          // console.log(peerstatus.innerText);
           const peerNick = document.createElement("p");
           peerNick.innerText = userNick;
           nameBox.prepend(peerstatus);
@@ -416,11 +416,11 @@ export default function VideoChatRoom() {
           txtBox.prepend(img);
           // 텍스트 추가
           videoBox.prepend(newVideo);
-          console.log("newVideo 추가");
+          // console.log("newVideo 추가");
           videoBox.prepend(txtBox);
-          console.log("textbox 추가");
+          // console.log("textbox 추가");
           videoContainer.current.prepend(videoBox);
-          console.log("prepend");
+          // console.log("prepend");
           // newVideo.setAttribute("id", `${peerId}`);
 
           mediaConnection.on("stream", (newStream) => {
@@ -441,7 +441,7 @@ export default function VideoChatRoom() {
       const video_box = document.querySelectorAll("video_box");
       const txt_box = document.querySelectorAll("userview_txtbox");
       const name_box = document.querySelectorAll("userview_name");
-      console.log(video_box, txt_box, name_box);
+      // console.log(video_box, txt_box, name_box);
       let removeVideo;
       // let removeBox;
       // let removeTxt;
