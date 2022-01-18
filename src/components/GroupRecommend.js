@@ -15,6 +15,7 @@ const GroupRecommend = (props) => {
   const caterooms = useSelector((state) => state.group.cateroom);
   const roomlist = _roomlist.list;
 
+  const usernick = localStorage.getItem("nick");
   const [roomcount, setRoomcount] = React.useState(6);
 
   const [activeCate, setActiveCate] = React.useState("All");
@@ -34,7 +35,7 @@ const GroupRecommend = (props) => {
     }
   };
 
-  // console.log(roomPurpose, "번 카테고리 리스트", _roomlist);
+ 
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
@@ -49,8 +50,8 @@ const GroupRecommend = (props) => {
   return (
     <div className="groupreco_bx">
       <div className="groupreco_top">
-        {user ? (
-          <h2>닉네임님을 위한 스터디룸 추천</h2>
+        {usernick ? (
+          <h2>{usernick}님을 위한 스터디룸 추천</h2>
         ) : (
           <h2>뽀모님을 위한 스터디룸 추천</h2>
         )}
