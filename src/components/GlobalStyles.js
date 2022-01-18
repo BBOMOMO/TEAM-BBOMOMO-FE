@@ -152,7 +152,7 @@ const GlobalStyles = createGlobalStyle`
     *::-webkit-scrollbar-thumb {  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
 
     /* disabled 비활성화 버튼  */
-    .disabled {background:#d7d7d7!important; color:#fff!important;}
+    .disabled {background:#d7d7d7!important; color:#fff!important; cursor:auto!important;}
 
 `;
 

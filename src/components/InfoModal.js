@@ -16,7 +16,7 @@ function InfoModal({ showModal, closeModal }) {
   const userNick = useSelector((state) => state.user.userNick);
 
   const [nickname, setNickname] = React.useState(userNick);
-  const [category, setCategory] = React.useState(1);
+  const [category, setCategory] = React.useState(userCate);
   
 
 

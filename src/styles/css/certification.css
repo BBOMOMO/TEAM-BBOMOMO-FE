@@ -28,6 +28,7 @@
   line-height: 18px;
   text-align: center;
   letter-spacing: -0.0008em;
+  cursor: pointer;
 }
 .certifi_card_bx {
   display: flex;
@@ -158,7 +159,7 @@
   border-radius: 15px;
   color: #282828;
   font-size: 10px;
-  line-height: 12px;
+  line-height: 13px;
   white-space: nowrap;
   overflow: hidden;
   max-width: 130px;
@@ -176,6 +177,7 @@
 
 .certifi_card_bottom_comment {
   display: flex;
+  cursor:pointer;
 }
 .certifi_card_bottom_comment > img {
   margin-right: 7px;
