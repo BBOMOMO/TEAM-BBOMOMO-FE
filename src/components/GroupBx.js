@@ -12,7 +12,6 @@ const GroupBx = (props) => {
   const [purpose, setPurpose] = React.useState("");
   const [started, setStarted] = React.useState(props.isStarted);
 
-
   React.useEffect(() => {
     if (props.purpose === 0) {
       setPurpose("자율학습");
@@ -28,14 +27,14 @@ const GroupBx = (props) => {
       setPurpose("기타");
     }
 
-    if(props.isStarted===0){
-      console.log("쉬는시간")
-      setStarted(0)
-    }else{
-      console.log("공부시간")
-      setStarted(1)
+    if (props.isStarted === 0) {
+      // console.log("쉬는시간")
+      setStarted(0);
+    } else {
+      // console.log("공부시간")
+      setStarted(1);
     }
-  }, [props.purpose,props.isStarted]);
+  }, [props.purpose, props.isStarted]);
 
   return (
     <GroupCont className={bgcolor}>

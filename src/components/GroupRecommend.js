@@ -34,7 +34,7 @@ const GroupRecommend = (props) => {
     }
   };
 
-  console.log(roomPurpose, "번 카테고리 리스트", _roomlist);
+  // console.log(roomPurpose, "번 카테고리 리스트", _roomlist);
 
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
@@ -155,7 +155,7 @@ const GroupRecommend = (props) => {
                 if (roomLock === 1) {
                   // 잠긴 방
                   isLock = "cloudy_bg";
-                  console.log(idx, p.isStarted);
+                  // console.log(idx, p.isStarted);
                   return (
                     <>
                       <div className="groupbx_card">
@@ -169,7 +169,7 @@ const GroupRecommend = (props) => {
                     </>
                   );
                 } else if (roomLock === 0) {
-                  console.log(idx, p.isStarted);
+                  // console.log(idx, p.isStarted);
                   return (
                     <>
                       {user ? (
