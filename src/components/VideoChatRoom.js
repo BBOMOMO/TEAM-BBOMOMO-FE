@@ -16,6 +16,7 @@ import PostChat from "../components/PostChat";
 import VideoModal from "../components/VideoModal";
 import { getContrastRatio } from "@material-ui/core";
 import CameraBtn from "./CameraBtn";
+import poster from "../Images/view.png";
 dotenv.config();
 
 const GroupContainer = styled.div`
@@ -113,9 +114,13 @@ export default function VideoChatRoom() {
     if (cameraOn) {
       let video = allStream.current.getTracks();
       video[0].enabled = false;
+      let src = document.querySelector(".video_non_src");
+      src.style.display = "block";
     } else {
       let video = allStream.current.getTracks();
       video[0].enabled = true;
+      let src = document.querySelector(".video_non_src");
+      src.style.display = "none";
     }
   };
 
@@ -344,7 +349,7 @@ export default function VideoChatRoom() {
           // console.log(mediaConnection);
           const videoBox = document.createElement("div");
           videoBox.classList.add("video_box");
-          console.log("div 클래스 추가 videobox");
+          // console.log("div 클래스 추가 videobox");
           const peerVideo = document.createElement("video");
           const txtBox = document.createElement("div");
           // console.log("div 추가");
@@ -501,6 +506,13 @@ export default function VideoChatRoom() {
             </GroupTimer>
             <div id="video-grid" ref={videoContainer}>
               <div className="video_box" ref={videoGrid}>
+                <div
+                  className="video_non_src"
+                  onMouseOver={() => {
+                    videoBack.current.style.display = "block";
+                    setDisplay(!display);
+                  }}
+                ></div>
                 <video
                   ref={myVideo}
                   className="myvideo"
@@ -524,6 +536,7 @@ export default function VideoChatRoom() {
                   display={display}
                   handleCamera={handleCamera}
                 />
+
                 <div className="userview_txtbox clearfix">
                   <img src={profile} alt="프로필" className="fl" />
                   <div className="userview_name fl">

@@ -321,3 +321,13 @@
   opacity: 0.7;
   display: none;
 }
+.video_non_src {
+  width: 387px;
+  height: 236px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 11px;
+  background-image: url(../../Images/view.png);
+  display: none;
+}
