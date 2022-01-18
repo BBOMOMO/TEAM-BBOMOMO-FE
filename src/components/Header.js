@@ -3,6 +3,9 @@ import styled from "styled-components";
 import bell from "../Images/ic-bell.png";
 import chat from "../Images/ic-chat.png";
 import people from "../Images/ic-people.png";
+import bellnone from "../Images/ic-bell-none.png";
+import chatnone from "../Images/ic-chat-none.png";
+import peoplenone from "../Images/ic-people-none.png";
 import logo from "../Images/bbomomologo.png";
 import "../styles/css/header.css";
 
@@ -59,15 +62,11 @@ function Header(props) {
     return(
       <>
           <HeaderContainer>
-            <img
-              src={logo}
-              alt=""
-              onClick={()=>{window.alert("쉬는시간 혹은 공부가 끝나면 공부끝내기 버튼을 이용해주세요. ")}}
-            />
+            <img src={logo} alt="" onClick={()=>{window.alert("쉬는시간 혹은 공부가 끝나면 공부끝내기 버튼을 이용해주세요. ")}}/>
             <div className="header_menu_container">
-              <HeaderIcon className="header_alarm" onClick={()=>{window.alert("공부중에는 사용할 수 없습니다.")}} />
-              <HeaderIcon className="header_msg" onClick={()=>{window.alert("공부중에는 사용할 수 없습니다.")}} />
-              <HeaderIcon className="header_friend" onClick={()=>{window.alert("공부중에는 사용할 수 없습니다.")}} />
+              <HeaderIconNone className="header_alarm" />
+              <HeaderIconNone className="header_msg" />
+              <HeaderIconNone className="header_friend" />
             </div>
           </HeaderContainer>
         </>
@@ -179,4 +178,40 @@ const HeaderIcon = styled.div`
   :hover {
     background-color: #f4f4f4;
   }
+`;
+
+const HeaderIconNone = styled.div`
+  width: 57px;
+  height: 57px;
+  border-radius: 11px;
+  margin-left: 50px;
+ 
+
+  &.header_alarm {
+    width: 57px;
+    height: 57px;
+    background-image: url(${bellnone});
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  &.header_msg {
+    width: 57px;
+    height: 57px;
+    background-image: url(${chatnone});
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  &.header_friend {
+    width: 57px;
+    height: 57px;
+    background-image: url(${peoplenone});
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
 `;
