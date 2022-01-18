@@ -62,7 +62,6 @@ const GroupBx = (props) => {
       </div>
 
       <div className="group_right_bx">
-        {started}/{props.currentRound}/{props.round}
         <div className="ic_top_bx">
           <img src={camera} alt="카메라 아이콘" />
         </div>
@@ -71,6 +70,7 @@ const GroupBx = (props) => {
           <p>{userlist.length} / 6</p>
         </div>
       </div>
+      <RoomTimeInfo>{props.studyTime}분 / {props.recessTime}분</RoomTimeInfo>
 
       {roomLock ? (
         <div className={roomLock}>
@@ -86,6 +86,13 @@ GroupBx.defaultProps = {
   _onClick: () => {},
 };
 
+const RoomTimeInfo = styled.div`
+position:absolute;
+bottom: 17px;
+right: 77px;
+font-size:14px;
+
+`;
 const GroupCont = styled.div`
   display: flex;
   justify-content: space-between;

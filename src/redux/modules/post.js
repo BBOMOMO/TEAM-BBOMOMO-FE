@@ -77,7 +77,7 @@ const addPostDB = (nick, postContent, studyTime, file, bgtype) => {
         });
       })
       .catch(function (error) {
-        console.log(error);
+        //console.log(error);
       });
   };
 };

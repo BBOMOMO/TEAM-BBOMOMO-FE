@@ -40,7 +40,7 @@ const addCommentDB = (nick, postId, comment) => {
         });
       })
       .catch(function (error) {
-        console.log(error);
+        //console.log(error);
       });
   };
 };
