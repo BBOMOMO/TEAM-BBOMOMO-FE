@@ -19,7 +19,7 @@ function GroupChat({ openChat }) {
     socket.current = io(url);
     socket.current.emit("join-chatRoom", roomId, userId);
     socket.current.on("message", (user, message, roomId) => {
-      console.log(user, message, roomId);
+      // console.log(user, message, roomId);
       //
       const chat_from_friend = document.createElement("div");
       userId == user

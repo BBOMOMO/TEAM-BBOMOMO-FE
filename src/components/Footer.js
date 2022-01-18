@@ -9,13 +9,11 @@ const Footer = () => {
         <li>공지사항</li>
         <li>
           <a href="https://bit.ly/bbomomo" target="_blank">
-            {" "}
             뽀모모팀 소개
           </a>
         </li>
         <li>
           <a href="https://www.instagram.com/bbomomo/" target="_blank">
-            {" "}
             뽀모모팀 인스타그램
           </a>
         </li>
@@ -24,7 +22,6 @@ const Footer = () => {
             href="https://docs.google.com/forms/d/e/1FAIpQLScnvlLWbDtzPT7UTagUx4uvRVLbmeAsA-NkmhbvrvWzPqLQcA/viewform?usp=sf_link"
             target="_blank"
           >
-            {" "}
             버그제보
           </a>
         </li>
