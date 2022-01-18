@@ -40,6 +40,7 @@
   margin: 3px 0 0 16px;
 }
 .userview_name > p {
+  text-align: left;
   font-size: 16px;
   font-weight: 600;
 }
