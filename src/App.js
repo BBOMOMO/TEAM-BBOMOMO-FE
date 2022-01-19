@@ -17,6 +17,7 @@ import PostChat from "./components/PostChat";
 import Group from "./page/Group";
 import Kakao from "./shared/social/Kakao";
 import Google from "./shared/social/Google";
+import Policy from "./page/Policy";
 
 import Main from "./page/Main";
 import NotFound from "./page/NotFound";
@@ -42,6 +43,7 @@ function App() {
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
 
         <Route path="/modal" component={VideoModal} />
+        <Route path="/policy" component={Policy} />
         <Route path={"*"} component={NotFound} />
       </Switch>
     </>

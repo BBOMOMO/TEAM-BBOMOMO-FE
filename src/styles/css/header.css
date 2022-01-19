@@ -17,6 +17,11 @@
   text-align: center;
 }
 
+.header_modal_container .header_modal_nothing img {
+  width:144px;
+  padding:30px 0; 
+}
+
 .alarm_modal {
   position:fixed;
   top: 110px;

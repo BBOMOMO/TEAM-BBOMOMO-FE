@@ -33,4 +33,6 @@ const RankContainer = styled.div`
   width: 100%;
   height: 224px;
   overflow-y: auto;
+  padding-right: 9px;
+  box-sizing: border-box;
 `;

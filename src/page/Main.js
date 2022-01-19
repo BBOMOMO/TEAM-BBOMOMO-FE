@@ -60,19 +60,22 @@ const MainContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  flex:1;
 
   .main_wrap_index {
     position: relative;
     z-index: 1;
+    flex:0.35;
   }
   .main_wrap {
     width: 100%;
     position: relative;
+    flex:0.65;
   }
   .main_contentArea {
     position: relative;
     *margin-left: 80px;
-    width: 1018px;
+    *width: 1018px;
     margin: 0 auto;
   }
 `;
