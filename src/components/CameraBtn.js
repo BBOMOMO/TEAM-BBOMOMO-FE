@@ -19,13 +19,13 @@ const CameraBtn = (props) => {
 };
 
 const CameraOnOffBtn = styled.div`
-  width: 118px;
-  height: 59px;
+  width: 31%;
+  height: 19%;
   background: #e5e5e5;
   border-radius: 30px;
   position: absolute;
   left: 50%;
-  bottom: 74px;
+  bottom: 25%;
   transform: translateX(-50%);
   ${(props) => (props.display ? "display: block" : "display: none")};
   img {

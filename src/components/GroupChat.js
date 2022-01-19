@@ -158,18 +158,18 @@ export default GroupChat;
 const ChatContainer = styled.div`
   position: relative;
   height: 85vh;
-  margin: 0 80px;
+  margin: 0 4.17vw;
   box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);
   border-radius: 16px;
   box-sizing: border-box;
-  width: 428px;
+  width: 22%;
 
   .group_chat_container {
     padding: 18px;
+    height: calc(100% - 150px);
   }
   .chat_render_oneChat {
-    min-height: auto;
-    height: 615px;
+    height: 100%;
     overflow: auto;
   }
   .chat_textfield_container {
@@ -180,7 +180,7 @@ const ChatContainer = styled.div`
     transform: translateX(-50%);
   }
   .header_modal_title {
-    margin: 30px 18px 25px;
+    margin: 3.07vh 18px 2.56vh;
   }
 `;
 
@@ -205,7 +205,7 @@ const BlockChat = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80px;
+    width: 4.17vw;
     opacity: 1;
     z-index: 1;
   }

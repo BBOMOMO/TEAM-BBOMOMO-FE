@@ -23,6 +23,7 @@
     "react-loading": "^2.0.3",
     "react-moment": "^1.1.1",
     "react-redux": "^7.2.2",
+    "react-responsive": "^9.0.0-beta.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-spinners": "^0.11.0",

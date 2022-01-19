@@ -12,25 +12,30 @@
 }
 
 .header_modal_container .header_modal_nothing {
-  padding:30px 0 0 0;
+  padding: 30px 0 0 0;
   box-sizing: border-box;
   text-align: center;
 }
 
+.header_modal_container .header_modal_nothing img {
+  width: 144px;
+  padding: 30px 0;
+}
+
 .alarm_modal {
-  position:fixed;
+  position: fixed;
   top: 110px;
   right: 315px;
   z-index: 999;
 }
 .chat_modal {
-  position:fixed;
+  position: fixed;
   top: 110px;
   right: 205px;
   z-index: 999;
 }
 .info_modal {
-  position:fixed;
+  position: fixed;
   top: 110px;
   right: 100px;
   z-index: 999;
@@ -38,7 +43,7 @@
 
 .header_modal_title {
   color: #242424;
-  font-size: 18px;
+  font-size: 0.94vw;
   font-weight: bold;
   margin-left: 10px;
 }
@@ -166,10 +171,10 @@
 }
 .division_edit {
   margin-top: 20px;
-  position:relative;
+  position: relative;
 }
-.division_edit > label{
-  position:initial!important;
+.division_edit > label {
+  position: initial !important;
 }
 .userservice {
   padding-top: 26px;
@@ -184,7 +189,9 @@
   box-sizing: border-box;
   border-radius: 11px;
 }
-.userservice_btn > a {display: block;}
+.userservice_btn > a {
+  display: block;
+}
 .userservice_btn + .userservice_btn {
   margin-top: 10px;
 }
@@ -195,6 +202,6 @@
   width: 93px;
   height: 48px;
   text-align: center;
-  margin-top:30px;
+  margin-top: 30px;
   cursor: pointer;
 }

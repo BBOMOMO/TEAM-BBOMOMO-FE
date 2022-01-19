@@ -1,6 +1,6 @@
 /*----------공부인증 박스----------*/
 .certifi_bx {
-  width: 1018px;
+  *width: 1018px;
   /* 임시 */
   *position: absolute;
   *top: 100px;
