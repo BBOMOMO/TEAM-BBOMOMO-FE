@@ -20,14 +20,14 @@ import poster from "../Images/view.png";
 dotenv.config();
 
 const GroupContainer = styled.div`
-  padding-top: 110px;
+  padding-top: 11.7vh;
   display: flex;
 `;
 const GroupCont = styled.div`
-  width: 1197px;
+  width: 62%;
 `;
 const GroupTimer = styled.div`
-  height: 152px;
+  height: 18%;
   position: relative;
 `;
 const ChatRoom = styled.div`
@@ -35,14 +35,16 @@ const ChatRoom = styled.div`
   height: auto;
   display: flex;
   #video-grid {
+    height: 82%;
     box-sizing: border-box;
-    width: 1197px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     .video_box {
+      width: 32%;
       position: relative;
-      height: 300px;
-      margin-left: 18px;
+      height: calc(50% - 12.5px);
+      margin-left: 2%;
       &:nth-child(3n + 1) {
         margin-left: 0px;
       }
@@ -50,8 +52,8 @@ const ChatRoom = styled.div`
         margin-top: 25px;
       }
       video {
-        width: 387px;
-        height: 236px;
+        width: calc(100% - 1px);
+        height: calc(78% - 1px);
         border-radius: 11px;
         object-fit: cover;
         position: relative;

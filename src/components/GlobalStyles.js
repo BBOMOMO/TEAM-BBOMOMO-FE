@@ -133,7 +133,7 @@ const GlobalStyles = createGlobalStyle`
     .underline {border-bottom: 3px solid #889CF2; box-sizing: border-box; padding-bottom:8px; margin-bottom: -11px;}
 
     /* float */
-    .fl {float:left;}
+    .fl {float:left; height: 100%}
     .fr {float:right;}
 
     /* clearfix */

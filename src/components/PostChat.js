@@ -37,10 +37,10 @@ function PostChat() {
     });
     socketRef.current.on("welcome", (roomId) => {
       //console.log("안녕하세요");
-     // console.log(roomId);
+      // console.log(roomId);
     });
     socketRef.current.on("hi", (msg) => {
-     // console.log(msg);
+      // console.log(msg);
     });
 
     // socketRef.current.emit("disconnect", roomId);

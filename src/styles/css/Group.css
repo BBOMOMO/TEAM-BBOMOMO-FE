@@ -163,14 +163,14 @@
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  font-size: 18px;
+  font-size: 0.94vw;
 }
 .groupTimer_timer {
   position: absolute;
   left: 50%;
   top: 35%;
   transform: translate(-50%, -50%);
-  font-size: 68px;
+  font-size: 3.54vw;
   font-weight: 300;
 }
 
@@ -204,21 +204,21 @@
   position: absolute;
   border: 1px solid #d7d7d7;
   border-radius: 38px;
-  width: 88px;
-  height: 34px;
+  width: 4.58vw;
+  height: 3.48vh;
   text-align: center;
-  line-height: 34px;
+  line-height: 3.48vh;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
+  font-size: 0.73vw;
   font-weight: 600;
   cursor: pointer;
 }
 /*타이머*/
 .groupTimer_progress_background {
   width: 100%;
-  height: 11px;
+  height: 1.13vh;
   border-radius: 31px;
   background-color: #eaeaea;
   position: absolute;
@@ -228,7 +228,7 @@
 }
 .groupTimer_progress_bar {
   width: 0px;
-  height: 11px;
+  height: 1.13vh;
   border-radius: 31px;
   background: linear-gradient(
     90deg,
@@ -248,8 +248,8 @@
 .groupTimer_progress_bar::after {
   display: inline-block;
   content: "";
-  width: 55px;
-  height: 46px;
+  width: 2.86vw;
+  height: 4.71vh;
   background-image: url(../../Images/flag.png);
   position: absolute;
   top: 0;
@@ -262,7 +262,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  font-size: 14px;
+  font-size: 0.73vw;
   font-weight: 600;
 }
 
@@ -311,8 +311,8 @@
 }
 
 .video_background {
-  width: 387px;
-  height: 236px;
+  width: 100%;
+  height: 78%;
   position: absolute;
   top: 0;
   left: 0;
@@ -322,12 +322,14 @@
   display: none;
 }
 .video_non_src {
-  width: 387px;
-  height: 236px;
+  width: 100%;
+  height: 78%;
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 11px;
   background-image: url(../../Images/view.png);
+  background-size: cover;
+  background-position: center;
   display: none;
 }
