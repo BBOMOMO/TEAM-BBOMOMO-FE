@@ -28,7 +28,7 @@ const LoginCont = (props) => {
         <div className="login_left_bbomomo"></div>
         <img src={clock} alt="시계" className="clock" />
         <div className="login_left_intro">
-          <p>시간은 누가잴래? 공부는 내가할게!</p>
+          <p>시간은 누가 잴래? 공부는 내가할게!</p>
           <h2>
             스터디 메이트와 함께
             <br />
@@ -96,10 +96,12 @@ const LoginCont = (props) => {
           <div className="login_guideline">또는</div>
 
           <div className="login_btn_bx">
-            <button className="login_btn login_google"
-             onClick={() => {
-              window.location.href = GOOGLE_API_URL;
-            }}>
+            <button
+              className="login_btn login_google"
+              onClick={() => {
+                window.location.href = GOOGLE_API_URL;
+              }}
+            >
               <img src={googlelogo} alt="구글 로고" />
               <span className="ml20">구글 로그인</span>
             </button>

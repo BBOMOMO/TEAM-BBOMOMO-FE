@@ -66,9 +66,6 @@ const MainBanner = () => {
   );
 };
 const SwiperBx = styled.div`
-  .img_bx {
-    /* width: 1000px; */
-  }
   .swiper-pagination-fraction,
   .swiper-pagination-custom,
   .swiper-container-horizontal > .swiper-pagination-bullets {
