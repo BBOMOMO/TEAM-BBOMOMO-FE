@@ -104,15 +104,16 @@ const MyInfo = (props) => {
     
       <div className="myinfo_container">
      
-        <div className="myinfo_profile_area">
+        <div className="myInfo_contents_wrap">
+          <div className="myinfo_profile_area">
           <CircleWrap>
-            <img src={roundCircle} style={{ width: "260px" }} />
+            <img src={roundCircle} style={{ width: "13.5vw" }} />
             <Circlebar studyTotal={"rotate(" + studyTime + "deg)"} />
           </CircleWrap>
 
           <label style={css} className="myinfo_user_img">
             <span>
-              <img src={camera} alt="사진변경하기" />
+              <img src={camera} alt="사진변경하기"/>
             </span>
             <input
               type="file"
@@ -137,9 +138,10 @@ const MyInfo = (props) => {
               value={valueName}
               _onChange={(e) => setValue(e.target.value)}
               placeholder={statusMsg ? statusMsg : "목표를 입력해주세요."}
-              height="36px"
+              height="4vh"
               color="#282828"
-              size="13px"
+              size="0.9vw"
+              radius="0.6vw"
               onSubmit={saveMsg}
             />
             <img
@@ -152,12 +154,14 @@ const MyInfo = (props) => {
             />
           </div>
         </div>
-        <div className="myinfo_studytime">
-          <MyContents today={today} total={total}/>
-        </div>
         <div className="myinfo_make_group">
           <p onClick={openModal}>+ 스터디룸 만들기</p>
           <CreateGroup showModal={showModalCG} closeModal={closeModal} />
+        </div>
+        <div className="myinfo_studytime">
+          <MyContents today={today} total={total}/>
+        </div>
+        
         </div>
       </div>
     </>
@@ -169,7 +173,7 @@ export default MyInfo;
 const Circlebar = styled.span`
   position: absolute;
   display: block;
-  width: 50%;
+  width: 6.7vw;
   height: 1px;
   *background: #ff0000;
   left: 50%;
@@ -184,8 +188,10 @@ const Circlebar = styled.span`
     top: -14px;
     right: -10px;
     display: block;
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
+    width:1.6vw;
+    height:1.6vw;
     border-radius: 50%;
     background-color: #fff;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
@@ -206,7 +212,8 @@ const Circlebar = styled.span`
 const CircleWrap = styled.div`
   position: relative;
   display: block;
-  width: 260px;
-  height: 260px;
+  /* width: 260px;
+  height: 260px; */
   margin: 0 auto;
+  margin-top:2vw;
 `;

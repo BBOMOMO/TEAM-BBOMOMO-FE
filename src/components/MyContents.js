@@ -97,8 +97,9 @@ export default function FullWidthTabs() {
 }
 
 const MyContentWrap = styled.div`
-  border-radius: 25px;
+  border-radius: 1.3vw;
   overflow: hidden;
+  height: 31vh;
 `;
 
 const AppBarCustom = styled(AppBar)`
@@ -111,44 +112,45 @@ const AppBarCustom = styled(AppBar)`
   &.MuiAppBar-colorDefault {
     background-color: #eff6f8;
     color: #282828;
-    padding: 10px 0 0 30px;
+    padding: 0.5vw 0 0 1.5vw;
   }
 `;
 
 const TabsCustom = styled(Tabs)`
   .MuiTabs-flexContainer {
     *background-color: red;
-    font-size: 18px;
+    font-size: 1vw;
   }
   .MuiTabs-flexContainer .MuiTab-textColorPrimary.Mui-selected {
     *background-color: #889cf2;
     *background-color: #fff;
     color: #282828;
-    font-size: 18px;
+    font-size: 1vw;
   }
   .MuiTab-fullWidth {
-    font-size: 18px;
+    font-size: 1vw;
     color: #7a7d81;
     font-family: "Pretendard";
     font-weight: 500;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.0347vw;
   }
 
   .PrivateTabIndicator-colorPrimary-3 {
     background-color: #889cf2;
   }
   .PrivateTabIndicator-root-2 {
-    height: 3px;
+    height: 0.15vw;
   }
   .MuiTab-root {
     padding: 0;
-    min-width: 105px;
-    margin-right: 10px;
+    min-width: 5vw;
+    margin-right: 0.6944vw;
   }
 `;
 
 const SwipeableViewsCustom = styled(SwipeableViews)`
   .MuiBox-root {
-    padding: 10px 44px;
+    *padding: 0.6944vw 2vw;
+    *padding:0;
   }
 `;

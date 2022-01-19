@@ -128,7 +128,7 @@ const HeaderContainer = styled.div`
   box-shadow: 0px 4px 10px rgba(238, 238, 238, 0.25);
   *height: 80px;
   height:8.5vh;
-  padding: 0 6vw;
+  padding: 0 9vw 0 7.5vw;
   box-sizing: border-box;
   position: fixed;
   width: 100%;
@@ -136,7 +136,7 @@ const HeaderContainer = styled.div`
   z-index: 2;
   > img {
     *height: 40px;
-    height:4vh;
+    height:3vh;
   }
 
   .header_menu_container {
@@ -145,18 +145,16 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderIcon = styled.div`
-  width: 57px;
-  width: 2.9vw;
-  height: 57px;
+  width: 2.3vw;
+  height:2.3vw;
   border-radius: 11px;
   *margin-left: 50px;
-  margin-left: 2.5vw;
+  margin-left: 2vw;
   cursor:pointer;
 
   &.header_alarm {
-    width: 57px;
-    width: 2.9vw;
-    height: 57px;
+    width: 2.3vw;
+    height:2.3vw;
     background-image: url(${bell});
     background-size: 60%;
     background-repeat: no-repeat;
@@ -164,9 +162,8 @@ const HeaderIcon = styled.div`
   }
 
   &.header_msg {
-    width: 57px;
-    width: 2.9vw;
-    height: 57px;
+    width: 2.3vw;
+    height:2.3vw;
     background-image: url(${chat});
     background-size: 60%;
     background-repeat: no-repeat;
@@ -174,9 +171,8 @@ const HeaderIcon = styled.div`
   }
 
   &.header_friend {
-    width: 57px;
-    width: 2.9vw;
-    height: 57px;
+    width: 2.3vw;
+    height:2.3vw;
     background-image: url(${people});
     background-size: 60%;
     background-repeat: no-repeat;
@@ -188,18 +184,16 @@ const HeaderIcon = styled.div`
 `;
 
 const HeaderIconNone = styled.div`
-  width: 57px;
-  width: 2.9vw;
-  height: 57px;
+ width: 2.3vw;
+    height:2.3vw;
   border-radius: 11px;
   *margin-left: 50px;
-  margin-left: 2.5vw;
+  margin-left: 2vw;
  
 
   &.header_alarm {
-    width: 57px;
-    width: 2.9vw;
-    height: 57px;
+    width: 2.3vw;
+    height:2.3vw;
     background-image: url(${bellnone});
     background-size: 60%;
     background-repeat: no-repeat;
@@ -207,9 +201,8 @@ const HeaderIconNone = styled.div`
   }
 
   &.header_msg {
-    width: 57px;
-    width: 2.9vw;
-    height: 57px;
+    width: 2.3vw;
+    height:2.3vw;
     background-image: url(${chatnone});
     background-size: 60%;
     background-repeat: no-repeat;
@@ -217,9 +210,8 @@ const HeaderIconNone = styled.div`
   }
 
   &.header_friend {
-    width: 57px;
-    width: 2.9vw;
-    height: 57px;
+    width: 2.3vw;
+    height:2.3vw;
     background-image: url(${peoplenone});
     background-size: 60%;
     background-repeat: no-repeat;
