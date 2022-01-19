@@ -3,38 +3,38 @@
 }
 
 .signup_img_area {
-  width:580px;
+  width: 30%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background:url('/src/Images/registerBG_2.png') no-repeat;
-  background-size:cover; 
+  background: url("/src/Images/registerBG_2.png") no-repeat;
+  background-size: cover;
 }
 .signup_img_area_logo {
-  width:260px;
+  width: 260px;
 }
 
-.signup_container_wrap{
-  flex:1;
+.signup_container_wrap {
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.signup_inputWrap{
-  position:relative;
+.signup_inputWrap {
+  position: relative;
 }
-.signup_inputWrap >button {
-  position:absolute;
-  top:55px;
-  right:18px;
-  border:none;
-  background-color:#889cf2;
-  color:#fff;
-  font-size:12px;
-  padding:6px 20px;
-  border-radius:20px;
-  cursor:pointer;
+.signup_inputWrap > button {
+  position: absolute;
+  top: 5.64vh;
+  right: 18px;
+  border: none;
+  background-color: #889cf2;
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 20px;
+  border-radius: 20px;
+  cursor: pointer;
 }
 .signup_title {
   font-size: 32px;
@@ -43,7 +43,7 @@
   margin-bottom: 99px;
 }
 .signup_content {
-  width: 1110px;
+  width: 57.81vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

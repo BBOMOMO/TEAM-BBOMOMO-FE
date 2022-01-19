@@ -20,7 +20,7 @@ const Select = (props) => {
     right,
     width,
     height,
-    value
+    value,
   } = props;
   const labelStyle = { display, color, size };
   const styles = {
@@ -32,7 +32,7 @@ const Select = (props) => {
     name,
     width,
     height,
-    value
+    value,
   };
   const imgStyle = { top, right };
 
@@ -61,11 +61,10 @@ const Select = (props) => {
 Select.defaultProps = {
   _onChange: () => {},
   size: "18px",
-  top: "69px",
+  top: "7.07vh",
   right: "21px",
   width: "498px",
-  height: "62px",
-  
+  height: "6.35vh",
 };
 
 const GroupSelectLabel = styled.label`
@@ -99,7 +98,6 @@ const GroupSelect = styled.select`
 
   option {
     padding: 5px;
-
   }
 `;
 
@@ -124,7 +122,7 @@ const ElSelect = styled.select`
   font-size: 24px;
   padding: 0 27px;
   background-color: #f4f4f4;
-  font-size:18px; 
+  font-size: 18px;
   color: #7a7d81;
   appearance: none;
   -webkit-appearance: none; /* for chrome */
