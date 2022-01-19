@@ -104,10 +104,10 @@ Input.defaultProps = {
   _onChange: () => {},
   onSubmit: () => {},
   width: "100%",
-  height: "62px",
+  height: "6.35vh",
   radius: "11px",
   border: "none",
-  size: "18px",
+  size: "15px",
   color: "#7A7D81",
 };
 
