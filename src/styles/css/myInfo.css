@@ -2,13 +2,15 @@
   position: sticky;
   left: 0;
   top: 0;
-  width: 660px;
+  *width: 660px;
   height: 100vh;
   text-align: center;
   background: #f8fdfd;
   border-radius: 60px;
-  padding: 80px 116px;
+  *padding: 80px 116px;
   box-sizing: border-box;
+
+
 }
 .myinfo_profile_area {
   margin-top: 50px;
