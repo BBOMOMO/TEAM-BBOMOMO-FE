@@ -6,7 +6,8 @@ import Header from "../components/Header";
 import GroupRecommend from "../components/GroupRecommend";
 import Certification from "../components/Certification";
 import Footer from "../components/Footer";
-import Banner from "../Images/banner.png";
+import MainBanner from "../components/MainBanner";
+// import Banner from "../Images/banner.png";
 
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,7 +36,8 @@ const Main = (props) => {
           <div className="main_contentArea">
             {/* TODO: AdSection Onclick 이벤트페이지로 이동. 있으면 ㅎ */}
             <AdSection>
-              <img src={Banner} alt="" />
+              {/* <img src={Banner} alt="" /> */}
+              <MainBanner />
             </AdSection>
             <RoomSection>
               <GroupRecommend />
@@ -60,17 +62,17 @@ const MainContainer = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  flex:1;
+  flex: 1;
 
   .main_wrap_index {
     position: relative;
     z-index: 1;
-    flex:0.35;
+    flex: 0.35;
   }
   .main_wrap {
     width: 100%;
     position: relative;
-    flex:0.65;
+    flex: 0.65;
   }
   .main_contentArea {
     position: relative;
