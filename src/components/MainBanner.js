@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import IMG1 from "../Images/main_banner_img1.png";
 import IMG2 from "../Images/main_banner_img2.png";
 import IMG3 from "../Images/main_banner_img3.png";
 import IMG4 from "../Images/main_banner_img4.png";
@@ -22,7 +21,7 @@ const MainBanner = () => {
         modules={[Pagination, Autoplay]}
         slidesPerView={1}
         autoplay={{
-          delay: 7000,
+          delay: 4000,
           disableOnInteraction: true,
         }}
         loop={true}
@@ -32,12 +31,6 @@ const MainBanner = () => {
         }}
         autoHeight={true}
       >
-        <SwiperSlide>
-          <div className="img_bx">
-            <img style={{ width: "100%" }} src={IMG1} alt="배너 이미지1" />
-          </div>
-        </SwiperSlide>
-
         <SwiperSlide>
           <div className="img_bx">
             <a
@@ -52,13 +45,25 @@ const MainBanner = () => {
 
         <SwiperSlide>
           <div className="img_bx">
-            <img style={{ width: "100%" }} src={IMG3} alt="배너 이미지3" />
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScnvlLWbDtzPT7UTagUx4uvRVLbmeAsA-NkmhbvrvWzPqLQcA/viewform?usp=sf_link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img style={{ width: "100%" }} src={IMG3} alt="배너 이미지3" />
+            </a>
           </div>
         </SwiperSlide>
 
         <SwiperSlide>
           <div className="img_bx">
-            <img style={{ width: "100%" }} src={IMG4} alt="배너 이미지4" />
+            <a
+              href="https://www.instagram.com/bbomomo/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img style={{ width: "100%" }} src={IMG4} alt="배너 이미지4" />
+            </a>
           </div>
         </SwiperSlide>
       </Swiper>
@@ -72,8 +77,9 @@ const SwiperBx = styled.div`
     bottom: 0;
   }
 
-  .swiper-container-autoheight, .swiper-container-autoheight .swiper-slide {
-    padding-bottom:1vh;
+  .swiper-container-autoheight,
+  .swiper-container-autoheight .swiper-slide {
+    padding-bottom: 1vh;
   }
 `;
 export default MainBanner;
