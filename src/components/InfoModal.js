@@ -76,7 +76,7 @@ function InfoModal({ showModal, closeModal }) {
             <div className="personal_info_edit">
               <div className="nickname_edit">
                 <NickEdit>
-                <Input text="닉네임" boxSizing border="none" display="block" height="51px" size="16px" color="#7A7D81" margin="18px 0" 
+                <Input text="닉네임" boxSizing border="none" display="block" height="3vw" size="0.8vw" color="#7A7D81" margin="0.8vw 0" 
                   placeholder={userNick} maxlength={15} value={nickname} 
                   _onChange={(e)=>{setNickname(e.target.value)}} 
                   className={_nickCheck== null ? '' : _nickCheck==='true' && nickname.length>2 ? "green": "red"}/>
@@ -90,8 +90,8 @@ function InfoModal({ showModal, closeModal }) {
                 </NickEdit>
               </div>
               <div className="division_edit">
-              <Select text="구분" boxSizing border="none" display="block" color="#7A7D81" margin="18px 0 "
-                width="100%" height="51px" top="58px" padding="0 10px" name="category" value={category} _onChange={(e)=>{
+              <Select text="구분" boxSizing border="none" display="block" size="0.8vw" color="#7A7D81" margin="0.8vw 0 "
+                width="100%" height="3vw" top="3.2vw" padding="0 10px" name="category" value={category} _onChange={(e)=>{
                 setCategory(e.target.value);
               }} >
                 <option name="middle1" value="1"> 중1 </option>
@@ -134,11 +134,11 @@ const EditBtn = styled.button`
   width:100%;
   background-color:#889CF2;
   color:#fff;
-  font-size:18px;
+  font-size:0.8vw;
   font-weight:500;
   text-align:center;
-  height:52px;
-  line-height:52px;
+  height:3vw;
+  line-height:3vw;
   border-radius: 11px;
   border:none;
   outline:none;
@@ -151,12 +151,12 @@ const NickEdit = styled.div`
 
   >button {
     position:absolute;
-    top:47px;
-    right:18px;
+    top:2.6vw;
+    right:0.8vw;
     border:none;
     background-color:#889cf2;
     color:#fff;
-    font-size:12px;
+    font-size:0.7vw;
     padding:6px 20px;
     border-radius:20px;
     cursor:pointer;
@@ -166,7 +166,7 @@ const NickEdit = styled.div`
   position: absolute;
   right:0;
   top:0;
-  font-size:12px; 
+  font-size:0.7vw; 
 }
 
 

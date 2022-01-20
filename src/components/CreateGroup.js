@@ -142,7 +142,7 @@ function CreateGroup({ showModal, closeModal }) {
                   className="mb20"
                   text="방제"
                   placeholder="공부 목적을 적어주세요"
-                  margin="16px 0 0 0"
+                  margin="0.8vw 0 0 0"
                 />
                 <div className="group_modal_roomStatus" onClick={is_status}>
                   {roomStatus == "0" ? (
@@ -161,7 +161,7 @@ function CreateGroup({ showModal, closeModal }) {
                     className="mb20"
                     text="비밀번호"
                     placeholder="비밀방 비밀번호 "
-                    margin="16px 0 0 0"
+                    margin="0.8vw 0 0 0"
                   />
                 )}
               </div>
@@ -247,10 +247,10 @@ function CreateGroup({ showModal, closeModal }) {
                 //임시로 group 페이지로 이동하기
                 //_onClick={()=>{history.push('/group');}}
                 border="none"
-                height="54px"
-                radius="11px"
-                fontSize="18px"
-                margin="40px 0 40px 0"
+                height="3.7vw"
+                radius="0.76vw"
+                fontSize="1.2vw"
+                margin="2vw 0 2vw 0"
                 weight="600"
                 background="#889CF2"
               >
@@ -281,23 +281,22 @@ const ModalBG = styled.div`
 `;
 const ModalBox = styled.div`
   position: fixed;
-  width: 548px;
+  width: 36vw;
   height: auto;
-  border-radius: 16px;
+  border-radius: 0.8vw;
   background-color: #fff;
   top: 50%;
   left: 50%;
-  margin-top: -20%;
-  margin-left: -274px;
+  transform: translate(-50%, -50%);
   z-index: 99999 !important;
   line-height: 1.2;
 `;
 
 const ModalInnerContainer = styled.div`
-  width: 460px;
+  width: 31.94vw;
   height: auto;
   margin: 0 auto;
-  margin-top: 37px;
+  margin-top: 2vw;
   text-align: left;
 `;
 

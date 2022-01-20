@@ -93,9 +93,9 @@
 
 .group_modal_title {
   color: #242424;
-  font-size: 0.8vw;
+  font-size: 1vw;
   font-weight: bold;
-  margin-left: 0.9vw;
+  margin-left: 0.5vw;
 }
 .group_modal_hr {
   background: #e7e7e7;
@@ -105,7 +105,7 @@
 }
 
 .group_modal_subtitle {
-  font-size: 0.8vw;
+  font-size: 0.9vw;
   margin-bottom: 0.9vw;
 }
 
@@ -114,10 +114,10 @@
 }
 .group_modal_roomStatus {
   position: absolute;
-  top: 3vw;
+  top: 2.6vw;
   right: 0.9vw;
   display: inline-block;
-  width: 2vw;
+  width: 1.5vw;
   cursor: pointer;
 }
 .group_modal_roomStatus > img {

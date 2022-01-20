@@ -60,7 +60,7 @@ const Select = (props) => {
 
 Select.defaultProps = {
   _onChange: () => {},
-  size: "18px",
+  size: "0.8vw",
   top: "7.07vh",
   right: "21px",
   width: "498px",
@@ -68,21 +68,21 @@ Select.defaultProps = {
 };
 
 const GroupSelectLabel = styled.label`
-  font-size: 16px;
+  font-size: 0.9vw;
   font-weight: normal;
   position: relative;
 `;
 const GroupSelect = styled.select`
   width: 100%;
-  height: 44px;
-  border-radius: 11px;
-  font-size: 16px;
+  height: 3vw;
+  border-radius: 0.76vw;
+  font-size: 0.9vw;
   font-weight: bold;
-  padding: 0 27px;
+  padding: 0 1.88vw;
   background-color: #f4f4f4;
   border: none;
   color: #222;
-  margin-top: 16px;
+  margin-top: 0.9vw;
   text-align: center;
   appearance: none;
   -webkit-appearance: none; /* for chrome */
@@ -90,8 +90,8 @@ const GroupSelect = styled.select`
 
   background-image: url(${arrow});
   background-repeat: no-repeat;
-  background-position: 95% 17px;
-  background-size: 24px;
+  background-position: 95% 1.18vw;
+  background-size: 0.8vw;
   :focus {
     outline: none;
   }
@@ -122,7 +122,7 @@ const ElSelect = styled.select`
   font-size: 24px;
   padding: 0 27px;
   background-color: #f4f4f4;
-  font-size: 18px;
+  font-size: 0.8vw;
   color: #7a7d81;
   appearance: none;
   -webkit-appearance: none; /* for chrome */

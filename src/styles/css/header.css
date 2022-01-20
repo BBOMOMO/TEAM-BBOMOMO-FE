@@ -2,12 +2,12 @@
 
 .header_modal_container {
   position: absolute;
-  width: 451px;
-  min-height: 300px;
+  width: 25vw;
+  min-height: 20.83vw;
   background: #ffffff;
-  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);
-  border-radius: 16px;
-  padding: 25px 20px;
+  box-shadow: 0.00vw 0.28vw 2.43vw 0.28vw rgba(162, 162, 162, 0.25);
+  border-radius: 1.11vw;
+  padding: 1.74vw 1.39vw;
   box-sizing: border-box;
 }
 
@@ -18,26 +18,26 @@
 }
 
 .header_modal_container .header_modal_nothing img {
-  width: 144px;
+  width: 7vw;
   padding: 30px 0;
 }
 
 .alarm_modal {
   position: fixed;
-  top: 110px;
-  right: 315px;
+  top: 6vw;
+  right: 17vw;
   z-index: 999;
 }
 .chat_modal {
   position: fixed;
-  top: 110px;
-  right: 205px;
+  top: 6vw;
+  right: 13vw;
   z-index: 999;
 }
 .info_modal {
   position: fixed;
-  top: 110px;
-  right: 100px;
+  top: 6vw;
+  right: 9vw;
   z-index: 999;
 }
 
@@ -55,9 +55,9 @@
 }
 .group_modal_close {
   position: absolute;
-  top: 22px;
-  right: 18px;
-  width: 24px;
+  top: 1.2vw;
+  right: 1.5vw;
+  width: 1.2vw;
   cursor: pointer;
 }
 .group_modal_goback {
@@ -167,7 +167,7 @@
 
 /* 개인정보수정 */
 .personal_info_edit {
-  padding: 45px 0 25px 0;
+  padding: 2vw 0 1vw 0;
 }
 .division_edit {
   margin-top: 20px;
@@ -177,14 +177,14 @@
   position: initial !important;
 }
 .userservice {
-  padding-top: 26px;
+  padding-top: 1vw;
   box-sizing: border-box;
 }
 .userservice_btn {
-  padding-left: 34px;
-  font-size: 16px;
-  height: 62px;
-  line-height: 65px;
+  padding-left: 1vw;
+  font-size: 0.9vw;
+  height: 3.2vw;
+  line-height: 3.2vw;
   border: 1px solid #e7e7e7;
   box-sizing: border-box;
   border-radius: 11px;
@@ -199,9 +199,10 @@
   border: 1px solid #e7e7e7;
   border-radius: 11px;
   line-height: 48px;
-  width: 93px;
-  height: 48px;
+ padding:1vw;
+ line-height:1vw;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 1vw;
   cursor: pointer;
+  font-size:0.9vw;
 }

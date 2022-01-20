@@ -117,7 +117,8 @@ const CheckboxLabel = styled.label`
     padding: 15px 20px;
     background-color: #f4f4f4;
     border-radius: 11px;
-    margin: 0 15px 16px 0;
+    margin: 0 0.8vw 0.9vw 0;
+    font-size:0.9vw;
     cursor: pointer;
   }
 `;
@@ -127,25 +128,26 @@ const CheckInput = styled.input`
   :checked + span {
     background-color: #d8d8d8;
     font-weight: bold;
+    font-size:0.9vw;
   }
 `;
 
 const GroupLabel = styled.label`
-  font-size: 16px;
+  font-size: 0.9vw;
   font-weight: normal;
 `;
 
 const GroupInput = styled.input`
   width: 100%;
-  height: 44px;
+  height: 3vw;
   border-radius: 11px;
   background-color: #f4f4f4;
   color: #7a7d81;
   border: none;
-  margin: 16px 0 0 0;
+  margin: 0.9vw 0 0 0;
   padding-left: 21px;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 0.9vw;
   outline: none;
   ::placeholder {
     color: #c6c6c6;
