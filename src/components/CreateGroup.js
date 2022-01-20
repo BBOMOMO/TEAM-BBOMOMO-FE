@@ -247,10 +247,10 @@ function CreateGroup({ showModal, closeModal }) {
                 //임시로 group 페이지로 이동하기
                 //_onClick={()=>{history.push('/group');}}
                 border="none"
-                height="3.7vw"
+                height="3.2vw"
                 radius="0.76vw"
                 fontSize="1.2vw"
-                margin="2vw 0 2vw 0"
+                margin="1vw 0 2vw 0"
                 weight="600"
                 background="#889CF2"
               >
@@ -281,7 +281,7 @@ const ModalBG = styled.div`
 `;
 const ModalBox = styled.div`
   position: fixed;
-  width: 36vw;
+  width: 30vw;
   height: auto;
   border-radius: 0.8vw;
   background-color: #fff;
@@ -293,7 +293,7 @@ const ModalBox = styled.div`
 `;
 
 const ModalInnerContainer = styled.div`
-  width: 31.94vw;
+  width: 26vw;
   height: auto;
   margin: 0 auto;
   margin-top: 2vw;
