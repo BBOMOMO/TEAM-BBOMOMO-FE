@@ -68,21 +68,21 @@ Select.defaultProps = {
 };
 
 const GroupSelectLabel = styled.label`
-  font-size: 16px;
+  font-size: 0.9vw;
   font-weight: normal;
   position: relative;
 `;
 const GroupSelect = styled.select`
   width: 100%;
-  height: 44px;
-  border-radius: 11px;
-  font-size: 16px;
+  height: 3vw;
+  border-radius: 0.76vw;
+  font-size: 0.9vw;
   font-weight: bold;
-  padding: 0 27px;
+  padding: 0 1.88vw;
   background-color: #f4f4f4;
   border: none;
   color: #222;
-  margin-top: 16px;
+  margin-top: 0.9vw;
   text-align: center;
   appearance: none;
   -webkit-appearance: none; /* for chrome */
@@ -90,8 +90,8 @@ const GroupSelect = styled.select`
 
   background-image: url(${arrow});
   background-repeat: no-repeat;
-  background-position: 95% 17px;
-  background-size: 24px;
+  background-position: 95% 1.18vw;
+  background-size: 1vw;
   :focus {
     outline: none;
   }
