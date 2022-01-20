@@ -9,7 +9,7 @@
 .certifi_title {
   display: flex;
   justify-content: space-between;
-  padding: 2vw 0 2vw 0.9vw;
+  padding: 0 0 2vw 0.9vw;
 }
 .certifi_title > h2 {
   color: #000000;
@@ -67,14 +67,14 @@
   position: absolute;
   top: 0;
   box-sizing: border-box;
-  width: 12.50vw;
-  height: 2.92vw;
+  width: 10vw;
+  height: 2.8vw;
   background: #fefefc;
   border: 1px solid #e6e6e6;
-  border-radius: 3.68vw;
+  border-radius: 4vw;
   color: #959595;
   font-weight: 600;
-  font-size: 1vw;
+  font-size: 0.9vw;
   line-height: 1vw;
   cursor: pointer;
   *z-index: 99;
