@@ -177,7 +177,7 @@
 
 .certifi_card_bottom_comment {
   display: flex;
-  cursor:pointer;
+  cursor: pointer;
 }
 .certifi_card_bottom_comment > img {
   margin-right: 0.49vw;
@@ -232,17 +232,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 27.50vw;
+  width: 100%;
 }
 .certifi_write_post_top > textarea {
-  padding: 1.67vw;
+  padding: 1vw;
   width: 100%;
-  height: 8.47vw;
+  height: 7.2vw;
   border: none;
   border-radius: 0.76vw;
   background-color: rgba(255, 255, 255, 0.8);
   color: #7a7d81;
-  font-size: 1.11vw;
+  font-size: 0.9vw;
   font-weight: 600;
   line-height: 1.53vw;
   letter-spacing: -0.0041em;
@@ -251,11 +251,13 @@
 }
 .certifi_write_post_bx .bg_btn_bx {
   display: flex;
+  justify-content: center;
+  gap: 0.4vw;
+  width: 100%;
 }
 .certifi_write_post_bx .bg_btn {
-  margin-left: 1.39vw;
-  width: 4.17vw;
-  height: 4.17vw;
+  width: 4vw;
+  height: 4vw;
   border: none;
   background-size: cover;
 }
@@ -347,7 +349,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 27.50vw;
+  width: 27.5vw;
 }
 .certifi_comment_bg > h3 {
   margin-bottom: 1.25vw;
@@ -389,9 +391,9 @@
 .my_profile_img_bx {
   overflow: hidden;
   margin-right: 1.53vw;
-  width: 2.50vw;
-  height: 2.50vw;
-  border-radius: 2.50vw;
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 2.5vw;
 }
 .my_profile_img_bx > img {
   width: 100%;
@@ -417,10 +419,10 @@
   cursor: pointer;
 }
 
-.my_profile_right .post_del_btn:hover{
-  background:#889cf2;
-  color:#fff;
-  border:1px solid #889cf2;
+.my_profile_right .post_del_btn:hover {
+  background: #889cf2;
+  color: #fff;
+  border: 1px solid #889cf2;
 }
 .certifi_conmment_input_bx {
   position: relative;
@@ -437,16 +439,15 @@
 /* 댓글 컴포넌트 css */
 
 .comment_cont_right {
-  width:100%;
-padding:1vw 1vw 0 2.2vw;
-box-sizing: border-box;
+  width: 100%;
+  padding: 1vw 1vw 0 2.2vw;
+  box-sizing: border-box;
 }
 .certifi_conmment_list_bx {
   *overflow: scroll;
   margin-bottom: 2vw;
   *width: 33.13vw;
   height: 30.17vw;
-  
 }
 
 .certifi_conmment_list_bx .none {
@@ -459,7 +460,7 @@ box-sizing: border-box;
   width: 6.25vw;
   /* height: 3.13vw; */
   background: #ffffff;
-  box-shadow: 0.00vw 0.07vw 0.56vw 0.14vw rgba(150, 150, 150, 0.25);
+  box-shadow: 0vw 0.07vw 0.56vw 0.14vw rgba(150, 150, 150, 0.25);
   color: #242424;
   font-size: 0.9vw;
   font-weight: 600;
@@ -483,9 +484,9 @@ box-sizing: border-box;
 .certifi_conmment_list .list_img_bx {
   overflow: hidden;
   margin-right: 1vw;
-  width: 2.50vw;
-  height: 2.50vw;
-  border-radius: 2.50vw;
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 2.5vw;
 }
 .certifi_conmment_list .list_img_bx > img {
   width: 100%;
