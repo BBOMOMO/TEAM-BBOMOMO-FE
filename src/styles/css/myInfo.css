@@ -1,16 +1,15 @@
 .myinfo_container {
   position: sticky;
-  top: 0;
+  top: 8.5vh;
   left: 0;
   *width: 45.8333vw;
-  height: 100vh;
+  height: calc(100vh - 8.5vh);
   text-align: center;
   background: #f8fdfd;
-  *background: #50c2c2;
   border-radius: 0 0 3.5vw 0;
   *padding: 5.5556vw 8.0556vw;
   box-sizing: border-box;
-  padding:8.5vh 0 0 0;
+  padding:2vw 0 0 0;
 
 }
 .myInfo_contents_wrap {

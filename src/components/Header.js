@@ -133,7 +133,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   width: 100%;
   background: #fff;
-  z-index: 2;
+  z-index: 1;
   > img {
     *height: 40px;
     height:3vh;

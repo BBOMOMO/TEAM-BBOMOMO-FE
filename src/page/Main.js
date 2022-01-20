@@ -73,6 +73,7 @@ const MainContainer = styled.div`
     width: 100%;
     position: relative;
     flex: 0.65;
+    *z-index:0;
     
   }
   .main_contentArea {
@@ -90,6 +91,7 @@ const AdSection = styled.div`
   position: relative;
   width: 100%;
   height: 9vw;
+  z-index:0;
   > img {
     width: 100%;
   }
