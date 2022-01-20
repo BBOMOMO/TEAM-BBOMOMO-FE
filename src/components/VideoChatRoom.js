@@ -54,7 +54,7 @@ const ChatRoom = styled.div`
       video {
         width: calc(100% - 1px);
         height: calc(78% - 1px);
-        border-radius: 11px;
+        border-radius: 18px;
         object-fit: cover;
         position: relative;
         }
