@@ -60,7 +60,7 @@ const Select = (props) => {
 
 Select.defaultProps = {
   _onChange: () => {},
-  size: "18px",
+  size: "0.8vw",
   top: "7.07vh",
   right: "21px",
   width: "498px",
@@ -91,7 +91,7 @@ const GroupSelect = styled.select`
   background-image: url(${arrow});
   background-repeat: no-repeat;
   background-position: 95% 1.18vw;
-  background-size: 1vw;
+  background-size: 0.8vw;
   :focus {
     outline: none;
   }
@@ -122,7 +122,7 @@ const ElSelect = styled.select`
   font-size: 24px;
   padding: 0 27px;
   background-color: #f4f4f4;
-  font-size: 18px;
+  font-size: 0.8vw;
   color: #7a7d81;
   appearance: none;
   -webkit-appearance: none; /* for chrome */
