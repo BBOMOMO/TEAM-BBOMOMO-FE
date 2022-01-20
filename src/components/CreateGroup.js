@@ -287,8 +287,7 @@ const ModalBox = styled.div`
   background-color: #fff;
   top: 50%;
   left: 50%;
-  margin-top: -20%;
-  margin-left: -19.03vw;
+  transform: translate(-50%, -50%);
   z-index: 99999 !important;
   line-height: 1.2;
 `;
