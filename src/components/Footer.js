@@ -40,12 +40,12 @@ const FooterContainer = styled.div`
   height: 5.5vw;
   background: #eff6f8;
   color: #959595;
-  font-size: 1vw;
+  font-size: 0.8vw;
   font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 120px 0 200px;
+  padding: 0 9vw 0 9vw;
   box-sizing: border-box;
 
   > ul {
@@ -54,7 +54,7 @@ const FooterContainer = styled.div`
   }
   > ul li {
     display: inline-block;
-    margin-right: 30px;
+    margin-right: 2vw;
   }
 
   > ul li:after {
