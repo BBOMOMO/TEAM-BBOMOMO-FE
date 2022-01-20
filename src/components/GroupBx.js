@@ -51,7 +51,7 @@ const GroupBx = (props) => {
               return (
                 <div className="group_name_wrap">
                   <p className="state_name_txt" key={p.idx}>
-                    <span className="state_name_circle">동그라미</span>
+                    <span className="state_name_circle"></span>
                     {/* 이 부분 닉네임으로 넘겨주기로 했음 */}
                     {p.nick}
                   </p>
@@ -88,19 +88,19 @@ GroupBx.defaultProps = {
 
 const RoomTimeInfo = styled.div`
 position:absolute;
-bottom: 17px;
-right: 77px;
-font-size:14px;
+bottom: 0.5vw;
+right: 4vw;
+font-size:0.8vw;
 
 `;
 const GroupCont = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding: 20px 22px 16px;
-  width: 330px;
-  height: 180px;
-  border-radius: 11px;
+  padding: 1vw 1vw 0.5vw;;
+  width: 17.1vw;
+  height: 10vw;
+  border-radius: 0.7vw;
   background-color: #eee;
   box-sizing: border-box;
   overflow: hidden;

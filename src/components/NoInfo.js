@@ -15,13 +15,14 @@ const NoInfo = (props) => {
   return (
     <>
       <div className="myinfo_container">
+      <div className="myInfo_contents_wrap">
       {userId ? 
       //로그인 회원 새로고침 시 비로그인 화면 나오는 부분 스피너 처리
       ( <Spinner/>):
       ( <>
           <div className="myinfo_profile_area">
             <CircleWrap>
-              <img src={roundCircle} style={{ width: "260px" }} />
+              <img src={roundCircle} style={{ width: "13.5vw" }} />
               <Circlebar />
             </CircleWrap>
             <img src={user} className="myinfo_user_img" /> 
@@ -38,11 +39,6 @@ const NoInfo = (props) => {
           </div>
         </>
       )}
-        
-        <div className="myinfo_studytime">
-          <MyContents/>
-        </div>
-        
         <div className="myinfo_make_group disabled" 
         onClick={()=>{
           window.alert("로그인 후 사용하세요.");
@@ -50,6 +46,13 @@ const NoInfo = (props) => {
         }}>
           <p>+ 스터디룸 만들기</p>
         </div>
+        
+        <div className="myinfo_studytime">
+          <MyContents/>
+        </div>
+        
+        
+      </div>
       </div>
     </>
   );
@@ -59,7 +62,7 @@ export default NoInfo;
 const Circlebar = styled.span`
   position: absolute;
   display: block;
-  width: 50%;
+  width: 6.7vw;
   height: 1px;
   *background: #ff0000;
   left: 50%;
@@ -74,8 +77,10 @@ const Circlebar = styled.span`
     top: -14px;
     right: -10px;
     display: block;
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
+    width:1.6vw;
+    height:1.6vw;
     border-radius: 50%;
     background-color: #fff;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
@@ -89,7 +94,8 @@ const Circlebar = styled.span`
 const CircleWrap = styled.div`
   position: relative;
   display: block;
-  width: 260px;
-  height: 260px;
+  /* width: 260px;
+  height: 260px; */
   margin: 0 auto;
+  margin-top:3vw;
 `;

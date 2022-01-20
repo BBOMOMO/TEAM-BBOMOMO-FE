@@ -234,8 +234,8 @@ const CertificationComment = ({ showModal, closeModal }) => {
                     <Input
                       value={commentText}
                       boxSizing
-                      height="54px"
-                      radius="11px"
+                      height="3vw"
+                      radius="0.8vw"
                       border="none"
                       display="block"
                       color="#7A7D81"
@@ -266,10 +266,10 @@ const CertificationComment = ({ showModal, closeModal }) => {
 const CertificationCommentListBx = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.69vw;
   .delete_img {
-    width: 21px;
-    height: 21px;
+    width: 1.46vw;
+    height: 1.46vw;
     cursor: pointer;
   }
 `;
@@ -289,9 +289,9 @@ const ModalBG = styled.div`
 `;
 const ModalBox = styled.div`
   position: fixed;
-  width: 1096px;
+  width: 55vw;
   height: auto;
-  border-radius: 16px;
+  border-radius: 0.76vw;
   background-color: #fff;
   top: 50%;
   left: 50%;
@@ -301,21 +301,23 @@ const ModalBox = styled.div`
 `;
 
 const ModalInnerContainer = styled.div`
-  width: 1030px;
+  width: 55vw;
   height: auto;
   margin: 0 auto;
-  margin-top: 44px;
-  margin-bottom: 44px;
+  *margin-top: 3.06vw;
+  *margin-bottom: 3.06vw;
+  padding:2vw;
+  box-sizing: border-box;
   text-align: left;
 `;
 
 const ModalInnerBg = styled.div`
   position: relative;
-  margin-bottom: 40px;
-  padding: 56px 30px 30px;
-  width: 456px;
-  height: 564px;
-  border-radius: 11px;
+  margin-bottom: 2vw;
+  padding: 3.89vw 2.08vw 2.08vw;
+  width: 23.67vw;
+  height: 31.17vw;
+  border-radius: 0.76vw;
   background-repeat: no-repeat;
   background-size: cover;
   &.bg_black:before {
@@ -324,9 +326,9 @@ const ModalInnerBg = styled.div`
     background-color: rgba(0, 0, 0, 50%);
     top: 0;
     left: 0;
-    width: 456px;
-    height: 564px;
-    border-radius: 11px;
+    width: 23.67vw;
+    height: 31.17vw;
+    border-radius: 0.76vw;
   }
 `;
 

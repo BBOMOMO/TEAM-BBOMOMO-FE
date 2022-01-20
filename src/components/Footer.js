@@ -37,10 +37,10 @@ export default Footer;
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 100px;
+  height: 5.5vw;
   background: #eff6f8;
   color: #959595;
-  font-size: 16px;
+  font-size: 1vw;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -61,8 +61,8 @@ const FooterContainer = styled.div`
     content: "";
     position: absolute;
     width: 1px;
-    height: 18px;
-    margin-left: 14px;
+    height: 1.1vw;
+    margin-left: 0.9vw;
     background-color: #e7e7e7;
   }
   > ul li:last-child:after {

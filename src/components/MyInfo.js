@@ -215,5 +215,5 @@ const CircleWrap = styled.div`
   /* width: 260px;
   height: 260px; */
   margin: 0 auto;
-  margin-top:2vw;
+  margin-top:3vw;
 `;

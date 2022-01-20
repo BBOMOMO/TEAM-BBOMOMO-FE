@@ -3,22 +3,22 @@
   flex: 0.2;
 }
 .group_left_h2 {
-  width: 210px;
-  margin-bottom: 12px;
+  width: 12vw;
+  margin-bottom: 0.9vw;
   color: #242424;
-  font-size: 16px;
+  font-size: 0.8vw;
   font-weight: 600;
-  line-height: 26px;
+  line-height: 1.2vw;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .group_left_h2 > span {
-  margin-right: 8px;
-  padding: 5px 10px;
+  margin-right: 0.5vw;
+  padding: 0.2vw 0.5vw;
   background-color: #fff;
-  border-radius: 10px;
-  font-size: 12px;
+  border-radius: 0.9vw;
+  font-size: 0.7vw;
   font-weight: 400;
   color: #242424;
 }
@@ -30,35 +30,36 @@
 .group_name_wrap {
   max-width: 50%;
   min-width: 34%;
+  margin-right:4px;
 }
 .state_name_txt {
   display: inline-block;
-  padding: 4px 8px 4px 6px;
-  border: 0.37px solid rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
+  padding: 0.2vw 0.5vw 0.1vw 0.5vw;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1vw;
   color: #282828;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 0.7vw;
+  line-height: 0.7vw;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 130px;
+  max-width: 9vw;
   text-overflow: ellipsis;
 }
 .state_name_circle {
   display: inline-block;
-  margin-right: 4px;
-  width: 13.32px;
-  height: 13.32px;
-  border-radius: 13.32px;
+  margin-right: 0.2vw;
+  width: 0.7vw;
+  height: 0.7vw;
+  border-radius: 50%;
   background: #797979;
-  text-indent: -9999px;
+  text-indent: -694vw;
 }
 .state_name_txt + .state_name_txt {
-  *margin-top: 4px;
+  *margin-top: 0vw;
 }
 
 .group_right_bx {
-  flex: 0.2;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,43 +70,43 @@
   justify-content: flex-end;
 }
 .ic_top_bx > img {
-  width: 20px;
-  height: 20px;
+  width: 0.9vw;
+  height: 0.9vw;
   mix-blend-mode: difference;
 }
 .ic_bottom_bx {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  gap: 5px;
+  gap: 0.5vw;
 }
 .ic_bottom_bx > img {
-  width: 15px;
-  height: 15px;
+  width: 0.9vw;
+  height: 0.9vw;
   mix-blend-mode: difference;
 }
 .ic_bottom_bx > p {
   color: #282828;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-weight: 600;
 }
 
 .group_modal_title {
   color: #242424;
-  font-size: 18px;
+  font-size: 0.8vw;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 0.9vw;
 }
 .group_modal_hr {
   background: #e7e7e7;
   width: 100%;
   height: 1px;
-  margin: 20px 0;
+  margin: 0.9vw 0;
 }
 
 .group_modal_subtitle {
-  font-size: 16px;
-  margin-bottom: 16px;
+  font-size: 0.8vw;
+  margin-bottom: 0.9vw;
 }
 
 .group_modal_relative {
@@ -113,10 +114,10 @@
 }
 .group_modal_roomStatus {
   position: absolute;
-  top: 44px;
-  right: 14px;
+  top: 3vw;
+  right: 0.9vw;
   display: inline-block;
-  width: 24px;
+  width: 2vw;
   cursor: pointer;
 }
 .group_modal_roomStatus > img {
@@ -127,7 +128,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 24px;
+  width: 2vw;
   cursor: pointer;
 }
 .group_modal_close > img {
@@ -178,10 +179,10 @@
 .cloudy_bg {
   pointer-events: none !important;
   position: absolute;
-  width: 330px;
+  width: 17.6vw;
+  height: 10vw;
   top: 0;
-  height: 180px;
-  border-radius: 11px;
+  border-radius: 0;
   background-color: rgb(255 255 255 / 60%);
   left: 0;
   display: flex;
@@ -190,20 +191,20 @@
   flex-direction: column;
 }
 .cloudy_bg > img {
-  width: 28px;
-  height: 34px;
+  width: 2vw;
+  height: 2.3vw;
 }
 .cloudy_bg > p {
-  margin-top: 10px;
+  margin-top: 0.2vw;
   color: #486bff;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 0.8vw;
+  line-height: 1.5vw;
 }
 .groupTimer_end_btn {
   position: absolute;
   border: 1px solid #d7d7d7;
-  border-radius: 38px;
+  border-radius: 3vw;
   width: 4.58vw;
   height: 3.48vh;
   text-align: center;
@@ -219,7 +220,7 @@
 .groupTimer_progress_background {
   width: 100%;
   height: 1.13vh;
-  border-radius: 31px;
+  border-radius: 2vw;
   background-color: #eaeaea;
   position: absolute;
   left: 50%;
@@ -227,9 +228,9 @@
   transform: translate(-50%, -50%);
 }
 .groupTimer_progress_bar {
-  width: 0px;
+  width: 0.5vw;
   height: 1.13vh;
-  border-radius: 31px;
+  border-radius: 2vw;
   background: linear-gradient(
     90deg,
     #eaf692 4.65%,
@@ -253,12 +254,12 @@
   background-image: url(../../Images/flag.png);
   position: absolute;
   top: 0;
-  right: -24px;
+  right: -2vw;
   transform: translateY(-76%);
   background-size: contain;
 }
 .groupTimer_round {
-  padding: 7px 12px;
+  padding: 0.5vw 0.9vw;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -279,7 +280,7 @@
 }
 .video_modal_fighting {
   color: #fff;
-  font-size: 30px;
+  font-size: 2vw;
   position: absolute;
   top: 20%;
   left: 50%;
@@ -288,15 +289,15 @@
 .video_modal_round {
   color: #fff;
   font-weight: 800;
-  font-size: 80px;
+  font-size: 6vw;
   position: absolute;
   top: 25%;
   left: 50%;
   transform: translateX(-50%);
 }
 .video_modal_img {
-  width: 476px;
-  height: 540px;
+  width: 33vw;
+  height: 38vw;
   position: absolute;
   top: 35%;
   left: 50%;
@@ -304,8 +305,8 @@
 }
 .video_modal_close_btn {
   position: absolute;
-  top: 80px;
-  right: 100px;
+  top: 6vw;
+  right: 7vw;
   z-index: 101;
   cursor: pointer;
 }
@@ -316,7 +317,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 11px;
+  border-radius: 0.9vw;
   background-color: #000;
   opacity: 0.7;
   display: none;
@@ -327,7 +328,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 11px;
+  border-radius: 0.9vw;
   background-image: url(../../Images/view.png);
   background-size: cover;
   background-position: center;
