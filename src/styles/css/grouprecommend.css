@@ -1,28 +1,32 @@
 .groupreco_bx {
-  max-width: 1018px;
+  *max-width: 71vw;
   /* 헤더만큼 margin */
-  *margin-top: 80px;
+  *margin-top: 6vw;
 }
 .groupreco_top {
   display: flex;
   justify-content: space-between;
-  margin: 30px 14px;
+  align-items: center;
+  margin: 1vw 0vw 1.5vw 1vw;
 }
 .groupreco_top > h2 {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 37px;
+  font-size: 1.2vw;
+  font-weight: bold;
+  line-height: 3vw;
 }
 .groupreco_search {
   display: flex;
 }
 .hashtag_list_bx {
   display: flex;
+  height:4.5vh;
 }
 .hashtag_list_bx > button {
-  margin-right: 10px;
+  margin-right: 0.5vw;
 }
-
+.hashtag_list_bx > button:last-child{
+  margin-right:0;
+}
 .search_bx {
   position: relative;
 }
@@ -30,8 +34,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 20px;
-  height: 20px;
+  width: 1vw;
+  height: 1vw;
 }
 
 /* 그룹 목록 카드 */
@@ -40,54 +44,54 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  gap: 14px;
+  gap: 0.6vw;
 }
 /* .groupbx_card {
-  margin: 0 0 14px 14px;
+  margin: 0 0 1vw 1vw;
 }
 .groupbx_card:nth-child(3n + 1) {
-  margin: 0 0 14px 0;
+  margin: 0 0 1vw 0;
 } */
 .search_bx {
   position: relative;
-  width: 41px;
+  width: 3vw;
 }
 .search_bx_input {
   width: 100%;
   border: none;
-  border-radius: 18px;
+  border-radius: 1vw;
   background: #eee;
 }
 .search_bx > img {
   position: absolute;
-  top: 6px;
-  right: 7px;
-  width: 23px;
-  height: 23px;
+  top: 0.5vw;
+  right: 0.5vw;
+  width: 2vw;
+  height: 2vw;
 }
 
 /* 더보기 버튼*/
 .groupreco_more_btn {
-  margin-top: 26px;
-  height: 80px;
+  margin-top: 2vw;
+  height: 6vw;
   display: flex;
   justify-content: center;
   position: relative;
 }
 .groupreco_more_btn::before {
   position: absolute;
-  top: 20px;
+  top: 1.5vw;
   left: 0;
-  width: 428px;
-  height: 1px;
+  width: 30vw;
+  height:1px;
   background: #e7e7e7;
   content: "";
 }
 .groupreco_more_btn::after {
   position: absolute;
-  top: 20px;
+  top: 1.5vw;
   right: 0;
-  width: 420px;
+  width: 29vw;
   height: 1px;
   background: #e7e7e7;
   content: "";
@@ -96,14 +100,15 @@
   position: absolute;
   top: 0;
   box-sizing: border-box;
-  width: 180px;
-  height: 42px;
+  width: 13vw;
+  height: 3vw;
   background: #fefefc;
   border: 1px solid #e6e6e6;
-  border-radius: 53px;
+  border-radius: 4vw;
   color: #959595;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 1vw;
+  line-height: 2vw;
   cursor: pointer;
+  z-index:1;
 }

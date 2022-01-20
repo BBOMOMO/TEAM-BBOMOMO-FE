@@ -285,12 +285,12 @@ const GroupRecommend = (props) => {
 export default GroupRecommend;
 
 const SearchTab = styled.button`
-  padding: 10px 18px;
+  padding: 0 0.8vw;
   border: 1px solid #adadad;
-  border-radius: 50px;
+  border-radius: 3vw;
   background-color: #fff;
   color: #000;
-  font-size: 14px;
+  font-size: 0.8vw;
   &:active,
   &:hover,
   &:focus {

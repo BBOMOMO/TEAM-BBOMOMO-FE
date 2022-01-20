@@ -71,5 +71,9 @@ const SwiperBx = styled.div`
   .swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: 0;
   }
+
+  .swiper-container-autoheight, .swiper-container-autoheight .swiper-slide {
+    padding-bottom:1vh;
+  }
 `;
 export default MainBanner;

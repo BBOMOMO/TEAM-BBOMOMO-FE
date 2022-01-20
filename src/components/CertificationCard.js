@@ -63,9 +63,9 @@ const CertifiCont = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  width: 330px;
-  height: 408px;
-  border-radius: 11px;
+  width: 17.1vw;
+  height: 22vw;
+  border-radius: 0.76vw;
   background-size: cover;
   box-sizing: border-box;
 `;

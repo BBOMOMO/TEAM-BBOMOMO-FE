@@ -73,20 +73,23 @@ const MainContainer = styled.div`
     width: 100%;
     position: relative;
     flex: 0.65;
+    
   }
   .main_contentArea {
     position: relative;
     *margin-left: 80px;
-    *width: 1018px;
+    width:52.5vw;
     margin: 0 auto;
+    *margin-left:4vw;
+    margin-right:9vw;
   }
 `;
 
 const AdSection = styled.div`
-  margin-top: 120px;
+  margin-top: 7vw;
   position: relative;
   width: 100%;
-  height: 150px;
+  height: 9vw;
   > img {
     width: 100%;
   }
