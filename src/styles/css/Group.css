@@ -118,7 +118,7 @@
   right: 0.9vw;
   display: inline-block;
   width: 1.5vw;
-  cursor: pointer;
+  *cursor: pointer;
 }
 .group_modal_roomStatus > img {
   width: 100%;
