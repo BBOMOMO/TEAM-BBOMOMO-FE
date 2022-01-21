@@ -32,13 +32,23 @@ const Private = (props) => {
           </PrivateModalTop>
           <PrivateModalMid>
             <p className="privateModal_mid_password">비밀번호</p>
-            <Input height="4.51vh" _onChange={onChangePwd} value={pwd} />
+            <Input
+              height="4.51vh"
+              _onChange={onChangePwd}
+              value={pwd}
+              type="password"
+              placeholder="4글자 이상의 비밀번호를 작성해주세요."
+            />
           </PrivateModalMid>
           <PrivateModalBot>
             <p
               className="privateModal_bot_btn"
               onClick={() => {
-                dispatch(roomActions.roomPwCheckDB(roomId, pwd));
+                if (pwd.length < 4) {
+                  window.alert("4글자 이상의 비밀번호를 작성해주세요.");
+                } else {
+                  dispatch(roomActions.roomPwCheckDB(roomId, pwd));
+                }
               }}
             >
               입장하기
