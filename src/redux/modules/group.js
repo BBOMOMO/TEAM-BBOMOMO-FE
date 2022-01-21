@@ -13,6 +13,7 @@ const GROUP_MODAL = "GROUP_MODAL";
 const GROUP_ROUND = "GROUP_ROUND";
 const PRIVATE_ROOM = "PRIVATE_ROOM";
 const PRIVATE_STATE = "PRIVATE_STATE";
+const GROUP_END_MODAL = "GROUP_END_MODAL";
 
 // action creators
 const loadRooms = createAction(LOAD_ROOMS, (room_list) => ({ room_list }));
@@ -29,6 +30,9 @@ const privateRoom = createAction(PRIVATE_ROOM, (roomId, privateState) => ({
 const privateState = createAction(PRIVATE_STATE, (privateState) => ({
   privateState,
 }));
+const groupEndModal = createAction(GROUP_END_MODAL, (endModalState) => ({
+  endModalState,
+}));
 
 // initialState
 const initialState = {
@@ -40,6 +44,7 @@ const initialState = {
     roomId: null,
     privateState: false,
   },
+  endModalState: false,
 };
 
 // middlewares
@@ -184,6 +189,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.roomState.privateState = action.payload.privateState;
       }),
+    [GROUP_END_MODAL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.endModalState = action.payload.endModalState;
+      }),
   },
   initialState
 );
@@ -200,4 +209,5 @@ export const actionCreators = {
   privateRoom,
   roomPwCheckDB,
   privateState,
+  groupEndModal,
 };

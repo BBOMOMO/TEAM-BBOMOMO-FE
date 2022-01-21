@@ -14,6 +14,7 @@ import profile from "../Images/profile.png";
 import dotenv from "dotenv";
 import PostChat from "../components/PostChat";
 import VideoModal from "../components/VideoModal";
+import VideoEndModal from "../components/VideoEndModal";
 import { getContrastRatio } from "@material-ui/core";
 import CameraBtn from "./CameraBtn";
 import poster from "../Images/view.png";
@@ -79,6 +80,7 @@ export default function VideoChatRoom() {
   const params = useParams();
   const roomId = params.roomId;
   const modalState = useSelector((state) => state.group.modalState);
+  const endModalState = useSelector((state) => state.group.endModalState);
   const studyRound = useSelector((state) => state.group.round);
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
@@ -483,6 +485,7 @@ export default function VideoChatRoom() {
   return (
     <>
       {/* <ChatRoomNav /> */}
+      {endModalState ? <VideoEndModal endBtn={endBtn} /> : null}
       {modalState ? <VideoModal /> : null}
       <Header is_studyroom />
       <GroupContainer>
@@ -500,7 +503,12 @@ export default function VideoChatRoom() {
               >
                 {state}
               </p>
-              <p className="groupTimer_end_btn" onClick={endBtn}>
+              <p
+                className="groupTimer_end_btn"
+                onClick={() => {
+                  dispatch(groupAction.groupEndModal(true));
+                }}
+              >
                 공부 끝내기
               </p>
               <div className="groupTimer_progress_background"></div>

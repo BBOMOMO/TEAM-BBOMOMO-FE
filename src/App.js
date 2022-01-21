@@ -17,7 +17,6 @@ import PostChat from "./components/PostChat";
 import Group from "./page/Group";
 import Kakao from "./shared/social/Kakao";
 import Google from "./shared/social/Google";
-import Policy from "./page/Policy";
 
 import Main from "./page/Main";
 import NotFound from "./page/NotFound";
@@ -26,8 +25,8 @@ import VideoComponent from "./components/VideoComponent";
 import VideoChatRoom from "./components/VideoChatRoom";
 import Video from "./components/Video";
 import { useSelector, useDispatch } from "react-redux";
-import VideoModal from "./components/VideoModal";
-import Private from "./components/PrivateModal";
+import VideoCloseModal from "./components/VideoEndModal";
+
 function App() {
   return (
     <>
@@ -42,9 +41,7 @@ function App() {
         <Route path="/chat/:roomId" component={PostChat} exact />
         <Route path="/video/:roomId" exact component={VideoChatRoom} />
 
-        <Route path="/modal" component={VideoModal} />
-        <Route path="/policy" component={Policy} />
-        <Route path="/private" exact component={Private} />
+        <Route path="/modal" component={VideoCloseModal} />
         <Route path={"*"} component={NotFound} />
       </Switch>
     </>
