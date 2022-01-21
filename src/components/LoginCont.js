@@ -43,17 +43,17 @@ const LoginCont = (props) => {
             <img src={logo} alt="로고" />
           </h2>
 
-          <div className="mb20 login_input_id">
+          <div className=" login_input_id" >
             <img src={person} alt="사람 아이콘" />
             <Input
               value={id}
               text="아이디"
               boxSizing
-              height="62px"
-              radius="11px"
+              height="3.2vw"
+              radius="0.5vw"
               border="none"
               color="#7A7D81"
-              margin="16px 0 0 0"
+              margin="1vw 0 1.5vw 0"
               padding="0 0 0 60px"
               _onChange={(e) => {
                 setId(e.target.value);
@@ -68,12 +68,12 @@ const LoginCont = (props) => {
               type="password"
               text="비밀번호"
               boxSizing
-              height="62px"
-              radius="11px"
+              height="3.2vw"
+              radius="0.5vw"
               border="none"
               display="block"
               color="#7A7D81"
-              margin="16px 0 0 0"
+              margin="1vw 0 0 0"
               padding="0 0 0 60px"
               _onChange={(e) => {
                 setPw(e.target.value);
@@ -84,10 +84,11 @@ const LoginCont = (props) => {
 
           <Button
             border="none"
-            height="70px"
-            radius="11px"
-            margin="40px 0 40px 0"
+            height="3.5vw"
+            radius="0.5vw"
+            margin="3vw 0 1.5vw 0"
             weight="600"
+            fontSize="1.3vw"
             _onClick={gotoLogin}
           >
             로그인

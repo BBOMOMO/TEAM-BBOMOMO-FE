@@ -107,7 +107,7 @@ Input.defaultProps = {
   height: "6.35vh",
   radius: "11px",
   border: "none",
-  size: "15px",
+  size: "1vw",
   color: "#7A7D81",
 };
 
