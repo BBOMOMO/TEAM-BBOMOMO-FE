@@ -2,6 +2,8 @@ import { replace } from "lodash";
 import React from "react";
 import styled from "styled-components";
 import camera from "../Images/ic-camera-movie.png";
+import lock from "../Images/ic-lock-alt.png";
+import unlock from "../Images/ic-lock-open-alt.png";
 import person from "../Images/ic-people.png";
 import timer from "../Images/ic-timer.png";
 
@@ -9,6 +11,7 @@ const GroupBx = (props) => {
   const { roomLock, bgcolor, onClick } = props;
   const userlist = props.peopleInRoom;
   // const _private = props.private
+
 
   const [purpose, setPurpose] = React.useState("");
   const [started, setStarted] = React.useState(props.isStarted);
@@ -63,6 +66,8 @@ const GroupBx = (props) => {
 
       <div className="group_right_bx">
         <div className="ic_top_bx">
+         
+          {props.private == 0 ?  "" :  <img src={lock} alt="비밀방" />}
           <img src={camera} alt="카메라 아이콘" />
         </div>
         <div className="ic_bottom_bx">
@@ -91,7 +96,7 @@ GroupBx.defaultProps = {
 const RoomTimeInfo = styled.div`
   position: absolute;
   bottom: 0.5vw;
-  right: 4vw;
+  right: 4.2vw;
   font-size: 0.8vw;
 `;
 const GroupCont = styled.div`

@@ -68,6 +68,9 @@
   display: flex;
   justify-content: flex-end;
 }
+.ic_top_bx > img:first-child{
+  margin-right: 0.2em;
+}
 .ic_top_bx > img {
   width: 0.9vw;
   height: 0.9vw;
