@@ -20,7 +20,7 @@ const GoogleLogin = (authorization_code) => {
         //console.log("googlelogin",response)
         const token = response.data.user.token;
         setCookie("login", token);
-        window.alert("구글 성공 🔥");
+        //window.alert("구글 성공 🔥");
         history.push("/");
       })
       .catch((err) => {

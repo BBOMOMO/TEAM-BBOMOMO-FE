@@ -45,7 +45,7 @@ const registerDB = (name, pwd, pwdck, nickname, category) => {
     await apis
       .register(userInfo)
       .then(function (response) {
-        window.alert("회원가입 성공 🔥");
+        //window.alert("회원가입 성공 🔥");
         history.push("/login");
       })
       .catch((err) => {
@@ -108,7 +108,7 @@ const loginDB = (username, password) => {
        // console.log(response);
         const token = response.data.token;
         setToken("login", token);
-        window.alert("로그인 성공 🔥");
+        //window.alert("로그인 성공 🔥");
         history.push("/");
       })
       .catch((err) => {
