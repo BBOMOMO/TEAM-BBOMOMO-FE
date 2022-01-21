@@ -30,7 +30,7 @@
 .group_name_wrap {
   max-width: 50%;
   min-width: 34%;
-  margin-right:4px;
+  margin-right: 4px;
 }
 .state_name_txt {
   display: inline-block;
@@ -59,7 +59,6 @@
 }
 
 .group_right_bx {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;

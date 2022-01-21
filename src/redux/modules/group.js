@@ -11,6 +11,8 @@ const ADD_ROOMS = "ADD_ROOMS";
 const LOAD_CATEROOMS = "LOAD_CATEROOMS";
 const GROUP_MODAL = "GROUP_MODAL";
 const GROUP_ROUND = "GROUP_ROUND";
+const PRIVATE_ROOM = "PRIVATE_ROOM";
+const PRIVATE_STATE = "PRIVATE_STATE";
 
 // action creators
 const loadRooms = createAction(LOAD_ROOMS, (room_list) => ({ room_list }));
@@ -20,6 +22,13 @@ const loadCateRooms = createAction(LOAD_CATEROOMS, (cateroom_list) => ({
 const addRooms = createAction(ADD_ROOMS, (newRoom) => ({ newRoom }));
 const groupModal = createAction(GROUP_MODAL, (modalState) => ({ modalState }));
 const groupRound = createAction(GROUP_ROUND, (round) => ({ round }));
+const privateRoom = createAction(PRIVATE_ROOM, (roomId, privateState) => ({
+  roomId,
+  privateState,
+}));
+const privateState = createAction(PRIVATE_STATE, (privateState) => ({
+  privateState,
+}));
 
 // initialState
 const initialState = {
@@ -27,6 +36,10 @@ const initialState = {
   cateroom: [],
   modalState: false,
   round: 1,
+  roomState: {
+    roomId: null,
+    privateState: false,
+  },
 };
 
 // middlewares
@@ -102,8 +115,8 @@ const enterRoom = (newRoomId, roomPassword = null) => {
     await apis
       .enterRoom(newRoomId, roomPassword)
       .then((response) => {
-      //  console.log(response);
-      //  console.log("enterRoom 성공");
+        //  console.log(response);
+        //  console.log("enterRoom 성공");
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -118,7 +131,20 @@ const exitRoom = (roomId) => {
       .exitRoom(roomId)
       .then((response) => {
         //console.log(response);
-       // console.log("exitRoom 성공");
+        // console.log("exitRoom 성공");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+const roomPwCheckDB = (roomId, pwd) => {
+  return async function (dispatch, useState, { history }) {
+    await apis
+      .roomPwCheck(roomId, { roomPassword: pwd })
+      .then((response) => {
+        console.log(response);
+        history.push(`video/${roomId}`);
       })
       .catch((err) => {
         console.log(err);
@@ -149,6 +175,15 @@ export default handleActions(
       produce(state, (draft) => {
         draft.round = action.payload.round;
       }),
+    [PRIVATE_ROOM]: (state, action) =>
+      produce(state, (draft) => {
+        draft.roomState.roomId = action.payload.roomId;
+        draft.roomState.privateState = action.payload.privateState;
+      }),
+    [PRIVATE_STATE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.roomState.privateState = action.payload.privateState;
+      }),
   },
   initialState
 );
@@ -162,4 +197,7 @@ export const actionCreators = {
   exitRoom,
   groupModal,
   groupRound,
+  privateRoom,
+  roomPwCheckDB,
+  privateState,
 };

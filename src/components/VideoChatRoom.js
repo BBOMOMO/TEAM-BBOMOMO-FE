@@ -135,7 +135,9 @@ export default function VideoChatRoom() {
   useEffect(() => {
     dispatch(groupAction.enterRoom(roomId));
     const socket = io(url);
-    const peer = new Peer();
+    const peer = new Peer({
+      config: { iceServers: [{ url: "stun:stun.l.google.com:19302" }] },
+    });
 
     // 클라의 영상 스트림 비디오에 넣기
 
@@ -441,6 +443,7 @@ export default function VideoChatRoom() {
         window.alert("브라우저의 카메라를 재설정 후 시도해주세요");
         history.push("/");
         dispatch(groupAction.exitRoom(roomId));
+        window.location.reload();
       });
 
     socket.on("user-disconnected", (peerId, userNick, streamId) => {

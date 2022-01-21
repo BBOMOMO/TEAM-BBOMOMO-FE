@@ -27,7 +27,7 @@ import VideoChatRoom from "./components/VideoChatRoom";
 import Video from "./components/Video";
 import { useSelector, useDispatch } from "react-redux";
 import VideoModal from "./components/VideoModal";
-
+import Private from "./components/PrivateModal";
 function App() {
   return (
     <>
@@ -44,6 +44,7 @@ function App() {
 
         <Route path="/modal" component={VideoModal} />
         <Route path="/policy" component={Policy} />
+        <Route path="/private" exact component={Private} />
         <Route path={"*"} component={NotFound} />
       </Switch>
     </>

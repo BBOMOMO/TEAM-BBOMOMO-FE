@@ -349,7 +349,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 27.5vw;
+  width: 100%;
 }
 .certifi_comment_bg > h3 {
   margin-bottom: 1.25vw;
