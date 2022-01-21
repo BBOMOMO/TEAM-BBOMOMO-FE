@@ -58,7 +58,7 @@ const GroupRecommend = (props) => {
                 alt="reload"
                 className="groupreco_reload"
                 onClick={() => {
-                  console.log("실행");
+                  // console.log("실행");
                   dispatch(roomActions.getRooms());
                 }}
               />
@@ -229,7 +229,7 @@ const GroupRecommend = (props) => {
                         <div
                           className="groupbx_card"
                           onClick={() => {
-                            console.log("here here here here");
+                            // console.log("here here here here");
                             dispatch(
                               roomActions.privateRoom(
                                 roomlist[idx].roomId,

@@ -157,12 +157,12 @@ export default function VideoChatRoom() {
         let gapTimeFloor;
 
         // 쉬는시간
-        socket.on("restTime", (currentRound, totalRound, time) => {
+        socket.on("restTime", (currentRound, totalRound, time, now) => {
           // console.log(currentRound, totalRound, time);
-          const endTime = time;
-          const nowTime = new Date().getTime();
-          const gapTime = endTime - nowTime;
-
+          // const endTime = time;
+          // const nowTime = new Date().getTime();
+          const gapTime = time - now;
+          // console.log(time, now, gapTime);
           // console.log(gapTime);
           // setTimerTime(gapTime);
           // console.log(timerTime);
@@ -204,13 +204,14 @@ export default function VideoChatRoom() {
         });
 
         // 공부시간
-        socket.on("studyTime", (currentRound, totalRound, time) => {
+        socket.on("studyTime", (currentRound, totalRound, time, now) => {
           dispatch(groupAction.groupRound(currentRound));
           // console.log(studyRound);
           // console.log(time);
-          const endTime = time;
-          const nowTime = new Date().getTime();
-          const gapTime = endTime - nowTime;
+          // const endTime = time;
+          // const nowTime = new Date().getTime();
+          const gapTime = time - now;
+          // console.log(time, now, gapTime);
           gapTimeFloor = Math.floor(gapTime / 1000);
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
@@ -255,10 +256,11 @@ export default function VideoChatRoom() {
           const studyinterval = setInterval(timer, 1000);
         });
 
-        socket.on("totalEnd", (time) => {
-          const endTime = time;
-          const nowTime = new Date().getTime();
-          const gapTime = endTime - nowTime;
+        socket.on("totalEnd", (time, now) => {
+          // const endTime = time;
+          // const nowTime = new Date().getTime();
+          const gapTime = time - now;
+          // console.log(time, now, gapTime);
           gapTimeFloor = Math.floor(gapTime / 1000);
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
