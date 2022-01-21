@@ -152,6 +152,7 @@ const roomPwCheckDB = (roomId, pwd) => {
         history.push(`video/${roomId}`);
       })
       .catch((err) => {
+        window.alert("비밀번호를 다시 확인해주세요");
         console.log(err);
       });
   };
