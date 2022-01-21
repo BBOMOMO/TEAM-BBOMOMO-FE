@@ -12,7 +12,7 @@ const Private = (props) => {
   const onChangePwd = (e) => {
     const pwdcurrent = e.target.value;
     setPwd(pwdcurrent);
-    console.log(pwd);
+    // console.log(pwd);
   };
   return (
     <>

@@ -143,6 +143,16 @@ const GlobalStyles = createGlobalStyle`
       clear:both;
     }
 
+    /* font-weight */
+    .font600 {
+      font-weight: 600;
+    }
+
+    /* text-align */
+    .tc {
+      text-align: center;
+    }
+
     /* 스크롤 바 커스텀 */
 
     *::-webkit-scrollbar { width:5px; }

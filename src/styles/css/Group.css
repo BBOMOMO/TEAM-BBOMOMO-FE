@@ -68,7 +68,7 @@
   display: flex;
   justify-content: flex-end;
 }
-.ic_top_bx > img:first-child{
+.ic_top_bx > img:first-child {
   margin-right: 0.2em;
 }
 .ic_top_bx > img {
@@ -254,11 +254,12 @@
   width: 2.86vw;
   height: 4.71vh;
   background-image: url(../../Images/flag.png);
+  background-repeat: no-repeat;
   position: absolute;
   top: 0;
   right: -2vw;
   transform: translateY(-76%);
-  background-size: contain;
+  background-size: cover;
 }
 .groupTimer_round {
   padding: 0.5vw 0.9vw;
@@ -268,7 +269,13 @@
   font-size: 0.73vw;
   font-weight: 600;
 }
-
+.video_modal_container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .video_modal {
   width: 100vw;
   height: 100vh;
@@ -280,7 +287,20 @@
   left: 0;
   z-index: 100;
 }
-.video_modal_fighting {
+.video_modal_dim {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 80%;
+  overflow-y: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.video_modal_fighting,
+.video_modal_ending {
   color: #fff;
   font-size: 2vw;
   position: absolute;
@@ -288,6 +308,12 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.video_modal_ending {
+  top: 15%;
+  line-height: 4.2vh;
+  z-index: 101;
+}
+
 .video_modal_round {
   color: #fff;
   font-weight: 800;
@@ -305,6 +331,16 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.video_close_modal_img {
+  width: 23.28vw;
+  height: auto;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 101;
+}
+
 .video_modal_close_btn {
   position: absolute;
   top: 6vw;
@@ -312,7 +348,23 @@
   z-index: 101;
   cursor: pointer;
 }
-
+.video_end_study {
+  height: 7.17vh;
+  width: 25.94vw;
+  font-size: 2.46vh;
+  color: #fff;
+  line-height: 7.17vh;
+  text-align: center;
+  background-color: #486bff;
+  border-radius: 11px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 101;
+}
 .video_background {
   width: 100%;
   height: 78%;
