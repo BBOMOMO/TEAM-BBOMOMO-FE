@@ -265,12 +265,13 @@ const CertificationComment = ({ showModal, closeModal }) => {
 };
 const CertificationCommentListBx = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 0.69vw;
   .delete_img {
     width: 1.46vw;
     height: 1.46vw;
     cursor: pointer;
+    margin-top:0.3vw;
   }
 `;
 const ModalContainer = styled.div`

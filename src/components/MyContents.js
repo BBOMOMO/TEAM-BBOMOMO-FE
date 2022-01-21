@@ -151,6 +151,7 @@ const TabsCustom = styled(Tabs)`
 const SwipeableViewsCustom = styled(SwipeableViews)`
   .MuiBox-root {
     *padding: 0.6944vw 2vw;
-    *padding:0;
+    padding:1.5vw;
+    box-sizing: border-box;
   }
 `;

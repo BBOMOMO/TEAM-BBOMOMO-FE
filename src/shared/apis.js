@@ -5,8 +5,10 @@ dotenv.config();
 
 const url = process.env.REACT_APP_API_URL;
 const url_sub = process.env.REACT_APP_API_URL_SUB;
+const url_second = process.env.REACT_APP_API_URL_SUB_SE;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
+  // baseURL: "http://54.180.107.194", // 희경님 서버주소
   baseURL: url, // 재원님 서버주소
   // baseURL: url_sub, // 상협님서버주소
 });
@@ -53,6 +55,8 @@ export const apis = {
   enterRoom: (roomId, roomPassword) =>
     instance.post(`/api/v1/studyRoom/enterRoom/${roomId}`, roomPassword), //스터디룸 생성하기-(생성자바로입장)
   exitRoom: (roomId) => instance.delete(`/api/v1/studyRoom/exitRoom/${roomId}`),
+  roomPwCheck: (roomId, roomPassword) =>
+    instance.post(`/api/v1/studyRoom/checkRoomPw/${roomId}`, roomPassword), // 비공개방 비밀번호 체크
 
   //---- 공부인증  ----//
   // 전체 조회

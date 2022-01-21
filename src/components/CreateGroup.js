@@ -53,16 +53,16 @@ function CreateGroup({ showModal, closeModal }) {
   };
   //비밀방,공개방 설정하기.
   const is_status = (e) => {
-   /* setCount((prevCount) => prevCount + 1);
-    console.log(count);
+    setCount((prevCount) => prevCount + 1);
+    // console.log(count);
     if (count % 2 === 0) {
       setRoomStatus("1");
-      console.log("비밀방");
+      // console.log("비밀방");
     } else {
       setRoomStatus("0");
       setRoomPassword(null);
-      console.log("공개방");
-    }*/
+      // console.log("공개방");
+    }
   };
 
   const createRoom = (e) => {
@@ -88,17 +88,17 @@ function CreateGroup({ showModal, closeModal }) {
       openedAt &&
       roomStatus
     ) {
-      console.log(
-        "방정보",
-        userId,
-        roomTitle,
-        roomPassword,
-        roomPurpose,
-        round,
-        studyTime,
-        recessTime,
-        openedAt
-      );
+      // console.log(
+      //   "방정보",
+      //   userId,
+      //   roomTitle,
+      //   roomPassword,
+      //   roomPurpose,
+      //   round,
+      //   studyTime,
+      //   recessTime,
+      //   openedAt
+      // );
       dispatch(
         roomActions.addRoom(
           userId,
@@ -126,7 +126,7 @@ function CreateGroup({ showModal, closeModal }) {
                 <h2 className="group_modal_title">그룹 방 만들기</h2>
                 <span
                   className="group_modal_close"
-                  style={{ top: "0", right:"0" }}
+                  style={{ top: "0", right: "0" }}
                   onClick={closeModal}
                 >
                   <img src={close} alt="" />
@@ -160,8 +160,9 @@ function CreateGroup({ showModal, closeModal }) {
                     }}
                     className="mb20"
                     text="비밀번호"
-                    placeholder="비밀방 비밀번호 "
+                    placeholder="4글자 이상의 비밀번호를 작성해주세요."
                     margin="0.8vw 0 0 0"
+                    type="password"
                   />
                 )}
               </div>

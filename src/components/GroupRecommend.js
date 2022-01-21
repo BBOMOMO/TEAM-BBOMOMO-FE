@@ -35,8 +35,6 @@ const GroupRecommend = (props) => {
     }
   };
 
- 
-
   const seeMore = () => {
     setRoomcount(roomcount + roomcount);
   };
@@ -151,6 +149,7 @@ const GroupRecommend = (props) => {
                 }
 
                 let roomLock = p.isStarted;
+                let privateRoom = p.private;
                 //console.log("roomLock",roomLock);
                 let isLock = "";
                 if (roomLock === 1) {
@@ -169,7 +168,7 @@ const GroupRecommend = (props) => {
                       </div>
                     </>
                   );
-                } else if (roomLock === 0) {
+                } else if (roomLock === 0 && privateRoom === 0) {
                   // console.log(idx, p.isStarted);
                   return (
                     <>
@@ -178,7 +177,51 @@ const GroupRecommend = (props) => {
                         <div
                           className="groupbx_card"
                           onClick={() => {
+                            // console.log(roomlist[idx].roomId);
                             history.push("/video/" + roomlist[idx].roomId);
+                          }}
+                        >
+                          <GroupBx
+                            key={p.idx}
+                            {...p}
+                            bgcolor={bgcolor}
+                            roomLock={isLock}
+                          ></GroupBx>
+                        </div>
+                      ) : (
+                        //비로그인 : 방입장불가
+                        <div
+                          className="groupbx_card"
+                          onClick={() => {
+                            window.alert("로그인 후 입장하실 수 있습니다.");
+                            history.push("/login");
+                          }}
+                        >
+                          <GroupBx
+                            key={p.idx}
+                            {...p}
+                            bgcolor={bgcolor}
+                            roomLock={isLock}
+                          ></GroupBx>
+                        </div>
+                      )}
+                    </>
+                  );
+                } else if (roomLock === 0 && privateRoom === 1) {
+                  return (
+                    <>
+                      {user ? (
+                        //로그인회원
+                        <div
+                          className="groupbx_card"
+                          onClick={() => {
+                            console.log("here here here here");
+                            dispatch(
+                              roomActions.privateRoom(
+                                roomlist[idx].roomId,
+                                true
+                              )
+                            );
                           }}
                         >
                           <GroupBx

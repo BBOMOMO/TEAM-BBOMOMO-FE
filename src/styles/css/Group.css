@@ -30,7 +30,7 @@
 .group_name_wrap {
   max-width: 50%;
   min-width: 34%;
-  margin-right:4px;
+  margin-right: 4px;
 }
 .state_name_txt {
   display: inline-block;
@@ -59,7 +59,6 @@
 }
 
 .group_right_bx {
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -68,6 +67,9 @@
 .ic_top_bx {
   display: flex;
   justify-content: flex-end;
+}
+.ic_top_bx > img:first-child{
+  margin-right: 0.2em;
 }
 .ic_top_bx > img {
   width: 0.9vw;

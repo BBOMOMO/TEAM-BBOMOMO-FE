@@ -229,6 +229,8 @@
 /* rank */
 .myinfo_rank_wrap {
   margin-top: 0.9vw;
+  display: flex;
+  flex:1;
 }
 .myinfo_rank_wrap:nth-child(1) {
   margin-top: 1.3889vw;
@@ -243,14 +245,14 @@
   background-image: url(../../Images/crown.png);
   background-size: contain;
   position: absolute;
-  right: -2.0833vw;
-  top: 0.2083vw;
+  top: 0.1vw;
+  margin-left:1vw;
 }
 .myinfo_rank {
   font-size: 0.9vw;
   font-weight: 600;
   color: #889cf2;
-  float: left;
+
   width: 3.4722vw;
   text-align: left;
 }
@@ -258,15 +260,17 @@
   font-size: 0.9vw;
   font-weight: 400;
   color: #282828;
-  float: left;
+  flex:0.5;
+  text-align:left;
+
+
   position: relative;
 }
 
 .myinfo_rank_time {
   font-weight: 600;
   color: #242424;
-  float: right;
   text-align: right;
-  width: 3.8194vw;
-  text-align: left;
+  *width: 3.8194vw;
+  flex:0.5;
 }
