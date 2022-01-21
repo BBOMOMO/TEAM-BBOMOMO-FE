@@ -53,7 +53,7 @@ function CreateGroup({ showModal, closeModal }) {
   };
   //비밀방,공개방 설정하기.
   const is_status = (e) => {
-   /* setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
     console.log(count);
     if (count % 2 === 0) {
       setRoomStatus("1");
@@ -62,7 +62,7 @@ function CreateGroup({ showModal, closeModal }) {
       setRoomStatus("0");
       setRoomPassword(null);
       console.log("공개방");
-    }*/
+    }
   };
 
   const createRoom = (e) => {
@@ -126,7 +126,7 @@ function CreateGroup({ showModal, closeModal }) {
                 <h2 className="group_modal_title">그룹 방 만들기</h2>
                 <span
                   className="group_modal_close"
-                  style={{ top: "0", right:"0" }}
+                  style={{ top: "0", right: "0" }}
                   onClick={closeModal}
                 >
                   <img src={close} alt="" />

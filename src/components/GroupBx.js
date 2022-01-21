@@ -8,10 +8,10 @@ import timer from "../Images/ic-timer.png";
 const GroupBx = (props) => {
   const { roomLock, bgcolor, onClick } = props;
   const userlist = props.peopleInRoom;
+  // const _private = props.private
 
   const [purpose, setPurpose] = React.useState("");
   const [started, setStarted] = React.useState(props.isStarted);
-
   React.useEffect(() => {
     if (props.purpose === 0) {
       setPurpose("자율학습");
@@ -37,7 +37,7 @@ const GroupBx = (props) => {
   }, [props.purpose, props.isStarted]);
 
   return (
-    <GroupCont className={bgcolor}>
+    <GroupCont className={bgcolor} private={props.private}>
       <div className="group_left_bx">
         <div>
           <h2 className="group_left_h2">
@@ -70,7 +70,9 @@ const GroupBx = (props) => {
           <p>{userlist.length} / 6</p>
         </div>
       </div>
-      <RoomTimeInfo>{props.studyTime}분 / {props.recessTime}분</RoomTimeInfo>
+      <RoomTimeInfo>
+        {props.studyTime}분 / {props.recessTime}분
+      </RoomTimeInfo>
 
       {roomLock ? (
         <div className={roomLock}>
@@ -87,17 +89,16 @@ GroupBx.defaultProps = {
 };
 
 const RoomTimeInfo = styled.div`
-position:absolute;
-bottom: 0.5vw;
-right: 4vw;
-font-size:0.8vw;
-
+  position: absolute;
+  bottom: 0.5vw;
+  right: 4vw;
+  font-size: 0.8vw;
 `;
 const GroupCont = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding: 1vw 1vw 0.5vw;;
+  padding: 1vw 1vw 0.5vw;
   width: 17.1vw;
   height: 10vw;
   border-radius: 0.7vw;
