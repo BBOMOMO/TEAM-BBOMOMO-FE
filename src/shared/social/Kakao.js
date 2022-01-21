@@ -17,7 +17,7 @@ const Kakao = (props) => {
       .then((response) => {
         const token = response.data.user.token;
         setCookie("login", token);
-        window.alert("로그인 성공 🔥");
+        //window.alert("로그인 성공 🔥");
         history.push("/");
       })
       .catch((err) => {
