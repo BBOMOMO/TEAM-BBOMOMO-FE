@@ -7,6 +7,7 @@ import GroupBx from "./GroupBx";
 import { actionCreators as roomActions } from "../redux/modules/group";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
+import reload from "../Images/reload.svg";
 
 const GroupRecommend = (props) => {
   const dispatch = useDispatch();
@@ -49,7 +50,20 @@ const GroupRecommend = (props) => {
     <div className="groupreco_bx">
       <div className="groupreco_top">
         {usernick ? (
-          <h2>{usernick}님을 위한 스터디룸 추천</h2>
+          <h2>
+            {usernick}님을 위한 스터디룸 추천
+            <span className="groupreco_reload_span">
+              <img
+                src={reload}
+                alt="reload"
+                className="groupreco_reload"
+                onClick={() => {
+                  // console.log("실행");
+                  dispatch(roomActions.getRooms());
+                }}
+              />
+            </span>
+          </h2>
         ) : (
           <h2>뽀모님을 위한 스터디룸 추천</h2>
         )}
@@ -215,7 +229,7 @@ const GroupRecommend = (props) => {
                         <div
                           className="groupbx_card"
                           onClick={() => {
-                            console.log("here here here here");
+                            // console.log("here here here here");
                             dispatch(
                               roomActions.privateRoom(
                                 roomlist[idx].roomId,

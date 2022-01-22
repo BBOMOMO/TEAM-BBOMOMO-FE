@@ -204,9 +204,13 @@ const CertificationWrite = ({ showModal, closeModal }) => {
                   fontSize="18px"
                   weight="600"
                   _onClick={() => {
-                    sendPost();
-                    closeModal();
-                    buttton();
+                    if (postContent === "") {
+                      window.alert("내용을 입력해주세요.");
+                    } else {
+                      sendPost();
+                      closeModal();
+                      buttton();
+                    }
                   }}
                 >
                   작성하기

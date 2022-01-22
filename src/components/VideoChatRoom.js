@@ -14,6 +14,7 @@ import profile from "../Images/profile.png";
 import dotenv from "dotenv";
 import PostChat from "../components/PostChat";
 import VideoModal from "../components/VideoModal";
+import VideoEndModal from "../components/VideoEndModal";
 import { getContrastRatio } from "@material-ui/core";
 import CameraBtn from "./CameraBtn";
 import poster from "../Images/view.png";
@@ -79,6 +80,7 @@ export default function VideoChatRoom() {
   const params = useParams();
   const roomId = params.roomId;
   const modalState = useSelector((state) => state.group.modalState);
+  const endModalState = useSelector((state) => state.group.endModalState);
   const studyRound = useSelector((state) => state.group.round);
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
@@ -155,12 +157,12 @@ export default function VideoChatRoom() {
         let gapTimeFloor;
 
         // 쉬는시간
-        socket.on("restTime", (currentRound, totalRound, time) => {
+        socket.on("restTime", (currentRound, totalRound, time, now) => {
           // console.log(currentRound, totalRound, time);
-          const endTime = time;
-          const nowTime = new Date().getTime();
-          const gapTime = endTime - nowTime;
-
+          // const endTime = time;
+          // const nowTime = new Date().getTime();
+          const gapTime = time - now;
+          // console.log(time, now, gapTime);
           // console.log(gapTime);
           // setTimerTime(gapTime);
           // console.log(timerTime);
@@ -202,13 +204,14 @@ export default function VideoChatRoom() {
         });
 
         // 공부시간
-        socket.on("studyTime", (currentRound, totalRound, time) => {
+        socket.on("studyTime", (currentRound, totalRound, time, now) => {
           dispatch(groupAction.groupRound(currentRound));
           // console.log(studyRound);
           // console.log(time);
-          const endTime = time;
-          const nowTime = new Date().getTime();
-          const gapTime = endTime - nowTime;
+          // const endTime = time;
+          // const nowTime = new Date().getTime();
+          const gapTime = time - now;
+          // console.log(time, now, gapTime);
           gapTimeFloor = Math.floor(gapTime / 1000);
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
@@ -253,10 +256,11 @@ export default function VideoChatRoom() {
           const studyinterval = setInterval(timer, 1000);
         });
 
-        socket.on("totalEnd", (time) => {
-          const endTime = time;
-          const nowTime = new Date().getTime();
-          const gapTime = endTime - nowTime;
+        socket.on("totalEnd", (time, now) => {
+          // const endTime = time;
+          // const nowTime = new Date().getTime();
+          const gapTime = time - now;
+          // console.log(time, now, gapTime);
           gapTimeFloor = Math.floor(gapTime / 1000);
           let MinTime = Math.floor(gapTime / (1000 * 60));
           let secTime = Math.floor((gapTime % (1000 * 60)) / 1000);
@@ -483,6 +487,7 @@ export default function VideoChatRoom() {
   return (
     <>
       {/* <ChatRoomNav /> */}
+      {endModalState ? <VideoEndModal endBtn={endBtn} /> : null}
       {modalState ? <VideoModal /> : null}
       <Header is_studyroom />
       <GroupContainer>
@@ -500,7 +505,12 @@ export default function VideoChatRoom() {
               >
                 {state}
               </p>
-              <p className="groupTimer_end_btn" onClick={endBtn}>
+              <p
+                className="groupTimer_end_btn"
+                onClick={() => {
+                  dispatch(groupAction.groupEndModal(true));
+                }}
+              >
                 공부 끝내기
               </p>
               <div className="groupTimer_progress_background"></div>
