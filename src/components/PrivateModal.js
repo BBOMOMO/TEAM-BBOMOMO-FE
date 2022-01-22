@@ -70,7 +70,7 @@ const PrivateModalContainer = styled.div`
 const PrivateModalDim = styled.div`
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: #000;
@@ -81,7 +81,7 @@ const PrivateModal = styled.div`
   height: 32.27vh;
   background: #fff;
   border-radius: 16px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
