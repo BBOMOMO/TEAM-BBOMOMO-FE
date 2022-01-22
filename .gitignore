@@ -26,3 +26,5 @@ yarn-error.log*
 
 .env
 
+# OAuth
+/src/shared/social/OAuth.js
