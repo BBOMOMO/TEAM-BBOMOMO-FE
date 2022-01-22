@@ -5,7 +5,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 function Rank({ today, total }) {
   const rankInfo = useSelector((state) => state.user.studyRanking);
- // console.log(rankInfo);
+  console.log(rankInfo);
   return (
     <RankContainer>
       {rankInfo.map((el, key) => {
@@ -13,7 +13,7 @@ function Rank({ today, total }) {
         let min = Number(el.weeklyRecord) % 60;
         let newHour = hour <= 9 ? "0" + hour : hour;
         let newMin = min <= 9 ? "0" + min : min;
-
+        console.log(el.User.nick);
         return (
           <div className="myinfo_rank_wrap clearfix">
             <p className="myinfo_rank">{key + 1}</p>
