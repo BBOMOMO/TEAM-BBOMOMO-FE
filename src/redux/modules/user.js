@@ -232,8 +232,8 @@ const changeInfo = (nickname, category) => {
     await apis
       .changeNick(userInfo)
       .then((response) => {
-        // console.log(response);
-        window.alert("수정 완료되었습니다.");
+       // console.log(response);
+        //window.alert("수정 완료되었습니다.");
         apis.checkUser().then((response) => {
           dispatch(setUser(response.data));
         });
@@ -301,6 +301,7 @@ export default handleActions(
         draft.studyTime = action.payload.userInfo.todayRecord.today;
         draft.studyTotal = action.payload.userInfo.totalRecord.total;
         //console.log(action.payload.userInfo.user[0].nick)
+
       }),
     [ADD_USER_IMG]: (state, action) => produce(state, (draft) => {}),
     [GET_RANK]: (state, action) =>

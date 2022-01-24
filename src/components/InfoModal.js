@@ -102,6 +102,7 @@ function InfoModal({ showModal, closeModal }) {
                 <option name="high3" value="6" > 고3 </option>
                 <option name="univ" value="7" > 대학생 </option>
                 <option name="worker" value="8"> 직장인 </option>
+                <option name="worker" value="9"> 취준생 </option>
               </Select>
               </div>
 
