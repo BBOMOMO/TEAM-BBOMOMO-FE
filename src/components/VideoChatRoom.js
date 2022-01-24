@@ -70,6 +70,7 @@ export default function VideoChatRoom() {
   const dispatch = useDispatch();
   let userId = localStorage.getItem("id");
   let userNick = localStorage.getItem("nick");
+  let UserNick = localStorage.getItem("nick");
   let statusMsg = localStorage.getItem("statusMsg");
   let peerstatusMsg = "";
   let peerStatusMsg = "";
@@ -140,7 +141,7 @@ export default function VideoChatRoom() {
     const peer = new Peer({
       config: { iceServers: [{ url: "stun:stun.l.google.com:19302" }] },
     });
-
+    peer.nick = UserNick;
     // 클라의 영상 스트림 비디오에 넣기
 
     navigator.mediaDevices
@@ -345,14 +346,30 @@ export default function VideoChatRoom() {
         socket.on("welcome", (user, person) => {
           // peerStatusMsg = peerstatusMsg;
           // peerNickname = peernick;
+          // console.log(user, person);
           users = user;
           personInroom = person - 1;
+        });
+
+        // 데이터 주기
+        peer.on("connection", (dataConnection) => {
+          console.log("받기");
+          dataConnection.on("data", function (data) {
+            console.log("Received", data);
+          });
+          dataConnection.on("open", function () {
+            // Receive messages
+            console.log("받기2");
+            dataConnection.on("data", function (data) {
+              console.log("Received", data);
+            });
+          });
         });
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
           //answer()를 해야 mediaConnection이 활성화됨
-          // console.log(users);
+          // console.log(mediaConnection);
           mediaConnection.answer(stream);
           // console.log(mediaConnection);
           const videoBox = document.createElement("div");
@@ -372,7 +389,6 @@ export default function VideoChatRoom() {
           peerstatus.innerText = peerStatusMsg;
           // console.log(peerStatusMsg, "이너텍스트");
           const peerNick = document.createElement("p");
-          // console.log(users);
           peerNick.innerText = users[0].nick;
           // peerNick.innerText = peerNickname;
           // console.log(peerNickname, "이너텍스트");
@@ -388,7 +404,9 @@ export default function VideoChatRoom() {
           videoContainer.current.prepend(videoBox);
           // console.log("prepend");
           //
+
           mediaConnection.on("stream", (newStream) => {
+            console.log(peerVideo, newStream);
             addVideoStream(peerVideo, newStream);
             videoBox.prepend(peerVideo);
             // console.log(myPeerId, userNick);
@@ -403,7 +421,18 @@ export default function VideoChatRoom() {
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
           // console.log(peerId, userNick, streamId, peerMsg);
           peerstatusMsg = peerMsg;
-          const mediaConnection = peer.call(peerId, stream);
+          const mediaConnection = peer.call(peerId, stream); // 0124 0557 test
+          const dataConnection = peer.connect(peerId); // 종찬아 여기서부터 하면 된다. 데이터커넥션은 성공했다. userID를 send 혹은 보낼 방법을 찾아보자..
+          //
+          peer.on("connection", function (dataConnection) {
+            dataConnection.on("open", function () {
+              // Send messages
+              dataConnection.send("Hello!");
+            });
+          });
+          //
+          dataConnection.send("Hello!");
+          // const mediaConnection = peer.call(peerId, stream, userNick, peerMsg);
           const videoBox = document.createElement("div");
           videoBox.classList.add("video_box");
           // console.log("div 클래스 추가 videobox");

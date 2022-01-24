@@ -50,7 +50,7 @@ const registerDB = (name, pwd, pwdck, nickname, category) => {
       })
       .catch((err) => {
         const message = err;
-       // console.log(message);
+        // console.log(message);
         window.alert(message);
       });
   };
@@ -105,7 +105,7 @@ const loginDB = (username, password) => {
     await apis
       .login(userInfo)
       .then((response) => {
-       // console.log(response);
+        // console.log(response);
         const token = response.data.token;
         setToken("login", token);
         //window.alert("로그인 성공 🔥");
@@ -188,7 +188,7 @@ const checkUserDB = () => {
         // console.log(response);
         const userInfo = response.data;
 
-       // console.log(userInfo);
+        // console.log(userInfo);
         const userId = userInfo.user.userId;
         const userNick = userInfo.user.nick;
         const statusMsg = userInfo.user.statusMsg;
@@ -217,7 +217,7 @@ const statMsgDB = (valueName) => {
         window.alert("수정 완료되었습니다.");
       })
       .catch((err) => {
-       // console.log(err.response.data.message);
+        // console.log(err.response.data.message);
       });
   };
 };
@@ -232,7 +232,7 @@ const changeInfo = (nickname, category) => {
     await apis
       .changeNick(userInfo)
       .then((response) => {
-       // console.log(response);
+        // console.log(response);
         window.alert("수정 완료되었습니다.");
         apis.checkUser().then((response) => {
           dispatch(setUser(response.data));
@@ -271,7 +271,7 @@ const getRankDB = () => {
     await apis
       .getRank()
       .then((response) => {
-        //console.log(response);
+        console.log(response);
         const studyRanking = response.data.studyRanking;
         dispatch(getRank(studyRanking));
       })
@@ -280,8 +280,6 @@ const getRankDB = () => {
       });
   };
 };
-
-
 
 //---- reducer ----
 export default handleActions(
@@ -309,12 +307,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.studyRanking = action.payload.studyRanking;
       }),
-    [LOG_OUT]: (state, action) => produce(state, (draft) => {
-      localStorage.removeItem('id');
-      localStorage.removeItem('nick');
-      localStorage.removeItem('statusMsg');
-      window.location.reload("/");
-    }),
+    [LOG_OUT]: (state, action) =>
+      produce(state, (draft) => {
+        localStorage.removeItem("id");
+        localStorage.removeItem("nick");
+        localStorage.removeItem("statusMsg");
+        window.location.reload("/");
+      }),
   },
   initialState
 );
@@ -331,5 +330,5 @@ export const actionCreators = {
   getRankDB,
   //kakaoLogin,
   //GoogleLogin,
-  logout 
+  logout,
 };
