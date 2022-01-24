@@ -2,14 +2,14 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import {actionCreators as userActions} from "../../redux/modules/user";
 import Spinner from "../Spinner";
+import SocialInfoSet from "./SocialInfoSet";
 import api from "../../api/api";
 import { setCookie } from "../../shared/token";
 
 const Google = (props) => {
   const dispatch = useDispatch();
+  const [first, setFirst]= React.useState(false);
   let authorization_code = new URL(window.location.href).searchParams.get("code");
-
- // console.log("구글로그인 ",authorization_code)
 
  //Google social 로그인
 const GoogleLogin = (authorization_code) => {
@@ -17,11 +17,24 @@ const GoogleLogin = (authorization_code) => {
     await api
       .get(`/api/v1/auth/google/callback?code=${authorization_code}`)
       .then((response) => {
-        //console.log("googlelogin",response)
         const token = response.data.user.token;
+        const userNick = response.data.user.nick;
         setCookie("login", token);
+        localStorage.setItem("nick", `${userNick}`);
         //window.alert("구글 성공 🔥");
-        history.push("/");
+        //history.push("/");
+      }).then(()=>{
+        const defaultNick = localStorage.getItem("nick");
+        console.log(defaultNick);
+        const distriNick = defaultNick.indexOf('164',0);
+        console.log(defaultNick.indexOf('164',0)); 
+        if(distriNick == -1 ){
+          setFirst(false);
+          history.push("/");
+        }
+        else{
+          setFirst(true);
+        }     
       })
       .catch((err) => {
         console.log("구글 로그인실패", err);
@@ -30,11 +43,13 @@ const GoogleLogin = (authorization_code) => {
 };
 
   React.useEffect(()=>{
-  //  console.log("잘 찍히나",authorization_code);
+    //Google 인가코드 백으로 넘기기
     dispatch(GoogleLogin(authorization_code));
    
   },[]);
 
-  return <Spinner/>;
+  return (
+    <>{first?<SocialInfoSet/>:<Spinner/>}</>
+  );
 }
 export default Google;

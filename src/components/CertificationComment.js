@@ -315,7 +315,7 @@ const ModalInnerContainer = styled.div`
 const ModalInnerBg = styled.div`
   position: relative;
   margin-bottom: 2vw;
-  padding: 3.89vw 2.08vw 2.08vw;
+  padding: 2vw;
   width: 23.67vw;
   height: 31.17vw;
   border-radius: 0.76vw;
