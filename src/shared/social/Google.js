@@ -43,17 +43,13 @@ const GoogleLogin = (authorization_code) => {
 };
 
   React.useEffect(()=>{
-  //  console.log("잘 찍히나",authorization_code);
+    //Google 인가코드 백으로 넘기기
     dispatch(GoogleLogin(authorization_code));
    
   },[]);
 
   return (
-    <>
-
-    {first?<SocialInfoSet/>:<Spinner/>}
-      
-    </>
+    <>{first?<SocialInfoSet/>:<Spinner/>}</>
   );
 }
 export default Google;

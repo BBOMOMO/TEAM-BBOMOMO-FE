@@ -44,20 +44,14 @@ const Kakao = (props) => {
 
 
   React.useEffect(()=>{
-  //  console.log("잘 찍히나",authorization_code);
+    //kakao 인가코드 백으로 넘기기
     dispatch(kakaoLogin(authorization_code));
-    //console.log(authorization_code)
-   
   },[]);
 
   
 
   return (
-    <>
-
-    {first?<SocialInfoSet/>:<Spinner/>}
-      
-    </>
+    <>{first?<SocialInfoSet/>:<Spinner/>}</>
   );
 
 

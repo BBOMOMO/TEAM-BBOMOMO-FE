@@ -11,31 +11,14 @@ import Select from "../../elements/Select";
 const SocialInfoSet = (props) => {
   const dispatch = useDispatch();
   const _nickCheck = useSelector((state) => state.user.nickCk);
-
-
-  // const user = useSelector((state) => state.user.userInfo);
-  // const statusMsg = user.user.statusMsg;
-  // const nickname = user.user.nick;
   const [valueName, setValue] = React.useState("");
   const [nickname, setNickname] = React.useState("");
-  const [category, setCategory] = React.useState("");
+  const [category, setCategory] = React.useState("1");
     
   const nickCheck = () => {
     //TODO : 닉네임 중복확인
     dispatch(userActions.nickCheckDB(nickname));
   }
-
- //const distriNick = defaultNick.split("");
- //console.log(distriNick.indexOf('164',0));    
-
-  React.useEffect(()=>{
-   
-  //닉네임 중복확인 다시 확인하기
-   // if(distriNick.indexOf(0,2)=="164"){
-    //  console.log(distriNick.indexOf(0,2));
-   // }
-  // 
-  },[]); 
 
   return (
     <>
@@ -62,8 +45,6 @@ const SocialInfoSet = (props) => {
               <button onClick={nickCheck}>중복확인</button>
               <span className={_nickCheck== null ? '' : _nickCheck==='true' && nickname.length>2 ? "green": "red"}>
                 {_nickCheck===null ?"": _nickCheck==="true" && nickname.length>2  ? '사용가능한 닉네임입니다.':'다시 중복확인 해주세요.'}
-                
-
               </span>
               
           </NickEdit>
@@ -100,7 +81,8 @@ const SocialInfoSet = (props) => {
           
           <SocialInfoModalBot>
             <p
-              className="privateModal_bot_btn"
+              
+              className = {valueName!==null && _nickCheck==="true" && nickname.length>2  ? "privateModal_bot_btn activeBtn" : "privateModal_bot_btn"}
               onClick={() => {     
                 dispatch(userActions.changeInfo(nickname,category));
                 dispatch(userActions.statMsgDB(valueName));
@@ -141,7 +123,7 @@ const SocialInfoModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0.2vw 1.29vw 1vw 1.29vw;
+  padding: 0.2vw 1.29vw 1.5vw 1.29vw;
   box-sizing: border-box;
 
   .selectbox_wrap{
@@ -192,6 +174,11 @@ const SocialInfoModalBot = styled.div`
     font-weight: 600;
     text-align: center;
     line-height: 5.53vh;
+    opacity:0.5;
+  }
+
+  .activeBtn{
+    opacity:1!important;
   }
 
  
