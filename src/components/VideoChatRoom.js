@@ -78,6 +78,8 @@ export default function VideoChatRoom() {
   let peernick = "";
   let users;
   let personInroom;
+  let peersNick;
+  let peersMsg;
   const params = useParams();
   const roomId = params.roomId;
   const modalState = useSelector((state) => state.group.modalState);
@@ -286,6 +288,7 @@ export default function VideoChatRoom() {
           peer.on("open", (peerId) => {
             //소켓을 통해 서버로 방ID, 유저ID 보내주기
             // console.log(peerId);
+            console.log(peerId);
             myPeerId = peerId;
             socket.emit(
               "join-room",
@@ -353,21 +356,23 @@ export default function VideoChatRoom() {
 
         // 데이터 주기
         peer.on("connection", (dataConnection) => {
-          console.log("받기");
-          dataConnection.on("data", function (data) {
-            console.log("Received", data);
-          });
-          dataConnection.on("open", function () {
-            // Receive messages
-            console.log("받기2");
-            dataConnection.on("data", function (data) {
-              console.log("Received", data);
-            });
-          });
+          console.log("connect");
+          console.log(dataConnection);
+          peersNick = dataConnection.metadata.UserNick;
+          peersMsg = dataConnection.metadata.statusMsg;
+          console.log(peersNick);
+          const peerstatus = document.createElement("p");
+          peerstatus.innerText = peersMsg;
+          const peerNick = document.createElement("p");
+          peerNick.innerText = peersNick;
+          const nameBox = document.querySelector(".userview_name");
+          nameBox.prepend(peerstatus);
+          nameBox.prepend(peerNick);
         });
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
+          console.log("call");
           //answer()를 해야 mediaConnection이 활성화됨
           // console.log(mediaConnection);
           mediaConnection.answer(stream);
@@ -385,15 +390,15 @@ export default function VideoChatRoom() {
           img.classList.add("fl");
           const nameBox = document.createElement("div");
           nameBox.classList.add("userview_name", "fl");
-          const peerstatus = document.createElement("p");
-          peerstatus.innerText = peerStatusMsg;
+          // const peerstatus = document.createElement("p"); // 일단 주석
+          // peerstatus.innerText = peerStatusMsg; // 일단 주석
           // console.log(peerStatusMsg, "이너텍스트");
-          const peerNick = document.createElement("p");
-          peerNick.innerText = users[0].nick;
+          // const peerNick = document.createElement("p"); // 일단 주석
+          // peerNick.innerText = peersNick; // 일단 주석
           // peerNick.innerText = peerNickname;
           // console.log(peerNickname, "이너텍스트");
-          nameBox.prepend(peerstatus);
-          nameBox.prepend(peerNick);
+          // nameBox.prepend(peerstatus); // 일단 주석
+          // nameBox.prepend(peerNick); // 일단 주석
           txtBox.prepend(nameBox);
           txtBox.prepend(img);
           // 텍스트 추가
@@ -406,7 +411,7 @@ export default function VideoChatRoom() {
           //
 
           mediaConnection.on("stream", (newStream) => {
-            console.log(peerVideo, newStream);
+            // console.log(peerVideo, newStream);
             addVideoStream(peerVideo, newStream);
             videoBox.prepend(peerVideo);
             // console.log(myPeerId, userNick);
@@ -419,17 +424,17 @@ export default function VideoChatRoom() {
         });
         // 이게 제일 두번째 순서 -> peer.call(peerId, stream)
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
-          // console.log(peerId, userNick, streamId, peerMsg);
+          console.log(peerId);
           peerstatusMsg = peerMsg;
+          const peerInfo = {
+            statusMsg,
+            UserNick,
+          };
           const mediaConnection = peer.call(peerId, stream); // 0124 0557 test
-          const dataConnection = peer.connect(peerId); // 종찬아 여기서부터 하면 된다. 데이터커넥션은 성공했다. userID를 send 혹은 보낼 방법을 찾아보자..
+          const dataConnection = peer.connect(peerId, { metadata: peerInfo }); // 종찬아 여기서부터 하면 된다. 데이터커넥션은 성공했다. userID를 send 혹은 보낼 방법을 찾아보자.. // const 지움
+          console.log(dataConnection);
           //
-          peer.on("connection", function (dataConnection) {
-            dataConnection.on("open", function () {
-              // Send messages
-              dataConnection.send("Hello!");
-            });
-          });
+          dataConnection.send("message");
           //
           dataConnection.send("Hello!");
           // const mediaConnection = peer.call(peerId, stream, userNick, peerMsg);
