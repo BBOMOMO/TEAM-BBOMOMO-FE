@@ -11,13 +11,45 @@ import Select from "../../elements/Select";
 const SocialInfoSet = (props) => {
   const dispatch = useDispatch();
   const _nickCheck = useSelector((state) => state.user.nickCk);
+
+  const [keypressNick, setKeypressNick] = React.useState();
+  const [isNick, setIsNick] = React.useState();
   const [valueName, setValue] = React.useState("");
   const [nickname, setNickname] = React.useState("");
   const [category, setCategory] = React.useState("1");
     
+
+  const onChangeNick = (e) => {
+    setNickname(e.target.value);
+    let userNickRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
+    let NickRegex = userNickRegex.test(e.target.value);
+
+    setKeypressNick(false);
+
+    if (!NickRegex) {
+      setIsNick(false);
+    } else {
+      setIsNick(true);
+    }
+  };
+
   const nickCheck = () => {
     //TODO : 닉네임 중복확인
+    setKeypressNick(_nickCheck);
+    setIsNick(null);
     dispatch(userActions.nickCheckDB(nickname));
+
+
+  }
+
+  const socialLogin = () => {
+    if(valueName!==null &&  isNick == true && _nickCheck ==="true"){
+      dispatch(userActions.changeInfo(nickname,category));
+      dispatch(userActions.statMsgDB(valueName));
+      history.push("/");
+    }else{
+      window.alert("닉네임/목표/구분을 입력해주세요");
+    }
   }
 
   return (
@@ -37,17 +69,32 @@ const SocialInfoSet = (props) => {
             /> */}
           </SocialInfoModalTop>
           <NickEdit>
-            
-            <Input text="닉네임" boxSizing border="none" display="block" height="3vw" size="0.8vw" color="#7A7D81" margin="0.8vw 0" 
-              placeholder="3글자 이상의 닉네임을 입력하세요." maxlength={15} value={nickname} 
-              _onChange={(e)=>{setNickname(e.target.value)}} 
-              className={_nickCheck== null ? '' : _nickCheck==='true' && nickname.length>2 ? "green": "red"}/>
-              <button onClick={nickCheck}>중복확인</button>
-              <span className={_nickCheck== null ? '' : _nickCheck==='true' && nickname.length>2 ? "green": "red"}>
-                {_nickCheck===null ?"": _nickCheck==="true" && nickname.length>2  ? '사용가능한 닉네임입니다.':'다시 중복확인 해주세요.'}
-              </span>
-              
-          </NickEdit>
+                <Input text="닉네임" boxSizing border="none" display="block" height="3vw" size="0.8vw" color="#7A7D81" margin="0.8vw 0" 
+              placeholder="3글자 이상의 닉네임을 입력하세요." maxlength={20}
+              value={nickname} _onChange={onChangeNick}
+              className=
+              {isNick == null && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == 'true' ? "" 
+              : isNick == true && _nickCheck == null || keypressNick == false ? "red" 
+              : isNick == true && _nickCheck == 'false' ? "red" : "green"}
+            />
+            <button onClick={nickCheck}>중복확인</button>
+            <span className=
+             {isNick == null && _nickCheck == null ? "" 
+             : isNick == false && _nickCheck == null ? "" 
+             : isNick == false && _nickCheck == 'true' ? "" 
+             : isNick == true && _nickCheck == null || keypressNick == false ? "red" 
+             : isNick == true && _nickCheck == 'false' ? "red" : "green"}
+             >
+              {isNick == null && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == null ? "3글자 이상의 닉네임을 입력하세요." 
+              : isNick == false && _nickCheck == 'true' ? "3글자 이상의 닉네임을 입력하세요." 
+              : isNick == true && _nickCheck == null || keypressNick == false ? "중복확인을 해주세요" 
+              : isNick == true && _nickCheck == 'false' ?"중복된 닉네임입니다." : "사용 가능한 닉네임입니다"}
+            </span>
+
+                </NickEdit>
           <SocialInfoModalMid>
            
             <Input
@@ -82,12 +129,8 @@ const SocialInfoSet = (props) => {
           <SocialInfoModalBot>
             <p
               
-              className = {valueName!==null && _nickCheck==="true" && nickname.length>2  ? "privateModal_bot_btn activeBtn" : "privateModal_bot_btn"}
-              onClick={() => {     
-                dispatch(userActions.changeInfo(nickname,category));
-                dispatch(userActions.statMsgDB(valueName));
-                history.push("/");
-              }}
+              className = {valueName!==null &&  isNick == true && _nickCheck ==="true"  ? "privateModal_bot_btn activeBtn" : "privateModal_bot_btn"}
+              onClick={socialLogin}
             >
               입장하기
             </p>
@@ -188,7 +231,7 @@ const NickEdit = styled.div`
   margin-top:1vw;
   >button {
     position:absolute;
-    top:2.6vw;
+    top:2.5vw;
     right:0.8vw;
     border:none;
     background-color:#889cf2;

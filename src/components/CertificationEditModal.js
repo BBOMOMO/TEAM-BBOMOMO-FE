@@ -7,13 +7,15 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import close from "../Images/ic_header_close.png";
 
 const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
-  const dispatch = useDispatch();
-  const [commentText, setCommentText] = React.useState(null);
+const dispatch = useDispatch();
 
-  const editComment = (e) => {
-    setCommentText(e.target.value);
-  };
+const [commentText, setCommentText] = React.useState(null);
+
+const editComment = (e) => {
+  setCommentText(e.target.value);
+};
   
+
   return (
     <>
       {showModal ? (
@@ -63,6 +65,7 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
                   setCommentText("");
                   closeModal();
                 }}
+
               ></Input>
             </ModalInputBx>
             <ModalEditBtn
@@ -72,6 +75,7 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
                   commentId: commentInfo.cmtId,
                   comment: commentText,
                 };
+
                 dispatch(commentActions.editCommentDB(newCommentInfo));
                 setCommentText("");
                 closeModal();

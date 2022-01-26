@@ -176,10 +176,10 @@
 .myinfo_make_group {
   /* *width: 29.7917vw;
   height: 4.1667vw; */
-  height:6.5vh;
+  height:3vw;
   background-color: #889cf2;
   border-radius:0.5vw;
-  line-height: 6.5vh;
+  line-height: 3vw;
   margin: 1.1vw auto 0 auto;
 }
 .myinfo_make_group > p {
