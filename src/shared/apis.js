@@ -9,8 +9,8 @@ const url_second = process.env.REACT_APP_API_URL_SUB_SE;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
   // baseURL: "http://54.180.107.194", // 희경님 서버주소
-  baseURL: url, // 재원님 서버주소
-  // baseURL: url_sub, // 상협님서버주소
+  // baseURL: url, // 재원님 서버주소
+  baseURL: url_sub, // 상협님서버주소
 });
 
 instance.interceptors.request.use((config) => {
@@ -71,8 +71,16 @@ export const apis = {
   commentWrite: (commentInfo) =>
     instance.post(`/api/v1/posts/${commentInfo.postId}}/comments`, commentInfo),
   // 댓글 삭제
-  commentDelete: (postId, commentId) =>
-    instance.delete(`/api/v1/posts/${postId}/comments/${commentId}`),
+  commentDelete: (commentInfo) =>
+    instance.delete(
+      `/api/v1/posts/${commentInfo.postId}/comments/${commentInfo.cmtId}`
+    ),
+  // 댓글 수정
+  commentEdit: (newCommentInfo) =>
+    instance.put(
+      `/api/v1/posts/${newCommentInfo.postId}/comments/${newCommentInfo.commentId}`,
+      newCommentInfo
+    ),
 
   // 보류
   getStudyTime: () => instance.get("/api/v1/posts/time"),

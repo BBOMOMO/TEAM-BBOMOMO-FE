@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Input } from "../elements";
 import CertificationCommentList from "./CertificationCommentList";
 import CertificationDeleteModal from "./CertificationDeleteModal";
+import CertificationEditModal from "./CertificationEditModal";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -28,7 +29,15 @@ const CertificationComment = ({ showModal, closeModal }) => {
     setShowDeleteModal(false);
   };
 
-  const [commentIdNum, setCommentIdNum] = useState(0);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const openEditBtn = () => {
+    setShowEditModal(true);
+  };
+  const closeEditBtn = () => {
+    setShowEditModal(false);
+  };
+
+  const [commentInfo, setCommentInfo] = useState();
 
   // ///////////////////////////////////////////////////////////
   const dispatch = useDispatch();
@@ -178,29 +187,66 @@ const CertificationComment = ({ showModal, closeModal }) => {
                                 {...a}
                                 key={b}
                               ></CertificationCommentList>
-                              <img
-                                data-commentidnum={a.commentId}
-                                src={menu}
-                                alt="메뉴 아이콘"
-                                className="delete_img"
-                                onClick={(e) => {
-                                  let commentIdNum = Number(
-                                    e.target.dataset.commentidnum
-                                  );
-                                  setCommentIdNum(
-                                    Number(e.target.dataset.commentidnum)
-                                  );
-                                  if (commentIdNum === a.commentId) {
-                                    openDeleteBtn();
-                                  }
+                              <ChangeBtnBx
+                                onClick={() => {
+                                  setCommentInfo({
+                                    postId: postId,
+                                    cmtId: a.commentId,
+                                    cmt: a.comment,
+                                  });
+                                  // console.log(commentInfo);
                                 }}
+                              >
+                                {/* <img
+                                  data-commentidnum={a.commentId}
+                                  src={menu}
+                                  alt="메뉴 아이콘"
+                                  className="change_btn_img"
+                                  onClick={(e) => {
+                                    let commentIdNum = Number(
+                                      e.target.dataset.commentidnum
+                                    );
+                                    console.log(commentIdNum);
+                                    console.log(a.User);
+                                    setCommentIdNum(
+                                      Number(e.target.dataset.commentidnum)
+                                    );
+                                    if (commentIdNum === a.commentId) {
+                                      openDeleteBtn();
+                                    }
+                                  }}
+                                /> */}
+                                <ChangeCmt>
+                                  <p
+                                    className="EditP"
+                                    onClick={() => {
+                                      openEditBtn();
+                                    }}
+                                  >
+                                    수정
+                                  </p>
+                                  <p
+                                    className="DeleteP"
+                                    onClick={() => {
+                                      openDeleteBtn();
+                                    }}
+                                  >
+                                    삭제
+                                  </p>
+                                </ChangeCmt>
+                              </ChangeBtnBx>
+
+                              <CertificationEditModal
+                                showModal={showEditModal}
+                                closeModal={closeEditBtn}
+                                commentInfo={commentInfo}
                               />
                               <CertificationDeleteModal
                                 showModal={showDeleteModal}
                                 closeModal={closeDeleteBtn}
-                                commentIdNum={commentIdNum}
-                                deleteCommentId={postId}
-                              ></CertificationDeleteModal>
+                                commentInfo={commentInfo}
+                                // deleteCommentId={postId}
+                              />
                             </CertificationCommentListBx>
                           );
                         }
@@ -263,17 +309,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
     </>
   );
 };
-const CertificationCommentListBx = styled.div`
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 0.69vw;
-  .delete_img {
-    width: 1.46vw;
-    height: 1.46vw;
-    cursor: pointer;
-    margin-top:0.3vw;
-  }
-`;
+
 const ModalContainer = styled.div`
   position: relative;
 `;
@@ -307,7 +343,7 @@ const ModalInnerContainer = styled.div`
   margin: 0 auto;
   *margin-top: 3.06vw;
   *margin-bottom: 3.06vw;
-  padding:2vw;
+  padding: 2vw;
   box-sizing: border-box;
   text-align: left;
 `;
@@ -332,5 +368,56 @@ const ModalInnerBg = styled.div`
     border-radius: 0.76vw;
   }
 `;
+const CertificationCommentListBx = styled.div`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.69vw;
+`;
 
+const ChangeBtnBx = styled.div`
+  position: relative;
+  margin-top: 0.3vw;
+  width: 1.46vw;
+  height: 1.46vw;
+  background-image: url(${menu});
+  background-size: cover;
+  cursor: pointer;
+  /* .change_btn_img {
+    width: 1.46vw;
+    height: 1.46vw;
+    cursor: pointer;
+    margin-top: 0.3vw;
+  } */
+`;
+const ChangeCmt = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 1.8229vw;
+  right: 0.5208vw;
+  width: 4.6875vw;
+  height: 4.6875vw;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 8px 2px rgba(150, 150, 150, 0.25);
+  color: #242424;
+  font-size: 0.8vw;
+  font-weight: 600;
+  text-align: center;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 1px;
+    background-color: #e7e7e7;
+  }
+  .EditP {
+    /* border-bottom: 1px solid red; */
+  }
+  .DeleteP {
+  }
+`;
 export default CertificationComment;

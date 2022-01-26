@@ -10,6 +10,7 @@ const GET_COMMENT = "GET_COMMENT";
 const loadcomments = createAction(GET_COMMENT, (commentList) => ({
   commentList,
 }));
+
 // initialState
 const initialState = {
   commentList: [],
@@ -19,7 +20,7 @@ const initialState = {
 const getCommentsDB = (postId) => {
   return async function (dispatch, useState, { history }) {
     await apis.getPostDetail(postId).then(function (response) {
-     // console.log(response);
+      // console.log(response);
       dispatch(loadcomments(response.data.post.Comments));
     });
   };
@@ -45,10 +46,23 @@ const addCommentDB = (nick, postId, comment) => {
   };
 };
 
-const deleteCommentDB = (postId, commentId) => {
+const deleteCommentDB = (commentInfo) => {
   return async function (dispatch, useState, { history }) {
-    await apis.commentDelete(postId, commentId).then(function (response) {
-      apis.getPostDetail(postId).then(function (response) {
+    await apis.commentDelete(commentInfo).then(function (response) {
+      apis.getPostDetail(commentInfo.postId).then(function (response) {
+        dispatch(loadcomments(response.data.post.Comments));
+      });
+    });
+  };
+};
+
+const editCommentDB = (newCommentInfo) => {
+  return async function (dispatch, useState, { history }) {
+    console.log(newCommentInfo, 123);
+    await apis.commentEdit(newCommentInfo).then(function (response) {
+      console.log(response, "잘 전송함");
+      apis.getPostDetail(newCommentInfo.postId).then(function (response) {
+        console.log(response);
         dispatch(loadcomments(response.data.post.Comments));
       });
     });
@@ -71,4 +85,5 @@ export const actionCreators = {
   addCommentDB,
   getCommentsDB,
   deleteCommentDB,
+  editCommentDB,
 };

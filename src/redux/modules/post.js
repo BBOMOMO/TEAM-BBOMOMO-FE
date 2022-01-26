@@ -73,11 +73,12 @@ const addPostDB = (nick, postContent, studyTime, file, bgtype) => {
       .postWrite(form)
       .then(function (response) {
         apis.getPost().then(function (response) {
+          console.log(response);
           dispatch(loadPosts(response));
         });
       })
       .catch(function (error) {
-        //console.log(error);
+        console.log(error);
       });
   };
 };
