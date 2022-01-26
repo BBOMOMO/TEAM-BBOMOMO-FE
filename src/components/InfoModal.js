@@ -1,219 +1,205 @@
 import React from "react";
 import styled from "styled-components";
-import MyContents from "./MyContents";
-import { useSelector, useDispatch } from "react-redux";
+import close from "../Images/ic_header_close.png";
 import Input from "../elements/Input";
-import roundCircle from "../Images/timestat/notimestat.png";
-import user from "../Images/nouser.png";
-import pencil from "../Images/pencil.png";
-import CreateGroup from "../components/CreateGroup";
-import camera from "../Images/icon_camera_w.png";
-import Spinner from "../shared/Spinner";
-import { history } from "../redux/configureStore";
+import Select from "../elements/Select";
+import { delToken,delCookie } from "../shared/token";
+import {useSelector, useDispatch} from "react-redux";
+import {history } from "../redux/configureStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-const MyInfo = (props) => {
-  const dispatch = useDispatch();
-  const [showModalCG, setShowModalCG] = React.useState(false);
-  const [cateName, setCateName] = React.useState("");
 
-  //클릭 시 모달창 열기
-  const openModal = () => {
-    setShowModalCG(true);
+function InfoModal({ showModal, closeModal }) {
+  const dispatch = useDispatch();
+  const userCate = useSelector((state) => state.user.userCate);
+  const userId = useSelector((state) => state.user.userId);
+  const userNick = useSelector((state) => state.user.userNick);
+
+  const [nickname, setNickname] = React.useState(userNick);
+  const [category, setCategory] = React.useState(userCate);
+  
+  const [keypressNick, setKeypressNick] = React.useState();
+  const [isNick, setIsNick] = React.useState();
+  const _nickCheck = useSelector((state) => state.user.nickCk);
+  //TODO : 닉네임, 구분 정보 가져와서 기본값으로 넣어주기
+
+
+  //selected 기존 값으로 seleced 로 고정
+  const onChangeNick = (e) => {
+    setNickname(e.target.value);
+    let userNickRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
+    let NickRegex = userNickRegex.test(e.target.value);
+
+    setKeypressNick(false);
+
+    if (!NickRegex) {
+      setIsNick(false);
+    } else {
+      setIsNick(true);
+    }
   };
-  const closeModal = () => {
-    setShowModalCG(false);
-  };
-  const user = useSelector((state) => state.user.userInfo);
-  const nickname = user.user.nick;
-  const category = user.user.category;
-  const statusMsg = user.user.statusMsg;
-  const today = user.todayRecord.today;
-  const total = user.totalRecord.total;
 
   
-  const [studyTime, setStudyTime] = React.useState(today);
-  const [valueName, setValue] = React.useState(statusMsg);
-  const [file, setFile] = React.useState(null);
-  const [userImg, setUserImg] = React.useState(null);
-  const profImg = user.user.profileImg;
-  const [background, setBackground] = React.useState(
-    profImg ? profImg : "/static/media/nouser.3c586078.png"
-  );
-
-  const [studyCnt, setStudyCnt] = React.useState(0);
-
-    //console.log(today, total)
-
-  const css = {
-    backgroundImage: `url(${background})`,
-  };
-  const saveMsg = (e) => {
-    e.preventDefault();
-    //console.log(valueName);
-    dispatch(userActions.statMsgDB(valueName));
-  };
-
-  // console.log("user",category)
-
-  React.useEffect(() => {
-    dispatch(userActions.checkUserDB());
-    //카테고리 숫자 별 구분
-    if (category == "0") {
-      setCateName("구분");
-    }else if (category == "1") {
-      setCateName("중1");
-    } else if (category == "2") {
-      setCateName("중2");
-    } else if (category == "3") {
-      setCateName("중3");
-    } else if (category == "4") {
-      setCateName("고1");
-    } else if (category == "5") {
-      setCateName("고2");
-    } else if (category == "6") {
-      setCateName("고3");
-    } else if (category == "7") {
-      setCateName("대학생");
-    } else if (category == "8") {
-      setCateName("직장인");
-    }
-
-    // console.log("file:",file)
-    // console.log("nickname:",nickname)
-    // console.log("nickname:",category)
-
-    if (file) {
-      dispatch(userActions.changeImgDB(file));
-    }
-    if(!today){
-      //MEMO : 기본 95deg;
-      setStudyTime(95);
-    }else{
-     //MEMO: 오늘 공부시간 max 15시간 StudyTime = 900; today*0.388 / 24시간 StudyTime = 1440; today*0.24;
-      setStudyTime(today*0.388 + 95);
-    }
-  }, [file, category, nickname, today]);
+  const nickCheck = () => {
+    //TODO : 닉네임 중복확인
+    setKeypressNick(_nickCheck);
+    dispatch(userActions.nickCheckDB(nickname));
 
 
+  }
+  const profileUpdate = () => {
+    //TODO : 수정완료
+    //console.log(nickname, category);
+    dispatch(userActions.changeInfo(nickname,category));
+    setIsNick(null);
+    closeModal();
+  }
 
-  //console.log("studyTotal",total2);
+  //로그아웃버튼
+  const logout = () => {
+   
+    dispatch(userActions.logout());
+    delCookie("login");
+   
+  }
 
   return (
     <>
-    
-      <div className="myinfo_container">
-     
-        <div className="myInfo_contents_wrap">
-          <div className="myinfo_profile_area">
-          <CircleWrap>
-            <img src={roundCircle} style={{ width: "13.5vw" }} />
-            <Circlebar studyTotal={"rotate(" + studyTime + "deg)"} />
-          </CircleWrap>
+      {showModal ? (
+        <div className="header_modal_container info_modal">
+          <p className="header_modal_title">개인 정보 수정</p>
+          <span className="group_modal_close" onClick={closeModal}>
+            <img src={close} alt="" />
+          </span>
+          <div className="header_modal_hr"></div>
 
-          <label style={css} className="myinfo_user_img">
-            <span>
-              <img src={camera} alt="사진변경하기"/>
+          <div>
+            <div className="personal_info_edit">
+              <div className="nickname_edit">
+                
+                <NickEdit>
+                <Input text="닉네임" boxSizing border="none" display="block" height="3vw" size="0.8vw" color="#7A7D81" margin="0.8vw 0" 
+              placeholder="3글자 이상의 닉네임을 입력하세요." maxlength={20}
+              value={nickname} _onChange={onChangeNick}
+              className=
+              {isNick == null && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == 'true' ? "" 
+              : isNick == true && _nickCheck == null || keypressNick == false ? "red" 
+              : isNick == true && _nickCheck == 'false' ? "red" : "green"}
+            />
+            <button onClick={nickCheck}>중복확인</button>
+            <span className=
+             {isNick == null && _nickCheck == null ? "" 
+             : isNick == false && _nickCheck == null ? "" 
+             : isNick == false && _nickCheck == 'true' ? "" 
+             : isNick == true && _nickCheck == null || keypressNick == false ? "red" 
+             : isNick == true && _nickCheck == 'false' ? "red" : "green"}
+             >
+              {isNick == null && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == null ? "3글자 이상의 닉네임을 입력하세요." 
+              : isNick == false && _nickCheck == 'true' ? "3글자 이상의 닉네임을 입력하세요." 
+              : isNick == true && _nickCheck == null || keypressNick == false ? "중복확인을 해주세요" 
+              : isNick == true && _nickCheck == 'false' ?"중복된 닉네임입니다." : "사용 가능한 닉네임입니다"}
             </span>
-            <input
-              type="file"
-              onChange={(e) => {
-                setUserImg(e.target.dataset.userImg);
-                setFile(e.target.files[0]);
-                const objectURL = URL.createObjectURL(e.target.files[0]);
-                //console.log(objectURL);
-                setBackground(objectURL);
-              }}
-            />
-          </label>
-        </div>
 
-        <div className="myinfo_txt_area">
-          <div className="myinfo_user_info">
-            <span className="myinfo_user_division">{cateName}</span>
-            <h3 className="myinfo_user_name">{nickname}</h3>
+                </NickEdit>
+              </div>
+              <div className="division_edit">
+              <Select text="구분" boxSizing border="none" display="block" size="0.8vw" color="#7A7D81" margin="0.8vw 0 "
+                width="100%" height="3vw" top="3.2vw" padding="0 10px" name="category" value={category} _onChange={(e)=>{
+                setCategory(e.target.value);
+              }} >
+                <option name="middle1" value="1"> 중1 </option>
+                <option name="middle2" value="2" > 중2 </option>
+                <option name="middle3" value="3" > 중3 </option>
+                <option name="high1" value="4"> 고1 </option>
+                <option name="high2" value="5" > 고2 </option>
+                <option name="high3" value="6" > 고3 </option>
+                <option name="univ" value="7" > 대학생 </option>
+                <option name="worker" value="8"> 직장인 </option>
+                <option name="worker" value="9"> 취준생 </option>
+              </Select>
+              </div>
+
+              <EditBtn onClick={profileUpdate} className>
+              수정완료
+              </EditBtn>
+            </div>
+            <div className="header_modal_hr mt0"></div>
+            <div className="userservice">
+              <p className="userservice_btn">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScnvlLWbDtzPT7UTagUx4uvRVLbmeAsA-NkmhbvrvWzPqLQcA/viewform?usp=sf_link"
+            target="_blank" >기술문의하기</a></p>
+              <p className="userservice_btn">
+                <a href="https://forms.gle/WemcWEYWGBVoSjxW8" target="_blank">사용자피드백</a>
+              </p>
+            </div>
+            <div className="logout clearfix">
+              <p className="logout_btn fr" onClick={logout}>로그아웃</p>
+            </div>
           </div>
-          <div className="myinfo_user_state_area">
-            <Input
-              value={valueName}
-              _onChange={(e) => setValue(e.target.value)}
-              placeholder={statusMsg ? statusMsg : "목표를 입력해주세요."}
-              height="4vh"
-              color="#282828"
-              size="0.9vw"
-              radius="0.6vw"
-              onSubmit={saveMsg}
-            />
-            <img
-              type="submit"
-              src={pencil}
-              alt="저장하기"
-              title="저장하기"
-              className="myinfo_user_state_pencil"
-              onClick={saveMsg}
-            />
-          </div>
         </div>
-        <div className="myinfo_make_group">
-          <p onClick={openModal}>+ 스터디룸 만들기</p>
-          <CreateGroup showModal={showModalCG} closeModal={closeModal} />
-        </div>
-        <div className="myinfo_studytime">
-          <MyContents today={today} total={total}/>
-        </div>
-        
-        </div>
-      </div>
+      ) : null}
     </>
   );
-};
+}
 
-export default MyInfo;
+export default InfoModal;
 
-const Circlebar = styled.span`
-  position: absolute;
-  display: block;
-  width: 6.7vw;
-  height: 1px;
-  *background: #ff0000;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  transform: rotate(95deg);
-  *transform: rotate(445deg);
-
-  :before {
-    content: "";
-    position: absolute;
-    top: -14px;
-    right: -10px;
-    display: block;
-    /* width: 30px;
-    height: 30px; */
-    width:1.6vw;
-    height:1.6vw;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
-  }
-  transform-origin: left;
-  animation: animate 1s forwards;
-
-  @keyframes animate {
-    0% {
-      transform: rotate(95deg);
-    }
-    100% {
-      transform: ${(props) => props.studyTotal};
-    }
-  }
+const EditBtn = styled.button`
+  width:100%;
+  background-color:#889CF2;
+  color:#fff;
+  font-size:0.8vw;
+  font-weight:500;
+  text-align:center;
+  height:3vw;
+  line-height:3vw;
+  border-radius: 11px;
+  border:none;
+  outline:none;
+  margin-top:15px; 
+  cursor:pointer;
 `;
 
-const CircleWrap = styled.div`
-  position: relative;
-  display: block;
-  /* width: 260px;
-  height: 260px; */
-  margin: 0 auto;
-  margin-top:0vw;
+const NickEdit = styled.div`
+  position:relative;
+
+  >button {
+    position:absolute;
+    top:2.5vw;
+    right:0.8vw;
+    border:none;
+    background-color:#889cf2;
+    color:#fff;
+    font-size:0.7vw;
+    padding:6px 20px;
+    border-radius:20px;
+    cursor:pointer;
+  }
+
+  >span {
+  position: absolute;
+  right:0;
+  top:0;
+  font-size:0.7vw; 
+}
+
+
+>span.green {
+  color: #00a106;
+}
+
+>span.red {
+  color:#FD5414;
+  
+}
+
+>label>input.green{
+  border:2px solid #00a106!important;
+}
+>label>input.red{
+  border:2px solid #FD5414!important;opacity:0.5;
+}
 `;
