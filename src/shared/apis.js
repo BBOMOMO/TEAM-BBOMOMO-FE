@@ -8,7 +8,6 @@ const url_sub = process.env.REACT_APP_API_URL_SUB;
 const url_second = process.env.REACT_APP_API_URL_SUB_SE;
 const accessToken = document.cookie.split("=")[1];
 const instance = axios.create({
-  // baseURL: "http://54.180.107.194", // 희경님 서버주소
   // baseURL: url, // 재원님 서버주소
   baseURL: url_sub, // 상협님서버주소
 });
