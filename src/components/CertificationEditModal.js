@@ -9,12 +9,10 @@ import close from "../Images/ic_header_close.png";
 const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
   // console.log(commentInfo);
   const dispatch = useDispatch();
-  const [commentText, setCommentText] = React.useState("");
-  const [newCommentInfo, setNewCommentInfo] = React.useState();
-
+  const [commentText, setCommentText] = React.useState(null);
+  console.log(commentInfo);
   const editComment = (e) => {
     setCommentText(e.target.value);
-    console.log(commentText);
   };
 
   return (
@@ -41,18 +39,18 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
                 radius="0.5729vw"
                 color="#7A7D81"
                 size="0.7292vw"
-                _onChange={editComment}
+                _onChange={(e) => {
+                  editComment(e);
+                }}
               ></Input>
             </ModalInputBx>
             <ModalEditBtn
               onClick={() => {
-                setNewCommentInfo({
+                const newCommentInfo = {
                   postId: commentInfo.postId,
                   commentId: commentInfo.cmtId,
                   comment: commentText,
-                });
-                console.log(newCommentInfo);
-
+                };
                 dispatch(commentActions.editCommentDB(newCommentInfo));
                 closeModal();
               }}
