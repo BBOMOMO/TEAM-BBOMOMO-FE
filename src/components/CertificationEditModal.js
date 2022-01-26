@@ -13,7 +13,6 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
   console.log(commentInfo);
   const editComment = (e) => {
     setCommentText(e.target.value);
-    console.log(commentText);
   };
 
   return (
@@ -52,7 +51,6 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
                   commentId: commentInfo.cmtId,
                   comment: commentText,
                 };
-                console.log(newCommentInfo);
                 dispatch(commentActions.editCommentDB(newCommentInfo));
                 closeModal();
               }}
