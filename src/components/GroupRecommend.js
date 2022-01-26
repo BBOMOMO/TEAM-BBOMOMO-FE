@@ -50,9 +50,12 @@ const GroupRecommend = (props) => {
     <div className="groupreco_bx">
       <div className="groupreco_top">
         {usernick ? (
+          <>
           <h2>
             {usernick}님을 위한 스터디룸 추천
-            <span className="groupreco_reload_span">
+            
+          </h2>
+          <span className="groupreco_reload_span">
               <img
                 src={reload}
                 alt="reload"
@@ -63,7 +66,7 @@ const GroupRecommend = (props) => {
                 }}
               />
             </span>
-          </h2>
+          </>
         ) : (
           <h2>뽀모님을 위한 스터디룸 추천</h2>
         )}
