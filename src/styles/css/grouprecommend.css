@@ -16,12 +16,11 @@
 }
 .groupreco_top .groupreco_reload_span {
   position: relative;
-  margin-left: 0.78vw;
+ *margin-left: 0.78vw;
 }
 .groupreco_top .groupreco_reload_span .groupreco_reload {
-  position: absolute;
-  top: 2px;
-  height: 2.46vh;
+  *position: absolute;
+  *top: 2px;
   width: 1.25vw;
   cursor: pointer;
 }
@@ -31,7 +30,7 @@
 }
 .hashtag_list_bx {
   display: flex;
-  height: 4.5vh;
+  height: 2.5vw;
 }
 .hashtag_list_bx > button {
   margin-right: 0.5vw;

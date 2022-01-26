@@ -18,31 +18,31 @@ function InfoModal({ showModal, closeModal }) {
   const [nickname, setNickname] = React.useState(userNick);
   const [category, setCategory] = React.useState(userCate);
   
-
-
+  const [keypressNick, setKeypressNick] = React.useState();
+  const [isNick, setIsNick] = React.useState();
   const _nickCheck = useSelector((state) => state.user.nickCk);
   //TODO : 닉네임, 구분 정보 가져와서 기본값으로 넣어주기
 
 
   //selected 기존 값으로 seleced 로 고정
+  const onChangeNick = (e) => {
+    setNickname(e.target.value);
+    let userNickRegex = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{3,20}$/;
+    let NickRegex = userNickRegex.test(e.target.value);
 
+    setKeypressNick(false);
 
-  //console.log("category",category,userCate);
-  //console.log(_nickCheck )
-  React.useEffect(()=>{ 
-    
-  },[]);
-
-  
-  //console.log("user",userId)
-  //TODO : 닉네임 중복확인되면 색상없음, 틀렸을때만 빨간색으로 
-
-  //닉네임 중복검사 true/false
-  //console.log(_nickCheck);
+    if (!NickRegex) {
+      setIsNick(false);
+    } else {
+      setIsNick(true);
+    }
+  };
 
   
   const nickCheck = () => {
     //TODO : 닉네임 중복확인
+    setKeypressNick(_nickCheck);
     dispatch(userActions.nickCheckDB(nickname));
 
 
@@ -51,6 +51,7 @@ function InfoModal({ showModal, closeModal }) {
     //TODO : 수정완료
     //console.log(nickname, category);
     dispatch(userActions.changeInfo(nickname,category));
+    setIsNick(null);
     closeModal();
   }
 
@@ -75,18 +76,33 @@ function InfoModal({ showModal, closeModal }) {
           <div>
             <div className="personal_info_edit">
               <div className="nickname_edit">
+                
                 <NickEdit>
                 <Input text="닉네임" boxSizing border="none" display="block" height="3vw" size="0.8vw" color="#7A7D81" margin="0.8vw 0" 
-                  placeholder={userNick} maxlength={15} value={nickname} 
-                  _onChange={(e)=>{setNickname(e.target.value)}} 
-                  className={_nickCheck== null ? '' : _nickCheck==='true' && nickname.length>2 ? "green": "red"}/>
-                  <button onClick={nickCheck}>중복확인</button>
-                  <span className={_nickCheck== null ? '' : _nickCheck==='true' && nickname.length>2 ? "green": "red"}>
-                    {_nickCheck===null ?'닉네임 사용중': _nickCheck==="true" && nickname.length>2  ? '사용가능한 닉네임입니다.':'사용중인 닉네임입니다. '}
-                    
+              placeholder="3글자 이상의 닉네임을 입력하세요." maxlength={20}
+              value={nickname} _onChange={onChangeNick}
+              className=
+              {isNick == null && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == 'true' ? "" 
+              : isNick == true && _nickCheck == null || keypressNick == false ? "red" 
+              : isNick == true && _nickCheck == 'false' ? "red" : "green"}
+            />
+            <button onClick={nickCheck}>중복확인</button>
+            <span className=
+             {isNick == null && _nickCheck == null ? "" 
+             : isNick == false && _nickCheck == null ? "" 
+             : isNick == false && _nickCheck == 'true' ? "" 
+             : isNick == true && _nickCheck == null || keypressNick == false ? "red" 
+             : isNick == true && _nickCheck == 'false' ? "red" : "green"}
+             >
+              {isNick == null && _nickCheck == null ? "" 
+              : isNick == false && _nickCheck == null ? "3글자 이상의 닉네임을 입력하세요." 
+              : isNick == false && _nickCheck == 'true' ? "3글자 이상의 닉네임을 입력하세요." 
+              : isNick == true && _nickCheck == null || keypressNick == false ? "중복확인을 해주세요" 
+              : isNick == true && _nickCheck == 'false' ?"중복된 닉네임입니다." : "사용 가능한 닉네임입니다"}
+            </span>
 
-                  </span>
-                  
                 </NickEdit>
               </div>
               <div className="division_edit">
@@ -152,7 +168,7 @@ const NickEdit = styled.div`
 
   >button {
     position:absolute;
-    top:2.6vw;
+    top:2.5vw;
     right:0.8vw;
     border:none;
     background-color:#889cf2;
