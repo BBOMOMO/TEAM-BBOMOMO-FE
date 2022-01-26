@@ -5,15 +5,8 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 import close from "../Images/ic_header_close.png";
 
-const CertificationDeleteModal = ({
-  showModal,
-  closeModal,
-  commentIdNum,
-  deleteCommentId,
-}) => {
-  // console.log(qwe, asd);
+const CertificationDeleteModal = ({ showModal, closeModal, commentInfo }) => {
   const dispatch = useDispatch();
-  // React.useEffect(() => {}, []);
   return (
     <>
       {showModal ? (
@@ -25,9 +18,7 @@ const CertificationDeleteModal = ({
             <ModalP>정말 삭제하시겠습니까?</ModalP>
             <ModalDeleteBtn
               onClick={() => {
-                dispatch(
-                  commentActions.deleteCommentDB(deleteCommentId, commentIdNum)
-                );
+                dispatch(commentActions.deleteCommentDB(commentInfo));
                 closeModal();
               }}
             >
