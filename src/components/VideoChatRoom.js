@@ -59,7 +59,9 @@ const ChatRoom = styled.div`
         object-fit: cover;
         position: relative;
         }
-      
+      video.mirror {
+        transform: rotateY(180deg);
+      }
       }
     }
   }
@@ -85,6 +87,10 @@ export default function VideoChatRoom() {
   const modalState = useSelector((state) => state.group.modalState);
   const endModalState = useSelector((state) => state.group.endModalState);
   const studyRound = useSelector((state) => state.group.round);
+  //
+
+  //
+
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
 
@@ -144,18 +150,18 @@ export default function VideoChatRoom() {
       config: { iceServers: [{ url: "stun:stun.l.google.com:19302" }] },
     });
     peer.nick = UserNick;
+
     // 클라의 영상 스트림 비디오에 넣기
 
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
-        // console.log(stream);
+        console.log(stream);
         myStream = stream;
         let streamId = stream.id;
         addVideoStream(myVideo.current, stream);
         videoGrid.current.prepend(myVideo.current);
         allStream.current = stream;
-
         // 타이머 이벤트
         let gapTimeFloor;
 
@@ -382,6 +388,7 @@ export default function VideoChatRoom() {
           // console.log("div 클래스 추가 videobox");
           const peerVideo = document.createElement("video");
           const txtBox = document.createElement("div");
+          peerVideo.classList.add("mirror");
           // console.log("div 추가");
           txtBox.classList.add("userview_txtbox");
           // console.log("클래스 추가");
@@ -443,6 +450,7 @@ export default function VideoChatRoom() {
           // console.log("div 클래스 추가 videobox");
           const newVideo = document.createElement("video");
           const txtBox = document.createElement("div");
+          newVideo.classList.add("mirror");
           // console.log("div 추가");
           txtBox.classList.add("userview_txtbox");
           // console.log("클래스 추가");
@@ -564,7 +572,7 @@ export default function VideoChatRoom() {
                 ></div>
                 <video
                   ref={myVideo}
-                  className="myvideo"
+                  className="myvideo mirror"
                   autoPlay
                   playsInline
                   onMouseOver={() => {

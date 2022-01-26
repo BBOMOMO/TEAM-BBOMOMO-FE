@@ -10,7 +10,6 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
   // console.log(commentInfo);
   const dispatch = useDispatch();
   const [commentText, setCommentText] = React.useState(null);
-  console.log(commentInfo);
   const editComment = (e) => {
     setCommentText(e.target.value);
   };
