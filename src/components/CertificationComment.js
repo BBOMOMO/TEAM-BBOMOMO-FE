@@ -37,6 +37,18 @@ const CertificationComment = ({ showModal, closeModal }) => {
     setShowEditModal(false);
   };
 
+  const [showEditToggle, setShowEditToggle] = useState(false);
+  const openEditToggle = () => {
+    if (showEditToggle === false) {
+      setShowEditToggle(true);
+    } else {
+      setShowEditToggle(false);
+    }
+  };
+  const closeEditToggle = () => {
+    setShowEditToggle(false);
+  };
+
   const [commentInfo, setCommentInfo] = useState();
 
   // ///////////////////////////////////////////////////////////
@@ -194,46 +206,31 @@ const CertificationComment = ({ showModal, closeModal }) => {
                                     cmtId: a.commentId,
                                     cmt: a.comment,
                                   });
-                                  // console.log(commentInfo);
+                                  openEditToggle();
                                 }}
                               >
-                                {/* <img
-                                  data-commentidnum={a.commentId}
-                                  src={menu}
-                                  alt="메뉴 아이콘"
-                                  className="change_btn_img"
-                                  onClick={(e) => {
-                                    let commentIdNum = Number(
-                                      e.target.dataset.commentidnum
-                                    );
-                                    console.log(commentIdNum);
-                                    console.log(a.User);
-                                    setCommentIdNum(
-                                      Number(e.target.dataset.commentidnum)
-                                    );
-                                    if (commentIdNum === a.commentId) {
-                                      openDeleteBtn();
-                                    }
-                                  }}
-                                /> */}
-                                <ChangeCmt>
-                                  <p
-                                    className="EditP"
-                                    onClick={() => {
-                                      openEditBtn();
-                                    }}
-                                  >
-                                    수정
-                                  </p>
-                                  <p
-                                    className="DeleteP"
-                                    onClick={() => {
-                                      openDeleteBtn();
-                                    }}
-                                  >
-                                    삭제
-                                  </p>
-                                </ChangeCmt>
+                                {showEditToggle ? (
+                                  <ChangeCmt>
+                                    <p
+                                      className="EditP"
+                                      onClick={() => {
+                                        closeEditToggle();
+                                        openEditBtn();
+                                      }}
+                                    >
+                                      수정
+                                    </p>
+                                    <p
+                                      className="DeleteP"
+                                      onClick={() => {
+                                        closeEditToggle();
+                                        openDeleteBtn();
+                                      }}
+                                    >
+                                      삭제
+                                    </p>
+                                  </ChangeCmt>
+                                ) : null}
                               </ChangeBtnBx>
 
                               <CertificationEditModal
@@ -245,7 +242,6 @@ const CertificationComment = ({ showModal, closeModal }) => {
                                 showModal={showDeleteModal}
                                 closeModal={closeDeleteBtn}
                                 commentInfo={commentInfo}
-                                // deleteCommentId={postId}
                               />
                             </CertificationCommentListBx>
                           );
