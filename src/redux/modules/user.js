@@ -2,7 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setToken, setCookie } from "../../shared/token";
 import apis from "../../shared/apis";
-import api from "../../api/api";
+
 
 // actions
 const SET_USER = "SET_USER";
@@ -221,6 +221,15 @@ const statMsgDB = (valueName) => {
       });
   };
 };
+//상태명 소셜로그인
+const statMsgSocial = (valueName) => {
+  return async function (dispatch, getState, { history }) {
+    const userMsg = {
+      statusMsg: valueName,
+    };
+    await apis.changeMsg(userMsg)
+  };
+};
 
 //유저정보수정
 const changeInfo = (nickname, category) => {
@@ -327,6 +336,7 @@ export const actionCreators = {
   nickCheckDB,
   changeInfo,
   statMsgDB,
+  statMsgSocial,
   changeImgDB,
   getRankDB,
   //kakaoLogin,
