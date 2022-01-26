@@ -16,23 +16,7 @@ const loadPostDetail = createAction(GET_POST_DETAIL, (postListDetail) => ({
 // initialState
 const initialState = {
   postList: [],
-  postListDetail: {
-    // postId: "",
-    // nick: "",
-    // postContent: "",
-    // postImg: "",
-    // studyTime: "",
-    // createdAt: "",
-    // updatedAt: "",
-    // userId: "",
-    // Comments: [
-    //   {
-    //     nick: "",
-    //     comment: "",
-    //     createdAt: "",
-    //   },
-    // ],
-  },
+  postListDetail: {},
 };
 
 // middlewares
@@ -73,7 +57,6 @@ const addPostDB = (nick, postContent, studyTime, file, bgtype) => {
       .postWrite(form)
       .then(function (response) {
         apis.getPost().then(function (response) {
-          console.log(response);
           dispatch(loadPosts(response));
         });
       })

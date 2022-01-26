@@ -7,13 +7,13 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import close from "../Images/ic_header_close.png";
 
 const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
-  // console.log(commentInfo);
   const dispatch = useDispatch();
   const [commentText, setCommentText] = React.useState(null);
+
   const editComment = (e) => {
     setCommentText(e.target.value);
   };
-
+  
   return (
     <>
       {showModal ? (
@@ -21,7 +21,14 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
           <ModalInnerBx>
             <ModalTop>
               <h2>수정하기</h2>
-              <img src={close} alt="닫기 아이콘" onClick={closeModal} />
+              <img
+                src={close}
+                alt="닫기 아이콘"
+                onClick={() => {
+                  closeModal();
+                  setCommentText("");
+                }}
+              />
             </ModalTop>
             <ModalInputBx>
               <Input
@@ -41,6 +48,21 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
                 _onChange={(e) => {
                   editComment(e);
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onsubmit(e);
+                  }
+                }}
+                onSubmit={() => {
+                  const newCommentInfo = {
+                    postId: commentInfo.postId,
+                    commentId: commentInfo.cmtId,
+                    comment: commentText,
+                  };
+                  dispatch(commentActions.editCommentDB(newCommentInfo));
+                  setCommentText("");
+                  closeModal();
+                }}
               ></Input>
             </ModalInputBx>
             <ModalEditBtn
@@ -51,6 +73,7 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
                   comment: commentText,
                 };
                 dispatch(commentActions.editCommentDB(newCommentInfo));
+                setCommentText("");
                 closeModal();
               }}
             >
@@ -71,7 +94,7 @@ const ModalBx = styled.div`
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: #fff;
-  border-radius: 0.83vw;
+  border-radius: 16px;
   box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);
 `;
 
@@ -95,8 +118,8 @@ const ModalTop = styled.div`
     font-weight: 600;
   }
   img {
-    width: 24px;
-    height: 24px;
+    width: 1.25vw;
+    height: 1.25vw;
   }
 `;
 const ModalInputBx = styled.div`
@@ -106,11 +129,12 @@ const ModalEditBtn = styled.div`
   padding: 0.83vw 0.93vw;
   width: 100%;
   background: #889cf2;
-  border-radius: 0.5729vw;
+  border-radius: 11px;
   color: #ffffff;
   font-size: 0.9375vw;
   font-weight: 600;
   text-align: center;
+  cursor: pointer;
 `;
 
 export default CertificationEditModal;

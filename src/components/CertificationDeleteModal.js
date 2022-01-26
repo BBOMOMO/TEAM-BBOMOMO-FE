@@ -33,14 +33,14 @@ const CertificationDeleteModal = ({ showModal, closeModal, commentInfo }) => {
 
 const ModalBx = styled.div`
   position: absolute;
-  width: 548px;
+  width: 28.5417vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: #fff;
   border-radius: 16px;
-  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.1);
+  box-shadow: 0px 4px 35px 4px rgba(162, 162, 162, 0.25);
 `;
 
 const ModalInnerBx = styled.div`
@@ -48,34 +48,32 @@ const ModalInnerBx = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 45px;
+  padding: 1.5625vw 2.3438vw;
 `;
 const CloseBtnBx = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
   img {
-    width: 24px;
-    height: 24px;
+    width: 1.25vw;
+    height: 1.25vw;
   }
 `;
 const ModalP = styled.div`
   margin: 30px 0 60px;
   color: #242424;
-  font-size: 18px;
+  font-size: 0.9375vw;
   font-weight: 600;
-  line-height: 26px;
-  letter-spacing: -0.0024em;
 `;
 const ModalDeleteBtn = styled.div`
-  padding: 16px 18px;
-  width: 460px;
+  padding: 0.83vw 0.93vw;
+  width: 100%;
   background: #889cf2;
   border-radius: 11px;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 0.9375vw;
   font-weight: 600;
-  letter-spacing: -0.0024em;
   text-align: center;
+  cursor: pointer;
 `;
 export default CertificationDeleteModal;
