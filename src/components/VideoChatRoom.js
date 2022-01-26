@@ -156,7 +156,7 @@ export default function VideoChatRoom() {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
-        console.log(stream);
+        // console.log(stream);
         myStream = stream;
         let streamId = stream.id;
         addVideoStream(myVideo.current, stream);
@@ -362,11 +362,11 @@ export default function VideoChatRoom() {
 
         // 데이터 주기
         peer.on("connection", (dataConnection) => {
-          console.log("connect");
-          console.log(dataConnection);
+          // console.log("connect");
+          // console.log(dataConnection);
           peersNick = dataConnection.metadata.UserNick;
           peersMsg = dataConnection.metadata.statusMsg;
-          console.log(peersNick);
+          // console.log(peersNick);
           const peerstatus = document.createElement("p");
           peerstatus.innerText = peersMsg;
           const peerNick = document.createElement("p");
@@ -378,7 +378,7 @@ export default function VideoChatRoom() {
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
-          console.log("call");
+          // console.log("call");
           //answer()를 해야 mediaConnection이 활성화됨
           // console.log(mediaConnection);
           mediaConnection.answer(stream);
@@ -431,7 +431,7 @@ export default function VideoChatRoom() {
         });
         // 이게 제일 두번째 순서 -> peer.call(peerId, stream)
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
-          console.log(peerId);
+          // console.log(peerId);
           peerstatusMsg = peerMsg;
           const peerInfo = {
             statusMsg,
@@ -439,7 +439,7 @@ export default function VideoChatRoom() {
           };
           const mediaConnection = peer.call(peerId, stream); // 0124 0557 test
           const dataConnection = peer.connect(peerId, { metadata: peerInfo }); // 종찬아 여기서부터 하면 된다. 데이터커넥션은 성공했다. userID를 send 혹은 보낼 방법을 찾아보자.. // const 지움
-          console.log(dataConnection);
+          // console.log(dataConnection);
           //
           dataConnection.send("message");
           //
