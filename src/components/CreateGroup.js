@@ -140,7 +140,7 @@ function CreateGroup({ showModal, closeModal }) {
                   value={roomTitle}
                   _onChange={is_filled}
                   className="mb20"
-                  text="방제"
+                  text="방제목"
                   placeholder="공부 목적을 적어주세요"
                   margin="0.8vw 0 0 0"
                 />

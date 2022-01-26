@@ -12,7 +12,8 @@ const VideoModal = (props) => {
   // };
 
   return (
-    <div className="video_modal">
+    <div className="video_modal_container">
+      <div className="video_modal_dim"></div>
       <img
         className="video_modal_close_btn"
         src={close}

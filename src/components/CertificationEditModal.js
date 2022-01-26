@@ -13,6 +13,7 @@ const CertificationEditModal = ({ showModal, closeModal, commentInfo }) => {
   const editComment = (e) => {
     setCommentText(e.target.value);
   };
+  
   return (
     <>
       {showModal ? (

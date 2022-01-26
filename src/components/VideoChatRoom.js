@@ -59,7 +59,9 @@ const ChatRoom = styled.div`
         object-fit: cover;
         position: relative;
         }
-      
+      video.mirror {
+        transform: rotateY(180deg);
+      }
       }
     }
   }
@@ -85,6 +87,10 @@ export default function VideoChatRoom() {
   const modalState = useSelector((state) => state.group.modalState);
   const endModalState = useSelector((state) => state.group.endModalState);
   const studyRound = useSelector((state) => state.group.round);
+  //
+
+  //
+
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
 
@@ -144,6 +150,7 @@ export default function VideoChatRoom() {
       config: { iceServers: [{ url: "stun:stun.l.google.com:19302" }] },
     });
     peer.nick = UserNick;
+
     // 클라의 영상 스트림 비디오에 넣기
 
     navigator.mediaDevices
@@ -155,7 +162,6 @@ export default function VideoChatRoom() {
         addVideoStream(myVideo.current, stream);
         videoGrid.current.prepend(myVideo.current);
         allStream.current = stream;
-
         // 타이머 이벤트
         let gapTimeFloor;
 
@@ -356,11 +362,11 @@ export default function VideoChatRoom() {
 
         // 데이터 주기
         peer.on("connection", (dataConnection) => {
-          console.log("connect");
-          console.log(dataConnection);
+          // console.log("connect");
+          // console.log(dataConnection);
           peersNick = dataConnection.metadata.UserNick;
           peersMsg = dataConnection.metadata.statusMsg;
-          console.log(peersNick);
+          // console.log(peersNick);
           const peerstatus = document.createElement("p");
           peerstatus.innerText = peersMsg;
           const peerNick = document.createElement("p");
@@ -372,7 +378,7 @@ export default function VideoChatRoom() {
 
         // 새로운 피어가 연결을 원할 때
         peer.on("call", (mediaConnection) => {
-          console.log("call");
+          // console.log("call");
           //answer()를 해야 mediaConnection이 활성화됨
           // console.log(mediaConnection);
           mediaConnection.answer(stream);
@@ -382,6 +388,7 @@ export default function VideoChatRoom() {
           // console.log("div 클래스 추가 videobox");
           const peerVideo = document.createElement("video");
           const txtBox = document.createElement("div");
+          peerVideo.classList.add("mirror");
           // console.log("div 추가");
           txtBox.classList.add("userview_txtbox");
           // console.log("클래스 추가");
@@ -424,7 +431,7 @@ export default function VideoChatRoom() {
         });
         // 이게 제일 두번째 순서 -> peer.call(peerId, stream)
         socket.on("user-connected", (peerId, userNick, streamId, peerMsg) => {
-          console.log(peerId);
+          // console.log(peerId);
           peerstatusMsg = peerMsg;
           const peerInfo = {
             statusMsg,
@@ -432,7 +439,7 @@ export default function VideoChatRoom() {
           };
           const mediaConnection = peer.call(peerId, stream); // 0124 0557 test
           const dataConnection = peer.connect(peerId, { metadata: peerInfo }); // 종찬아 여기서부터 하면 된다. 데이터커넥션은 성공했다. userID를 send 혹은 보낼 방법을 찾아보자.. // const 지움
-          console.log(dataConnection);
+          // console.log(dataConnection);
           //
           dataConnection.send("message");
           //
@@ -443,6 +450,7 @@ export default function VideoChatRoom() {
           // console.log("div 클래스 추가 videobox");
           const newVideo = document.createElement("video");
           const txtBox = document.createElement("div");
+          newVideo.classList.add("mirror");
           // console.log("div 추가");
           txtBox.classList.add("userview_txtbox");
           // console.log("클래스 추가");
@@ -564,7 +572,7 @@ export default function VideoChatRoom() {
                 ></div>
                 <video
                   ref={myVideo}
-                  className="myvideo"
+                  className="myvideo mirror"
                   autoPlay
                   playsInline
                   onMouseOver={() => {
