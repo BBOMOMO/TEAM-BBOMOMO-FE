@@ -251,7 +251,7 @@
 }
 .certifi_write_post_bx .bg_btn_bx {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 0.4vw;
   width: 100%;
 }
@@ -505,7 +505,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 6vw;
-  
 }
 .certifi_conmment_list .list_profile_bx > p {
   color: #242424;
@@ -516,8 +515,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 11vw;
-  margin-top:0.5vw;
- 
+  margin-top: 0.5vw;
 }
 .certifi_conmment_list > span {
   margin-right: 0.69vw;
