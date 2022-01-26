@@ -58,11 +58,8 @@ const deleteCommentDB = (commentInfo) => {
 
 const editCommentDB = (newCommentInfo) => {
   return async function (dispatch, useState, { history }) {
-    console.log(newCommentInfo, 123);
     await apis.commentEdit(newCommentInfo).then(function (response) {
-      console.log(response, "잘 전송함");
       apis.getPostDetail(newCommentInfo.postId).then(function (response) {
-        console.log(response);
         dispatch(loadcomments(response.data.post.Comments));
       });
     });
