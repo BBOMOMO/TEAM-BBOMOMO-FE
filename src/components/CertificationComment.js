@@ -1,45 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "../elements";
-import CertificationCommentList from "./CertificationCommentList";
-import CertificationDeleteModal from "./CertificationDeleteModal";
-import CertificationEditModal from "./CertificationEditModal";
-
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
-
 import apis from "../shared/apis";
 
+import CertificationCommentList from "./CertificationCommentList";
 import profileimg_default from "../Images/nouser_2.png";
 import close from "../Images/ic_header_close.png";
 import send from "../Images/ic-send 1.png";
-import menu from "../Images/ic-comment-menu.png";
 import BG1 from "../Images/study-certification-bg-1.png";
 import BG2 from "../Images/study-certification-bg-2.png";
 import BG3 from "../Images/study-certification-bg-3.png";
 import BG4 from "../Images/study-certification-bg-4.png";
 
 const CertificationComment = ({ showModal, closeModal }) => {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const openDeleteBtn = () => {
-    setShowDeleteModal(true);
-  };
-  const closeDeleteBtn = () => {
-    setShowDeleteModal(false);
-  };
-
-  const [showEditModal, setShowEditModal] = useState(false);
-  const openEditBtn = () => {
-    setShowEditModal(true);
-  };
-  const closeEditBtn = () => {
-    setShowEditModal(false);
-  };
-
-  const [commentInfo, setCommentInfo] = useState();
-
-  // ///////////////////////////////////////////////////////////
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const [background, setBackground] = useState(BG1);
@@ -48,11 +24,9 @@ const CertificationComment = ({ showModal, closeModal }) => {
   };
   const [bgBlack, setbgBlack] = useState("");
 
-  // 댓글 작성 막기
   const user = useSelector((state) => state.user.userInfo);
   const userNick = localStorage.getItem("nick");
   const postDetail = useSelector((state) => state.post.postListDetail);
-  // console.log(postDetail.User);
   const profileImg = useSelector((state) => state.post.profileImg);
   const profileNick = useSelector((state) => state.post.profileNick);
   const postId = useSelector((state) => state.post.postListDetail.postId);
@@ -177,6 +151,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                               <CertificationCommentList
                                 {...a}
                                 key={b}
+                                sameUser={false}
                               ></CertificationCommentList>
                             </CertificationCommentListBx>
                           );
@@ -186,67 +161,9 @@ const CertificationComment = ({ showModal, closeModal }) => {
                               <CertificationCommentList
                                 {...a}
                                 key={b}
+                                postId={postId}
+                                sameUser={true}
                               ></CertificationCommentList>
-                              <ChangeBtnBx
-                                onClick={() => {
-                                  setCommentInfo({
-                                    postId: postId,
-                                    cmtId: a.commentId,
-                                    cmt: a.comment,
-                                  });
-                                  // console.log(commentInfo);
-                                }}
-                              >
-                                {/* <img
-                                  data-commentidnum={a.commentId}
-                                  src={menu}
-                                  alt="메뉴 아이콘"
-                                  className="change_btn_img"
-                                  onClick={(e) => {
-                                    let commentIdNum = Number(
-                                      e.target.dataset.commentidnum
-                                    );
-                                    console.log(commentIdNum);
-                                    console.log(a.User);
-                                    setCommentIdNum(
-                                      Number(e.target.dataset.commentidnum)
-                                    );
-                                    if (commentIdNum === a.commentId) {
-                                      openDeleteBtn();
-                                    }
-                                  }}
-                                /> */}
-                                <ChangeCmt>
-                                  <p
-                                    className="EditP"
-                                    onClick={() => {
-                                      openEditBtn();
-                                    }}
-                                  >
-                                    수정
-                                  </p>
-                                  <p
-                                    className="DeleteP"
-                                    onClick={() => {
-                                      openDeleteBtn();
-                                    }}
-                                  >
-                                    삭제
-                                  </p>
-                                </ChangeCmt>
-                              </ChangeBtnBx>
-
-                              <CertificationEditModal
-                                showModal={showEditModal}
-                                closeModal={closeEditBtn}
-                                commentInfo={commentInfo}
-                              />
-                              <CertificationDeleteModal
-                                showModal={showDeleteModal}
-                                closeModal={closeDeleteBtn}
-                                commentInfo={commentInfo}
-                                // deleteCommentId={postId}
-                              />
                             </CertificationCommentListBx>
                           );
                         }
@@ -372,52 +289,5 @@ const CertificationCommentListBx = styled.div`
   display: flex;
   align-items: flex-start;
   margin-bottom: 0.69vw;
-`;
-
-const ChangeBtnBx = styled.div`
-  position: relative;
-  margin-top: 0.3vw;
-  width: 1.46vw;
-  height: 1.46vw;
-  background-image: url(${menu});
-  background-size: cover;
-  cursor: pointer;
-  /* .change_btn_img {
-    width: 1.46vw;
-    height: 1.46vw;
-    cursor: pointer;
-    margin-top: 0.3vw;
-  } */
-`;
-const ChangeCmt = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  position: absolute;
-  top: 1.8229vw;
-  right: 0.5208vw;
-  width: 4.6875vw;
-  height: 4.6875vw;
-  background-color: #ffffff;
-  box-shadow: 0px 1px 8px 2px rgba(150, 150, 150, 0.25);
-  color: #242424;
-  font-size: 0.8vw;
-  font-weight: 600;
-  text-align: center;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 1px;
-    background-color: #e7e7e7;
-  }
-  .EditP {
-    /* border-bottom: 1px solid red; */
-  }
-  .DeleteP {
-  }
 `;
 export default CertificationComment;
