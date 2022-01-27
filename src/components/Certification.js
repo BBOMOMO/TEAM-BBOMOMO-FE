@@ -23,7 +23,7 @@ const Certification = (props) => {
     }
   };
   const seeMore = () => {
-    setRoomcount(roomcount + roomcount);
+    setRoomcount(roomcount + 3);
   };
 
   const [showWriteModal, setShowWriteModal] = React.useState(false);
@@ -122,10 +122,17 @@ const Certification = (props) => {
               );
             })}
         </div>
+        {
+              cardList!== undefined && cardList.length<4 || cardList!== undefined && cardList.length<=roomcount ?(
+              <></>
+              ):(
+                <div className="certifi_more_btn" onClick={seeMore}>
+                  <button>더보기</button>
+                </div>
+              )
+            }
 
-        <div className="certifi_more_btn" onClick={seeMore}>
-          <button>더보기</button>
-        </div>
+
       </div>
     </>
   );

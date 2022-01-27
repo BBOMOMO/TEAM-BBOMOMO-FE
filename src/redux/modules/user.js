@@ -280,7 +280,7 @@ const getRankDB = () => {
     await apis
       .getRank()
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         const studyRanking = response.data.studyRanking;
         dispatch(getRank(studyRanking));
       })

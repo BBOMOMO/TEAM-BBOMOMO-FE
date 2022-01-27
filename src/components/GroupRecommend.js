@@ -18,14 +18,19 @@ const GroupRecommend = (props) => {
 
   const usernick = localStorage.getItem("nick");
   const [roomcount, setRoomcount] = React.useState(6);
-
-  const [activeCate, setActiveCate] = React.useState("All");
   const [roomPurpose, setRoomPurpose] = React.useState(null);
-  const [isStarted, setIsStarted] = React.useState("");
+  const [totalRooms, setTotalRooms] = React.useState(0);
 
+  React.useEffect(() => {
+    dispatch(roomActions.getRooms());
+    dispatch(roomActions.sortRooms(roomPurpose));
+  }, [roomPurpose]);
+
+  
   const roomSlice = () => {
     if (roomlist) {
       const _roomSlice = roomlist.slice(0, roomcount);
+
       return _roomSlice;
     }
   };
@@ -37,15 +42,9 @@ const GroupRecommend = (props) => {
   };
 
   const seeMore = () => {
-    setRoomcount(roomcount + roomcount);
+    setRoomcount(roomcount + 6);
   };
 
-  React.useEffect(() => {
-    dispatch(roomActions.getRooms());
-    dispatch(roomActions.sortRooms(roomPurpose));
-  }, [roomPurpose]);
-
-  //console.log(roomPurpose,"카테고리별 방 확인 ",caterooms);
   return (
     <div className="groupreco_bx">
       <div className="groupreco_top">
@@ -270,10 +269,16 @@ const GroupRecommend = (props) => {
                 }
               })}
           </div>
-
-          <div className="groupreco_more_btn" onClick={seeMore}>
-            <button>더보기</button>
-          </div>
+            {
+              roomlist!== undefined && roomlist.length<7 || roomlist!== undefined && roomlist.length<roomcount ?(
+              <></>
+              ):(
+                <div className="groupreco_more_btn" onClick={seeMore}>
+                <button>더보기</button>
+              </div>
+              )
+            }
+         
         </>
       ) : (
         <>
@@ -333,9 +338,15 @@ const GroupRecommend = (props) => {
               })}
           </div>
 
-          <div className="groupreco_more_btn" onClick={seeMore}>
-            <button>더보기</button>
-          </div>
+          {
+              caterooms!== undefined && caterooms.length<7|| caterooms!== undefined && caterooms.length<roomcount ?(
+              <></>
+              ):(
+                <div className="groupreco_more_btn" onClick={seeMore}>
+                <button>더보기</button>
+              </div>
+              )
+            }
         </>
       )}
     </div>
