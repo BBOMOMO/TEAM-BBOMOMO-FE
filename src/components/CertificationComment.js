@@ -210,7 +210,7 @@ const CertificationComment = ({ showModal, closeModal }) => {
                                 }}
                               >
                                 {showEditToggle ? (
-                                  <ChangeCmt>
+                                  <ChangeCmt className="testName">
                                     <p
                                       className="EditP"
                                       onClick={() => {
