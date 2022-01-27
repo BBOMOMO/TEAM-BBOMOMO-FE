@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {actionCreators as userActions} from "../../redux/modules/user";
 import Spinner from "../Spinner";
 import SocialInfoSet from "./SocialInfoSet";
-import api from "../../api/api";
+import {api} from "./OAuth";
 import { setCookie } from "../../shared/token";
 
 const Google = (props) => {
@@ -21,13 +21,9 @@ const GoogleLogin = (authorization_code) => {
         const userNick = response.data.user.nick;
         setCookie("login", token);
         localStorage.setItem("nick", `${userNick}`);
-        //window.alert("구글 성공 🔥");
-        //history.push("/");
       }).then(()=>{
         const defaultNick = localStorage.getItem("nick");
-        console.log(defaultNick);
         const distriNick = defaultNick.indexOf('164',0);
-        console.log(defaultNick.indexOf('164',0)); 
         if(distriNick == -1 ){
           setFirst(false);
           history.push("/");

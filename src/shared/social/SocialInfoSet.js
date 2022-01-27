@@ -14,7 +14,7 @@ const SocialInfoSet = (props) => {
 
   const [keypressNick, setKeypressNick] = React.useState();
   const [isNick, setIsNick] = React.useState();
-  const [valueName, setValue] = React.useState("");
+  const [valueName, setValue] = React.useState(null);
   const [nickname, setNickname] = React.useState("");
   const [category, setCategory] = React.useState("1");
     
@@ -36,16 +36,15 @@ const SocialInfoSet = (props) => {
   const nickCheck = () => {
     //TODO : 닉네임 중복확인
     setKeypressNick(_nickCheck);
-    setIsNick(null);
     dispatch(userActions.nickCheckDB(nickname));
 
 
   }
-
+console.log(valueName,isNick,_nickCheck);
   const socialLogin = () => {
-    if(valueName!==null &&  isNick == true && _nickCheck ==="true"){
+    if(valueName!==null &&  isNick == true && _nickCheck == "true"){
       dispatch(userActions.changeInfo(nickname,category));
-      dispatch(userActions.statMsgDB(valueName));
+      dispatch(userActions.statMsgSocial(valueName));
       history.push("/");
     }else{
       window.alert("닉네임/목표/구분을 입력해주세요");
@@ -129,7 +128,7 @@ const SocialInfoSet = (props) => {
           <SocialInfoModalBot>
             <p
               
-              className = {valueName!==null &&  isNick == true && _nickCheck ==="true"  ? "privateModal_bot_btn activeBtn" : "privateModal_bot_btn"}
+              className = {valueName!==null &&  isNick == true && _nickCheck =="true"  ? "privateModal_bot_btn activeBtn" : "privateModal_bot_btn"}
               onClick={socialLogin}
             >
               입장하기
@@ -231,7 +230,7 @@ const NickEdit = styled.div`
   margin-top:1vw;
   >button {
     position:absolute;
-    top:2.5vw;
+    top:2.6vw;
     right:0.8vw;
     border:none;
     background-color:#889cf2;
