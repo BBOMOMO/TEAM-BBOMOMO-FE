@@ -77,6 +77,8 @@ const MyInfo = (props) => {
       setCateName("대학생");
     } else if (category == "8") {
       setCateName("직장인");
+    }else if (category == "9") {
+      setCateName("취준생");
     }
 
     // console.log("file:",file)
