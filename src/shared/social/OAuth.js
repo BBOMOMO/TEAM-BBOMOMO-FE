@@ -1,4 +1,13 @@
 
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+const url = process.env.REACT_APP_API_URL;
+
+export const api = axios.create({
+ baseURL: url
+});
+
 //kakao social login 인가코드 받기
 
 const KAKAO_ID="72d037f2f36cab4f37e086f82615729e";
