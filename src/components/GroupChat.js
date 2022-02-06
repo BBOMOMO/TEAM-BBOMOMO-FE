@@ -76,59 +76,7 @@ function GroupChat({ openChat }) {
         <div className="header_modal_hr"></div>
 
         <div className="group_chat_container">
-          <div className="chat_render_oneChat">
-            {/* <div className="chat_from_friend">
-              <div className="chat_nick"></div>
-              <div className="chat_content">
-                <p className="chat_message"></p>
-                <span className="chat_message_time">10:34</span>
-              </div>
-            </div> */}
-            {/* <div className="chat_from_friend">
-              <div className="chat_nick">닉네임2</div>
-              <div className="chat_content">
-                <p className="chat_message">ㅋㅋ그게뭐죠?</p>
-                <span className="chat_message_time">10:34</span>
-              </div>
-            </div>
-            <div className="chat_from_friend">
-              <div className="chat_nick">닉네임3</div>
-              <div className="chat_content">
-                <p className="chat_message">귀찮네여</p>
-                <span className="chat_message_time">10:34</span>
-              </div>
-            </div>
-
-            <div className="chat_from_me">
-              <p className="chat_message">호에에에에호에에에엥</p>
-              <span className="chat_message_time">10:34</span>
-            </div>
-
-            <div className="chat_from_friend">
-              <div className="chat_nick">닉네임1</div>
-              <div className="chat_content">
-                <p className="chat_message">지금 뭐 공부하고있어여?</p>
-                <span className="chat_message_time">10:34</span>
-              </div>
-            </div>
-
-            <div className="chat_from_me">
-              <p className="chat_message">호에에에에호에에에엥</p>
-              <span className="chat_message_time">10:34</span>
-            </div>
-            <div className="chat_from_me">
-              <p className="chat_message">호에에에에호에에에엥</p>
-              <span className="chat_message_time">10:34</span>
-            </div>
-
-            <div className="chat_from_friend">
-              <div className="chat_nick">닉네임2</div>
-              <div className="chat_content">
-                <p className="chat_message">ㅋ</p>
-                <span className="chat_message_time">10:34</span>
-              </div>
-            </div> */}
-          </div>
+          <div className="chat_render_oneChat"></div>
           <div className="chat_textfield_container">
             <input
               type="text"
