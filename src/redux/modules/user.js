@@ -3,7 +3,6 @@ import { produce } from "immer";
 import { setToken, setCookie } from "../../shared/token";
 import apis from "../../shared/apis";
 
-
 // actions
 const SET_USER = "SET_USER";
 const ID_CHECK = "ID_CHECK";
@@ -227,7 +226,7 @@ const statMsgSocial = (valueName) => {
     const userMsg = {
       statusMsg: valueName,
     };
-    await apis.changeMsg(userMsg)
+    await apis.changeMsg(userMsg);
   };
 };
 
@@ -241,7 +240,7 @@ const changeInfo = (nickname, category) => {
     await apis
       .changeNick(userInfo)
       .then((response) => {
-       // console.log(response);
+        // console.log(response);
         //window.alert("수정 완료되었습니다.");
         apis.checkUser().then((response) => {
           dispatch(setUser(response.data));
@@ -280,12 +279,12 @@ const getRankDB = () => {
     await apis
       .getRank()
       .then((response) => {
-        //console.log(response);
+        console.log(response);
         const studyRanking = response.data.studyRanking;
         dispatch(getRank(studyRanking));
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
       });
   };
 };
@@ -310,7 +309,6 @@ export default handleActions(
         draft.studyTime = action.payload.userInfo.todayRecord.today;
         draft.studyTotal = action.payload.userInfo.totalRecord.total;
         //console.log(action.payload.userInfo.user[0].nick)
-
       }),
     [ADD_USER_IMG]: (state, action) => produce(state, (draft) => {}),
     [GET_RANK]: (state, action) =>
