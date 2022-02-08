@@ -12,7 +12,6 @@ import Header from "../components/Header";
 import GroupChat from "./GroupChat";
 import profile from "../Images/profile.png";
 import dotenv from "dotenv";
-import PostChat from "../components/PostChat";
 import VideoModal from "../components/VideoModal";
 import VideoEndModal from "../components/VideoEndModal";
 import { getContrastRatio } from "@material-ui/core";
