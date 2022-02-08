@@ -9,51 +9,59 @@ import io from "socket.io-client";
 import dotenv from "dotenv";
 dotenv.config();
 function GroupChat({ openChat }) {
-  const [chatMessage, setChatMessage] = React.useState("");
+  const [chatMessage, setChatMessage] = useState("");
   const url = process.env.REACT_APP_API_URL;
   const params = useParams();
   const roomId = params.roomId;
   let userId = localStorage.getItem("nick");
   const socket = useRef();
-  React.useEffect(() => {
+  const oneChat = useRef();
+  const renderOneChat = oneChat.current;
+  const [chat, setChat] = useState([]);
+  useEffect(() => {
     socket.current = io(url);
     socket.current.emit("join-chatRoom", roomId, userId);
+
     socket.current.on("message", (user, message, roomId) => {
-      // console.log(user, message, roomId);
-      //
-      const chat_from_friend = document.createElement("div");
-      userId == user
-        ? chat_from_friend.classList.add("chat_from_me")
-        : chat_from_friend.classList.add("chat_from_friend");
-      //
-      let chat_nick;
-      if (userId != user) {
-        chat_nick = document.createElement("div");
-        chat_nick.classList.add("chat_nick");
-        chat_nick.innerText = user;
-      }
-      //
-      const chat_content = document.createElement("div");
-      chat_content.classList.add("chat_content");
-      //
-      chat_from_friend.prepend(chat_content);
-      if (chat_from_friend.classList[0] === "chat_from_friend") {
-        chat_from_friend.prepend(chat_nick);
-      }
-      //
-      const chat_message = document.createElement("p");
-      chat_message.classList.add("chat_message");
-      chat_message.innerText = message;
-      //
-      chat_content.prepend(chat_message);
-      //
-      const chat_render_oneChat = document.querySelector(
-        ".chat_render_oneChat"
-      );
-      chat_render_oneChat.append(chat_from_friend);
-      chat_render_oneChat.lastChild.scrollIntoView();
+      setChat([...chat, { user, message }]);
+      console.log(chat);
+      // //
+      // const chat_from_friend = document.createElement("div");
+      // userId == user
+      //   ? chat_from_friend.classList.add("chat_from_me")
+      //   : chat_from_friend.classList.add("chat_from_friend");
+      // //
+      // let chat_nick;
+      // if (userId != user) {
+      //   chat_nick = document.createElement("div");
+      //   chat_nick.classList.add("chat_nick");
+      //   chat_nick.innerText = user;
+      // }
+      // //
+      // const chat_content = document.createElement("div");
+      // chat_content.classList.add("chat_content");
+      // //
+      // chat_from_friend.prepend(chat_content);
+      // if (chat_from_friend.classList[0] === "chat_from_friend") {
+      //   chat_from_friend.prepend(chat_nick);
+      // }
+      // //
+      // const chat_message = document.createElement("p");
+      // chat_message.classList.add("chat_message");
+      // chat_message.innerText = message;
+      // //
+      // chat_content.prepend(chat_message);
+      // //
+      // const chat_render_oneChat = document.querySelector(
+      //   ".chat_render_oneChat"
+      // );
+      // chat_render_oneChat.append(chat_from_friend);
+      // chat_render_oneChat.lastChild.scrollIntoView();
     });
-  }, []);
+    return () => {
+      socket.current.disconnect();
+    };
+  }, [chat]);
 
   const sendChat = () => {
     if (chatMessage != "") {
@@ -64,6 +72,23 @@ function GroupChat({ openChat }) {
 
   const sendMessage = (e) => {
     setChatMessage(e.target.value);
+  };
+  //
+  const renderChat = () => {
+    return chat.map(({ user, message }, index) => (
+      <div
+        key={index}
+        className={userId == user ? "chat_from_me" : "chat_from_friend"}
+      >
+        {userId != user ? <div className="chat_nick">{user}</div> : null}
+        <div className="chat_content">
+          <div className="chat_message">{message}</div>
+        </div>
+      </div>
+    ));
+  };
+  const viewBottom = () => {
+    renderOneChat?.lastChild?.lastChild.scrollIntoView();
   };
   return (
     <>
@@ -76,7 +101,10 @@ function GroupChat({ openChat }) {
         <div className="header_modal_hr"></div>
 
         <div className="group_chat_container">
-          <div className="chat_render_oneChat"></div>
+          <div className="chat_render_oneChat" ref={oneChat}>
+            {renderChat()}
+            {viewBottom()}
+          </div>
           <div className="chat_textfield_container">
             <input
               type="text"
