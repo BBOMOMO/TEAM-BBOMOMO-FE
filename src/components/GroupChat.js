@@ -25,7 +25,7 @@ function GroupChat({ openChat }) {
     socket.current.on("message", (user, message, roomId) => {
       setChat([...chat, { user, message }]);
       console.log(chat);
-      // //
+      // // 돔을 직접 건드리는 방법
       // const chat_from_friend = document.createElement("div");
       // userId == user
       //   ? chat_from_friend.classList.add("chat_from_me")
