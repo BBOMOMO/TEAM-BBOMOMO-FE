@@ -5,7 +5,7 @@ on:
     branches:
       - master
     
-  jobs:
+jobs:
     deploy:
       name: Build, Deploy to S3 bucket
       runs-on: [ubuntu-latest]
