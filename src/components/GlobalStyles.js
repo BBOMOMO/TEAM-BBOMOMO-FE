@@ -4,11 +4,42 @@ import reset from "styled-reset";
 const GlobalStyles = createGlobalStyle`
     ${reset}
     @font-face {
-      font-family: 'Pretendard';
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+    @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
 
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -22,15 +53,16 @@ const GlobalStyles = createGlobalStyle`
     article, aside, canvas, details, embed, 
     figure, figcaption, footer, header, hgroup, 
     menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
+    time, mark, audio, video, input, button, select, option {
       margin: 0;
       padding: 0;
       border: 0;
-      font-size: 100%;
+      font-size: 16px;
       font: inherit;
       vertical-align: baseline;
       font-family: 'Pretendard';
-      
+      font-weight: 400;
+
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure, 
@@ -39,6 +71,7 @@ const GlobalStyles = createGlobalStyle`
     }
     body {
       line-height: 1;
+      background-color:#FCFEFE;
     }
     ol, ul {
       list-style: none;
@@ -51,10 +84,15 @@ const GlobalStyles = createGlobalStyle`
       content: '';
       content: none;
     }
+    a, a:hover, a:active, a:visited, a:focus {
+      text-decoration: none;
+      color:inherit;
+    }
     table {
       border-collapse: collapse;
       border-spacing: 0;
     }
+    
 
     /* margin + padding */
     .mt0 {margin-top:0px !important;}   .mb0 {margin-bottom:0 !important;} 
@@ -95,7 +133,7 @@ const GlobalStyles = createGlobalStyle`
     .underline {border-bottom: 3px solid #889CF2; box-sizing: border-box; padding-bottom:8px; margin-bottom: -11px;}
 
     /* float */
-    .fl {float:left;}
+    .fl {float:left; height: 100%}
     .fr {float:right;}
 
     /* clearfix */
@@ -104,6 +142,28 @@ const GlobalStyles = createGlobalStyle`
       content: '';
       clear:both;
     }
+
+    /* font-weight */
+    .font600 {
+      font-weight: 600;
+    }
+
+    /* text-align */
+    .tc {
+      text-align: center;
+    }
+
+    /* 스크롤 바 커스텀 */
+
+    *::-webkit-scrollbar { width:5px; }
+    *::-webkit-scrollbar-track { background-color: #eff6f8; border-radius: 100px; } 
+    *::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 100px;  } 
+    
+    *::-webkit-scrollbar-thumb {  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5); border-radius: 100px; }
+
+    /* disabled 비활성화 버튼  */
+    .disabled {background:#d7d7d7!important; color:#fff!important; cursor:auto!important;}
+
 `;
 
 export default GlobalStyles;

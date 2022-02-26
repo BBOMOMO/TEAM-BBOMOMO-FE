@@ -1,73 +1,153 @@
-# 화이팅!
+# ![Group 3474](https://user-images.githubusercontent.com/63698668/151095484-0d54cb7c-b35a-4f4f-947a-ce50e45489fa.png) 서비스 설명 리드미 보러가기
+
+> [메인 ReadMe.md](https://github.com/BBOMOMO)를 먼저 참고 해주세요 
+> 
+> [화면 설계서](https://docs.google.com/presentation/d/1I7jFArgiHkIvfjGNZ5nO3M5Se-W5Q7ABn13FF47iLrw/edit?usp=sharing) 보러가기
+
+<br>
+
+<center>
+  
+[![바로가기 버튼](https://user-images.githubusercontent.com/63698668/151119816-1f14496c-84a5-4401-a840-6a376e51731f.png)](https://bbomomo.com/)
+
+</center>
+
+# ![Group 3475](https://user-images.githubusercontent.com/63698668/151095485-db07f9d7-a895-4a60-85f1-d214a0ee8b15.png) 팀원 소개
+
+|  이름  |                           깃허브 주소                            |       포지션       |
+| :----: | :--------------------------------------------------------------: | :----------------: |
+| 정종찬 | [https://github.com/youHaveToDo](https://github.com/youHaveToDo) | 프론트엔드(리액트) |
+| 서민지 |  [https://github.com/ireneeming](https://github.com/ireneeming)  | 프론트엔드(리액트) |
+| 이서현 |      [https://github.com/hamkke](https://github.com/hamkke)      | 프론트엔드(리액트) |
+
+<br>
+
+# :hammer: 피드백
+
+![피드백1번](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLMVqz%2FbtrroYoSAK5%2FByOUYqn0DV3pmA0CHLawsK%2Fimg.png)
+
+- 카메라를 설정하는 기능은 조만간에 추가 예정입니다. 최대한 빨리 업데이트 하도록 하겠습니다. 쉬는 시간과 공부 시간이 바뀔 때마다 알림기능이 있었는데, 배포하는 과정에서 문제가 있어서 알림이 뜨질 않았던 버그가 있었습니다. 해당 문제는 원인을 파악하여 수정하였습니다. 저희 웹을 사용해주셔서 감사합니다 :)
+  <br><br>
+
+![피드백2번](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc8ioJ1%2FbtrrlTWrWUM%2FLNuTVoeXLQFI4MyKkFrbfK%2Fimg.png)
+
+- 집중시간에도 사람이 들어오는 문제는 팀 내부적으로 많은 이야기가 있었습니다. 기술적인 고민도 있었구요. "중간에 들어오는게 공부를 방해하지는 않을까? 유저가 편하게 사용하도록 하는 점에서는 어떤게 더욱 효과적일까? 중간에 들어온 사람은 공부시간을 어떻게 저장시켜주고, 남은 시간은 어떻게 화면에 보여줘야할까? " 당장은 힘들겠지만 유저에 집중을 방해하지 않은 선에서 기술적인 문제를 해결할 수 있다면 보다 효과적인 방법을 업데이트 하도록 하겠습니다. 좋은 피드백 감사합니다 :)
+  <br><br>
+
+![피드백3번](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb8tKX9%2FbtrroFpxp8Z%2FIVJ0BAwcAcrPjntLUAI8QK%2Fimg.png)
+
+- 저희가 웹 서비스이다 보니 컴퓨터내에서 일어나는 모든 일들을 컨트롤 하기 어려운 부분이 있습니다. 사이트의 접근을 막거나 하는 서비스를 제공하기는 어려워 보이나 말씀해주신 부분의 방법이 아닌 다른 방법으로 사용자분들의 집중을 도와드릴 수 있는 다른 방법을 생각해보겠습니다 :) 그리고 추후 집중하지 못하고 있는 팀원들에게 집중 하라는 alert (?) 까지는 아니더라도 "공부해, 집중해"를 비롯한 여러 의미의 메세지를 담은 이모티콘 기능을 개발 준비중입니다. 이모티콘 기능을 활용해 여러분에게 소소한 재미를 드릴 수 있었으면 좋겠습니다:)
+  <br><br>
+
+![피드백4번](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FenIpeK%2FbtrrWBePGk0%2F1YoKVn8RNGeYS9bNwCHNR1%2Fimg.png)
+
+- 중복확인 문제도 저희가 생각하지 못했던 부분중에 하나인데요. 중복검사를 하고 다시 아이디나 비밀번호를 수정하여 입력하는 경우 여전히 이전의 중복검사 결과가 남아있어서 유저분들의 혼란을 야기했던 것 같습니다. 현재는 중복검사를 하면 유저분들이 인지하실 수 있도록 안내문구가 나오도록 수정하였습니다. 또한, 중복검사 이후 입력했던 아이디와 비밀번호가 변경된 경우 다시 한번 중복검사를 받을 수 있도록 조치하였습니다 :)<br>
+  <br>
+- 뽀모모를 처음 기획할 때, 저희와 비슷한 느낌의 모바일 어플은 이미 있다고 생각했고, 그러면 "데스크탑과 같은 기기에서 활용할 수 있는 웹이 있었으면 좋겠다!" 라는 생각에서 만들어진 서비스입니다. 그렇다보니 처음에 작업할 때 FHD 해상도 하나만을 생각하고 만들었던게 말씀하신 부분에서 문제가 생겼던 것 같습니다. 해당 피드백을 팀 내에서 이야기 해본 결과, FHD 해상도 외의 다른 해상도에서도 적용 가능한 수준으로는 수정은 필요하다고 결정했고, 현재는 FHD 해상도보다 큰 경우나 맥북 13인치와 같이 낮은 해상도에서도 보실 수 있도록 수정하였습니다.
+
+# :book: 라이브러리
+
+|       name        |          Appliance          | version |
+| :---------------: | :-------------------------: | :-----: |
+|      swiper       |      슬라이더 플러그인      |  6.8.4  |
+|     socket.io     |      웹소켓 라이브러리      |  4.4.0  |
+| socket.io-client  |      웹소켓 라이브러리      |  4.4.0  |
+|      dotenv       |        환경변수 설정        | 10.0.0  |
+|       redux       |          상태 관리          |  4.0.5  |
+|    redux-thunk    |       리덕스 미들웨어       |  2.3.0  |
+|   redux-actions   |          액션 관리          |  2.6.5  |
+|       immer       |         불변성 유지         |  9.0.7  |
+|       axios       | HTTP 클라이언트 라이브러리 | 0.24.0  |
+|      peerjs       |     p2p 연결 라이브러리     |  1.3.2  |
+| styled-components |    CSS-in-JS 라이브러리     |  5.3.3  |
+
+<br>
+
+<h1>
+<details>
+<summary>서비스 아키텍쳐</summary>
+<div markdown="1">
+
+![뽀모모아키텍쳐v2](https://user-images.githubusercontent.com/85975904/151278794-c81d778e-31d5-4b89-af24-7a44b4b322d2.png)
+
+</div>
+</details>
+</h1>
+
+<br>
+
+# ![Group 3477](https://user-images.githubusercontent.com/63698668/151095490-9e2b3688-9f9f-4e93-9165-97b8423fef78.png) 트러블 슈팅, 느낀점
+
+## 종찬
+
+> 뽀모모 서비스의 주제는 온라인 스터디, 뽀모도로 타이머, 학창시절 야자와 같은 강제성입니다. 강제성을 유저에게 부여하기 위해 쉬는 시간과 공부시간을 분리했고 공부시간에는 채팅과 이외기능을 막기도 합니다. 문제는 "최대 6명의 사용자에게 동일한 시간을 어떻게 줄 것인가?" 였습니다.
+
+> 처음에는 쉬는 시간과 공부 시간을 모두 프론트에서 계산하여 사용자에게 전달했습니다. 이러한 방법은 단순히 프론트에서 함수 1~2개로 이벤트를 관리할 수 있다는 장점이 있었지만, 문제로는 방 생성할 때 들어온 유저와 쉬는 시간 혹은 공부 시간 중간에 들어온 유저 모두에게 동일한 시간을 부여하기가 어려웠습니다.
+
+> 두번째 방법으로는 쉬는 시간 종료(공부 시작)와 공부 시간 종료(쉬는 시간 시작) 를 서버에서 유저의 입장과 함께 socket 이벤트로 보내주고 받는 동시에 프론트에서 현재 시간을 계산해, 시간의 차이만큼 타이머를 돌려주는 방식으로 변경했습니다. <br>
+> 두번째 방법은 서버에서 동일한 시작 예정 시간을 받고 유저 개인의 입장시간을 비교하기 때문에 유저 모두가 동일한 시간에 이벤트를 발생시킬 수 있었고, 중간에 유저의 집중을 위해 공부시간에 입장하는 것을 막는 쪽으로 팀원분들의 생각이 정해졌기 때문에, 기존의 방법보다 쉬는 시간과 공부시간을 나누고 개인마다의 타이머 오차범위를 줄일 수 있었습니다.<br>
+> 그러나 다른 문제점은 입장시간을 클라이언트쪽에서 만들기 때문에 유저의 컴퓨터 내에서 수동으로 시간을 지정하여 남들보다 시간이 빠르거나 늦는 경우, 3분의 쉬는 시간 이벤트를 보내더라도 2~4분까지 격차가 있는 유저가 발생하기 시작했고, 다른 국가에 있는 유저가 접속했을 때의 경우 단순히 분 단위의 차이가 아닌 시간 단위의 차이가 발생할 수 있다고 판단했습니다. 뽀모모 내에서는 공부한 시간을 저장해 랭킹으로 보여주는 기능도 있고 이는 서비스를 사용하는 유저에게 동기를 부여하는 중요한 부분이기 때문에 반드시 해결해야 할 이슈였습니다.
+
+> 이 시기에 기존의 유저에게 공부 시간과 쉬는 시간을 선택할 수 있는 범위를 넓혔다가, 뽀모모의 원래 주제인 뽀모도로 타이머의 정체성을 살리기 위해 공부 시간 50분, 25분 선택으로 선택지를 줄이기로 결정했고 그 덕분에 저희가 처리해야 할 시간도 2가지로 줄었기 때문에 유저 입장시간과 이벤트 발생시간(공부시간, 쉬는시간) 모두 서버에서 유닉스 타임스탬프로 보내주는 방법으로 변경함으로서, 위에 문제를 해결하고 사용자의 컴퓨터 시간 설정과는 상관없이 동일한 시간을 전달할 수 있게 되었습니다.
+
+## 민지
+> 뽀모모의 주 디바이스는 PC/태블릿입니다. 화면 구성도 풀페이지 대쉬보드 형태로 한 눈에 보고 이용할 수 있도록 구성하였습니다. 처음 뷰 제작 당시에는 px로 작업하였으나 pc/태블릿도 디바이스별로 사이즈가 조금씩 다른점과 유저 별로 디스플레이 사이즈를 100%, 125%로 보는 경우를 고려해 vw단위로 작업하였습니다. 사이즈 단위를 px에서 vw로 대폭 수정하는 부분에서 글로벌css 파일 관리와 컨벤션 관리가 중요하다는것을 느꼈고, 더욱 수정관리에 신경쓰며 코드를 짜야한다는 점을 느꼈습니다.
+> 
+> 짧은 시간동안 최대한의 결과물은 완성시키기 위해 노력한 백엔드와 프론트 모두 수고하셨습니다.
+
+## 서현
+> 아무것도 모르는 상태에서 시작해 
+기획부터 배포까지 팀원분들과 함께 진행하면서 많을 것을 배울 수 있었던 프로젝트였습니다.<br>
+제가 맡은 기능 구현에 급급해 다른 팀원분들의 작업 부분을 파악하지 못해 아쉬웠지만<br>
+아쉬운 부분이 있다는 건 앞으로 더 성장할 수 있다는 말도 되기에
+이번 프로젝트를 계기로 좋은 개발자가 되도록 더 공부하고 노력하겠습니다.
+마지막으로 끝까지 함께 해주신 팀원분들 고맙습니다!
+<br>
+
+# ![Group 3478](https://user-images.githubusercontent.com/63698668/151095492-35f5e6d7-1854-4175-8b94-d5e19ac19c65.png) 설치 가이드
+
+아래 지시사항을 통해 프로젝트를 실행하실 수 있습니다.
+
+## 필수 구성 요소
+
+- Node.js
+
+## 설치
+
+1. 프로젝트 클론
+
+```console
+$ git clone https://github.com/BBOMOMO/TEAM-BBOMOMO-FE.git
+```
+
+2. 패키지 설치
+
+```console
+$ cd frontend
+$ yarn install
+```
+
+3. 환경 변수 설정
+
+```text
+// front 폴더 안에 .env 파일 생성 후 아래 내용 기입
+
+REACT_APP_API_URL = api url 주소
 
 
-# Getting Started with Create React App
+// 소셜로그인 설정 시 : /shared/social/OAuth.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+const KAKAO_ID="카카오에서 받은 아이디";
+const KAKAO_REDIRECT_URI="설정한 callback 주소";
 
-## Available Scripts
+const GOOGLE_ID="구글에서 받은 아이디";
+const GOOGLE_REDIRECT_URI="설정한 callback 주소";
 
-In the project directory, you can run:
+```
 
-### `yarn start`
+## Backend API 서버 실행
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```console
+$ cd frontend
+$ yarn start
+```

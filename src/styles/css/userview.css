@@ -31,20 +31,22 @@
   font-weight: bold;
 }
 .userview_txtbox {
-  padding-top: 19px;
-  width: 387px;
+  padding-top: 5%;
+  width: 100%;
+  height: 19.6%;
 }
 .userview_name {
   display: flex;
   flex-direction: column;
   margin: 3px 0 0 16px;
 }
-.userview_name p {
-  font-size: 16px;
+.userview_name > p {
+  text-align: left;
+  font-size: 0.83vw;
   font-weight: 600;
 }
 .userview_name p + p {
-  font-size: 14px;
+  font-size: 0.73vw;
   margin-top: 6px;
   color: #515151;
 }

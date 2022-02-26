@@ -1,48 +1,95 @@
 .myinfo_container {
-  width: 660px;
+  position: sticky;
+  top: 8.5vh;
+  left: 0;
+  *width: 45.8333vw;
+  height: calc(100vh - 8.5vh);
   text-align: center;
+  background: #f8fdfd;
+  border-radius: 0 0 3.5vw 0;
+  *padding: 5.5556vw 8.0556vw;
+  box-sizing: border-box;
+  padding:2vw 0 0 0;
+
+}
+.myInfo_contents_wrap {
+  width:65%;
+  margin:0 0 0 22%; 
 }
 .myinfo_profile_area {
-  margin-top: 152px;
+  *margin-top: 3.4722vw;
   position: relative;
 }
+
 .myinfo_user_img {
   position: absolute;
+  width: 10vw;
+  height: 10vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.myinfo_user_img > span {
+  display: none;
+  color: #fff;
+  line-height: 14.7917vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* width: 13.6806vw;
+  height: 13.6806vw; */
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+.myinfo_user_img > span > img {
+  position: absolute;
+    width: 2.2vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.myinfo_user_img:hover > span {
+  display: block;
+}
+
+.myinfo_user_img > input {
+  display: none;
 }
 
 .myinfo_user_info {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 124px;
-  margin: 26px auto 12px auto;
+  justify-content: center;
+  align-items: center;
+  margin: 1.8056vw auto 0.8333vw auto;
 }
 
 .myinfo_txt_area {
 }
 .myinfo_user_name {
-  font-size: 24px;
+  font-size: 1.2vw;
   font-weight: bold;
 }
+
 .myinfo_user_division {
-  font-size: 18px;
+  font-size: 0.8vw;
   font-weight: 400;
-  width: 45px;
-  height: 26px;
-  line-height: 30px;
-  border-radius: 30px;
-  border: 0.38px solid #959595;
+  display: inline-block;
+  padding: 0 0.8vw;
+  line-height: 1.6vw;
+  border-radius: 1.6vw;
+  border: 0.0264vw solid #959595;
+  margin-right: 0.5vw;
 }
 .myinfo_user_state {
-  width: 193px;
-  height: 36px;
-  font-size: 13px;
-  line-height: 36px;
+  width: 13.4028vw;
+  height: 5vh;
+  font-size: 0.8vw;
+  line-height: 2.5000vw;
   background-color: #f6f8f9;
-  border-radius: 8px;
+  border-radius: 0.5556vw;
   margin: 0 auto;
 }
 .myinfo_user_state_area {
@@ -50,43 +97,47 @@
   position: relative;
 }
 .myinfo_user_state_pencil {
-  width: 12px;
-  height: 12px;
+  width: 0.8vw;
+  height: 0.8vw;
   position: absolute;
   top: 50%;
-  right: 16px;
+  right: 0.8vw;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 .myinfo_studytime {
-  border-radius: 25px;
+  border-radius: 1.7361vw;
   background-color: #eff6f8;
-  width: 429px;
-  margin: 45px auto 0 auto;
+  *width: 29.7917vw;
+  margin: 1vw auto 0 auto;
 }
 .myinfo_studytime_top {
-  padding: 0 32px;
-  height: 70px;
+  padding: 0 2.2222vw;
+  height: 4.8611vw;
   display: flex;
   align-items: center;
   justify-content: left;
   box-sizing: border-box;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 1.2500vw;
+}
+.myinfo_studytime_top > p {
+  width: 7.2917vw;
 }
 .myinfo_studytime_mid {
-  width: 429px;
-  height: 112px;
+  width: 100%;
+  height: 5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 42px;
+  *padding: 0 2.9167vw;
   box-sizing: border-box;
   position: relative;
 }
 .myinfo_studytime_mid::after {
   display: inline-block;
   content: "";
-  width: 377px;
+  width: 26.1806vw;
   height: 1px;
   position: absolute;
   bottom: 0;
@@ -95,43 +146,131 @@
   background-color: #e7e7e7;
 }
 .myinfo_studytime_today {
-  font-size: 16px;
+  font-size: 0.9vw;
   color: #959595;
 }
 .myinfo_studytime_today_time {
-  font-size: 28px;
+  font-size: 1.5vw;
   font-weight: bold;
   color: #242424;
   opacity: 0.2;
 }
 .myinfo_studytime_bot {
-  width: 429px;
-  height: 112px;
+  width: 100%;
+  height: 5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 42px;
+  *padding: 0 2.9167vw;
   box-sizing: border-box;
 }
 .myinfo_studytime_total {
-  font-size: 16px;
+  font-size: 0.9vw;
   color: #959595;
 }
 .myinfo_studytime_total_time {
-  font-size: 28px;
+  font-size: 1.5vw;
   font-weight: bold;
   color: #242424;
 }
 .myinfo_make_group {
-  width: 429px;
-  height: 60px;
+  /* *width: 29.7917vw;
+  height: 4.1667vw; */
+  height:3vw;
   background-color: #889cf2;
-  border-radius: 11px;
-  line-height: 60px;
-  margin: 20px auto 0 auto;
+  border-radius:0.5vw;
+  line-height: 3vw;
+  margin: 1.1vw auto 0 auto;
 }
-.myinfo_make_group p {
+.myinfo_make_group > p {
   color: #fff;
-  font-size: 18px;
+  font-size:0.9vw;
   font-weight: 600;
+  cursor: pointer;
+}
+
+/************************** 비로그인 NoInfo.js **************************/
+
+.myinfo_nouser_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2vw auto 1vw;
+  
+}
+
+.myinfo_nouser_info .myinfo_user_name {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1vw;
+  color:#a3a6aa;
+  border:1px solid #CDCDCD;
+  border-radius: 1.9792vw;
+  justify-content: center;
+  width: 100%;
+  padding:0.75vw;
+ 
+}
+.myinfo_nouser_info .myinfo_user_name:hover{
+  background-color: #889cf2;
+  border:1px solid #889cf2;
+  transition: 0.5s;
+  transition-delay: 0s;
+  color:#fff;
+}
+.myinfo_nouser_info .myinfo_user_name > span {
+  position: relative;
+  display: inline-block;
+  margin: 0 0.3472vw;
+  font-weight:600;
+}
+
+/* rank */
+.myinfo_rank_wrap {
+  margin-top: 0.9vw;
+  display: flex;
+  flex:1;
+}
+.myinfo_rank_wrap:nth-child(1) {
+  margin-top: 1.3889vw;
+}
+.myinfo_rank_wrap:nth-child(1) .myinfo_rank_name {
+}
+.myinfo_rank_wrap:nth-child(1) .myinfo_rank_name::after {
+  display: inline-block;
+  content: "";
+  width: 0.9028vw;
+  height: 0.9028vw;
+  background-image: url(../../Images/crown.png);
+  background-size: contain;
+  position: absolute;
+  top: 0.1vw;
+  margin-left:1vw;
+}
+.myinfo_rank {
+  font-size: 0.9vw;
+  font-weight: 600;
+  color: #889cf2;
+
+  width: 3.4722vw;
+  text-align: left;
+}
+.myinfo_rank_name {
+  font-size: 0.9vw;
+  font-weight: 400;
+  color: #282828;
+  flex:0.5;
+  text-align:left;
+
+
+  position: relative;
+}
+
+.myinfo_rank_time {
+  font-weight: 600;
+  color: #242424;
+  text-align: right;
+  *width: 3.8194vw;
+  flex:0.5;
 }

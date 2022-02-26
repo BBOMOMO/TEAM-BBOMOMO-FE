@@ -1,0 +1,46 @@
+name: Deploy to Production
+    
+on:
+  push:
+    branches:
+      - master
+    
+jobs:
+    deploy:
+      name: Build, Deploy to S3 bucket
+      runs-on: [ubuntu-latest]
+
+      strategy:
+        matrix:
+          node-version: [12.16.x]
+
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+
+        - name: yarn install
+          run: yarn install
+
+        - name: Build
+          run: yarn build
+
+        - name: Transfer to S3 for serving static
+          uses: jakejarvis/s3-sync-action@master
+          with:
+            args: --acl public-read --follow-symlinks --delete
+          env:
+            AWS_S3_BUCKET: bbomomo
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_IAM_ACCESS_KEY }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_IAM_SECRET_KEY }}
+            AWS_REGION: ap-northeast-2
+
+        - name: Invalidate Cloudfront Cache
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_IAM_ACCESS_KEY }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_IAM_SECRET_KEY }}
+          run: aws cloudfront create-invalidation --distribution-id '${{ secrets.DISTRIBUTION_ID }}' --paths "/*"
+

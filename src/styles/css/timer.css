@@ -1,7 +1,8 @@
 .timer_bx {
-  width: 1080px;
+  width:100%; 
   color: #282828;
   text-align: center;
+  margin-bottom:30px; 
 }
 .timer_bx h2 {
   font-size: 18px;

@@ -1,39 +1,45 @@
 import React from "react";
 import GlobalStyles from "./components/GlobalStyles";
 
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./styles/css/login.css";
 import "./styles/css/signup.css";
-import "./styles/css/groupbx.css";
+import "./styles/css/group.css";
 import "./styles/css/grouprecommend.css";
 import "./styles/css/timer.css";
 import "./styles/css/myInfo.css";
 import "./styles/css/userview.css";
+import "./styles/css/video.css";
+import "./styles/css/certification.css";
 import Login from "./page/Login";
-import GroupList from "./page/GroupList";
 import Signup from "./page/Singup";
-import PostChat from "./components/PostChat";
-import GroupRecommend from "./components/GroupRecommend";
-import GroupRoomTimer from "./components/GroupRoomTimer";
-import GroupBx from "./components/GroupBx";
-import Header from "./components/Header";
-import MyInfo from "./components/MyInfo";
-import UserView from "./components/UserView";
+import Group from "./page/Group";
+import Kakao from "./shared/social/Kakao";
+import Google from "./shared/social/Google";
+
+import Main from "./page/Main";
+import NotFound from "./page/NotFound";
+import Certification from "./components/Certification";
+import VideoChatRoom from "./components/VideoChatRoom";
+import { useSelector, useDispatch } from "react-redux";
+import VideoCloseModal from "./components/VideoEndModal";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Header/>
-      <Route path="/" exact component={Signup} />
-      <Route path="/login" exact component={Login} />
-      <Route path="/list" exact component={GroupList} />
-      <Route path="/chat" exact component={PostChat} />
-      <Route path="/groupreco" exact component={GroupRecommend} />
-      <Route path="/timer" exact component={GroupRoomTimer} />
-      <Route path="/glist" exact component={GroupBx} />
-      <Route path="/myinfo" exact component={MyInfo} />
-      <Route path="/userview" exact component={UserView} />
+
+      <Switch>
+        <Route path="/signup" component={Signup} exact />
+        <Route path="/login" component={Login} exact />
+        <Route path="/api/v1/auth/kakao/callback" component={Kakao}></Route>
+        <Route path="/api/v1/auth/google/callback" component={Google}></Route>
+        <Route path="/" component={Main} exact />
+        <Route path="/video/:roomId" exact component={VideoChatRoom} />
+
+        <Route path="/modal" component={VideoCloseModal} />
+        <Route path={"*"} component={NotFound} />
+      </Switch>
     </>
   );
 }
